@@ -1,11 +1,16 @@
 ---
 layout: post
 title: Happy Workers
-date: 2018-03-16 09:00:00 +0900
+date: '2018-03-16 09:00:00 +0900'
 description: 문제를 해결을 위한 최적의 답을 고민하는 개발자가 행복할 자격이 있다.
-img: post_03_00.JPG 
-tags: [happy, developer, worker, devpools]
+img: post_03_00.JPG
+tags:
+  - happy
+  - developer
+  - worker
+  - devpools
 comments: true
+published: true
 ---
 <br> 
 ## 높은 급여와 인센티브가 생산성을 높일 수 있을까?
