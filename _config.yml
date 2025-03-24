@@ -6,7 +6,12 @@ description: > # this means to ignore newlines until "baseurl:"
   for developers.  
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://namojo.github.io" # 비어있는 값을 채우세요
+plugins: # plugins_dir 대신 plugins 사용
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+future: true # 미래 날짜 포스트 허용
 site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
@@ -27,11 +32,6 @@ discus-identifier: namojo # add your discus identifier
 
 # Build Settings
 markdown: kramdown
-plugins_dir:
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jemoji
-
 paginate: 8
 paginate_path: "/page/:num"
 
