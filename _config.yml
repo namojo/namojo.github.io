@@ -7,6 +7,10 @@ description: > # this means to ignore newlines until "baseurl:"
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://namojo.github.io" # 비어있는 값을 채우세요
+
+github-pages: 228  # 또는 현재 GitHub Pages가 사용하는 버전
+jekyll: 3.9.3      # GitHub Pages와 호환되는 Jekyll 버전
+
 plugins: # plugins_dir 대신 plugins 사용
   - jekyll-sitemap
   - jekyll-paginate
