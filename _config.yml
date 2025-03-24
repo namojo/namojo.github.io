@@ -40,6 +40,15 @@ paginate: 8
 paginate_path: "/page/:num"
 
 #exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "vendor"]
+exclude:
+  - node_modules
+  - gulpfile.js
+  - package.json
+  - yarn.lock
+  - vendor
+  - "**/*.erb"  # 모든 .erb 파일 제외
+  - "**/.git"
+  - "**/.svn"
+  - "**/.sass-cache"
 
 theme: jekyll-theme-minimal
