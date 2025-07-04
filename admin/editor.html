@@ -314,6 +314,7 @@
             padding: 16px;
             display: none;
             animation: slideIn 0.3s ease-out;
+            z-index: 9999;
         }
         
         @keyframes slideIn {
@@ -591,10 +592,11 @@
             const postList = document.getElementById('postList');
             postList.innerHTML = '';
             
-            posts.forEach(post => {
+            posts.forEach((post, index) => {
                 const item = document.createElement('div');
                 item.className = 'post-item';
-                item.onclick = () => loadPost(post);
+                item.setAttribute('data-index', index);
+                item.onclick = function() { loadPost(post, this); };
                 
                 const dateMatch = post.name.match(/^(\d{4}-\d{2}-\d{2})/);
                 const date = dateMatch ? dateMatch[1] : '';
@@ -610,7 +612,7 @@
         }
         
         // Load a specific post
-        async function loadPost(post) {
+        async function loadPost(post, element) {
             showLoading(true);
             try {
                 const response = await fetch(post.download_url);
@@ -654,7 +656,7 @@
                 // Update UI
                 document.getElementById('deleteBtn').style.display = 'inline-flex';
                 document.querySelectorAll('.post-item').forEach(item => item.classList.remove('active'));
-                event.currentTarget.classList.add('active');
+                element.classList.add('active');
                 
                 showToast('success', '포스트를 불러왔습니다.');
             } catch (error) {
@@ -737,31 +739,47 @@
         }
         
         async function uploadImages(files) {
-            for (let file of files) {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const dataUrl = e.target.result;
-                        const imagePath = `/assets/img/posts/${file.name}`;
+            try {
+                for (let file of files) {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
                         
-                        // Store the data URL for preview
-                        uploadedImages.set(file.name, dataUrl);
+                        reader.onload = function(e) {
+                            try {
+                                const dataUrl = e.target.result;
+                                const imagePath = `/assets/img/posts/${file.name}`;
+                                
+                                // Store the data URL for preview
+                                uploadedImages.set(file.name, dataUrl);
+                                
+                                // Insert markdown
+                                const imageMarkdown = `![${file.name}](${imagePath})`;
+                                const cm = simplemde.codemirror;
+                                cm.replaceSelection(imageMarkdown);
+                                
+                                // Refresh preview
+                                if (simplemde.isPreviewActive()) {
+                                    simplemde.togglePreview();
+                                    setTimeout(() => simplemde.togglePreview(), 100);
+                                }
+                                
+                                showToast('info', `이미지 '${file.name}'가 추가되었습니다. 실제 업로드는 GitHub에 직접 해주세요.`);
+                            } catch (error) {
+                                console.error('Error processing image:', error);
+                                showToast('error', '이미지 처리 중 오류가 발생했습니다.');
+                            }
+                        };
                         
-                        // Insert markdown
-                        const imageMarkdown = `![${file.name}](${imagePath})`;
-                        const cm = simplemde.codemirror;
-                        cm.replaceSelection(imageMarkdown);
+                        reader.onerror = function() {
+                            showToast('error', `이미지 '${file.name}' 읽기 실패`);
+                        };
                         
-                        // Refresh preview
-                        if (simplemde.isPreviewActive()) {
-                            simplemde.togglePreview();
-                            simplemde.togglePreview();
-                        }
-                        
-                        showToast('info', `이미지 '${file.name}'가 추가되었습니다. 실제 업로드는 GitHub에 직접 해주세요.`);
-                    };
-                    reader.readAsDataURL(file);
+                        reader.readAsDataURL(file);
+                    }
                 }
+            } catch (error) {
+                console.error('Error uploading images:', error);
+                showToast('error', '이미지 업로드 중 오류가 발생했습니다.');
             }
         }
         
@@ -868,6 +886,9 @@
         function hideToast() {
             document.getElementById('toast').style.display = 'none';
         }
+        
+        // Make removeTag function available globally
+        window.removeTag = removeTag;
     </script>
 </body>
 </html>
