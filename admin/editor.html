@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jekyll Blog Editor</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <title>Jekyll Blog Editor - Advanced</title>
+    <!-- SimpleMDE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -15,109 +17,123 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #f5f7fa;
             color: #333;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
         
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 30px;
         }
         
         h1 {
-            color: #2c3e50;
             text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
-        .editor-container {
+        .main-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 300px 1fr;
             gap: 20px;
-            height: calc(100vh - 200px);
+            height: calc(100vh - 180px);
         }
         
-        .editor-panel, .preview-panel {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             overflow: hidden;
         }
         
-        .panel-header {
-            background-color: #34495e;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
+        .sidebar-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
         }
         
-        .toolbar {
-            background-color: #ecf0f1;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        button {
-            background-color: #3498db;
+        .btn-new {
+            width: 100%;
+            background: #28a745;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
         }
         
-        button:hover {
-            background-color: #2980b9;
+        .btn-new:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
         }
         
-        button.success {
-            background-color: #27ae60;
-        }
-        
-        button.success:hover {
-            background-color: #229954;
-        }
-        
-        input[type="text"], input[type="date"], select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        .CodeMirror {
-            height: calc(100% - 100px);
-        }
-        
-        .preview-content {
-            padding: 20px;
-            height: calc(100% - 50px);
+        .post-list {
             overflow-y: auto;
+            max-height: calc(100vh - 300px);
         }
         
-        .preview-content img {
-            max-width: 100%;
-            height: auto;
+        .post-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.2s;
         }
         
-        .metadata-form {
+        .post-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .post-item.active {
+            background: #e7f3ff;
+            border-left: 4px solid #007bff;
+        }
+        
+        .post-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .post-item-date {
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        /* Editor Section */
+        .editor-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .metadata-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #ddd;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
         
         .form-group {
@@ -127,9 +143,28 @@
         }
         
         .form-group label {
-            font-size: 12px;
-            color: #666;
-            font-weight: bold;
+            font-size: 13px;
+            color: #495057;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.15s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        
+        /* Tags Input */
+        .tags-input-container {
+            position: relative;
         }
         
         .tags-input {
@@ -137,18 +172,23 @@
             flex-wrap: wrap;
             gap: 5px;
             padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-height: 36px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            min-height: 40px;
             align-items: center;
         }
         
+        .tags-input:focus-within {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        
         .tag {
-            background-color: #3498db;
+            background: #007bff;
             color: white;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -156,55 +196,201 @@
         
         .tag-remove {
             cursor: pointer;
-            font-weight: bold;
+            font-size: 16px;
+            line-height: 1;
+            opacity: 0.8;
         }
         
-        .tag-input {
+        .tag-remove:hover {
+            opacity: 1;
+        }
+        
+        .tag-input-field {
             border: none;
             outline: none;
             flex-grow: 1;
             min-width: 100px;
+            font-size: 14px;
         }
         
-        .image-upload {
+        /* Editor Container */
+        .editor-container {
+            padding: 20px;
+        }
+        
+        /* SimpleMDE Customization */
+        .editor-preview-side {
+            padding: 20px;
+        }
+        
+        .CodeMirror {
+            height: calc(100vh - 400px);
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+        }
+        
+        /* Toolbar */
+        .toolbar {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 16px;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        .toast.success {
+            border-left: 4px solid #28a745;
+        }
+        
+        .toast.error {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .toast.info {
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .toast-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .toast-title {
+            font-weight: 600;
+        }
+        
+        .toast-close {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        
+        .toast-close:hover {
+            opacity: 1;
+        }
+        
+        /* Image Upload Zone */
+        .image-upload-zone {
+            border: 2px dashed #ced4da;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
             margin-top: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .image-upload-zone:hover {
+            border-color: #007bff;
+            background: #e7f3ff;
+        }
+        
+        .image-upload-zone.dragover {
+            border-color: #28a745;
+            background: #d4edda;
         }
         
         #imageFile {
             display: none;
         }
         
-        .upload-btn {
-            background-color: #9b59b6;
-        }
-        
-        .upload-btn:hover {
-            background-color: #8e44ad;
-        }
-        
-        .status-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .status-message.success {
-            background-color: #27ae60;
-        }
-        
-        .status-message.error {
-            background-color: #e74c3c;
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
-            .editor-container {
+            .main-layout {
                 grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
             }
         }
     </style>
@@ -212,103 +398,290 @@
 <body>
     <header>
         <div class="container">
-            <h1>Jekyll Blog Editor</h1>
+            <h1><i class="fas fa-pen-fancy"></i> Jekyll Blog Editor</h1>
         </div>
     </header>
     
     <div class="container">
-        <div class="metadata-form">
-            <div class="form-group">
-                <label for="postTitle">제목</label>
-                <input type="text" id="postTitle" placeholder="포스트 제목">
-            </div>
-            <div class="form-group">
-                <label for="postDate">날짜</label>
-                <input type="date" id="postDate">
-            </div>
-            <div class="form-group">
-                <label for="postLayout">레이아웃</label>
-                <select id="postLayout">
-                    <option value="post">post</option>
-                    <option value="page">page</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="postImage">대표 이미지</label>
-                <input type="text" id="postImage" placeholder="이미지 파일명">
-            </div>
-            <div class="form-group">
-                <label>태그</label>
-                <div class="tags-input" id="tagsContainer">
-                    <input type="text" class="tag-input" id="tagInput" placeholder="태그 입력 후 Enter">
-                </div>
-            </div>
-        </div>
-        
-        <div class="editor-container">
-            <div class="editor-panel">
-                <div class="panel-header">Markdown Editor</div>
-                <div class="toolbar">
-                    <button onclick="insertMarkdown('**', '**')">굵게</button>
-                    <button onclick="insertMarkdown('*', '*')">기울임</button>
-                    <button onclick="insertMarkdown('## ', '')">제목</button>
-                    <button onclick="insertMarkdown('[', '](url)')">링크</button>
-                    <button onclick="insertMarkdown('![', '](url)')">이미지</button>
-                    <button onclick="insertMarkdown('```\n', '\n```')">코드</button>
-                    <button onclick="insertMarkdown('> ', '')">인용</button>
-                    <button onclick="insertMarkdown('- ', '')">목록</button>
-                    <button class="upload-btn" onclick="document.getElementById('imageFile').click()">
-                        이미지 업로드
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <button class="btn-new" onclick="createNewPost()">
+                        <i class="fas fa-plus"></i> 새 포스트
                     </button>
-                    <input type="file" id="imageFile" accept="image/*" onchange="uploadImage(this)">
                 </div>
-                <textarea id="editor"></textarea>
-            </div>
+                <div class="post-list" id="postList">
+                    <!-- Posts will be loaded here -->
+                </div>
+            </aside>
             
-            <div class="preview-panel">
-                <div class="panel-header">미리보기</div>
-                <div class="preview-content" id="preview"></div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 20px; text-align: center;">
-            <button class="success" onclick="savePost()" style="font-size: 16px; padding: 12px 30px;">
-                포스트 저장
-            </button>
+            <!-- Editor Section -->
+            <section class="editor-section">
+                <div class="editor-header">
+                    <div class="metadata-grid">
+                        <div class="form-group">
+                            <label for="postTitle">제목</label>
+                            <input type="text" id="postTitle" class="form-control" placeholder="포스트 제목을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="postDate">날짜</label>
+                            <input type="date" id="postDate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="postLayout">레이아웃</label>
+                            <select id="postLayout" class="form-control">
+                                <option value="post">post</option>
+                                <option value="page">page</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="postImage">대표 이미지</label>
+                            <input type="text" id="postImage" class="form-control" placeholder="이미지 파일명">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>태그</label>
+                        <div class="tags-input-container">
+                            <div class="tags-input" id="tagsContainer">
+                                <input type="text" class="tag-input-field" id="tagInput" placeholder="태그 입력 후 Enter">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-upload-zone" onclick="document.getElementById('imageFile').click()" 
+                         ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                        <i class="fas fa-cloud-upload-alt fa-3x" style="color: #6c757d; margin-bottom: 10px;"></i>
+                        <p>이미지를 드래그하거나 클릭하여 업로드</p>
+                        <input type="file" id="imageFile" accept="image/*" multiple onchange="uploadImages(this.files)">
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <textarea id="editor"></textarea>
+                </div>
+                
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="savePost()">
+                        <i class="fas fa-save"></i> 저장
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadPost()">
+                        <i class="fas fa-download"></i> 다운로드
+                    </button>
+                    <button class="btn btn-danger" onclick="deletePost()" id="deleteBtn" style="display: none;">
+                        <i class="fas fa-trash"></i> 삭제
+                    </button>
+                </div>
+            </section>
         </div>
     </div>
     
-    <div class="status-message" id="statusMessage"></div>
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading" style="display: none;">
+        <div class="spinner"></div>
+    </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-header">
+            <span class="toast-title"></span>
+            <span class="toast-close" onclick="hideToast()">&times;</span>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+    
+    <!-- SimpleMDE JS -->
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
-        // CodeMirror 초기화
-        const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-            mode: 'markdown',
-            theme: 'monokai',
-            lineNumbers: true,
-            lineWrapping: true,
-            autofocus: true
+        // GitHub API configuration
+        const GITHUB_OWNER = 'namojo';
+        const GITHUB_REPO = 'namojo.github.io';
+        const GITHUB_BRANCH = 'master';
+        
+        // SimpleMDE Editor
+        let simplemde;
+        let currentPost = null;
+        let posts = [];
+        let tags = [];
+        let uploadedImages = new Map(); // Store uploaded image mappings
+        
+        // Initialize editor
+        function initEditor() {
+            simplemde = new SimpleMDE({
+                element: document.getElementById("editor"),
+                spellChecker: false,
+                autosave: {
+                    enabled: true,
+                    uniqueId: "jekyll-blog-editor",
+                    delay: 1000,
+                },
+                renderingConfig: {
+                    singleLineBreaks: false,
+                    codeSyntaxHighlighting: true,
+                },
+                previewRender: function(plainText) {
+                    // Custom preview render to handle local images
+                    let html = this.parent.markdown(plainText);
+                    
+                    // Replace image paths with data URLs if available
+                    uploadedImages.forEach((dataUrl, filename) => {
+                        const patterns = [
+                            new RegExp(`\\(/assets/img/posts/${filename}\\)`, 'g'),
+                            new RegExp(`src="/assets/img/posts/${filename}"`, 'g')
+                        ];
+                        patterns.forEach(pattern => {
+                            html = html.replace(pattern, match => {
+                                return match.replace(`/assets/img/posts/${filename}`, dataUrl);
+                            });
+                        });
+                    });
+                    
+                    return html;
+                },
+                toolbar: [
+                    "bold", "italic", "heading", "|",
+                    "quote", "unordered-list", "ordered-list", "|",
+                    "link", "image", "table", "|",
+                    "preview", "side-by-side", "fullscreen", "|",
+                    "guide"
+                ],
+                status: ["autosave", "lines", "words", "cursor"],
+            });
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initEditor();
+            loadPosts();
+            
+            // Set today's date
+            document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
+            
+            // Tag input handling
+            document.getElementById('tagInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    e.preventDefault();
+                    addTag(this.value.trim());
+                    this.value = '';
+                }
+            });
         });
         
-        // 오늘 날짜로 초기화
-        document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
-        
-        // 태그 관리
-        const tags = [];
-        const tagInput = document.getElementById('tagInput');
-        const tagsContainer = document.getElementById('tagsContainer');
-        
-        tagInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                e.preventDefault();
-                addTag(this.value.trim());
-                this.value = '';
+        // Load posts from GitHub
+        async function loadPosts() {
+            showLoading(true);
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/_posts`);
+                const files = await response.json();
+                
+                posts = files.filter(file => file.name.endsWith('.md') || file.name.endsWith('.markdown'));
+                posts.sort((a, b) => b.name.localeCompare(a.name)); // Sort by date (newest first)
+                
+                renderPostList();
+                showToast('success', '포스트 목록을 불러왔습니다.');
+            } catch (error) {
+                showToast('error', '포스트 목록을 불러오는데 실패했습니다.');
+                console.error(error);
+            } finally {
+                showLoading(false);
             }
-        });
+        }
         
+        // Render post list in sidebar
+        function renderPostList() {
+            const postList = document.getElementById('postList');
+            postList.innerHTML = '';
+            
+            posts.forEach(post => {
+                const item = document.createElement('div');
+                item.className = 'post-item';
+                item.onclick = () => loadPost(post);
+                
+                const dateMatch = post.name.match(/^(\d{4}-\d{2}-\d{2})/);
+                const date = dateMatch ? dateMatch[1] : '';
+                const title = post.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.(md|markdown)$/, '').replace(/-/g, ' ');
+                
+                item.innerHTML = `
+                    <div class="post-item-title">${title}</div>
+                    <div class="post-item-date">${date}</div>
+                `;
+                
+                postList.appendChild(item);
+            });
+        }
+        
+        // Load a specific post
+        async function loadPost(post) {
+            showLoading(true);
+            try {
+                const response = await fetch(post.download_url);
+                const content = await response.text();
+                
+                currentPost = post;
+                
+                // Parse front matter
+                const frontMatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
+                if (frontMatterMatch) {
+                    const frontMatter = frontMatterMatch[1];
+                    const mainContent = content.replace(frontMatterMatch[0], '').trim();
+                    
+                    // Parse front matter fields
+                    const titleMatch = frontMatter.match(/title:\s*(.+)/);
+                    const dateMatch = frontMatter.match(/date:\s*(\d{4}-\d{2}-\d{2})/);
+                    const layoutMatch = frontMatter.match(/layout:\s*(.+)/);
+                    const imgMatch = frontMatter.match(/img:\s*(.+)/);
+                    const tagsMatch = frontMatter.match(/tags:\s*\n((?:\s*-\s*.+\n?)*)/);
+                    
+                    // Set form values
+                    document.getElementById('postTitle').value = titleMatch ? titleMatch[1] : '';
+                    document.getElementById('postDate').value = dateMatch ? dateMatch[1] : '';
+                    document.getElementById('postLayout').value = layoutMatch ? layoutMatch[1] : 'post';
+                    document.getElementById('postImage').value = imgMatch ? imgMatch[1] : '';
+                    
+                    // Parse and set tags
+                    tags = [];
+                    if (tagsMatch) {
+                        const tagLines = tagsMatch[1].match(/\s*-\s*(.+)/g);
+                        if (tagLines) {
+                            tags = tagLines.map(line => line.replace(/\s*-\s*/, '').trim());
+                        }
+                    }
+                    renderTags();
+                    
+                    // Set editor content
+                    simplemde.value(mainContent);
+                }
+                
+                // Update UI
+                document.getElementById('deleteBtn').style.display = 'inline-flex';
+                document.querySelectorAll('.post-item').forEach(item => item.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                
+                showToast('success', '포스트를 불러왔습니다.');
+            } catch (error) {
+                showToast('error', '포스트를 불러오는데 실패했습니다.');
+                console.error(error);
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // Create new post
+        function createNewPost() {
+            currentPost = null;
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('postLayout').value = 'post';
+            document.getElementById('postImage').value = '';
+            tags = [];
+            renderTags();
+            simplemde.value('');
+            document.getElementById('deleteBtn').style.display = 'none';
+            document.querySelectorAll('.post-item').forEach(item => item.classList.remove('active'));
+            
+            showToast('info', '새 포스트를 작성하세요.');
+        }
+        
+        // Tag management
         function addTag(tag) {
             if (!tags.includes(tag)) {
                 tags.push(tag);
@@ -325,51 +698,74 @@
         }
         
         function renderTags() {
-            // 기존 태그 요소들 제거
-            const existingTags = tagsContainer.querySelectorAll('.tag');
-            existingTags.forEach(tag => tag.remove());
+            const container = document.getElementById('tagsContainer');
+            const input = document.getElementById('tagInput');
             
-            // 새로운 태그 추가
+            // Remove existing tags
+            container.querySelectorAll('.tag').forEach(tag => tag.remove());
+            
+            // Add tags
             tags.forEach(tag => {
                 const tagEl = document.createElement('div');
                 tagEl.className = 'tag';
-                tagEl.innerHTML = `${tag} <span class="tag-remove" onclick="removeTag('${tag}')">×</span>`;
-                tagsContainer.insertBefore(tagEl, tagInput);
+                tagEl.innerHTML = `${tag} <span class="tag-remove" onclick="removeTag('${tag}')">&times;</span>`;
+                container.insertBefore(tagEl, input);
             });
         }
         
-        // 마크다운 삽입 함수
-        function insertMarkdown(before, after) {
-            const doc = editor.getDoc();
-            const cursor = doc.getCursor();
-            const selection = doc.getSelection();
+        // Image handling
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.remove('dragover');
             
-            if (selection) {
-                doc.replaceSelection(before + selection + after);
-            } else {
-                doc.replaceRange(before + after, cursor);
-                doc.setCursor({
-                    line: cursor.line,
-                    ch: cursor.ch + before.length
-                });
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                uploadImages(e.dataTransfer.files);
             }
-            
-            editor.focus();
         }
         
-        // 미리보기 업데이트
-        function updatePreview() {
-            const content = editor.getValue();
-            const frontMatter = generateFrontMatter();
-            const fullContent = frontMatter + '\n' + content;
-            
-            // Front matter 제거하고 마크다운만 렌더링
-            const markdownContent = content;
-            const html = marked.parse(markdownContent);
-            document.getElementById('preview').innerHTML = html;
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.add('dragover');
         }
         
-        // Front Matter 생성
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.remove('dragover');
+        }
+        
+        async function uploadImages(files) {
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const dataUrl = e.target.result;
+                        const imagePath = `/assets/img/posts/${file.name}`;
+                        
+                        // Store the data URL for preview
+                        uploadedImages.set(file.name, dataUrl);
+                        
+                        // Insert markdown
+                        const imageMarkdown = `![${file.name}](${imagePath})`;
+                        const cm = simplemde.codemirror;
+                        cm.replaceSelection(imageMarkdown);
+                        
+                        // Refresh preview
+                        if (simplemde.isPreviewActive()) {
+                            simplemde.togglePreview();
+                            simplemde.togglePreview();
+                        }
+                        
+                        showToast('info', `이미지 '${file.name}'가 추가되었습니다. 실제 업로드는 GitHub에 직접 해주세요.`);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+        
+        // Generate front matter
         function generateFrontMatter() {
             const title = document.getElementById('postTitle').value;
             const date = document.getElementById('postDate').value;
@@ -396,27 +792,41 @@
             return frontMatter;
         }
         
-        // 포스트 저장
+        // Save post
         function savePost() {
             const title = document.getElementById('postTitle').value;
             const date = document.getElementById('postDate').value;
             
             if (!title || !date) {
-                showStatus('제목과 날짜를 입력해주세요.', 'error');
+                showToast('error', '제목과 날짜를 입력해주세요.');
                 return;
             }
             
-            const content = editor.getValue();
+            showToast('info', '포스트 저장 기능은 GitHub API 토큰이 필요합니다. 다운로드 후 수동으로 업로드해주세요.');
+            downloadPost();
+        }
+        
+        // Download post
+        function downloadPost() {
+            const title = document.getElementById('postTitle').value;
+            const date = document.getElementById('postDate').value;
+            
+            if (!title || !date) {
+                showToast('error', '제목과 날짜를 입력해주세요.');
+                return;
+            }
+            
+            const content = simplemde.value();
             const frontMatter = generateFrontMatter();
             const fullContent = frontMatter + '\n' + content;
             
-            // 파일명 생성
+            // Generate filename
             const slug = title.toLowerCase()
                 .replace(/[^\w\s가-힣]/g, '')
                 .replace(/\s+/g, '-');
             const filename = `${date}-${slug}.md`;
             
-            // 다운로드 링크 생성
+            // Download
             const blob = new Blob([fullContent], { type: 'text/markdown' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -424,50 +834,40 @@
             a.download = filename;
             a.click();
             
-            showStatus('포스트가 다운로드되었습니다. _posts 폴더에 저장해주세요.', 'success');
+            showToast('success', '포스트가 다운로드되었습니다.');
         }
         
-        // 이미지 업로드 (시뮬레이션)
-        function uploadImage(input) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // 실제로는 서버에 업로드하고 URL을 받아야 함
-                    const imageName = file.name;
-                    const imageMarkdown = `![${imageName}](/assets/img/posts/${imageName})`;
-                    
-                    const doc = editor.getDoc();
-                    const cursor = doc.getCursor();
-                    doc.replaceRange(imageMarkdown + '\n', cursor);
-                    
-                    showStatus(`이미지를 /assets/img/posts/ 폴더에 ${imageName}으로 저장해주세요.`, 'success');
-                };
-                
-                reader.readAsDataURL(file);
+        // Delete post
+        function deletePost() {
+            if (!currentPost) return;
+            
+            if (confirm('정말로 이 포스트를 삭제하시겠습니까?')) {
+                showToast('info', '포스트 삭제는 GitHub에서 직접 해주세요.');
             }
         }
         
-        // 상태 메시지 표시
-        function showStatus(message, type) {
-            const statusEl = document.getElementById('statusMessage');
-            statusEl.textContent = message;
-            statusEl.className = `status-message ${type}`;
-            statusEl.style.display = 'block';
+        // UI Helpers
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+        
+        function showToast(type, message) {
+            const toast = document.getElementById('toast');
+            const title = type === 'success' ? '성공' : type === 'error' ? '오류' : '알림';
+            
+            toast.className = `toast ${type}`;
+            toast.querySelector('.toast-title').textContent = title;
+            toast.querySelector('.toast-body').textContent = message;
+            toast.style.display = 'block';
             
             setTimeout(() => {
-                statusEl.style.display = 'none';
+                hideToast();
             }, 3000);
         }
         
-        // 에디터 변경 감지
-        editor.on('change', function() {
-            updatePreview();
-        });
-        
-        // 초기 미리보기
-        updatePreview();
+        function hideToast() {
+            document.getElementById('toast').style.display = 'none';
+        }
     </script>
 </body>
 </html>
