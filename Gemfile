@@ -1,15 +1,22 @@
 source "https://rubygems.org"
 
-# 이것이 핵심입니다 - GitHub Pages 젬을 사용합니다
-# gem "github-pages", group: :jekyll_plugins
+# GitHub Pages의 최신 버전 사용
+gem "github-pages", "~> 232", group: :jekyll_plugins
+gem "jekyll", "~> 3.10.0"
 
-gem 'github-pages', '~> 228', group: :jekyll_plugins
-gem 'jekyll', '~> 3.9.3'  # GitHub Pages와 호환되는 버전
-
-# 필요한 플러그인들
+# 필수 플러그인들
 group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-paginate"
   gem "jemoji"
+  gem "jekyll-feed"
+  gem "jekyll-seo-tag"
+  gem "jekyll-relative-links"
 end
 
+# Windows 사용자를 위한 추가 gem
+gem "webrick", "~> 1.8"
+
+# 개발 환경을 위한 추가 gem
+gem "jekyll-admin", group: :jekyll_plugins
+gem "jekyll-compose", group: :jekyll_plugins
