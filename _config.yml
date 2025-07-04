@@ -5,16 +5,26 @@ description: > # this means to ignore newlines until "baseurl:"
   Developer Competency team(so weired) and I love to make the environment
   for developers.  
 permalink: ':title/'
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://namojo.github.io" # 비어있는 값을 채우세요
+baseurl: "" # 빈 값으로 설정
+url: "https://namojo.github.io"
 
-github-pages: 228  # 또는 현재 GitHub Pages가 사용하는 버전
-jekyll: 3.9.3      # GitHub Pages와 호환되는 Jekyll 버전
+# 로컬 이미지 저장을 위한 설정
+image_path: /assets/img/posts/
 
-plugins: # plugins_dir 대신 plugins 사용
+# Jekyll 설정
+github-pages: 232  # 최신 GitHub Pages 버전
+jekyll: 3.10.0     # 호환되는 Jekyll 버전
+
+plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-relative-links
+  - jekyll-admin
+  - jekyll-compose
+
 future: true # 미래 날짜 포스트 허용
 site-twitter: #if your site has a twitter account, enter it here
 
@@ -36,19 +46,42 @@ discus-identifier: namojo # add your discus identifier
 
 # Build Settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
 paginate: 8
 paginate_path: "/page/:num"
 
-#exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
+# Jekyll Compose 설정
+jekyll_compose:
+  default_front_matter:
+    posts:
+      layout: post
+      description: 
+      img: 
+      tags: []
+      comments: true
+
+# Jekyll Admin 설정
+jekyll_admin:
+  hidden_links:
+    - configuration
+    
+# 제외 파일
 exclude:
   - node_modules
   - gulpfile.js
   - package.json
   - yarn.lock
   - vendor
-  - "**/*.erb"  # 모든 .erb 파일 제외
+  - "**/*.erb"
   - "**/.git"
   - "**/.svn"
   - "**/.sass-cache"
+  - Gemfile
+  - Gemfile.lock
+  - README.md
 
-theme: jekyll-theme-minimal
+# 테마 제거 (Flexible-Jekyll 테마는 파일로 직접 포함)
+# theme: jekyll-theme-minimal
