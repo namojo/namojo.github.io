@@ -7,7 +7,7 @@ tags:
   - CUA
 published: true
 date: '2025-03-19'
-img: https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/qbf/image/-AWFMsSH_uft7GrALK7EB_ekqNE
+img: https://camo.githubusercontent.com/b1a47140e7909cc270f56335e62b8ddee1836f7baf5350ec81c3469520e45ef1/68747470733a2f2f696d67312e6461756d63646e2e6e65742f7468756d622f523132383078302e666a70672f3f666e616d653d687474703a2f2f74312e6461756d63646e2e6e65742f6272756e63682f736572766963652f757365722f7162662f696d6167652f2d4157464d7353485f756674374772414c4b3745425f656b714e45
 ---
 
 ### **OpenAI의 새로운 Responses API: AI 에이전트 구축을 위한 혁신적 도구**
