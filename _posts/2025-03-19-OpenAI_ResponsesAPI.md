@@ -1,15 +1,17 @@
 ---
+layout: post
 title: OpenAI의 Responses API
+date: 2025-03-19
+description:
+img: CoT_Art_16x9.png 
 tags:
   - OpenAI
   - ResponsesAPI
   - Agent
   - CUA
-published: true
-date: '2025-03-19'
-img: CoT_Art_16x9.png
+comments: true
 ---
-
+<br>
 ### **OpenAI의 새로운 Responses API: AI 에이전트 구축을 위한 혁신적 도구**
 
 OpenAI가 최근 발표한 Responses API는 개발자들이 더 효율적이고 강력한 AI 에이전트를 구축할 수 있는 새로운 방향을 제시합니다. 이 혁신적인 API는 기존의 Chat Completions API와 Assistants API의 장점을 결합하여, 웹 검색, 파일 처리, 컴퓨터 제어 기능을 통합한 유연한 개발 환경을 제공합니다. 특히 OpenAI의 자체 에이전트인 Deep Research와 Operator의 기반 기술을 활용할 수 있게 되어, 개발자들은 이제 더 복잡한 작업을 자율적으로 수행할 수 있는 AI 시스템을 구축할 수 있게 되었습니다. 이 블로그에서는 Responses API의 주요 기능, 장점, 기존 API와의 차이점, 그리고 실제 활용 사례에 대해 자세히 살펴보겠습니다.
