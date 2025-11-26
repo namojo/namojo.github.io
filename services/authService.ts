@@ -2,7 +2,7 @@
 const TOKEN_KEY = 'gh_token';
 const USER_KEY = 'gh_user';
 const ALLOWED_USER = 'namojo';
-const CLIENT_ID = 'Ov23lieqVqNNYARIAcQe'; // Replace with your GitHub OAuth App's Client ID
+const CLIENT_ID = 'Ov23lieqVqNNYARIAcQe';
 
 interface GitHubUser {
   login: string;
@@ -10,7 +10,6 @@ interface GitHubUser {
   name: string;
 }
 
-// Simple proxy to exchange the code for a token without exposing the client secret
 const exchangeCodeForToken = async (code: string): Promise<string | null> => {
   try {
     const response = await fetch(`https://namojo-github-oauth.deno.dev/exchange?code=${code}`);
@@ -24,18 +23,16 @@ const exchangeCodeForToken = async (code: string): Promise<string | null> => {
 };
 
 export const authService = {
-  // Redirect to GitHub's authorization page
   redirectToGitHub: () => {
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user:read`;
+    const redirectUri = 'https://namojo.github.io/#/oauth/callback';
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user:read&redirect_uri=${encodeURIComponent(redirectUri)}`;
     window.location.href = githubAuthUrl;
   },
 
-  // Handle the OAuth callback
   handleOAuthCallback: async (code: string): Promise<boolean> => {
     const token = await exchangeCodeForToken(code);
     if (!token) return false;
 
-    // Verify token and user
     try {
       const response = await fetch('https://api.github.com/user', {
         headers: { Authorization: `token ${token}` },
