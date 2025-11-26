@@ -15,6 +15,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="category/:categorySlug" element={<Home />} />
           <Route path="post/:id" element={<PostView />} />
           <Route path="editor" element={<Editor />} />
           <Route path="editor/:id" element={<Editor />} />

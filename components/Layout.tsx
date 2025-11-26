@@ -55,9 +55,7 @@ export const Layout: React.FC = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-8">
               <Link to="/" className="flex items-center gap-2.5 group">
-                <div className="p-1.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-black transition-colors">
-                  <span className="material-symbols-outlined text-[20px] leading-none">terminal</span>
-                </div>
+                <img src="/profile.jpeg" alt="Namojo icon" className="w-8 h-8 rounded-full" />
                 <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white">Namojo.</span>
               </Link>
               
@@ -97,7 +95,7 @@ export const Layout: React.FC = () => {
               
               <Link to="/about" className="size-9 rounded-full overflow-hidden border border-gray-200 dark:border-dark-border ml-1">
                   <img 
-                    src="https://i.pravatar.cc/150?u=namojo" 
+                    src="/profile.jpeg"
                     alt="Profile" 
                     className="w-full h-full object-cover"
                   />
