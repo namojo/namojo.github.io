@@ -7,6 +7,7 @@ import { PostView } from './pages/PostView';
 import { Editor } from './pages/Editor';
 import { About } from './pages/About';
 import { Login } from './pages/Login';
+import OAuthCallback from './pages/OAuthCallback';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="editor/:id" element={<Editor />} />
           <Route path="about" element={<About />} />
           <Route path="login" element={<Login />} />
+          <Route path="oauth/callback" element={<OAuthCallback />} />
         </Route>
       </Routes>
     </Router>

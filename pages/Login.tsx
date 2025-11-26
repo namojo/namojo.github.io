@@ -1,27 +1,10 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { authService } from '../services/authService';
 
 export const Login: React.FC = () => {
-  const [token, setToken] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    const success = await authService.login(token);
-    
-    if (success) {
-      navigate('/editor');
-    } else {
-      setError('Invalid Token or Unauthorized User. Please use a token for "namojo".');
-    }
-    setLoading(false);
+  const handleLogin = () => {
+    authService.redirectToGitHub();
   };
 
   return (
@@ -33,58 +16,26 @@ export const Login: React.FC = () => {
           </div>
           <h1 className="text-2xl font-bold font-display text-gray-900 dark:text-white">Admin Authentication</h1>
           <p className="text-sm text-gray-500 mt-2">
-            Verify your identity using your GitHub Personal Access Token.
+            Log in using your GitHub account to verify your identity.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">GitHub Token (Classic or Fine-grained)</label>
-            <input 
-                type="password" 
-                value={token}
-                onChange={(e) => {
-                    setToken(e.target.value);
-                    setError('');
-                }}
-                placeholder="ghp_..."
-                className={`w-full rounded-lg border bg-gray-50 dark:bg-dark-bg focus:ring-2 focus:ring-primary-500 text-sm py-3 px-4 ${error ? 'border-red-500 focus:ring-red-200' : 'border-gray-200 dark:border-dark-border'}`}
-                autoFocus
-            />
-          </div>
-
-          {error && (
-            <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-600 dark:text-red-400 text-xs font-medium">
-                <span className="material-symbols-outlined text-sm">error</span>
-                {error}
-            </div>
-          )}
-          
+        <div className="flex flex-col gap-5">
           <button 
-            type="submit"
-            disabled={loading || !token}
-            className="w-full py-3 bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-sm flex justify-center items-center gap-2"
+            onClick={handleLogin}
+            className="w-full py-3 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors shadow-sm flex justify-center items-center gap-3"
           >
-            {loading ? (
-                <>
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                    Verifying...
-                </>
-            ) : 'Verify Token'}
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" />
+            </svg>
+            Sign in with GitHub
           </button>
-        </form>
+        </div>
 
         <div className="mt-8 pt-6 border-t border-gray-100 dark:border-dark-border text-center">
-            <p className="text-xs text-gray-400 mb-2">Don't have a token?</p>
-            <a 
-                href="https://github.com/settings/tokens" 
-                target="_blank" 
-                rel="noreferrer"
-                className="text-xs font-semibold text-primary-600 hover:underline flex items-center justify-center gap-1"
-            >
-                Generate one on GitHub
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-            </a>
+            <p className="text-xs text-gray-400">
+                Only the repository owner ('namojo') will be granted access.
+            </p>
         </div>
       </div>
     </div>
