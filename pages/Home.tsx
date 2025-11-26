@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
 import { getPosts, getCategories } from '../services/dataService';
 import { Post, Category } from '../types';
 
 export const Home: React.FC = () => {
+  const { categorySlug } = useParams<{ categorySlug: string }>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -14,12 +16,17 @@ export const Home: React.FC = () => {
         getPosts(),
         Promise.resolve(getCategories())
       ]);
-      setPosts(fetchedPosts);
+
+      const filteredPosts = categorySlug
+        ? fetchedPosts.filter(p => p.category.toLowerCase() === categorySlug.toLowerCase())
+        : fetchedPosts;
+
+      setPosts(filteredPosts);
       setCategories(fetchedCategories);
       setLoading(false);
     };
     loadData();
-  }, []);
+  }, [categorySlug]);
 
   if (loading) {
     return (
@@ -53,8 +60,9 @@ export const Home: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat) => (
-            <button 
+            <Link
               key={cat.slug}
+              to={`/category/${cat.slug}`}
               className="flex flex-col items-center justify-center p-6 bg-white dark:bg-dark-card border border-light-border dark:border-dark-border rounded-2xl hover:border-primary-200 dark:hover:border-primary-900 hover:shadow-lg hover:shadow-primary-100/50 dark:hover:shadow-none transition-all group duration-300"
             >
               <div className="w-12 h-12 rounded-full bg-light-accent dark:bg-dark-bg flex items-center justify-center mb-4 group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 transition-colors">
@@ -64,7 +72,7 @@ export const Home: React.FC = () => {
               </div>
               <p className="font-bold text-base text-gray-800 dark:text-gray-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{cat.name}</p>
               <p className="text-xs text-gray-400 mt-1 font-medium">{cat.count} Posts</p>
-            </button>
+            </Link>
           ))}
         </div>
       </section>

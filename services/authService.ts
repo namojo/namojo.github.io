@@ -2,6 +2,7 @@
 const TOKEN_KEY = 'gh_token';
 const USER_KEY = 'gh_user';
 const ALLOWED_USER = 'namojo';
+const CLIENT_ID = 'Ov23lieqVqNNYARIAcQe';
 const CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
 interface GitHubUser {
