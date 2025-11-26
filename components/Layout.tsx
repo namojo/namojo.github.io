@@ -108,7 +108,7 @@ export const Layout: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main className="flex-grow text-gray-800 dark:text-gray-200">
         <Outlet />
       </main>
 
