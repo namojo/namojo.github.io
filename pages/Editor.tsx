@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MarkdownRenderer } from '../components/MarkdownRenderer';
 import { EditorState } from '../types';
-import { getPost } from '../services/dataService';
 import { authService } from '../services/authService';
+import matter from 'gray-matter';
 
 export const Editor: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,19 +34,21 @@ export const Editor: React.FC = () => {
       // Load existing post if ID is present
       if (id) {
           setLoading(true);
-          getPost(id).then(post => {
-              if (post) {
-                  setState({
-                      title: post.title,
-                      content: post.content,
-                      excerpt: post.excerpt,
-                      category: post.category,
-                      tags: post.tags.join(', '),
-                      coverImage: post.coverImage || ''
-                  });
-              }
-              setLoading(false);
-          });
+          const filename = id === 'about' ? 'about.md' : `${id}.md`;
+          fetch(`/posts/${filename}`)
+            .then(res => res.text())
+            .then(markdown => {
+                const { data, content } = matter(markdown);
+                setState({
+                    title: data.title,
+                    content: content,
+                    excerpt: data.excerpt,
+                    category: data.category,
+                    tags: data.tags.join(', '),
+                    coverImage: data.coverImage || ''
+                });
+                setLoading(false);
+            });
       }
   }, [id, navigate]);
 
@@ -76,29 +78,32 @@ export const Editor: React.FC = () => {
     }, 0);
   };
 
-  const handleDownload = () => {
-    const postData = {
-        id: id || Date.now().toString(), // Keep existing ID if editing
-        ...state,
-        tags: state.tags.split(',').map(t => t.trim()).filter(Boolean),
-        // If editing, usually we might want to keep original date or add an updated date
-        // For simplicity here, we set current date on save.
+  const handleGenerateMarkdown = () => {
+    const frontmatter = {
+        id: id || Date.now().toString(),
+        title: state.title,
+        excerpt: state.excerpt,
+        coverImage: state.coverImage,
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        likes: 0, // In a real app, we'd fetch existing likes count if editing
+        likes: 0,
         author: {
             name: 'Namojo',
             avatar: 'https://i.pravatar.cc/150?u=namojo'
-        }
+        },
+        tags: state.tags.split(',').map(t => t.trim()).filter(Boolean),
+        category: state.category
     };
 
-    const blob = new Blob([JSON.stringify(postData, null, 2)], { type: 'application/json' });
+    const markdown = matter.stringify(state.content, frontmatter);
+
+    const blob = new Blob([markdown], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `post-${postData.id}.json`;
+    a.download = `${frontmatter.id}.md`;
     a.click();
     URL.revokeObjectURL(url);
-    alert('Post JSON downloaded! Add this to your data source.');
+    alert('Markdown file generated! Commit this to your repository in the `public/posts` folder.');
   };
 
   if (loading) return <div className="p-10 text-center">Loading post data...</div>;
@@ -118,11 +123,11 @@ export const Editor: React.FC = () => {
                 Save Draft
             </button>
             <button 
-                onClick={handleDownload}
+                onClick={handleGenerateMarkdown}
                 className="flex-1 sm:flex-none px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
                 <span className="material-symbols-outlined text-sm">download</span>
-                {id ? 'Download Updates' : 'Download Data'}
+                {id ? 'Generate Updated MD' : 'Generate MD File'}
             </button>
          </div>
       </div>
