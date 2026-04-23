@@ -65,13 +65,22 @@ function markdownToHtml(md) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].replace(/\r$/, '');
 
-    // Image
+    // Image  또는 YouTube embed
     const imgMatch = line.match(/^!\[([^\]]*)\]\((https?:[^)]+)\)\s*$/);
     if (imgMatch) {
       closeList(); closeQuote();
       const alt = escapeHtml(imgMatch[1]);
       const url = imgMatch[2];
-      out.push(`<figure><img src="${url}" alt="${alt}" loading="lazy"/>${alt ? `<figcaption>${alt}</figcaption>` : ''}</figure>`);
+      // YouTube 감지: youtu.be/ID 또는 youtube.com/watch?v=ID
+      const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/);
+      if (ytMatch) {
+        const videoId = ytMatch[1];
+        out.push(
+          `<figure><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/${videoId}" title="${alt || 'YouTube video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>${alt && alt !== 'youtube' ? `<figcaption>${alt}</figcaption>` : ''}</figure>`
+        );
+      } else {
+        out.push(`<figure><img src="${url}" alt="${alt}" loading="lazy"/>${alt ? `<figcaption>${alt}</figcaption>` : ''}</figure>`);
+      }
       continue;
     }
 
@@ -360,6 +369,14 @@ function postHtml(post) {
     }
     .body-content ul, .body-content ol { margin: 0 0 1.5rem 1.5rem; padding: 0; }
     .body-content li { margin-bottom: .5rem; color: var(--text); }
+    .body-content .yt-wrap {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+      background: var(--bg);
+    }
+    .body-content .yt-wrap iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
     .body-content .table-wrap { margin: 1.5rem 0; overflow-x: auto; }
     .body-content table { width: 100%; border-collapse: collapse; font-size: .95rem; }
     .body-content th, .body-content td { padding: .6rem .8rem; text-align: left; vertical-align: top; }

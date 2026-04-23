@@ -101,7 +101,6 @@ def extract_post(html: str, post_id: int) -> dict | None:
     # HTML → Markdown (본문만)
     # 가능하면 h1·p·img·blockquote·table 구조 보존
     # markdownify는 h1→#, img→![](), 등 올바르게 처리
-    content_html = str(content_el)
 
     # Tistory 첨부 이미지의 src가 data-src에 있는 경우 보정 (레이지 로딩 대응)
     for img in content_el.find_all("img"):
@@ -114,6 +113,35 @@ def extract_post(html: str, post_id: int) -> dict | None:
                 img["src"] = lazy
                 if alt:
                     img["alt"] = alt
+
+    # Tistory 에디터 버그 보정:
+    # (1) <h1~h6> 안에 <br>이 들어 있거나 내부 텍스트가 150자 이상이면 "헤딩 오용"으로 보고
+    #     해당 헤딩을 <div>로 강등한다. 그렇지 않으면 markdownify가 본문 전체를 한 줄 헤딩으로 만든다.
+    # (2) <br>을 마크다운 단락 분리로 처리하기 위해 실제 개행으로 교체한다.
+    for h in content_el.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
+        text_len = len(h.get_text(strip=True))
+        has_br = h.find("br") is not None
+        if has_br or text_len > 150:
+            h.name = "div"  # 헤딩에서 강등
+
+    # <br> → 실제 개행 토큰. markdownify는 br을 "  \n"로 바꾸는데,
+    # 단락 분리 수준의 강제 개행이 필요하므로 두 줄 개행으로 치환한다.
+    for br in content_el.find_all("br"):
+        br.replace_with("\n\n")
+
+    # YouTube 링크 간소화:
+    # Tistory의 유튜브 첨부는 <a href="youtu.be/xxx"><img src="thumb"/></a>로 내려온다.
+    # markdownify는 이를 [![alt](thumb)](youtube_url)로 변환하는데,
+    # MarkdownRenderer는 독립된 ![alt](youtube_url)만 iframe embed로 렌더한다.
+    # 따라서 <a>의 children이 이미지 하나뿐이고 href가 유튜브면, <a>를 유튜브 링크 텍스트로 변환한다.
+    import re as _re
+    for a in content_el.find_all("a"):
+        href = a.get("href", "")
+        if _re.search(r"(youtube\.com|youtu\.be)", href):
+            imgs = a.find_all("img")
+            if imgs and len(a.get_text(strip=True)) == 0:
+                # <a>를 제거하고 ![youtube](href) 형태의 마크다운 문자열로 대체
+                a.replace_with(f"\n\n![youtube]({href})\n\n")
 
     md_body = md(
         str(content_el),

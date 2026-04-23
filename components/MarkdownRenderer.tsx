@@ -92,7 +92,8 @@ export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
       const ytMatch = url.match(youtubeRegex);
       if (ytMatch) {
         let videoId = ytMatch[1];
-        if (videoId.includes('&')) videoId = videoId.split('&')[0];
+        // 쿼리스트링(?si=..., ?t=..., &feature=...) 제거 후 순수 video ID만 남긴다
+        videoId = videoId.split(/[?&]/)[0];
         blocks.push(
           <figure key={`yt${key++}`} className="my-8 w-full">
             <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-card bg-ink-100 dark:bg-ink-800">

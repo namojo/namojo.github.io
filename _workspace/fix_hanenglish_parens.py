@@ -62,11 +62,21 @@ def protect_regions(text: str):
 
 
 def restore_regions(text: str, placeholders):
+    """플레이스홀더를 재귀적으로 복원한다. 이미지가 링크 안에 들어간 경우
+    ([![alt](img)](url) → [\x00PH0\x00](url) → \x00PH1\x00) 처럼 중첩 저장되므로
+    한 번의 pass로는 모두 풀리지 않는다. 변화 없을 때까지 반복한다."""
+    pattern = re.compile(r"\x00PH(\d+)\x00")
+
     def _restore(m):
         idx = int(m.group(1))
         return placeholders[idx]
 
-    return re.sub(r"\x00PH(\d+)\x00", _restore, text)
+    for _ in range(10):  # 실질적으로 1~2회면 충분. 무한 루프 방지용 상한.
+        new = pattern.sub(_restore, text)
+        if new == text:
+            break
+        text = new
+    return text
 
 
 def wrap(text: str) -> str:
