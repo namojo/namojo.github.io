@@ -6,6 +6,17 @@ interface PostCardProps {
   post: Post;
 }
 
+// localStorage의 liked_posts를 보고, 이 포스트가 좋아요 눌린 상태면 +1을 반영한다.
+// PostView와 같은 규칙 — 목록·상세 간 숫자가 어긋나지 않도록 한다.
+const likedFromLocal = (id: string): boolean => {
+  try {
+    const map = JSON.parse(localStorage.getItem('liked_posts') || '{}');
+    return !!map[id];
+  } catch {
+    return false;
+  }
+};
+
 /**
  * Airbnb 숙소 카드 감성 + Apple 제품 카드의 정돈된 메타 처리.
  * - 이미지가 상단 2/3 점유 (이미지 중심)
@@ -13,6 +24,7 @@ interface PostCardProps {
  * - 메타는 상단 eyebrow(카테고리) + 하단 저자·날짜로 양극 배치
  */
 export const PostCard: React.FC<PostCardProps> = ({ post }) => {
+  const displayedLikes = post.likes + (likedFromLocal(post.id) ? 1 : 0);
   return (
     <Link
       to={`/post/${post.id}`}
@@ -42,7 +54,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
               favorite
             </span>
-            {post.likes}
+            {displayedLikes}
           </span>
         </div>
       </div>
