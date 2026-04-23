@@ -23,9 +23,11 @@ export interface Category {
 
 export interface EditorState {
   title: string;
+  slug: string;
+  date: string;           // YYYY-MM-DD
   content: string;
   excerpt: string;
   category: string;
-  tags: string;
+  tags: string[];
   coverImage: string;
 }

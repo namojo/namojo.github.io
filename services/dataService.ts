@@ -60,3 +60,21 @@ export const getCategories = (): Category[] => [
   { name: 'Drawing', count: 5, icon: 'brush', slug: 'drawing' },
   { name: 'Story', count: 10, icon: 'auto_stories', slug: 'story' },
 ];
+
+/**
+ * 현재 posts.json에 실제로 사용 중인 카테고리 이름 목록.
+ * Editor의 카테고리 드롭다운에서 쓰이며, 사용자가 '+ 새 카테고리'로
+ * 목록에 없는 카테고리를 입력할 수 있다.
+ */
+export const getUsedCategories = async (): Promise<string[]> => {
+  try {
+    const response = await fetch('./posts.json');
+    if (!response.ok) throw new Error('Failed to fetch posts');
+    const data: Post[] = await response.json();
+    const set = new Set<string>();
+    data.forEach(p => { if (p.category) set.add(p.category); });
+    return [...set].sort((a, b) => a.localeCompare(b, 'ko'));
+  } catch {
+    return ['AI', 'Story'];
+  }
+};
