@@ -1,136 +1,183 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
 
+/**
+ * Apple 메뉴바 감성 — 반투명 블러, 하이어라인만, 타이트한 간격.
+ * 푸터는 Airbnb 풍 여유 있는 패딩과 부드러운 톤.
+ */
 export const Layout: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isDarkMode = localStorage.getItem('theme') === 'dark' || 
+    const isDarkMode =
+      localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    
     setIsDark(isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    
-    // Check auth status
+    document.documentElement.classList.toggle('dark', isDarkMode);
     setIsAdmin(authService.isAdmin());
-  }, [location]); // Re-check on navigation
+  }, [location]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    if (newTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
   };
-  
+
   const handleLogout = (e: React.MouseEvent) => {
-      e.preventDefault();
-      authService.logout();
-      setIsAdmin(false);
-      navigate('/');
+    e.preventDefault();
+    authService.logout();
+    setIsAdmin(false);
+    navigate('/');
   };
 
   const isEditor = location.pathname.startsWith('/editor');
+  const isHome = location.pathname === '/';
 
   return (
-    <div className="flex flex-col min-h-screen bg-light-bg dark:bg-dark-bg transition-colors duration-300">
-      {/* Header */}
-      <header className={`sticky top-0 z-50 w-full backdrop-blur-xl transition-all duration-200 border-b ${
-        isDark ? 'bg-dark-bg/90 border-dark-border' : 'bg-white/90 border-light-border shadow-sm'
-      }`}>
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-8">
-              <Link to="/" className="flex items-center gap-2.5 group">
-                <div className="p-1.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-black transition-colors">
-                  <span className="material-symbols-outlined text-[20px] leading-none">terminal</span>
-                </div>
-                <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white">Namojo.</span>
-              </Link>
-              
-              <nav className="hidden md:flex items-center gap-8">
-                <Link to="/" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">Home</Link>
-                <Link to="/about" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">About</Link>
-                {isAdmin && (
-                    <Link to="/editor" className="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 transition-colors flex items-center gap-1.5 font-bold">
-                    Write
-                    </Link>
-                )}
-              </nav>
-            </div>
+    <div className="flex flex-col min-h-screen bg-ink-50 dark:bg-ink-900 transition-apple duration-300">
+      {/* ───── Apple 메뉴바 스타일 ───── */}
+      <header
+        className={`fixed top-0 z-50 w-full transition-apple duration-500 ${
+          scrolled || !isHome
+            ? 'bg-white/85 dark:bg-ink-900/85 backdrop-blur-2xl border-b border-ink-200/60 dark:border-ink-700/60'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="flex justify-between items-center h-14">
+            <Link to="/" className="group flex items-center gap-2.5">
+              <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-apple ${
+                scrolled || !isHome
+                  ? 'bg-ink-900 dark:bg-ink-50 text-ink-50 dark:text-ink-900'
+                  : 'bg-white/20 text-white backdrop-blur-sm ring-1 ring-white/20'
+              }`}>
+                <span className="material-symbols-outlined text-[16px]">
+                  auto_stories
+                </span>
+              </div>
+              <span className={`font-display font-bold text-[15px] tracking-tight hidden sm:inline ${
+                scrolled || !isHome ? 'text-ink-900 dark:text-ink-50' : 'text-white'
+              }`}>
+                이야기 공장
+              </span>
+            </Link>
 
-            <div className="flex items-center gap-3">
-               {/* Search (Visual Only) */}
-               <div className="hidden md:flex items-center relative group">
-                  <span className="absolute left-3 text-gray-400 material-symbols-outlined text-[18px] group-focus-within:text-primary-500 transition-colors">search</span>
-                  <input 
-                    type="text" 
-                    placeholder="Search..." 
-                    className="pl-9 pr-4 py-1.5 text-sm rounded-full bg-gray-100 dark:bg-dark-card border-none focus:ring-2 focus:ring-primary-500 w-48 transition-all placeholder-gray-400"
-                  />
-               </div>
-
-              <div className="h-6 w-px bg-gray-200 dark:bg-dark-border mx-1 hidden md:block"></div>
-
-              <button 
+            <nav className="flex items-center gap-1 sm:gap-2">
+              {[
+                { to: '/', label: '홈' },
+                { to: '/about', label: '소개' },
+              ].map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={`px-3 py-1.5 rounded-full text-[13px] font-medium transition-apple ${
+                    scrolled || !isHome
+                      ? 'text-ink-700 dark:text-ink-300 hover:text-ink-900 dark:hover:text-ink-50 hover:bg-ink-100 dark:hover:bg-ink-800'
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              {isAdmin && (
+                <Link
+                  to="/editor"
+                  className={`px-3 py-1.5 rounded-full text-[13px] font-semibold transition-apple ${
+                    scrolled || !isHome
+                      ? 'text-warm-600 hover:bg-warm-50 dark:text-warm-400 dark:hover:bg-warm-900/30'
+                      : 'text-warm-300 hover:bg-white/10'
+                  }`}
+                >
+                  새 글 쓰기
+                </Link>
+              )}
+              <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition-colors text-gray-500 dark:text-gray-400"
+                className={`ml-1 w-9 h-9 rounded-full flex items-center justify-center transition-apple ${
+                  scrolled || !isHome
+                    ? 'text-ink-600 hover:bg-ink-100 dark:text-ink-400 dark:hover:bg-ink-800'
+                    : 'text-white/90 hover:bg-white/10'
+                }`}
                 aria-label="Toggle Theme"
               >
-                <span className="material-symbols-outlined text-[20px]">
+                <span className="material-symbols-outlined text-[18px]">
                   {isDark ? 'light_mode' : 'dark_mode'}
                 </span>
               </button>
-              
-              <Link to="/about" className="size-9 rounded-full overflow-hidden border border-gray-200 dark:border-dark-border ml-1">
-                  <img 
-                    src="https://i.pravatar.cc/150?u=namojo" 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-              </Link>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* Spacer to offset fixed header on non-home pages (home has hero that flows under) */}
+      {!isHome && <div className="h-14" />}
+
       <main className="flex-grow">
         <Outlet />
       </main>
 
-      {/* Footer - Hide on Editor */}
+      {/* ───── Footer — Airbnb 감성 여유 있는 패딩 ───── */}
       {!isEditor && (
-        <footer className="border-t border-light-border dark:border-dark-border py-12 mt-12 bg-white dark:bg-dark-card">
-          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col gap-1">
-              <span className="font-display font-bold text-lg text-gray-900 dark:text-white">Namojo.</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                &copy; {new Date().getFullYear()} Namojo. 
-              </p>
+        <footer className="mt-24 pt-20 pb-12 border-t border-ink-200 dark:border-ink-800 bg-ink-100/50 dark:bg-ink-900">
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12">
+            <div className="grid md:grid-cols-12 gap-10 pb-16">
+              <div className="md:col-span-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 rounded-lg bg-ink-900 dark:bg-ink-50 text-ink-50 dark:text-ink-900 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[18px]">auto_stories</span>
+                  </div>
+                  <span className="font-display font-bold text-lg text-ink-900 dark:text-ink-50">
+                    엔지니어를 위한 이야기 공장
+                  </span>
+                </div>
+                <p className="text-sm text-ink-600 dark:text-ink-400 leading-relaxed max-w-md">
+                  AI 기술에 인문학의 온기를 불어넣다. 2024년부터 기록해온 AI 뉴스 평론과 인문학적 IT기술론.
+                </p>
+              </div>
+              <div className="md:col-span-3">
+                <h4 className="text-eyebrow uppercase text-ink-500 mb-4">둘러보기</h4>
+                <ul className="space-y-3 text-sm">
+                  <li><Link to="/" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">홈</Link></li>
+                  <li><Link to="/about" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">저자 소개</Link></li>
+                </ul>
+              </div>
+              <div className="md:col-span-4">
+                <h4 className="text-eyebrow uppercase text-ink-500 mb-4">연결</h4>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <a href="https://github.com/namojo" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    {isAdmin ? (
+                      <button onClick={handleLogout} className="text-ink-500 hover:text-coral-500 transition-apple">
+                        로그아웃
+                      </button>
+                    ) : (
+                      <Link to="/login" className="text-ink-500 hover:text-warm-600 transition-apple">
+                        관리자
+                      </Link>
+                    )}
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="flex gap-8 items-center">
-              <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Twitter</a>
-              <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">GitHub</a>
-              <span className="text-gray-300">|</span>
-              {isAdmin ? (
-                  <button onClick={handleLogout} className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors">Logout</button>
-              ) : (
-                  <Link to="/login" className="text-sm font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Admin</Link>
-              )}
+            <div className="pt-8 border-t border-ink-200 dark:border-ink-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-ink-500">
+              <p>&copy; {new Date().getFullYear()} 조남호 (namojo). All rights reserved.</p>
+              <p>AI 기술에 인문학의 온기를 불어넣다.</p>
             </div>
           </div>
         </footer>

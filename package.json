@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && python3 _workspace/build_posts_json.py && node scripts/build-static-posts.mjs",
+    "build:spa": "vite build",
+    "build:static": "node scripts/build-static-posts.mjs",
+    "build:posts": "python3 _workspace/build_posts_json.py",
+    "new": "node scripts/new-post.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

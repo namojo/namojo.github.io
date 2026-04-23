@@ -87,7 +87,7 @@ export const Editor: React.FC = () => {
         likes: 0, // In a real app, we'd fetch existing likes count if editing
         author: {
             name: 'Namojo',
-            avatar: 'https://i.pravatar.cc/150?u=namojo'
+            avatar: '/images/author-avatar.jpg'
         }
     };
 

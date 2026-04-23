@@ -4,142 +4,211 @@ interface Props {
   content: string;
 }
 
+// ─── 인라인 파싱 (볼드·이탤릭·링크·코드) ─────────────────────────────
+// 한 줄 안에 등장하는 인라인 마크다운을 React 노드 배열로 변환.
+// heading/list/blockquote/paragraph가 공통으로 이 함수를 거친다.
+const renderInline = (text: string): React.ReactNode[] => {
+  const nodes: React.ReactNode[] = [];
+  // **bold**, *italic*, `code`, [text](url) 를 하나의 regex로 캡처
+  // 주의: **는 *보다 먼저 소비되어야 하므로 순서 중요 (longest match 대안)
+  const pattern = /(\*\*([^*]+?)\*\*)|(`([^`]+?)`)|(\[([^\]]+?)\]\(([^)]+?)\))|(\*([^*]+?)\*)/g;
+
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1]) {
+      // **bold**
+      nodes.push(
+        <strong key={`b${key++}`} className="font-semibold text-ink-900 dark:text-ink-50">
+          {match[2]}
+        </strong>,
+      );
+    } else if (match[3]) {
+      // `code`
+      nodes.push(
+        <code
+          key={`c${key++}`}
+          className="px-1.5 py-0.5 rounded bg-ink-100 dark:bg-ink-800 text-[0.92em] font-mono"
+        >
+          {match[4]}
+        </code>,
+      );
+    } else if (match[5]) {
+      // [text](url)
+      nodes.push(
+        <a
+          key={`a${key++}`}
+          href={match[7]}
+          target={/^https?:/.test(match[7]) ? '_blank' : undefined}
+          rel={/^https?:/.test(match[7]) ? 'noopener noreferrer' : undefined}
+          className="text-linkblue hover:underline"
+        >
+          {match[6]}
+        </a>,
+      );
+    } else if (match[8]) {
+      // *italic*
+      nodes.push(
+        <em key={`i${key++}`} className="italic">
+          {match[9]}
+        </em>,
+      );
+    }
+    lastIndex = pattern.lastIndex;
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes.length ? nodes : [text];
+};
+
 export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
-  
-  const renderLine = (line: string, index: number) => {
-    // Regex to detect markdown images: ![alt](url)
-    const imageRegex = /!\[(.*?)\]\((.*?)\)/;
-    
-    // YouTube/Vimeo regex
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
-    const vimeoRegex = /(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)/;
+  const lines = content.split('\n');
 
-    // 1. Check if line matches Image Markdown Syntax
-    if (imageRegex.test(line)) {
-        const match = line.match(imageRegex);
-        if(match) {
-            const altText = match[1]; // Caption
-            const url = match[2];
+  // 리스트는 연속된 라인으로 <ul>/<ol> 래핑 필요 — 한 번 훑어서 그룹화한다.
+  const blocks: React.ReactNode[] = [];
+  let i = 0;
+  let key = 0;
 
-            // 1a. Check if the URL is actually a YouTube video
-            if (youtubeRegex.test(url)) {
-                 const videoMatch = url.match(youtubeRegex);
-                 // Extract ID (simple check, might need more robust parsing for complex youtube urls)
-                 // Usually v=ID or just ID. Let's try to extract cleanly.
-                 let videoId = videoMatch ? videoMatch[1] : '';
-                 if (videoId.includes('&')) videoId = videoId.split('&')[0];
+  const imageRegex = /^!\[(.*?)\]\((.*?)\)\s*$/;
+  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/;
 
-                 if (videoId) {
-                     return (
-                         <figure key={index} className="my-8 w-full">
-                             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-black">
-                                 <iframe 
-                                     width="100%" 
-                                     height="100%" 
-                                     src={`https://www.youtube.com/embed/${videoId}`} 
-                                     title={altText || "YouTube video"} 
-                                     frameBorder="0" 
-                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                     allowFullScreen
-                                 ></iframe>
-                             </div>
-                             {altText && <figcaption className="text-center text-sm text-gray-500 mt-3 font-medium">{altText}</figcaption>}
-                         </figure>
-                     );
-                 }
-            }
-            
-            // 1b. Check if the URL is Vimeo
-            if (vimeoRegex.test(url)) {
-                 const videoMatch = url.match(vimeoRegex);
-                 if (videoMatch && videoMatch[1]) {
-                     return (
-                         <figure key={index} className="my-8 w-full">
-                             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-black">
-                                 <iframe 
-                                     src={`https://player.vimeo.com/video/${videoMatch[1]}`} 
-                                     width="100%" 
-                                     height="100%" 
-                                     frameBorder="0" 
-                                     allow="autoplay; fullscreen; picture-in-picture" 
-                                     allowFullScreen
-                                 ></iframe>
-                             </div>
-                             {altText && <figcaption className="text-center text-sm text-gray-500 mt-3 font-medium">{altText}</figcaption>}
-                         </figure>
-                     );
-                 }
-            }
+  while (i < lines.length) {
+    const line = lines[i];
 
-            // 1c. It is a standard image
-            return (
-                <figure key={index} className="my-8">
-                    <img src={url} alt={altText} className="rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 w-full object-cover max-h-[600px]" />
-                    {altText && <figcaption className="text-center text-sm text-gray-500 mt-3 font-medium">{altText}</figcaption>}
-                </figure>
-            );
-        }
+    // ── Empty line ─────────────────────────────────────────────
+    if (line.trim() === '') {
+      blocks.push(<div key={`sp${key++}`} className="h-4" />);
+      i++;
+      continue;
     }
 
-    // 2. Legacy check for raw video links (if user didn't use ![alt](url))
-    // This maintains backward compatibility or copy-paste ease
-    const trimmed = line.trim();
-    if (youtubeRegex.test(trimmed) && !trimmed.includes(' ') && !trimmed.startsWith('!')) {
-         const match = trimmed.match(youtubeRegex);
-         let videoId = match ? match[1] : '';
-         if (videoId.includes('&')) videoId = videoId.split('&')[0];
-         if (videoId) {
-            return (
-                <figure key={index} className="my-8 w-full">
-                     <div className="w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-black">
-                        <iframe 
-                            width="100%" 
-                            height="100%" 
-                            src={`https://www.youtube.com/embed/${videoId}`} 
-                            title="YouTube video" 
-                            frameBorder="0" 
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                </figure>
-            );
-         }
+    // ── Image / YouTube ────────────────────────────────────────
+    const imgMatch = line.match(imageRegex);
+    if (imgMatch) {
+      const [, alt, url] = imgMatch;
+      const ytMatch = url.match(youtubeRegex);
+      if (ytMatch) {
+        let videoId = ytMatch[1];
+        if (videoId.includes('&')) videoId = videoId.split('&')[0];
+        blocks.push(
+          <figure key={`yt${key++}`} className="my-8 w-full">
+            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-card bg-ink-100 dark:bg-ink-800">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={alt || 'video'}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            {alt && <figcaption className="text-center text-sm text-ink-500 mt-3">{alt}</figcaption>}
+          </figure>,
+        );
+      } else {
+        blocks.push(
+          <figure key={`fig${key++}`} className="my-8">
+            <img src={url} alt={alt} loading="lazy" className="rounded-2xl w-full object-cover max-h-[600px]" />
+            {alt && <figcaption className="text-center text-sm text-ink-500 mt-3">{alt}</figcaption>}
+          </figure>,
+        );
+      }
+      i++;
+      continue;
     }
 
-    // Basic Markdown Rendering
-    // Headers
-    if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-8 mb-4 text-gray-800 dark:text-white">{line.replace('### ', '')}</h3>;
-    if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-10 mb-5 pb-2 border-b border-gray-100 dark:border-gray-800 text-gray-900 dark:text-white">{line.replace('## ', '')}</h2>;
-    if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-12 mb-6 text-gray-900 dark:text-white">{line.replace('# ', '')}</h1>;
-    
-    // Lists
-    if (line.startsWith('- ')) return <li key={index} className="ml-4 list-disc pl-1 mb-2 text-gray-700 dark:text-gray-300">{line.replace('- ', '')}</li>;
-
-    // Blockquotes
-    if (line.startsWith('> ')) return <blockquote key={index} className="pl-4 border-l-4 border-primary-500 italic my-6 py-1 text-gray-600 dark:text-gray-400">{line.replace('> ', '')}</blockquote>;
-
-    // Empty lines
-    if (line.trim() === '') return <div key={index} className="h-4"></div>;
-    
-    // Regular paragraphs with bold/italic support (Basic)
-    let content = line;
-    // Bold
-    const boldRegex = /\*\*(.*?)\*\*/g;
-    const parts = line.split(boldRegex);
-    if (parts.length > 1) {
-        return (
-            <p key={index} className="mb-3 leading-7 text-gray-700 dark:text-gray-300">
-                {parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-semibold text-gray-900 dark:text-white">{part}</strong> : part)}
-            </p>
-        )
+    // ── Headings ───────────────────────────────────────────────
+    if (line.startsWith('### ')) {
+      blocks.push(
+        <h3 key={`h3${key++}`} className="text-xl font-bold mt-10 mb-3 text-warm-600 dark:text-warm-400">
+          {renderInline(line.slice(4))}
+        </h3>,
+      );
+      i++; continue;
+    }
+    if (line.startsWith('## ')) {
+      blocks.push(
+        <h2 key={`h2${key++}`} className="text-2xl font-bold mt-12 mb-4 pb-2 border-b border-ink-200 dark:border-ink-700 text-ink-900 dark:text-ink-50">
+          {renderInline(line.slice(3))}
+        </h2>,
+      );
+      i++; continue;
+    }
+    if (line.startsWith('# ')) {
+      blocks.push(
+        <h1 key={`h1${key++}`} className="text-3xl font-bold mt-12 mb-6 text-ink-900 dark:text-ink-50">
+          {renderInline(line.slice(2))}
+        </h1>,
+      );
+      i++; continue;
     }
 
-    return <p key={index} className="mb-3 leading-7 text-gray-700 dark:text-gray-300">{line}</p>;
-  };
+    // ── Blockquote (연속된 > 라인들을 하나의 blockquote로) ───
+    if (line.startsWith('> ')) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].startsWith('> ')) {
+        items.push(lines[i].slice(2));
+        i++;
+      }
+      blocks.push(
+        <blockquote
+          key={`bq${key++}`}
+          className="pl-5 border-l-[3px] border-warm-500 my-6 text-ink-600 dark:text-ink-400"
+        >
+          {items.map((t, idx) => (
+            <p key={idx} className="mb-2 leading-relaxed">{renderInline(t)}</p>
+          ))}
+        </blockquote>,
+      );
+      continue;
+    }
 
-  return (
-    <div className="prose dark:prose-invert max-w-none">
-      {content.split('\n').map((line, idx) => renderLine(line, idx))}
-    </div>
-  );
+    // ── Unordered list ────────────────────────────────────────
+    if (/^- /.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^- /.test(lines[i])) {
+        items.push(lines[i].slice(2));
+        i++;
+      }
+      blocks.push(
+        <ul key={`ul${key++}`} className="list-disc ml-6 mb-5 space-y-1.5 text-ink-800 dark:text-ink-200">
+          {items.map((t, idx) => (
+            <li key={idx} className="leading-relaxed">{renderInline(t)}</li>
+          ))}
+        </ul>,
+      );
+      continue;
+    }
+
+    // ── Ordered list ──────────────────────────────────────────
+    if (/^\d+\.\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
+        items.push(lines[i].replace(/^\d+\.\s+/, ''));
+        i++;
+      }
+      blocks.push(
+        <ol key={`ol${key++}`} className="list-decimal ml-6 mb-5 space-y-1.5 text-ink-800 dark:text-ink-200">
+          {items.map((t, idx) => (
+            <li key={idx} className="leading-relaxed">{renderInline(t)}</li>
+          ))}
+        </ol>,
+      );
+      continue;
+    }
+
+    // ── Paragraph ─────────────────────────────────────────────
+    blocks.push(
+      <p key={`p${key++}`} className="mb-5 leading-[1.9] text-ink-800 dark:text-ink-200">
+        {renderInline(line)}
+      </p>,
+    );
+    i++;
+  }
+
+  return <div className="max-w-none">{blocks}</div>;
 };

@@ -6,63 +6,73 @@ interface PostCardProps {
   post: Post;
 }
 
+/**
+ * Airbnb 숙소 카드 감성 + Apple 제품 카드의 정돈된 메타 처리.
+ * - 이미지가 상단 2/3 점유 (이미지 중심)
+ * - 호버 시 이미지 스케일 1.03, 카드 리프트 -translate-y-1 + 그림자 깊어짐
+ * - 메타는 상단 eyebrow(카테고리) + 하단 저자·날짜로 양극 배치
+ */
 export const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <Link 
+    <Link
       to={`/post/${post.id}`}
-      className="group flex flex-col bg-white dark:bg-dark-card border border-light-border dark:border-dark-border rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-black/30 hover:-translate-y-1 transition-all duration-300"
+      className="group block rounded-2xl overflow-hidden bg-white dark:bg-ink-800 border border-ink-200 dark:border-ink-700 hover:border-transparent hover:shadow-card-hover hover:-translate-y-1 transition-apple duration-500"
     >
-      <div className="aspect-[16/10] w-full overflow-hidden relative bg-gray-100 dark:bg-dark-bg">
+      {/* Cover */}
+      <div className="aspect-[4/3] w-full overflow-hidden relative bg-ink-100 dark:bg-ink-700">
         {post.coverImage ? (
-          <img 
-            src={post.coverImage} 
-            alt={post.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            loading="lazy"
+            className="w-full h-full object-cover group-hover:scale-[1.04] transition-apple duration-[900ms]"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-300">
-             <span className="material-symbols-outlined text-5xl">image</span>
+          <div className="w-full h-full flex items-center justify-center text-ink-300">
+            <span className="material-symbols-outlined text-5xl">image</span>
           </div>
         )}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-lg bg-white/95 dark:bg-black/80 backdrop-blur-sm text-gray-900 dark:text-white shadow-sm">
+          <span className="inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider rounded-full bg-white/95 dark:bg-ink-900/80 backdrop-blur-sm text-ink-800 dark:text-ink-100">
             {post.category}
           </span>
         </div>
-      </div>
-      
-      <div className="flex flex-col flex-grow p-6">
-        <div className="flex items-center gap-4 mb-3 text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
-          <span>{post.date}</span>
-          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-          <div className="flex items-center gap-1 text-pink-500">
-             <span className="material-symbols-outlined text-[16px] font-variation-settings-fill">favorite</span>
-             <span>{post.likes}</span>
-          </div>
+        <div className="absolute top-4 right-4">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white/95 dark:bg-ink-900/80 backdrop-blur-sm text-coral-500 text-xs font-semibold">
+            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+              favorite
+            </span>
+            {post.likes}
+          </span>
         </div>
-        
-        <h3 className="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white leading-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+      </div>
+
+      {/* Body */}
+      <div className="p-6 sm:p-7">
+        <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-warm-500 block mb-3">
+          {post.date}
+        </span>
+        <h3 className="font-display font-bold text-xl leading-snug text-ink-900 dark:text-ink-50 mb-3 line-clamp-2 group-hover:text-warm-600 dark:group-hover:text-warm-400 transition-apple">
           {post.title}
         </h3>
-        
-        <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-6 flex-grow leading-relaxed">
+        <p className="text-sm text-ink-600 dark:text-ink-400 leading-relaxed line-clamp-2 mb-5">
           {post.excerpt}
         </p>
-        
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-light-border dark:border-dark-border">
-            <div className="flex items-center gap-2">
-            <img 
-                src={post.author.avatar} 
-                alt={post.author.name}
-                className="w-6 h-6 rounded-full ring-2 ring-white dark:ring-dark-card"
+        <div className="pt-4 border-t border-ink-100 dark:border-ink-700 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <img
+              src={post.author.avatar}
+              alt=""
+              className="w-6 h-6 rounded-full ring-1 ring-ink-200 dark:ring-ink-700"
             />
-            <span className="text-xs font-semibold text-gray-900 dark:text-gray-200">
-                {post.author.name}
+            <span className="text-xs font-medium text-ink-700 dark:text-ink-300">
+              {post.author.name}
             </span>
-            </div>
-            <span className="text-xs font-medium text-primary-600 dark:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0">
-                Read Article &rarr;
-            </span>
+          </div>
+          <span className="text-xs font-semibold text-ink-400 group-hover:text-warm-500 transition-apple inline-flex items-center gap-0.5">
+            읽기
+            <span className="material-symbols-outlined text-[14px] translate-x-0 group-hover:translate-x-0.5 transition-apple">arrow_forward</span>
+          </span>
         </div>
       </div>
     </Link>
