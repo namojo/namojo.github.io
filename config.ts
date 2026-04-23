@@ -36,7 +36,7 @@ export const COMMENTS = {
 export const SHARE = {
   // [선택] 카카오톡 공유 버튼을 쓰려면 https://developers.kakao.com 에서 앱 생성 후 JavaScript 키 입력.
   // 비워두면 카카오톡 버튼은 자동으로 숨겨집니다.
-  kakaoJsKey: "",
+  kakaoJsKey: "99aaf4c9e117c47d9927c06c943673eb",
 };
 
 export const SUBSCRIBE = {
