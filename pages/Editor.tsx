@@ -29,6 +29,59 @@ const displayDate = (iso: string): string => {
 };
 
 const DRAFT_KEY = 'editor_draft_v2';
+const GH_TOKEN_KEY = 'editor_gh_token';
+const GH_CONFIG_KEY = 'editor_gh_config';
+const DEFAULT_GH = { owner: 'namojo', repo: 'namojo.github.io', branch: 'main' };
+
+// ─── GitHub Publish ────────────────────────────────────────────────
+// GitHub Contents API로 _posts/{filename}.md 파일을 직접 커밋한다.
+// PAT(repo scope)이 필요. 푸시되면 Actions가 자동 빌드·배포한다.
+async function publishToGitHub(opts: {
+  token: string;
+  owner: string;
+  repo: string;
+  branch: string;
+  path: string;
+  content: string;
+  message: string;
+}) {
+  const { token, owner, repo, branch, path, content, message } = opts;
+
+  // 기존 파일이 있는지 확인 (update면 sha 필요)
+  let sha: string | undefined;
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${branch}`,
+      { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' } },
+    );
+    if (r.ok) {
+      const data = await r.json();
+      sha = data.sha;
+    }
+  } catch { /* not exists */ }
+
+  // UTF-8 → base64 (한글 안전)
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+
+  const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`;
+  const body: Record<string, unknown> = { message, content: encoded, branch };
+  if (sha) body.sha = sha;
+
+  const res = await fetch(putUrl, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`GitHub API ${res.status}: ${err}`);
+  }
+  return res.json() as Promise<{ commit: { html_url: string; sha: string } }>;
+}
 
 // ─── 이미지 삽입 모달 ───────────────────────────────────────────────
 interface ImageModalProps {
@@ -223,6 +276,23 @@ export const Editor: React.FC = () => {
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [slugEditedManually, setSlugEditedManually] = useState(false);
   const [imageModalOpen, setImageModalOpen] = useState(false);
+
+  // ─── GitHub Publish 상태 ───────────────────────────────────
+  const [ghToken, setGhToken] = useState('');
+  const [ghSaveToken, setGhSaveToken] = useState(true);
+  const [ghConfig, setGhConfig] = useState(DEFAULT_GH);
+  const [publishing, setPublishing] = useState(false);
+  const [publishResult, setPublishResult] = useState<{ ok: boolean; message: string; commitUrl?: string } | null>(null);
+
+  // 초기 GitHub 설정 로드
+  useEffect(() => {
+    try {
+      const t = localStorage.getItem(GH_TOKEN_KEY);
+      if (t) setGhToken(t);
+      const c = localStorage.getItem(GH_CONFIG_KEY);
+      if (c) setGhConfig({ ...DEFAULT_GH, ...JSON.parse(c) });
+    } catch { /* ignore */ }
+  }, []);
 
   // 인증·로드
   useEffect(() => {
@@ -478,6 +548,67 @@ export const Editor: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
+  // ─── 발행 (GitHub Contents API) ──────────────────────────────
+  const publish = async () => {
+    if (!state.title || !state.slug) { alert('제목과 슬러그는 필수입니다.'); return; }
+    if (!ghToken.trim()) { alert('GitHub Personal Access Token을 먼저 입력해 주세요.'); return; }
+
+    // 토큰 저장 여부
+    if (ghSaveToken) {
+      localStorage.setItem(GH_TOKEN_KEY, ghToken);
+    } else {
+      localStorage.removeItem(GH_TOKEN_KEY);
+    }
+    localStorage.setItem(GH_CONFIG_KEY, JSON.stringify(ghConfig));
+
+    const fm = [
+      '---',
+      'layout: post',
+      `title: "${state.title.replace(/"/g, '\\"')}"`,
+      `date: ${state.date} 09:00:00 +0900`,
+      `categories: [${state.category ? state.category.toLowerCase().replace(/\s+/g, '-') : 'uncategorized'}]`,
+      `tags: [${state.tags.join(', ')}]`,
+      `excerpt: "${state.excerpt.replace(/"/g, '\\"')}"`,
+      state.coverImage && !state.coverImage.startsWith('data:') ? `coverImage: "${state.coverImage}"` : '',
+      `category: "${state.category || 'Uncategorized'}"`,
+      '---',
+      '',
+      state.content,
+      '',
+    ].filter(Boolean).join('\n');
+
+    const path = `_posts/${state.date}-${state.slug}.md`;
+    const message = `post: ${state.title}`;
+
+    setPublishing(true);
+    setPublishResult(null);
+    try {
+      const result = await publishToGitHub({
+        token: ghToken.trim(),
+        owner: ghConfig.owner,
+        repo: ghConfig.repo,
+        branch: ghConfig.branch,
+        path,
+        content: fm,
+        message,
+      });
+      setPublishResult({
+        ok: true,
+        message: `✓ 발행되었습니다. GitHub Actions가 자동 빌드·배포합니다. 약 1~2분 후 사이트에 반영됩니다.`,
+        commitUrl: result.commit?.html_url,
+      });
+      // 발행 성공 시 드래프트 자동 제거
+      localStorage.removeItem(DRAFT_KEY);
+    } catch (e) {
+      setPublishResult({
+        ok: false,
+        message: `✗ 발행 실패: ${(e as Error).message}. 토큰 권한(repo scope)과 리포 설정을 확인해 주세요.`,
+      });
+    } finally {
+      setPublishing(false);
+    }
+  };
+
   const copyMarkdown = async () => {
     // 프런트매터 포함 마크다운을 클립보드에
     const fm = [
@@ -558,14 +689,57 @@ export const Editor: React.FC = () => {
           <button
             onClick={downloadMarkdown}
             disabled={validationIssues.length > 0}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-warm-500 hover:bg-warm-600 disabled:bg-ink-300 dark:disabled:bg-ink-700 disabled:cursor-not-allowed text-white text-sm font-semibold transition-apple"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-ink-800 border border-ink-200 dark:border-ink-700 hover:border-warm-400 disabled:border-ink-200 disabled:cursor-not-allowed text-ink-800 dark:text-ink-100 text-sm font-semibold transition-apple"
             title={validationIssues.length > 0 ? `미완성: ${validationIssues.join(', ')}` : undefined}
           >
             <span className="material-symbols-outlined text-[18px]">download</span>
-            마크다운 다운로드
+            MD 다운로드
+          </button>
+          <button
+            onClick={publish}
+            disabled={validationIssues.length > 0 || publishing || !ghToken.trim()}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-warm-500 hover:bg-warm-600 disabled:bg-ink-300 dark:disabled:bg-ink-700 disabled:cursor-not-allowed text-white text-sm font-semibold transition-apple"
+            title={
+              validationIssues.length > 0
+                ? `미완성: ${validationIssues.join(', ')}`
+                : !ghToken.trim()
+                  ? 'GitHub Token이 필요합니다 (사이드바에서 설정)'
+                  : '_posts에 커밋하고 GitHub Actions로 자동 배포'
+            }
+          >
+            {publishing ? (
+              <>
+                <span className="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+                발행 중…
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-[18px]">rocket_launch</span>
+                발행하기
+              </>
+            )}
           </button>
         </div>
       </div>
+
+      {/* Publish 결과 배너 */}
+      {publishResult && (
+        <div className={`mb-4 p-4 rounded-xl border text-sm flex items-start gap-3 ${
+          publishResult.ok
+            ? 'bg-warm-50 dark:bg-warm-900/30 border-warm-200 dark:border-warm-900 text-ink-800 dark:text-ink-100'
+            : 'bg-coral-50 dark:bg-coral-900/30 border-coral-200 dark:border-coral-900 text-coral-700 dark:text-coral-300'
+        }`}>
+          <span className="flex-1">
+            {publishResult.message}
+            {publishResult.commitUrl && (
+              <> · <a href={publishResult.commitUrl} target="_blank" rel="noopener noreferrer" className="underline font-semibold">커밋 보기</a></>
+            )}
+          </span>
+          <button onClick={() => setPublishResult(null)} className="text-ink-500 hover:text-ink-800">
+            <span className="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+      )}
 
       {/* ───── 미완성 경고 ───── */}
       {validationIssues.length > 0 && (
@@ -874,19 +1048,98 @@ export const Editor: React.FC = () => {
             </div>
           </div>
 
+          {/* GitHub Publish 설정 */}
+          <div className="bg-white dark:bg-ink-800 border border-ink-200 dark:border-ink-700 rounded-2xl p-5 shadow-card">
+            <h3 className="text-base font-display font-bold text-ink-900 dark:text-ink-50 mb-1 inline-flex items-center gap-2">
+              <span className="material-symbols-outlined text-[20px] text-warm-500">rocket_launch</span>
+              GitHub 직접 발행
+            </h3>
+            <p className="text-[11px] text-ink-500 mb-4 leading-relaxed">
+              GitHub API로 <code className="px-1 bg-ink-100 dark:bg-ink-700 rounded">_posts/</code>에 바로 커밋합니다. 푸시 후 Actions가 자동으로 빌드·배포합니다.
+            </p>
+
+            <div className="flex flex-col gap-4">
+              <div>
+                <span className={labelCls}>Personal Access Token</span>
+                <input
+                  type="password"
+                  value={ghToken}
+                  onChange={(e) => setGhToken(e.target.value)}
+                  placeholder="ghp_… (repo 권한)"
+                  className={inputCls}
+                  autoComplete="off"
+                />
+                <p className="text-[11px] text-ink-400 mt-1.5 leading-relaxed">
+                  <a href="https://github.com/settings/tokens/new?scopes=repo&description=Blog%20Editor" target="_blank" rel="noopener noreferrer" className="underline hover:text-warm-600">
+                    GitHub에서 토큰 발급 →
+                  </a>
+                  {' '}Fine-grained 대신 Classic·repo scope 권장.
+                </p>
+                <label className="inline-flex items-center gap-2 text-[11px] text-ink-600 dark:text-ink-400 mt-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={ghSaveToken}
+                    onChange={(e) => setGhSaveToken(e.target.checked)}
+                    className="w-3.5 h-3.5 accent-warm-500"
+                  />
+                  이 브라우저에 토큰 저장 (localStorage)
+                </label>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <span className={labelCls}>Owner</span>
+                  <input
+                    type="text"
+                    value={ghConfig.owner}
+                    onChange={(e) => setGhConfig({ ...ghConfig, owner: e.target.value })}
+                    className={inputCls}
+                  />
+                </div>
+                <div>
+                  <span className={labelCls}>Branch</span>
+                  <input
+                    type="text"
+                    value={ghConfig.branch}
+                    onChange={(e) => setGhConfig({ ...ghConfig, branch: e.target.value })}
+                    className={inputCls}
+                  />
+                </div>
+              </div>
+              <div>
+                <span className={labelCls}>Repository</span>
+                <input
+                  type="text"
+                  value={ghConfig.repo}
+                  onChange={(e) => setGhConfig({ ...ghConfig, repo: e.target.value })}
+                  className={inputCls}
+                />
+              </div>
+
+              <div className="text-[11px] text-ink-500 bg-ink-50 dark:bg-ink-900 rounded-lg p-3 leading-relaxed">
+                <strong className="text-ink-700 dark:text-ink-300">커밋 경로 미리보기:</strong><br/>
+                <code className="text-warm-600 dark:text-warm-400">
+                  {ghConfig.owner}/{ghConfig.repo}:{ghConfig.branch}<br/>
+                  └ _posts/{state.date}-{state.slug || 'slug'}.md
+                </code>
+              </div>
+            </div>
+          </div>
+
           {/* 발행 가이드 */}
           <div className="bg-gradient-to-br from-warm-50 to-white dark:from-warm-900/30 dark:to-ink-800 border border-warm-200 dark:border-warm-900 rounded-2xl p-5">
             <h3 className="text-base font-display font-bold text-ink-900 dark:text-ink-50 mb-3 inline-flex items-center gap-2">
-              <span className="material-symbols-outlined text-[20px] text-warm-500">rocket_launch</span>
-              발행 워크플로
+              <span className="material-symbols-outlined text-[20px] text-warm-500">menu_book</span>
+              세 가지 발행 방법
             </h3>
-            <ol className="text-xs leading-relaxed text-ink-700 dark:text-ink-300 list-decimal ml-4 space-y-1.5">
-              <li><strong>마크다운 다운로드</strong>로 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">{state.date}-{state.slug || 'slug'}.md</code> 파일을 받습니다.</li>
-              <li>저장소의 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">_posts/</code> 디렉토리에 그 파일을 넣습니다.</li>
-              <li>커버 이미지 파일도 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">public/images/</code>에 저장합니다.</li>
-              <li>터미널에서 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">npm run build && git push</code>.</li>
-              <li>GitHub Actions가 자동으로 배포합니다.</li>
+            <ol className="text-xs leading-relaxed text-ink-700 dark:text-ink-300 list-decimal ml-4 space-y-2">
+              <li><strong>발행하기 (권장)</strong> — 위 "발행" 버튼으로 GitHub에 원클릭 커밋. Actions가 자동 빌드.</li>
+              <li><strong>MD 다운로드</strong> — 파일을 받아 로컬의 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">_posts/</code>에 저장하고 CLI로 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">git push</code>.</li>
+              <li><strong>MD 복사 / JSON</strong> — 클립보드 또는 JSON으로 받아 수동 반영.</li>
             </ol>
+            <p className="text-xs text-ink-500 dark:text-ink-400 mt-3 leading-relaxed">
+              커버·인라인 이미지 파일은 GitHub Web UI나 CLI로 <code className="bg-ink-100 dark:bg-ink-700 px-1 rounded">public/images/</code> 아래에 별도 업로드해야 합니다 (정적 사이트 제약).
+            </p>
             <button
               onClick={clearDraft}
               className="mt-4 text-[11px] text-ink-500 hover:text-coral-500 underline transition-apple"
