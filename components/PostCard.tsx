@@ -58,22 +58,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <p className="text-sm text-ink-600 dark:text-ink-400 leading-relaxed line-clamp-2 mb-5">
           {post.excerpt}
         </p>
-        <div className="pt-4 border-t border-ink-100 dark:border-ink-700 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img
-              src={post.author.avatar}
-              alt=""
-              className="w-6 h-6 rounded-full ring-1 ring-ink-200 dark:ring-ink-700"
-            />
-            <span className="text-xs font-medium text-ink-700 dark:text-ink-300">
-              {post.author.name}
-            </span>
-          </div>
-          <span className="text-xs font-semibold text-ink-400 group-hover:text-warm-500 transition-apple inline-flex items-center gap-0.5">
-            읽기
-            <span className="material-symbols-outlined text-[14px] translate-x-0 group-hover:translate-x-0.5 transition-apple">arrow_forward</span>
-          </span>
-        </div>
+        {/* 작성자·읽기 링크는 단독 저자 블로그라 생략 (사용자 요청) */}
       </div>
     </Link>
   );

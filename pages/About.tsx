@@ -74,15 +74,11 @@ export const About: React.FC = () => {
 
       {/* ───── CTA ───── */}
       <section className="max-w-[720px] mx-auto px-6 mt-20 pt-10 border-t border-ink-200 dark:border-ink-700 text-center">
-        <p className="text-sm text-ink-600 dark:text-ink-400 mb-6">
-          이 블로그의 모든 글은 출판 예정 도서 『생존을 위한 최소한의 AI 교양』의 곁가지입니다.
-        </p>
         <Link
           to="/"
           className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-ink-900 dark:bg-ink-50 text-ink-50 dark:text-ink-900 font-semibold text-sm hover:opacity-90 transition-apple duration-300"
         >
           최근 글 보러 가기
-          <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
         </Link>
       </section>
     </article>

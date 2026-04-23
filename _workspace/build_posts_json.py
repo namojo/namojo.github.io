@@ -76,17 +76,37 @@ def post_to_entry(md_path):
     slug_part = slug[11:]
     text = md_path.read_text(encoding="utf-8")
     fm, body = parse_front_matter(text)
+
+    # 커버 이미지 우선순위:
+    # 1) 프런트매터의 coverImage (가장 정확한 저자 의도)
+    # 2) COVERS dict (기존 9편 레거시 매핑)
+    # 3) /images/covers/{slug}.jpg 파일 존재 시 그 경로
+    # 4) 빈 문자열 (PostCard가 placeholder 렌더)
+    cover = fm.get("coverImage", "").strip()
+    if not cover:
+        cover = COVERS.get(slug_part, "")
+    if not cover:
+        local_cover = ROOT / "public" / "images" / "covers" / f"{slug_part}.jpg"
+        if local_cover.exists():
+            cover = f"/images/covers/{slug_part}.jpg"
+    # 최후 폴백 — 히어로 이미지를 공통 커버로 (Tistory 이관 포스트 일부가 coverImage 비어있는 경우 대응)
+    if not cover:
+        cover = "/images/hero-home.jpg"
+
+    # 카테고리 우선순위: frontmatter.category > 기본 "AI"
+    category = fm.get("category", "").strip() or "AI"
+
     return {
         "id": slug_part,
         "title": fm.get("title", ""),
         "excerpt": fm.get("excerpt", ""),
         "content": body,
-        "coverImage": COVERS.get(slug_part, "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"),
+        "coverImage": cover,
         "date": date_to_display(fm.get("date", date_part)),
         "likes": LIKES.get(slug_part, 100),
         "author": AUTHOR,
         "tags": fm.get("tags", []),
-        "category": "AI",
+        "category": category,
         "_sort_date": date_part,  # for sorting
     }
 
@@ -111,10 +131,6 @@ about_entry = {
 ### 이 블로그는 어떤 곳인가요
 
 이 블로그는 2024년부터 기록해온 AI 뉴스 평론과 기술 해설의 모음입니다. 단순한 뉴스 요약이 아니라, **그 일이 왜 그런 모양으로 일어났는지**를 역사적 일화와 비유, 그리고 비판적 균형을 통해 풀어내려 합니다. 제가 지향하는 것은 **인문학적 IT기술론** — 차가운 기술 용어에 따뜻한 인문학의 온기를 더하는 일입니다.
-
-### 곧 출판될 책
-
-2026년 상반기, 일반인과 경영자, 회사원을 위한 AI 교양서 『생존을 위한 최소한의 AI 교양』을 출판할 예정입니다. 이 블로그의 글들은 그 책이 다루는 주제들의 곁가지이자 연장선입니다. 책이 바다라면, 이 블로그는 그 바다에서 매일 일어나는 작은 파도들을 기록하는 항해 일지에 가깝습니다.
 
 ### 글을 쓰는 원칙
 

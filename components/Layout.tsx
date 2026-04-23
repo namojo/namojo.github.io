@@ -128,55 +128,32 @@ export const Layout: React.FC = () => {
         <Outlet />
       </main>
 
-      {/* ───── Footer — Airbnb 감성 여유 있는 패딩 ───── */}
+      {/* ───── Footer — 미니멀 ───── */}
       {!isEditor && (
-        <footer className="mt-24 pt-20 pb-12 border-t border-ink-200 dark:border-ink-800 bg-ink-100/50 dark:bg-ink-900">
+        <footer className="mt-24 pt-16 pb-10 border-t border-ink-200 dark:border-ink-800 bg-ink-100/50 dark:bg-ink-900">
           <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12">
-            <div className="grid md:grid-cols-12 gap-10 pb-16">
-              <div className="md:col-span-5">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-ink-900 dark:bg-ink-50 text-ink-50 dark:text-ink-900 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[18px]">auto_stories</span>
-                  </div>
-                  <span className="font-display font-bold text-lg text-ink-900 dark:text-ink-50">
-                    엔지니어를 위한 이야기 공장
-                  </span>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 pb-8">
+              <Link to="/" className="flex items-center gap-2 group">
+                <div className="w-8 h-8 rounded-lg bg-ink-900 dark:bg-ink-50 text-ink-50 dark:text-ink-900 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[18px]">auto_stories</span>
                 </div>
-                <p className="text-sm text-ink-600 dark:text-ink-400 leading-relaxed max-w-md">
-                  AI 기술에 인문학의 온기를 불어넣다. 2024년부터 기록해온 AI 뉴스 평론과 인문학적 IT기술론.
-                </p>
-              </div>
-              <div className="md:col-span-3">
-                <h4 className="text-eyebrow uppercase text-ink-500 mb-4">둘러보기</h4>
-                <ul className="space-y-3 text-sm">
-                  <li><Link to="/" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">홈</Link></li>
-                  <li><Link to="/about" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">저자 소개</Link></li>
-                </ul>
-              </div>
-              <div className="md:col-span-4">
-                <h4 className="text-eyebrow uppercase text-ink-500 mb-4">연결</h4>
-                <ul className="space-y-3 text-sm">
-                  <li>
-                    <a href="https://github.com/namojo" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 dark:hover:text-warm-400 transition-apple">
-                      GitHub
-                    </a>
-                  </li>
-                  <li>
-                    {isAdmin ? (
-                      <button onClick={handleLogout} className="text-ink-500 hover:text-coral-500 transition-apple">
-                        로그아웃
-                      </button>
-                    ) : (
-                      <Link to="/login" className="text-ink-500 hover:text-warm-600 transition-apple">
-                        관리자
-                      </Link>
-                    )}
-                  </li>
-                </ul>
-              </div>
+                <span className="font-display font-bold text-lg text-ink-900 dark:text-ink-50 group-hover:text-warm-600 transition-apple">
+                  엔지니어를 위한 이야기 공장
+                </span>
+              </Link>
+              <nav className="flex items-center gap-6 text-sm">
+                <Link to="/" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 transition-apple">홈</Link>
+                <Link to="/about" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 transition-apple">소개</Link>
+                <a href="https://github.com/namojo" className="text-ink-700 dark:text-ink-300 hover:text-warm-600 transition-apple">GitHub</a>
+                {isAdmin ? (
+                  <button onClick={handleLogout} className="text-ink-500 hover:text-coral-500 transition-apple">로그아웃</button>
+                ) : (
+                  <Link to="/login" className="text-ink-500 hover:text-warm-600 transition-apple">관리자</Link>
+                )}
+              </nav>
             </div>
-            <div className="pt-8 border-t border-ink-200 dark:border-ink-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-ink-500">
-              <p>&copy; {new Date().getFullYear()} 조남호 (namojo). All rights reserved.</p>
+            <div className="pt-6 border-t border-ink-200 dark:border-ink-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-ink-500">
+              <p>&copy; {new Date().getFullYear()} 엔지니어를 위한 이야기 공장. All rights reserved.</p>
               <p>AI 기술에 인문학의 온기를 불어넣다.</p>
             </div>
           </div>

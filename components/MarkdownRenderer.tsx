@@ -167,6 +167,57 @@ export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
       continue;
     }
 
+    // ── Table (GFM style) ─────────────────────────────────────
+    // | col1 | col2 |
+    // |------|------|
+    // | a    | b    |
+    if (line.includes('|') && i + 1 < lines.length && /^\s*\|[-:\s|]+\|\s*$/.test(lines[i + 1])) {
+      // 헤더 셀 추출
+      const splitRow = (row: string) =>
+        row
+          .trim()
+          .replace(/^\|/, '')
+          .replace(/\|$/, '')
+          .split('|')
+          .map((s) => s.trim());
+
+      const headers = splitRow(lines[i]);
+      i += 2; // skip header + separator
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].includes('|')) {
+        rows.push(splitRow(lines[i]));
+        i++;
+      }
+
+      blocks.push(
+        <div key={`tbl${key++}`} className="my-6 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-ink-300 dark:border-ink-600">
+                {headers.map((h, hi) => (
+                  <th key={hi} className="text-left px-3 py-2 font-semibold text-ink-900 dark:text-ink-50">
+                    {renderInline(h)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r, ri) => (
+                <tr key={ri} className="border-b border-ink-200 dark:border-ink-700">
+                  {r.map((c, ci) => (
+                    <td key={ci} className="px-3 py-2 text-ink-700 dark:text-ink-200 align-top">
+                      {renderInline(c)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+      );
+      continue;
+    }
+
     // ── Unordered list ────────────────────────────────────────
     if (/^- /.test(line)) {
       const items: string[] = [];

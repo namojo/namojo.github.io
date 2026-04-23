@@ -62,8 +62,8 @@ function markdownToHtml(md) {
     if (quoteOpen) { out.push('</blockquote>'); quoteOpen = false; }
   };
 
-  for (const rawLine of lines) {
-    const line = rawLine.replace(/\r$/, '');
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].replace(/\r$/, '');
 
     // Image
     const imgMatch = line.match(/^!\[([^\]]*)\]\((https?:[^)]+)\)\s*$/);
@@ -97,6 +97,26 @@ function markdownToHtml(md) {
       closeList();
       if (!quoteOpen) { out.push('<blockquote>'); quoteOpen = true; }
       out.push(`<p>${renderInline(line.slice(2))}</p>`);
+      continue;
+    }
+
+    // Table (GFM): | col1 | col2 | ... 형식
+    if (line.includes('|') && lines[i + 1] && /^\s*\|[-:\s|]+\|\s*$/.test(lines[i + 1])) {
+      closeList(); closeQuote();
+      const split = (row) => row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((s) => s.trim());
+      const headers = split(line);
+      i += 2; // skip header + separator
+      const rows = [];
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].includes('|')) {
+        rows.push(split(lines[i]));
+        i++;
+      }
+      i--; // for-loop 증가 보정
+      const ths = headers.map((h) => `<th>${renderInline(h)}</th>`).join('');
+      const trs = rows
+        .map((r) => `<tr>${r.map((c) => `<td>${renderInline(c)}</td>`).join('')}</tr>`)
+        .join('');
+      out.push(`<div class="table-wrap"><table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`);
       continue;
     }
 
@@ -328,6 +348,13 @@ function postHtml(post) {
     }
     .body-content ul, .body-content ol { margin: 0 0 1.5rem 1.5rem; padding: 0; }
     .body-content li { margin-bottom: .5rem; color: var(--text); }
+    .body-content .table-wrap { margin: 1.5rem 0; overflow-x: auto; }
+    .body-content table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    .body-content th, .body-content td { padding: .6rem .8rem; text-align: left; vertical-align: top; }
+    .body-content thead tr { border-bottom: 2px solid var(--hairline); background: var(--bg); }
+    .body-content thead th { font-weight: 700; color: var(--text); }
+    .body-content tbody tr { border-bottom: 1px solid var(--hairline); }
+    .body-content tbody td { color: var(--text); }
 
     .tags {
       margin: 3rem 0 2rem; padding-top: 2rem;

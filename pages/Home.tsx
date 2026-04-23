@@ -1,13 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
 import { SubscribeForm } from '../components/SubscribeForm';
 import { getPosts } from '../services/dataService';
 import { Post } from '../types';
 
+const POSTS_PER_PAGE = 9;
+
 export const Home: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
   const latestRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -33,6 +36,17 @@ export const Home: React.FC = () => {
   }
 
   const [featured, ...rest] = posts;
+  const totalPages = Math.max(1, Math.ceil(rest.length / POSTS_PER_PAGE));
+  const currentPage = Math.min(Math.max(1, page), totalPages);
+  const pagedPosts = useMemo(
+    () => rest.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE),
+    [rest, currentPage],
+  );
+
+  const goToPage = (n: number) => {
+    setPage(n);
+    setTimeout(() => latestRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  };
 
   return (
     <div>
@@ -150,10 +164,66 @@ export const Home: React.FC = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-          {rest.map((post) => (
+          {pagedPosts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <nav className="mt-16 flex items-center justify-center gap-1.5 flex-wrap" aria-label="페이지 네비게이션">
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 text-ink-700 dark:text-ink-200 text-sm font-semibold hover:border-warm-400 disabled:opacity-40 disabled:cursor-not-allowed transition-apple"
+            >
+              <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+              이전
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
+              // 총 페이지가 많으면 앞 3, 현재 주변 2, 끝 3만 표시 (ellipsis는 간단히)
+              const inRange =
+                totalPages <= 9 ||
+                n === 1 ||
+                n === totalPages ||
+                (n >= currentPage - 1 && n <= currentPage + 1);
+              if (!inRange) {
+                if (n === 2 && currentPage > 4) return <span key={n} className="px-1 text-ink-400">…</span>;
+                if (n === totalPages - 1 && currentPage < totalPages - 3) return <span key={n} className="px-1 text-ink-400">…</span>;
+                return null;
+              }
+              const active = n === currentPage;
+              return (
+                <button
+                  key={n}
+                  onClick={() => goToPage(n)}
+                  aria-current={active ? 'page' : undefined}
+                  className={`min-w-[40px] h-10 rounded-full text-sm font-semibold transition-apple ${
+                    active
+                      ? 'bg-warm-500 text-white'
+                      : 'bg-white dark:bg-ink-800 border border-ink-200 dark:border-ink-700 text-ink-700 dark:text-ink-200 hover:border-warm-400'
+                  }`}
+                >
+                  {n}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 text-ink-700 dark:text-ink-200 text-sm font-semibold hover:border-warm-400 disabled:opacity-40 disabled:cursor-not-allowed transition-apple"
+            >
+              다음
+              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+            </button>
+          </nav>
+        )}
+
+        <p className="mt-6 text-center text-xs text-ink-500">
+          총 {rest.length}편 · {currentPage} / {totalPages} 페이지
+        </p>
       </section>
 
       {/* ───── Subscribe ───── */}
