@@ -83,6 +83,52 @@ async function publishToGitHub(opts: {
   return res.json() as Promise<{ commit: { html_url: string; sha: string } }>;
 }
 
+// ─── GitHub Delete ─────────────────────────────────────────────────
+// _posts 디렉토리에서 슬러그에 매칭되는 파일을 찾아 삭제한다.
+// date를 모르더라도 동작하도록 listing → match → DELETE 순으로 처리.
+async function deleteFromGitHub(opts: {
+  token: string;
+  owner: string;
+  repo: string;
+  branch: string;
+  slug: string;
+  message: string;
+}): Promise<{ path: string; commit: { html_url: string; sha: string } }> {
+  const { token, owner, repo, branch, slug, message } = opts;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/vnd.github+json',
+  };
+
+  // 1. _posts 디렉토리 리스팅
+  const listRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/_posts?ref=${branch}`,
+    { headers },
+  );
+  if (!listRes.ok) throw new Error(`_posts 조회 실패: ${listRes.status}`);
+  const files = (await listRes.json()) as Array<{ name: string; path: string; sha: string }>;
+
+  // 2. YYYY-MM-DD-{slug}.md 패턴 매칭
+  const match = files.find((f) => f.name.endsWith(`-${slug}.md`));
+  if (!match) throw new Error(`_posts에서 "${slug}"에 해당하는 파일을 찾지 못했습니다.`);
+
+  // 3. DELETE
+  const delRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(match.path)}`,
+    {
+      method: 'DELETE',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, sha: match.sha, branch }),
+    },
+  );
+  if (!delRes.ok) {
+    const err = await delRes.text();
+    throw new Error(`DELETE 실패: ${delRes.status} — ${err}`);
+  }
+  const data = (await delRes.json()) as { commit: { html_url: string; sha: string } };
+  return { path: match.path, commit: data.commit };
+}
+
 // ─── 이미지 삽입 모달 ───────────────────────────────────────────────
 interface ImageModalProps {
   slug: string;
@@ -282,6 +328,7 @@ export const Editor: React.FC = () => {
   const [ghSaveToken, setGhSaveToken] = useState(true);
   const [ghConfig, setGhConfig] = useState(DEFAULT_GH);
   const [publishing, setPublishing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [publishResult, setPublishResult] = useState<{ ok: boolean; message: string; commitUrl?: string } | null>(null);
 
   // 초기 GitHub 설정 로드
@@ -609,6 +656,48 @@ export const Editor: React.FC = () => {
     }
   };
 
+  const deletePost = async () => {
+    if (!id) return; // 새 글에는 삭제 없음
+    if (!ghToken.trim()) {
+      alert('GitHub Token이 필요합니다. 오른쪽 사이드바의 "GitHub 연결" 섹션에서 설정해주세요.');
+      return;
+    }
+    const ok = window.confirm(
+      `정말로 "${state.title || id}" 포스트를 삭제할까요?\n\n` +
+        `- _posts/ 디렉토리에서 파일이 영구적으로 제거됩니다.\n` +
+        `- GitHub Actions가 재배포하면 사이트에서 사라집니다.\n` +
+        `- git 히스토리로는 복구 가능합니다.`,
+    );
+    if (!ok) return;
+
+    setDeleting(true);
+    setPublishResult(null);
+    try {
+      const result = await deleteFromGitHub({
+        token: ghToken.trim(),
+        owner: ghConfig.owner,
+        repo: ghConfig.repo,
+        branch: ghConfig.branch,
+        slug: id,
+        message: `delete: ${state.title || id}`,
+      });
+      setPublishResult({
+        ok: true,
+        message: `✓ 삭제되었습니다 (${result.path}). GitHub Actions가 자동 재배포합니다. 약 1~2분 후 사이트에서 사라집니다.`,
+        commitUrl: result.commit?.html_url,
+      });
+      // 2초 후 홈으로 이동
+      setTimeout(() => navigate('/'), 2000);
+    } catch (e) {
+      setPublishResult({
+        ok: false,
+        message: `✗ 삭제 실패: ${(e as Error).message}`,
+      });
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   const copyMarkdown = async () => {
     // 프런트매터 포함 마크다운을 클립보드에
     const fm = [
@@ -695,6 +784,26 @@ export const Editor: React.FC = () => {
             <span className="material-symbols-outlined text-[18px]">download</span>
             MD 다운로드
           </button>
+          {id && (
+            <button
+              onClick={deletePost}
+              disabled={deleting || publishing || !ghToken.trim()}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-coral-300 dark:border-coral-700 text-coral-600 dark:text-coral-400 hover:bg-coral-500 hover:text-white hover:border-coral-500 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-semibold transition-apple"
+              title={!ghToken.trim() ? 'GitHub Token이 필요합니다' : '이 포스트를 _posts/에서 영구 삭제'}
+            >
+              {deleting ? (
+                <>
+                  <span className="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+                  삭제 중…
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined text-[18px]">delete</span>
+                  삭제
+                </>
+              )}
+            </button>
+          )}
           <button
             onClick={publish}
             disabled={validationIssues.length > 0 || publishing || !ghToken.trim()}
