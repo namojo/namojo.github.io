@@ -21,10 +21,24 @@ export const Home: React.FC = () => {
     })();
   }, []);
 
+  // 모든 Hook은 early return 이전에 호출되어야 함 (React Rules of Hooks)
+  const [featured, ...rest] = posts;
+  const totalPages = Math.max(1, Math.ceil(rest.length / POSTS_PER_PAGE));
+  const currentPage = Math.min(Math.max(1, page), totalPages);
+  const pagedPosts = useMemo(
+    () => rest.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE),
+    [rest, currentPage],
+  );
+
   // HashRouter와 `#anchor`는 충돌하므로 네이티브 앵커 대신 scrollIntoView 사용
   const scrollToLatest = (e: React.MouseEvent) => {
     e.preventDefault();
     latestRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const goToPage = (n: number) => {
+    setPage(n);
+    setTimeout(() => latestRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   };
 
   if (loading) {
@@ -34,19 +48,6 @@ export const Home: React.FC = () => {
       </div>
     );
   }
-
-  const [featured, ...rest] = posts;
-  const totalPages = Math.max(1, Math.ceil(rest.length / POSTS_PER_PAGE));
-  const currentPage = Math.min(Math.max(1, page), totalPages);
-  const pagedPosts = useMemo(
-    () => rest.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE),
-    [rest, currentPage],
-  );
-
-  const goToPage = (n: number) => {
-    setPage(n);
-    setTimeout(() => latestRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-  };
 
   return (
     <div>
