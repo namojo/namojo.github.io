@@ -75,20 +75,15 @@ function markdownToHtml(md) {
       continue;
     }
 
-    // Headings
-    if (line.startsWith('### ')) {
+    // Headings (#1 ~ #6). 관대한 매치: "### " 처럼 공백 하나 + 본문, 또는 "####" 단독 라인.
+    const hMatch = line.match(/^(#{1,6})(?:\s+(.*))?$/);
+    if (hMatch) {
       closeList(); closeQuote();
-      out.push(`<h3>${renderInline(line.slice(4))}</h3>`);
-      continue;
-    }
-    if (line.startsWith('## ')) {
-      closeList(); closeQuote();
-      out.push(`<h2>${renderInline(line.slice(3))}</h2>`);
-      continue;
-    }
-    if (line.startsWith('# ')) {
-      closeList(); closeQuote();
-      out.push(`<h2>${renderInline(line.slice(2))}</h2>`);
+      const level = Math.min(6, hMatch[1].length);
+      const text = (hMatch[2] || '').trim();
+      if (!text) continue; // 빈 헤딩은 건너뜀
+      const tag = level === 1 ? 'h2' : `h${level}`; // h1은 타이틀 중복 방지로 h2로
+      out.push(`<${tag}>${renderInline(text)}</${tag}>`);
       continue;
     }
 
@@ -331,6 +326,23 @@ function postHtml(post) {
       font-family: 'Pretendard Variable', sans-serif;
       font-size: 1.25rem; margin: 2.5rem 0 1rem;
       color: var(--warm); font-weight: 700; letter-spacing: -.01em;
+    }
+    .body-content h4 {
+      font-family: 'Pretendard Variable', sans-serif;
+      font-size: 1.1rem; margin: 2rem 0 .8rem;
+      color: var(--text); font-weight: 700; letter-spacing: -.01em;
+    }
+    .body-content h5 {
+      font-family: 'Pretendard Variable', sans-serif;
+      font-size: .98rem; margin: 1.6rem 0 .6rem;
+      color: var(--text); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .body-content h6 {
+      font-family: 'Pretendard Variable', sans-serif;
+      font-size: .88rem; margin: 1.4rem 0 .5rem;
+      color: var(--text-muted); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
     }
     .body-content blockquote {
       border-left: 3px solid var(--warm);

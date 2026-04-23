@@ -122,27 +122,32 @@ export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
     }
 
     // ── Headings ───────────────────────────────────────────────
-    if (line.startsWith('### ')) {
+    // 주의: 긴 접두사부터 검사해야 ####가 ###로 오인식되지 않는다.
+    // 또한 Tistory 원본 중에는 "#### " 뒤에 본문이 같은 줄에 오지 않고
+    // 빈 줄만 있는 경우(제목 강조용 빈 헤딩)도 있어 체크를 관대하게 한다.
+    const hMatch = line.match(/^(#{1,6})(?:\s+(.*))?$/);
+    if (hMatch) {
+      const level = hMatch[1].length;
+      const text = (hMatch[2] || '').trim();
+      if (!text) {
+        // "#### " 단독 라인은 장식용 구분으로 취급 — 렌더링 생략
+        i++; continue;
+      }
+      const hClass: Record<number, string> = {
+        1: 'text-3xl font-bold mt-12 mb-6 text-ink-900 dark:text-ink-50',
+        2: 'text-2xl font-bold mt-12 mb-4 pb-2 border-b border-ink-200 dark:border-ink-700 text-ink-900 dark:text-ink-50',
+        3: 'text-xl font-bold mt-10 mb-3 text-warm-600 dark:text-warm-400',
+        4: 'text-lg font-bold mt-8 mb-3 text-ink-900 dark:text-ink-50',
+        5: 'text-base font-semibold mt-6 mb-2 text-ink-800 dark:text-ink-100 uppercase tracking-wide',
+        6: 'text-sm font-semibold mt-6 mb-2 text-ink-700 dark:text-ink-300 uppercase tracking-wider',
+      };
+      const Tag = (`h${level}` as unknown) as keyof JSX.IntrinsicElements;
       blocks.push(
-        <h3 key={`h3${key++}`} className="text-xl font-bold mt-10 mb-3 text-warm-600 dark:text-warm-400">
-          {renderInline(line.slice(4))}
-        </h3>,
-      );
-      i++; continue;
-    }
-    if (line.startsWith('## ')) {
-      blocks.push(
-        <h2 key={`h2${key++}`} className="text-2xl font-bold mt-12 mb-4 pb-2 border-b border-ink-200 dark:border-ink-700 text-ink-900 dark:text-ink-50">
-          {renderInline(line.slice(3))}
-        </h2>,
-      );
-      i++; continue;
-    }
-    if (line.startsWith('# ')) {
-      blocks.push(
-        <h1 key={`h1${key++}`} className="text-3xl font-bold mt-12 mb-6 text-ink-900 dark:text-ink-50">
-          {renderInline(line.slice(2))}
-        </h1>,
+        React.createElement(
+          Tag,
+          { key: `h${level}-${key++}`, className: hClass[level] },
+          ...renderInline(text),
+        ),
       );
       i++; continue;
     }
