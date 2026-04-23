@@ -125,7 +125,20 @@ def extract_post(html: str, post_id: int) -> dict | None:
         escape_underscores=False,
     )
 
-    # 정돈: 과한 빈 줄 축약
+    # 정돈:
+    #  - 티스토리 HTML의 NBSP(\xa0), 다른 유니코드 공백 → 일반 공백
+    #  - ZWSP/ZWNJ/ZWJ/BOM → 제거
+    #  - 줄 끝의 공백(2칸 이상 = markdown 강제 줄바꿈) → 제거
+    #  - 과한 빈 줄 축약
+    INVISIBLE = {
+        "\u00a0": " ", "\u2000": " ", "\u2001": " ", "\u2002": " ", "\u2003": " ",
+        "\u2004": " ", "\u2005": " ", "\u2006": " ", "\u2007": " ", "\u2008": " ",
+        "\u2009": " ", "\u200a": " ", "\u202f": " ", "\u205f": " ", "\u3000": " ",
+        "\u200b": "", "\u200c": "", "\u200d": "", "\ufeff": "", "\u180e": "",
+    }
+    for s, d in INVISIBLE.items():
+        md_body = md_body.replace(s, d)
+    md_body = re.sub(r"[ \t]+$", "", md_body, flags=re.MULTILINE)
     md_body = re.sub(r"\n{3,}", "\n\n", md_body).strip()
 
     return {

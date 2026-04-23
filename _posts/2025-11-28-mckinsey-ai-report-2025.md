@@ -11,7 +11,7 @@ canonicalUrl: "https://namojo.tistory.com/116"
 ---
 ![](https://blog.kakaocdn.net/dna/bOthRf/dJMcacVQ4PV/AAAAAAAAAAAAAAAAAAAAAHfETYoZpo9qygnMXRE8DxzfKAMeoxFNWAx0LHqXBYeR/img.webp?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=YBxGKo1lMcSCwR4p9Qfnpw8bHww%3D)
 
-### 
+###
 
 ### **AI, 단순한 도구를 넘어선 혁신의 물결**
 
@@ -47,7 +47,7 @@ AI가 거스를 수 없는 대세이자 미래 성장 동력이라는 점은 이
 
 이러한 현실 속에서 많은 기업들이 AI를 '점진적인 효율성 개선' 정도로만 바라보는 경향이 짙습니다. 예를 들어, 대다수의 기업들이 10~15% 정도의 생산성 향상을 목표로 AI를 활용하려는 경우가 많다고 해요. 물론 효율성 개선도 중요하고 필요한 부분이지만, 맥킨지는 AI의 진정한 가치가 비즈니스 모델 자체를 새롭게 디자인하고 혁신적인 성장을 추구하는 데 있다는 조언을 아끼지 않습니다. AI를 단순히 기존 업무를 자동화하는 '새로운 도구'로만 여기면, 그 무한한 잠재력을 충분히 활용하기 어렵다는 뜻이 담겨 있는 것이지요. 이는 패러다임 전환의 필요성을 역설하는 중요한 메시지입니다.
 
-AI가 기업의 성과에 미치는 영향, 전사적인 수익(EBIT) 측면을 보면 AI 사용으로 인해 긍정적인 영향을 미쳤다는 응답자는 39%에 불과하며, 이 중 대부분은 5% 미만의 미미한 기여를 했다고 응답했습니다. 
+AI가 기업의 성과에 미치는 영향, 전사적인 수익(EBIT) 측면을 보면 AI 사용으로 인해 긍정적인 영향을 미쳤다는 응답자는 39%에 불과하며, 이 중 대부분은 5% 미만의 미미한 기여를 했다고 응답했습니다.
 
 ![](https://blog.kakaocdn.net/dna/ccbZ3h/dJMcafrvQFo/AAAAAAAAAAAAAAAAAAAAANNekOQuiw1yPbN--Xnf1l0-qx8e6oFxc52t_oc99fEV/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=a7SnXXP8IOjzgOBAmU36BiB4pV0%3D)
 
@@ -55,7 +55,7 @@ AI가 기업의 성과에 미치는 영향, 전사적인 수익(EBIT) 측면을 
 
 또 하나 간과할 수 없는 중요한 점은, AI를 효과적으로 활용하여 혁신을 주도하는 소수 기업과 아직 방향을 잡지 못하고 헤매는 대다수 기업 사이의 'AI 격차'가 점점 더 벌어지고 있다는 사실입니다. 보고서는 직원들이 AI 교육에 대한 열의가 높고 새로운 기술 도입에 충분히 준비되어 있음에도 불구하고, 막상 리더십이 AI 전환에 대한 명확한 비전을 제시하지 못하거나 조직 재설계에 소극적일 때 이러한 격차가 심화된다고 지적하고 있어요. 결국 AI 전환의 성패는 기술 자체의 문제가 아니라, 그것을 이끌어가는 리더십의 역량과 조직 문화의 변화 수용성에 달려있는 중요한 문제라고 볼 수 있습니다. 이는 우리가 기술의 외형만을 좇을 것이 아니라, 그 본질을 이해하고 내재화하는 데 더 많은 노력을 기울여야 함을 일깨워주는 대목입니다.
 
-### 
+###
 
 ### **'AI 전환'의 그림자: 과장된 기대와 현실의 벽은?**
 
