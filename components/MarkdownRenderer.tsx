@@ -96,18 +96,25 @@ export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
         videoId = videoId.split(/[?&]/)[0];
         blocks.push(
           <figure key={`yt${key++}`} className="my-8 w-full">
-            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-card bg-ink-100 dark:bg-ink-800">
+            {/* 16:9 반응형 wrapper — Tailwind aspect-video 대신 padding 트릭으로
+                CDN 의존성 없이 확실히 비율을 잡는다. */}
+            <div
+              className="relative w-full rounded-2xl overflow-hidden shadow-card bg-ink-100 dark:bg-ink-800"
+              style={{ paddingBottom: '56.25%' }}
+            >
               <iframe
-                width="100%"
-                height="100%"
+                className="absolute inset-0 w-full h-full"
                 src={`https://www.youtube.com/embed/${videoId}`}
-                title={alt || 'video'}
+                title={alt || 'YouTube video'}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
-            {alt && <figcaption className="text-center text-sm text-ink-500 mt-3">{alt}</figcaption>}
+            {/* alt가 "youtube" 같은 기본값이면 캡션 숨김 */}
+            {alt && alt !== 'youtube' && (
+              <figcaption className="text-center text-sm text-ink-500 mt-3">{alt}</figcaption>
+            )}
           </figure>,
         );
       } else {
