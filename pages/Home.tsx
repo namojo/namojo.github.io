@@ -135,16 +135,6 @@ export const Home: React.FC = () => {
                 <p className="text-ink-600 dark:text-ink-400 leading-relaxed line-clamp-3">
                   {featured.excerpt}
                 </p>
-                <div className="mt-6 pt-6 border-t border-ink-200 dark:border-ink-700 flex items-center gap-3">
-                  <img
-                    src={featured.author.avatar}
-                    alt=""
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                  <span className="text-sm font-medium text-ink-800 dark:text-ink-200">
-                    {featured.author.name}
-                  </span>
-                </div>
               </div>
             </div>
           </Link>
