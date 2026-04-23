@@ -27,7 +27,7 @@ export const getPosts = async (): Promise<Post[]> => {
   try {
     // Attempt to fetch from the public posts.json file (Static CMS pattern)
     // In dev, this might 404 if not set up, falling back to INITIAL_POSTS
-    const response = await fetch('./posts.json');
+    const response = await fetch(`./posts.json?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to fetch posts');
     
     const data: Post[] = await response.json();
@@ -43,7 +43,7 @@ export const getPosts = async (): Promise<Post[]> => {
 
 export const getPost = async (id: string): Promise<Post | undefined> => {
     try {
-        const response = await fetch('./posts.json');
+        const response = await fetch(`./posts.json?v=${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) throw new Error('Failed to fetch posts');
         const data: Post[] = await response.json();
         return data.find(p => p.id === id);
@@ -68,7 +68,7 @@ export const getCategories = (): Category[] => [
  */
 export const getUsedCategories = async (): Promise<string[]> => {
   try {
-    const response = await fetch('./posts.json');
+    const response = await fetch(`./posts.json?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to fetch posts');
     const data: Post[] = await response.json();
     const set = new Set<string>();

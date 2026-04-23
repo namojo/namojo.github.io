@@ -34,18 +34,8 @@ COVERS = {
     "ai-tutor-and-blooms-2sigma-in-korea": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
 }
 
-# Likes (plausible engagement numbers for a blog that's been gathering readers)
-LIKES = {
-    "sora-and-pandoras-box": 234,
-    "gpt4o-ai-sees-and-hears": 189,
-    "o1-when-ai-learned-to-think": 256,
-    "mcp-the-quiet-revolution": 167,
-    "deepseek-shock-the-sputnik-moment": 521,
-    "claude-code-and-the-age-of-agents": 312,
-    "sovereign-ai-and-jensen-huangs-world-tour": 278,
-    "agents-talking-to-agents-a2a-protocol": 194,
-    "ai-tutor-and-blooms-2sigma-in-korea": 243,
-}
+# Likes — 사용자 요청(2026-04-24)에 따라 모든 포스트 랜덤화. slug 해시 기반 결정적 랜덤.
+LIKES = {}
 
 
 def parse_front_matter(text):

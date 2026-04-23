@@ -34,4 +34,3 @@ dist-ssr
 # 작업 중간 산출물 (개인 작업 로그)
 _workspace/factcheck-*.md
 _workspace/topic-briefs.md
-_workspace/__pycache__/
