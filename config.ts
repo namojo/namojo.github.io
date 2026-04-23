@@ -20,7 +20,7 @@ export const COMMENTS = {
   // GitHub Discussions 기반(GitHub 로그인만 지원하지만, 엔지니어 친화적이고 광고 없음).
   giscus: {
     repo: "namojo/namojo.github.io" as `${string}/${string}`,
-    repoId: "",       // R_kgDO... 형식
+    repoId: "R_kgDORt-aYQ",       // R_kgDO... 형식
     category: "General",
     categoryId: "",   // DIC_kwDO... 형식
     mapping: "pathname" as "pathname" | "url" | "title" | "og:title",
