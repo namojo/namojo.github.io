@@ -5,7 +5,9 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-ROOT = Path("/Users/andy/Work/myblog")
+# 이 스크립트는 _workspace/ 안에 있으므로 부모의 부모가 리포 루트.
+# 로컬(macOS)과 CI(GitHub Actions Linux) 모두에서 올바르게 동작하도록 상대 경로 사용.
+ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "_posts"
 OUTPUT = ROOT / "public" / "posts.json"
 
