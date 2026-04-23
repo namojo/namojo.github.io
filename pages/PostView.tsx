@@ -32,9 +32,11 @@ export const PostView: React.FC = () => {
       const found = posts.find((p) => p.id === id);
       if (found) {
         setPost(found);
-        setLikes(found.likes);
-        const likedPosts = JSON.parse(localStorage.getItem('liked_posts') || '{}');
-        if (likedPosts[found.id]) setIsLiked(true);
+        const liked = JSON.parse(localStorage.getItem('liked_posts') || '{}');
+        const hasLiked = !!liked[found.id];
+        setIsLiked(hasLiked);
+        // 저장된 좋아요면 +1을 반영해 표시 (로컬 누적만, 소셜 프루프 용도)
+        setLikes(found.likes + (hasLiked ? 1 : 0));
       }
       setLoading(false);
       // 포스트 진입 시 상단 스크롤

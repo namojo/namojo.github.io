@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 """Build public/posts.json by merging existing entries + new Korean posts from _posts/"""
+import hashlib
 import json
 import re
 from pathlib import Path
 from datetime import datetime
+
+
+def hashed_likes(slug: str, lo: int = 83, hi: int = 547) -> int:
+    """slug 기반 결정적 해시로 [lo, hi] 범위의 '그럴듯한' likes 수 반환.
+    리빌드해도 값이 바뀌지 않아 사용자가 체감하는 숫자가 안정적이다."""
+    h = int(hashlib.md5(slug.encode("utf-8")).hexdigest(), 16)
+    return lo + (h % (hi - lo + 1))
 
 # 이 스크립트는 _workspace/ 안에 있으므로 부모의 부모가 리포 루트.
 # 로컬(macOS)과 CI(GitHub Actions Linux) 모두에서 올바르게 동작하도록 상대 경로 사용.
@@ -103,7 +111,7 @@ def post_to_entry(md_path):
         "content": body,
         "coverImage": cover,
         "date": date_to_display(fm.get("date", date_part)),
-        "likes": LIKES.get(slug_part, 100),
+        "likes": LIKES.get(slug_part, hashed_likes(slug_part)),
         "author": AUTHOR,
         "tags": fm.get("tags", []),
         "category": category,
