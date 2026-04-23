@@ -30,6 +30,172 @@ const displayDate = (iso: string): string => {
 
 const DRAFT_KEY = 'editor_draft_v2';
 
+// ─── 이미지 삽입 모달 ───────────────────────────────────────────────
+interface ImageModalProps {
+  slug: string;
+  onInsert: (markdown: string) => void;
+  onClose: () => void;
+}
+
+const InlineImageModal: React.FC<ImageModalProps> = ({ slug, onInsert, onClose }) => {
+  const [url, setUrl] = useState('');
+  const [caption, setCaption] = useState('');
+  const [preview, setPreview] = useState<string | null>(null);
+  const [mode, setMode] = useState<'url' | 'upload'>('upload');
+  const [suggestedPath, setSuggestedPath] = useState<string | null>(null);
+  const dropRef = useRef<HTMLDivElement>(null);
+
+  const handleFile = (file: File) => {
+    // 파일명 정규화
+    const safeName = file.name
+      .replace(/\.[^.]+$/, '')
+      .replace(/[^\w가-힣-]/g, '-')
+      .replace(/-+/g, '-')
+      .toLowerCase();
+    const ext = (file.name.match(/\.[^.]+$/)?.[0] || '.jpg').toLowerCase();
+    const path = `/images/inline/${slug || 'post'}-${safeName}${ext}`;
+    setSuggestedPath(path);
+
+    // 미리보기
+    const reader = new FileReader();
+    reader.onload = () => setPreview(reader.result as string);
+    reader.readAsDataURL(file);
+
+    // 파일을 사용자에게 자동 다운로드 — 저장소에 수동 저장하도록
+    const blobUrl = URL.createObjectURL(file);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = `${slug || 'post'}-${safeName}${ext}`;
+    a.click();
+    URL.revokeObjectURL(blobUrl);
+  };
+
+  const onFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  };
+  const onDragOver = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); };
+  const onDrop = (e: React.DragEvent) => {
+    e.preventDefault(); e.stopPropagation();
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith('image/')) handleFile(file);
+  };
+
+  const insert = () => {
+    const finalUrl = mode === 'url' ? url.trim() : (suggestedPath || '');
+    if (!finalUrl) return;
+    const md = `\n\n![${caption || '이미지'}](${finalUrl})\n\n`;
+    onInsert(md);
+  };
+
+  const canInsert = mode === 'url' ? url.trim().length > 0 : !!suggestedPath;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/60 backdrop-blur-sm p-4">
+      <div className="bg-white dark:bg-ink-900 rounded-2xl shadow-card-hover max-w-lg w-full p-6 border border-ink-200 dark:border-ink-700">
+        <div className="flex justify-between items-center mb-5">
+          <h3 className="text-lg font-display font-bold text-ink-900 dark:text-ink-50">
+            이미지 삽입
+          </h3>
+          <button onClick={onClose} className="w-8 h-8 rounded-full hover:bg-ink-100 dark:hover:bg-ink-800 flex items-center justify-center text-ink-600 dark:text-ink-300">
+            <span className="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        {/* 모드 토글 */}
+        <div className="flex bg-ink-100 dark:bg-ink-800 rounded-lg p-1 mb-5">
+          <button
+            onClick={() => setMode('upload')}
+            className={`flex-1 py-2 text-sm font-semibold rounded-md transition-apple ${mode === 'upload' ? 'bg-white dark:bg-ink-900 text-warm-600 shadow' : 'text-ink-500'}`}
+          >
+            파일 업로드
+          </button>
+          <button
+            onClick={() => setMode('url')}
+            className={`flex-1 py-2 text-sm font-semibold rounded-md transition-apple ${mode === 'url' ? 'bg-white dark:bg-ink-900 text-warm-600 shadow' : 'text-ink-500'}`}
+          >
+            URL 입력
+          </button>
+        </div>
+
+        {/* Upload 모드 */}
+        {mode === 'upload' && (
+          <div
+            ref={dropRef}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            className="border-2 border-dashed border-ink-300 dark:border-ink-700 rounded-xl p-6 text-center mb-4 hover:border-warm-400 transition-apple"
+          >
+            {preview ? (
+              <div>
+                <img src={preview} alt="preview" className="max-h-40 mx-auto rounded-lg mb-3" />
+                <p className="text-xs text-ink-500 mb-2">추천 경로: <code className="bg-ink-100 dark:bg-ink-800 px-1.5 py-0.5 rounded">{suggestedPath}</code></p>
+                <p className="text-xs text-warm-600 mb-3">✓ 파일이 자동 다운로드됐습니다. <strong>public{suggestedPath}</strong>에 저장해 주세요.</p>
+              </div>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-4xl text-ink-400 block mb-2">cloud_upload</span>
+                <p className="text-sm text-ink-700 dark:text-ink-200 mb-1 font-semibold">이미지를 끌어놓거나 클릭해서 선택</p>
+                <p className="text-xs text-ink-500">PNG·JPG·WebP 등 · 업로드 시 파일이 자동 다운로드됩니다</p>
+              </>
+            )}
+            <label className="inline-block mt-3 px-4 py-2 rounded-full bg-ink-100 dark:bg-ink-800 hover:bg-ink-200 dark:hover:bg-ink-700 text-sm font-semibold cursor-pointer transition-apple">
+              {preview ? '다른 파일 선택' : '파일 선택'}
+              <input type="file" accept="image/*" onChange={onFileSelect} className="sr-only" />
+            </label>
+          </div>
+        )}
+
+        {/* URL 모드 */}
+        {mode === 'url' && (
+          <div className="mb-4">
+            <label className="text-xs font-bold uppercase tracking-wider text-ink-500 mb-1.5 block">이미지 URL</label>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="/images/inline/my-image.jpg 또는 https://…"
+              className="w-full rounded-xl border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-900 text-ink-900 dark:text-ink-50 placeholder-ink-400 focus:border-warm-400 focus:ring-2 focus:ring-warm-200/60 px-4 py-2.5 text-sm outline-none"
+              autoFocus
+            />
+            {url && (
+              <div className="mt-3 rounded-xl overflow-hidden border border-ink-200 dark:border-ink-700 max-h-40">
+                <img src={url} alt="preview" className="w-full h-auto" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 캡션 */}
+        <div className="mb-5">
+          <label className="text-xs font-bold uppercase tracking-wider text-ink-500 mb-1.5 block">캡션 (선택)</label>
+          <input
+            type="text"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+            placeholder="사진·그림 아래에 표시될 설명"
+            className="w-full rounded-xl border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-900 text-ink-900 dark:text-ink-50 placeholder-ink-400 focus:border-warm-400 focus:ring-2 focus:ring-warm-200/60 px-4 py-2.5 text-sm outline-none"
+          />
+        </div>
+
+        {/* 액션 */}
+        <div className="flex gap-2 justify-end">
+          <button onClick={onClose} className="px-5 py-2.5 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-200 text-sm font-semibold hover:bg-ink-200 dark:hover:bg-ink-700 transition-apple">
+            취소
+          </button>
+          <button
+            onClick={insert}
+            disabled={!canInsert}
+            className="px-5 py-2.5 rounded-full bg-warm-500 hover:bg-warm-600 disabled:bg-ink-300 dark:disabled:bg-ink-700 disabled:cursor-not-allowed text-white text-sm font-semibold transition-apple"
+          >
+            본문에 삽입
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // ─── 컴포넌트 ───────────────────────────────────────────────────────
 export const Editor: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,6 +222,7 @@ export const Editor: React.FC = () => {
   const [uploadNote, setUploadNote] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [slugEditedManually, setSlugEditedManually] = useState(false);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
 
   // 인증·로드
   useEffect(() => {
@@ -463,7 +630,7 @@ export const Editor: React.FC = () => {
                   { icon: 'format_list_bulleted', title: '불릿', args: ['\n- ', '\n'] as const },
                   { icon: 'format_list_numbered', title: '번호', args: ['\n1. ', '\n'] as const },
                   { icon: 'code', title: '인라인 코드', args: ['`', '`'] as const },
-                  { icon: 'image', title: '이미지 + 캡션', args: ['\n![캡션](', ')\n'] as const },
+                  // 이미지 버튼은 모달로 분리되어 아래에서 따로 렌더
                   { icon: 'link', title: '링크', args: ['[', '](url)'] as const },
                   { icon: 'smart_display', title: 'YouTube 임베드', args: ['\n![영상 캡션](https://www.youtube.com/watch?v=', ')\n'] as const },
                 ].map(b => (
@@ -476,6 +643,14 @@ export const Editor: React.FC = () => {
                     <span className="material-symbols-outlined text-[20px]">{b.icon}</span>
                   </button>
                 ))}
+                {/* 이미지 삽입: 모달 열기 */}
+                <button
+                  onClick={() => setImageModalOpen(true)}
+                  title="이미지 + 캡션 삽입 (업로드·URL·드래그앤드롭)"
+                  className="p-2 rounded-lg text-ink-700 dark:text-ink-200 hover:bg-warm-100 dark:hover:bg-warm-900/30 hover:text-warm-600 transition-apple"
+                >
+                  <span className="material-symbols-outlined text-[20px]">image</span>
+                </button>
               </div>
 
               <div className="flex lg:hidden bg-ink-200 dark:bg-ink-700 rounded-lg p-1">
@@ -502,13 +677,24 @@ export const Editor: React.FC = () => {
 
             {/* Split view */}
             <div className="flex-grow flex overflow-hidden" style={{ minHeight: '50vh' }}>
-              <div className={`w-full lg:w-1/2 border-r border-ink-200 dark:border-ink-700 ${mobileTab === 'preview' ? 'hidden lg:block' : ''}`}>
+              <div
+                className={`w-full lg:w-1/2 border-r border-ink-200 dark:border-ink-700 ${mobileTab === 'preview' ? 'hidden lg:block' : ''}`}
+                onDragOver={(e) => { e.preventDefault(); }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const file = e.dataTransfer.files?.[0];
+                  if (file?.type.startsWith('image/')) {
+                    setImageModalOpen(true);
+                    // 모달이 열리면 사용자가 파일 선택 하도록 안내
+                  }
+                }}
+              >
                 <textarea
                   id="content-editor"
                   name="content"
                   value={state.content}
                   onChange={onText}
-                  placeholder="# 글을 시작해 보세요…&#10;&#10;이미지는 ![캡션](url) 형태로, YouTube는 ![영상 캡션](https://www.youtube.com/watch?v=...)"
+                  placeholder="# 글을 시작해 보세요…&#10;&#10;이미지는 툴바의 이미지 버튼을 눌러 업로드하거나, 본문 영역에 드래그-드롭하세요."
                   className="w-full h-full p-6 bg-white dark:bg-ink-900 text-ink-900 dark:text-ink-50 placeholder-ink-400 font-mono text-[14px] leading-[1.75] border-none resize-none outline-none"
                   style={{ minHeight: '50vh' }}
                 />
@@ -710,6 +896,32 @@ export const Editor: React.FC = () => {
           </div>
         </aside>
       </div>
+
+      {/* ───── Image Insert Modal ───── */}
+      {imageModalOpen && (
+        <InlineImageModal
+          slug={state.slug || 'post'}
+          onInsert={(md) => {
+            // 현재 커서 위치에 마크다운 삽입
+            const ta = document.getElementById('content-editor') as HTMLTextAreaElement | null;
+            if (ta) {
+              const start = ta.selectionStart;
+              const end = ta.selectionEnd;
+              const text = ta.value;
+              const newText = text.substring(0, start) + md + text.substring(end);
+              patch({ content: newText });
+              setTimeout(() => {
+                ta.focus();
+                ta.selectionStart = ta.selectionEnd = start + md.length;
+              }, 0);
+            } else {
+              patch({ content: state.content + md });
+            }
+            setImageModalOpen(false);
+          }}
+          onClose={() => setImageModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
