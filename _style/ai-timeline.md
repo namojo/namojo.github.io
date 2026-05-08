@@ -123,7 +123,9 @@
 | 2026-04-02~03 | **MCP Dev Summit North America** (뉴욕) 1,200명 참석, 95+ 세션. Amazon·Uber 엔터프라이즈 사례 | |
 | 2026-04 초 | **A2A v1.0** 정식 릴리즈 (draft → production) | |
 | 2026-04-07 | OpenAI·Anthropic·Google의 중국 모델 복제 대응 공동 전선 (Japan Times) | |
-| 2026-04-24 | **오늘** (이 파일의 기준 시점) | |
+| 2026-05-05 | **Anthropic, "Agents for financial services" 발표** (뉴욕 초청제 브리핑). 10개 Named Agent 템플릿 (pitch-agent, meeting-prep-agent, market-researcher, earnings-reviewer, model-builder, valuation-reviewer, gl-reconciler, month-end-closer, statement-auditor, kyc-screener). Microsoft 365 통합(Excel/PowerPoint/Word/Outlook). Moody's MCP 앱 출시. 새 데이터 파트너 8곳(D&B, Fiscal AI, Financial Modeling Prep, Guidepoint, IBISWorld, SS&C Intralinks, Third Bridge, Verisk). Claude Opus 4.7 기반, Vals AI Finance Agent 벤치마크 64.37% | Dario Amodei와 JPMorgan Jamie Dimon 공동 무대. 프로덕션 배치 기업: JPMorgan/Goldman/Citi/AIG/Visa. 매출 80x 연환산 성장. anthropics/financial-services 레포는 2026-02-23 조용히 첫 커밋, 5/5에 'Restructure repo and add named agents (#81)'로 공식 단장 |
+| 2026-05-07 | anthropics/financial-services 레포 Outlook manifest 지원 추가 (커밋 #127) | 5/5 발표 시 "coming soon"이었던 Outlook 합류 |
+| 2026-05-08 | **오늘** (이 파일의 기준 시점) | |
 
 ---
 
