@@ -66,7 +66,7 @@ function markdownToHtml(md) {
     const line = lines[i].replace(/\r$/, '');
 
     // Image  또는 YouTube embed
-    const imgMatch = line.match(/^!\[([^\]]*)\]\((https?:[^)]+)\)\s*$/);
+    const imgMatch = line.match(/^!\[([^\]]*)\]\(((?:https?:|\/)[^)]+)\)\s*$/);
     if (imgMatch) {
       closeList(); closeQuote();
       const alt = escapeHtml(imgMatch[1]);

@@ -51,14 +51,19 @@ def parse_front_matter(text):
             continue
         if ":" in line:
             key, _, value = line.partition(":")
-            value = value.strip().strip('"').strip("'")
-            if key.strip() == "tags" or key.strip() == "categories":
+            key = key.strip()
+            value = value.strip()
+            if key == "tags" or key == "categories":
                 # "[a, b]" -> list
                 inner = value.strip("[]").strip()
                 items = [x.strip().strip('"').strip("'") for x in inner.split(",") if x.strip()]
-                fm[key.strip()] = items
+                fm[key] = items
             else:
-                fm[key.strip()] = value
+                # 양끝이 같은 따옴표로 감싸진 경우에만 한 쌍을 벗긴다.
+                # (제목이 따옴표로 시작/끝나는 경우 strip('"')가 망가뜨리던 문제 방지)
+                if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+                    value = value[1:-1]
+                fm[key] = value
     return fm, body
 
 
