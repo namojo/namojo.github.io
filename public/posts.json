@@ -149,21 +149,6 @@
     "category": "AI"
   },
   {
-    "id": "firstmove",
-    "title": "초지일관 - 웹툰",
-    "excerpt": "초지일관 웹툰",
-    "content": "![이미지](/images/inline/post-1.jpeg)\n\n\n\n![이미지](/images/inline/post-2.jpeg)\n\n",
-    "coverImage": "/images/hero-home.jpg",
-    "date": "Apr 24, 2026",
-    "likes": 392,
-    "author": {
-      "name": "조남호 (namojo)",
-      "avatar": "/images/author-avatar.jpg"
-    },
-    "tags": [],
-    "category": "Story"
-  },
-  {
     "id": "mcp-summit-a2a-v1",
     "title": "뉴욕에서 켜진 두 개의 표준등 : MCP 서밋과 A2A v1.0",
     "excerpt": "2026년 4월 초 뉴욕에서 MCP 개발자 서밋이 사흘간 열렸습니다. 1,200명이 모여 95개 세션이 동시에 돌아갔고, 바로 다음 주에는 A2A가 정식 버전 1.0을 공개합니다. 조용한 주간이었지만, 저는 이 주간을 'AI 에이전트의 HTTP가 켜진 주간'이라 기억하게 될 것 같습니다.",
@@ -715,29 +700,6 @@
     "category": "AI"
   },
   {
-    "id": "ai-advertising-uncanny",
-    "title": "AI 광고는 효율적이지만, 왜 사랑받지 못할까?",
-    "excerpt": "맥도날드 네덜란드가 제작한 AI 크리스마스가 엄청난 대중의 비난을 받고 결국 삭제되었습니다. 네덜란드 회사 TBWA Neboko와 미국 제작사 The Sweetshop를 통해 제작된 이번 AI 크리스마스 광고는 '일 년 동안 크리스마스가 가장 끔찍한 시간'이라는 컨셉으로 묘사했죠. 그렇",
-    "content": "맥도날드 네덜란드가 제작한 AI 크리스마스가 엄청난 대중의 비난을 받고 결국 삭제되었습니다. 네덜란드 회사 TBWA Neboko와 미국 제작사 The Sweetshop를 통해 제작된 이번 AI 크리스마스 광고는 '일 년 동안 크리스마스가 가장 끔찍한 시간'이라는 컨셉으로 묘사했죠.\n그렇지만, 대중들은 크리스마스가 따뜻함과 가족애를 중심으로 묘사되기를 기대하고 있는데 반해, 이 광고는 이 끔찍한 기간동안 맥도날드가 유일한 휴식처인 것처럼 묘사해 냉소적인 메시지와 어둡고 암울한 기괴함으로 반감을 부추겼습니다.\n\n![youtube](https://youtu.be/rQJgvT6arKE?si=0SjHTJIhsTQYGlod)\n\n< 맥도날드의 광고는 크리스마스를 망친다는 평가 속에 사라졌다. 출처 : MBC 뉴스 - YouTube >\n\nAI로 만든 광고가 대중의 외면을 받은 것은 이번이 처음이 아닙니다. 이미 작년과 올해, 두 차례의 AI 광고를 집행한 코카콜라는 AI에 대한 대중의 거부감을 그대로 맞아야 했습니다. 코카콜라의 연말 시즌 광고는 전통적으로 향수를 불러 일으키고, 따뜻한 스토리텔링으로 엄마와 자식 북극곰을 만다는 감성과 영혼이 느껴지는 작품이었는데요. 작년과 올해 광고는 캐릭터의 움직임이 부자연스럽고, 트럭의 바퀴는 굴러가지 않고 미끄러지는 불쾌하고 부자연스러운 효과, Uncanny Valley(불쾌한 협곡)를 보여줘 완성도까지 떨어졌습니다.\n\n![youtube](https://youtu.be/X1QYRb67DLM?si=6TgsSFbNTXPEecT2)\n\n< 코카콜라의 2년 연속 AI 광고는 지난 훌륭했던 평판을 박살냈다. 출처 : WLDO - YouTube >\n\n이런 광고들의 문제는 AI 기술의 한계점으로 인해, 동일한 Context 유지가 쉽지 않다보니, 주인공을 중심으로 한 장대한 스토리텔링을 하기 어렵다는 점이 있습니다. 그래서인지, 맥도날드의 광고는 짧은 여러 개의 에피소드를 짜집기 하느라 바빴는데요. 제작진은 10명이 5주 동안 풀타임으로 작업하면서 수 많은 영상 클립들을 수정하고 골라냈다지만, 오히려 그게 제작의 노력이냐며 비아냥을 들어야했습니다. 여기에 더해 동물의 움직임을 제대로 학습하는 등의 기술력 부족의 한계도 느끼게 했죠. (그런 면에서 GTA 시리즈의 동물 모델방법을 코카콜라가 배웠으면 달라졌을까 싶기도 합니다만..)\n그보다 더 중요한 문제는 바로 '기술 부족'이 아니라 '비용 절감과 효율성'으로 인해 인간의 창의성과 노동을 대체하려는 시도를 벌였기 때문에 괘씸죄가 적용되고 있다는 겁니다. 일종의 AI 포비아로서 동작하는 이런 현상은 감성적으로 소비되는 콘텐츠 시장에서 더욱 극적으로 나타나는데요. AI가 대체하는 미래가 곧 나의 미래가 될 지도 모른다는 위협을 가하기 때문입니다.\n\n**AI 광고가 더욱 극적으로 감동을 주는 경우는 없나?**\n\n빙그레는 옥중에서 순국하여 빛바랜 죄수복 사진만 남은 독립운동가 87명의 마지막 사진을 AI 기술로 복원하여, 그 분들이 생전에 입고 싶었을 고운 한복을 입은 모습으로 재탄생시키는 '처음 입는 광복'이라는 캠페인을 만들었었죠. 거기에 빙그레 임직원들이 애국지사의 후손 6분에게 한복과 AI로 복원한 사진을 전달하며 감사의 마음을 전하면서 메시지의 진정성을 더했습니다.\n\n![youtube](https://youtu.be/SS_8C3L7fTQ?si=6Ogc0HMM6deFILby)\n\n< 빙그레는 처음 입는 광복 캠페인으로 독립투사를 기리는 캠페인의 시발점이 되기도 했다. 출처 : 빙그레 - YouTube >\n\n이런 AI 광고들은 향후 MBC와 여러 방송사들의 2025 대선이자 광복 80주년 기념 개표방송 타이틀에서 많이 활용되면서 회자 되기도 했습니다. AI 광고가 단순히 소비되는 것이 아니라 의미를 담고 있으며, 되새겨 볼만한 주제를 던져줄 때에만 의미가 있는 것은 아닐까요?\n\n![youtube](https://youtu.be/LQmRlJLk5u8?si=8VWZNGi0FhleC_nJ)\n\n< MBC와 SBS를 비롯한 여러 방송사에서 AI를 활용한 광고를 내보내는 것에 이질감이 없다. 출처 : MBC - YouTube >\n\nAI가 기술로서만 동작하는 것이 아니라, '무엇을 전달하고자 했는가', '메시지를 진정성 있게 전달하고 있는가'가 중요한 것을 깨닫게 해주는 좋은 캠페인이었어요. 즉, AI 기술을 사용한 광고라고 해서 무조건 사람들에게 거부당하는 것이 아니라, 그 안에 담긴 기획력, 가치들을 AI의 눈이 아닌 사람의 눈높이에서 전달하는 브랜드의 태도가 중요하다고 볼 수 있겠습니다. 코카콜라도 AI로 만든 광고를 무조건 실패했던 것만은 아닙니다. 2023년 진행되었던 코카콜라의 마스터피스(Masterpiece, Real Magic) 캠페인은 앤디 워홀의 작품에서 시작해 뭉크와 고흐, 베르메르까지 여러 예술작품들 사이를 코카콜라가 누비며, 마법같은 순간을 완성한다는 영감이 넘쳐나는 작품이었죠. 즉, 광고에서 AI를 썼느냐가 중요하기 보다는 도구를 만드는 노력이 중요하지 않을까요?\n\n####\n\n![youtube](https://youtu.be/VGa1imApfdg?si=xx1ACSabpdN3zrOd)\n\n< 코카콜라가 예전 만큼만 광고를 만들면 좋겠는데.. 역시 광고는 사람이 만들어야? 출처 : 코카콜라 US - YouTube >\n\n#### **스토리텔링(StoryTelling)에서 스토리비잉(StoryBeing)의 시대로**\n\n브랜드가 소비자에게 일방적으로 완성된 이야기를 전달하는 것이 '스토리텔링'으로, 이야기의 완성도가 광고의 성패를 결정하는 주요 요인으로 받아들여집니다. 요즘엔 스토리비잉, 브랜드 자체가 이야기의 일부로서 존재(Be)하며, 소비자들이 인터랙티브하게 양방향으로 이야기를 만들어가는 과정과 상태를 유지(ing)하는 유기체처럼 브랜드가 소비자와 상호작용하는 광고 방식이 주목받고 있습니다.\n\n스토리비잉(StoryBeing)은 단순한 이야기 전달을 넘어, 브랜드가 전하고자 하는 가치나 철학이 기업의 행보와 제품 자체에 녹아들어 있어 소비자에게 '실재'로 느껴지게 하는 개념입니다. 그래서, \"이 재킷을 사지 마세요.(Don't Buy This Jacket)\"라는 메시지를 통해 환경 보호라는 브랜드 철학을 보여준 파타고니아(Patagonia)라던가, \"어디에서나 내 집처럼(Belong Anywhere)\"를 통해 단순한 숙박 서비스가 아니라, 현지인처럼 살아보는 경험 자체를 브랜드 정체성으로 제공하는 것을 알린 에어비앤비(Airbnb) 등이 있었죠.\n\n기술 발전과 더불어 MZ세대가 주 소비층으로 변화하면서, 기존의 소비자를 연령이나 세대, 소득, 지역에 따라 구분하기 보다는 지극히 개인화된 1:1 마케팅 수준의 타게팅이 AI를 통해 가능해진 것을 광고 기술에서 활용하기 시작했거든요. 그래서, 요즘은 AI로 영상 광고를 생성하기 보다는 인스타나 페이스북 광고, 네이버와 구글 배너 광고, 앱스토어 광고, 넷플릭스 스탠다드에서 나오는 광고를 비롯해 고객센터의 챗봇까지 소비자에게 개인화된 맞춤 광고를 AI를 통해 자동화된 맞춤서비스로 제공하는 것을 목표로 하고 있습니다.\n\n아마존이나 넷플릭스의 초개인화된 추천 기술, 고객센터가 AI 챗봇을 통해 24시간 나의 모든 상담을 기록하고 문제점을 찾아서 에이전트가 끝까지 해결해주는 경험, 세포라의 AI 기반 피부 진단을 통해 맞춤형 제품을 전문가처럼 추천받는다거나, AI가 제안하는 맞춤형 여행계획을 점차 구글 지도(Map)을 통해 제안받는 것이 어색해지지 않는다거나 하는 것이 바로 AI를 존재론적으로 인지하면서 더 이상 광고로 느끼지 않게 되는 것을 의미하죠.\n\n지금은 친구들과 '자전거'에 대한 이야기만 나눠도, 내 주변의 모든 광고는 '자전거'로 도배가 되는 것을 짜증내게 됩니다. 그렇지만, 진짜 스토리 Being을 하는 회사는 그 틈새에서도 'Real 자전거'의 스토리를 자연스레 연결해주는 역량을 가질지도 모르죠.\n아직, AI가 만든 영상광고가 어색하고 싫은 이유는 우리에게 무턱대고 '자전거'를 보여주는 AI의 무대포식 타게팅 광고가 어색하고 싫은 이유와 맞닿아 있습니다. 곧, AI가 우리의 무의식으로 '자전거'를 밀어넣는 날이 올지도 모르지만요.\n",
-    "coverImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FeGaBXS%2FdJMcabJwVxM%2FAAAAAAAAAAAAAAAAAAAAAMSxTKk7BvuOhdQW9zgk4gBTgQivVra2VCWnXX_QoOpe%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1777561199%26allow_ip%3D%26allow_referer%3D%26signature%3DoYe5W833M9iEcyzsYzZMQYHzrVM%253D",
-    "date": "Dec 16, 2025",
-    "likes": 113,
-    "author": {
-      "name": "조남호 (namojo)",
-      "avatar": "/images/author-avatar.jpg"
-    },
-    "tags": [
-      "태그",
-      "AI",
-      "광고",
-      "맥도날드",
-      "스토리비잉",
-      "스토리텔링",
-      "코카콜라"
-    ],
-    "category": "AI"
-  },
-  {
     "id": "palantir-swiss-sovereignty",
     "title": "팔란티어에 거부권을 행사한 데이터 주권",
     "excerpt": "미국의 팔란티어(Palantir)는 '정부용 AI 데이터 플랫폼'의 대표주자로, 군과 정보기관, 경찰, 의료시스템까지 서로 다른 데이터를 하나로 묶어 패턴과 관계를 분석하는데 특화된 역량을 갖추고 있는 회사입니다. 이미 미 국방부와 다년간의 경험과 계약을 통해, 그 역량을 인정받던 회사",
@@ -803,29 +765,6 @@
       "경쟁"
     ],
     "category": "AI"
-  },
-  {
-    "id": "engineer-back-to-basic",
-    "title": "일 잘하는 엔지니어의 생각 기법, Back to the basic.",
-    "excerpt": "2002년 대한민국이 월드컵 4강으로 뜨거웠을 때. 제가 개발하던 MPH-2000 (삼성 최후의 PDA 핸드폰) 기반의 삼성전자 물류서비스 앱이 전국의 물류센터에 배포가 되었습니다. 일반 가정에서 전자제품을 주문하면, 물류 배송 기사들이 배송을 완료하고 송장을 폰으로 확인하고, 처리 결",
-    "content": "2002년 대한민국이 월드컵 4강으로 뜨거웠을 때. 제가 개발하던 MPH-2000 (삼성 최후의 PDA 핸드폰) 기반의 삼성전자 물류서비스 앱이 전국의 물류센터에 배포가 되었습니다. 일반 가정에서 전자제품을 주문하면, 물류 배송 기사들이 배송을 완료하고 송장을 폰으로 확인하고, 처리 결과를 전송하면 데이터가 처리되는 시스템이었죠. 당시 휴대폰에는 GPS 기능이 없었기 때문에 기지국 정보로 배송 위치를 추정하고, 배송 완료 시간을 기록해서 물류 정보에 통합하는 것만으로도 획기적이었습니다.\n\n![](https://blog.kakaocdn.net/dna/bnTuDY/dJMcab3MU1Z/AAAAAAAAAAAAAAAAAAAAAO0w5b-Gsw9uNyQ0eIdULsuPS0jaRZg0PdQSEg_BH2EN/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=%2BKOSAsNH0nGSxjfmtU9R5x15D24%3D)\n\n삼성 SPH-M2000 당시엔 획기적인 폰으로 터치펜 기능도 가진 풀터치 플립형 디자인이 주목받았다 < 사진 : 창원 통신박물관 - 네이버 블로그 >\n\n그런데, 당시에는 매우 심각한 문제가 하나 있었습니다. ARM 기반의 별도 버전의 gcc로 개발한(뭔지 몰라도 그냥 매우 생소한 프로그래밍 언어라고 생각하시면 됩니다.) 라이브러리에서 Memory Leak이 아주 미세하게 발생하고 있었지만, 그걸 개발한 종합연구소의 박사님도, 그걸 기반으로 앱을 만든 저도 원인을 밝혀낼 방법이 없었습니다. 프로그램에서 쌓인 메모리의 피로감은 점점 앱을 느려지게 만들었고, 두 달 정도 지나면 폰이 느려지기 시작했어요. 결국 폰이 너무 느려져서 앱 실행조차 힘들다는 문의가 들어오기 시작했고요. 회사에서는 후속 기종 개발이나 라이브러리 업데이트 계획이 없었으니, 회사의 향후 지원도 없을 예정이었습니다.\n\n가장 즉각적인 조치 방법은 폰을 한 번 껐다 켜는 거였습니다. 컴퓨터가 제대로 동작하지 않으면, 껐다 켜는 것이 해답일 때도 있다는 것이 바로 이런 방법이죠. (당시 메모리가 256kb 밖에 안되었던 폰을 껐다켜면, 메모리가 깔끔하게 비워졌다.) 그렇지만, 고객사에 프로그램의 문제인데, 당장 고칠 방법이 없으니 껐다 켜면 된다고 말할 수는 없는 노릇이었습니다. 그런 와중에 고객사에서 고객 사인을 터치펜으로 받아서 전송하는 기능을 추가해달라는 요청이 왔어요. 그 때, 번뜩하고 떠오른 생각이 있었습니다. 당시 피처폰들은 OS와 하드웨어의 구조상 메모리와 프로세서가 제한적이라서, 새로운 앱을 메로리에 로딩하기 위해서 반드시 재부팅을 해야했거든요.\n\n그러니까, 정리하자면 폰에 메모리가 가득차서 느려지기 시작하는건 2달이 걸리고, 제가 새로운 기능을 2달에 한 번씩 추가해서 앱을 배포하면 고객은 자연스럽게 폰을 껐다 켜게 된다는 거였습니다. 물론, 새로운 기능을 추가로 넣는 것이 어렵기는 했지만, 해결할 수 없는 문제를 손쉽게 해결하는 최선이었죠. 1년 반 정도의 시간 동안 새로운 부가 기능을 6개를 만들어서, 버전 6까지의 앱 업그레이드가 이뤄졌습니다.\n\n![](https://blog.kakaocdn.net/dna/EB7vG/dJMcaaqhbzS/AAAAAAAAAAAAAAAAAAAAAEMlmMNe3KOBOMs6WXOojylPyYWw2FEpDxrhEq5gCmbb/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=zdpsMvWbiI0vjXOKuCdImNp1HUQ%3D)\n\n배송기사도 만족하는 2개월 마다의 업그레이드 덕분에 해결할 수 없는 문제를 회피할 수 있었다. < 사진 : Gemini >\n\n결국, 고객인 물류배송기사 분들은 새로운 버전으로 앱을 설치할 때마다 속도가 점점 빨라지고, 기능도 늘어난다며 만족도가 오히려 높아졌습니다. 새로운 산업용 PDA가 도입되어 교체되는 1년 넘는 시간 동안 메모리나 속도 문제는 아무도 문제를 삼지 않았죠.\n\n#### **문제를 해결하는 엔지니어의 사고 방식을 배울 수 있는 책**\n\n이 책, '일 잘하는 엔지니어의 생각 기법'의 원제는 How to make things faster 입니다. 1990년대부터 오라클 컨설턴트로 현장에서 DB와 시스템에서 발생하는 문제들을 해결해 왔던 저자 캐리 밀샙의 일화 등을 중심으로, 어떻게 시스템을 빠르게 만들 것인가에 대해 이야기하는 책이죠. 그렇다면 프로그래머나 아키텍트, DBA 들이 이 책을 보는 것이 좋겠다고 여길 수 있지만, 실제로는 이건 기술서라기 보다는 개발 철학, 경영 전략 도서에 가깝습니다. 문제를 인식하고, 측정 한 다음, 해결책을 도출하고, 문제를 해결한 다음 피드백을 공유하는 일종의 PDCA(Plan-Do-Check-Action)이 왜 필요한지를 설명하거든요. 그것도 우리의 주변에서 간과했던 작은 경험들을 모아 큰 가르침을 던집니다.\n\n예를 들면, 앞에서 얘기한 저의 과거 경험도 알고 보면, 이 책에서 언급한 '문제 해결'의 선택 방식입니다.\n\n저자인 캐리는 고객사의 시스템의 성능 향상을 위해 다른 동료들과 회의실에 모여 끝장 회의를 합니다. 고객사 시스템 성능, 가용성을 99.999%까지 확보하기 위한 목표가 주어졌기 때문이에요. 실제 시스템의 업타임을 99.99%로 하면 1년 동안 52분의 장애나 사용불가 상태가 있을 수 있지만, 99.999%가 된다면 겨우 5분 정도의 다운타임이 발생하는 차이입니다.\n\n수백만 달러의 투자를 한다고 해도 실제 이런 가용성을 확보한다는 보장을 할 수도 없었고, 병목이나 효율화 대상을 더 이상 찾기도 어려웠던 주인공은 고객사의 IT본부장에게 가서 이걸 꼭 달성해야 하는지 물어보는 것이 가장 빠른 해결 방법이라고 생각했습니다.\n\n![](https://blog.kakaocdn.net/dna/cBkqeG/dJMcadmWzAH/AAAAAAAAAAAAAAAAAAAAAGSsIz-qkUXkaxfktgNocdNEJ8Yz0TysLzme3FYXgRaK/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=TEDXrOp54q0jF9T%2FvUkDSV%2F86u0%3D)\n\n99.99%와 99.999의 차이는 생각보다 월등한 차이다. < 출처 : 해당 도서 >\n\n주인공은 본부장에게 99.99%의 가용성은 해결했지만 합리적인 비용에 99.999%를 달성할 수 있는 아키텍처를 만들 방법이 없다고 설명했어요. 그러자, IT본부장인 더그는 비용이 얼마나 드는지 물었고, 고민하다 주저없이 \"좋아요. 99.99%면 충분합니다.\"라고 답했고, 그걸로 회의는 끝났습니다. 물론, 이 챕터의 교훈은 '피드백 루프를 최대한 빨리 가동하자'는 것이었지만, 큰 의미에서 저는 이걸 문제 해결 방식의 선택이 중요하다고 봤습니다.\n\n해결할 수 없는 문제를 붙잡고 시간을 보내기 보다는 가장 빠른 방법이 무엇인지, 의사결정자가 누구인지를 통해 고객의 문제를 해결하는데 집중하는 것이 어쩌면 중요하거든요.\n\n#### **은 탄환(Silver Bullet)으로 모든 문제를 해결한다는 환상**\n\n여러분들은 저의 일화에서 중요한 것은 바로 메모리 누수 현상을 잡아 내서, 근본 원인을 해결하는 것이라고 생각했을지 모릅니다. 그러나, 그것은 원인이지 문제가 아닙니다. 문제는 고객의 배송 앱이 점점 느려지고 있는 문제였고, 현장에서 배송을 완료하도고 완료 처리를 할 수 없는 것이 문제였습니다. 즉, 배송 완료만 빨리 처리할 수 있다면, 꼭 메모리 누수를 잡아내야 할 필요는 없었겠죠. (실제로는 매일 한 번씩은 스마트폰을 껐다 켜달라는 안내를 할 수 없는 회사의 분위기가 더 문제라는데는 동의합니다.)\n\n많은 엔지니어들이 빠지는 환상이자, 큰(?) 숙제는 바로 한 방에 모든 문제를 풀어 낼 알렉산더 대왕의 가위처럼, 은 탄환이라는 해결책이 존재한다고 믿는 것입니다. 그걸 발견할 때까지, 여러 번의 반복과 조사, 연구를 해내려고 하죠. 그렇지만, 엔지니어에게 중요한 것은 문제를 정확히 관찰하고, 측정한 다음, 개선하는 것이겠으나, 제일 중요한 것은 문제를 정의하는 것입니다.\n\n![](https://blog.kakaocdn.net/dna/bWIGDT/dJMb995YPCD/AAAAAAAAAAAAAAAAAAAAABC4f_t3puNDEbnfIG7tG0lWly6QVJKEWk3bYh9_qXGj/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=AjzZ6cK0xjKsgrvZtnWx0P9qd4Q%3D)\n\n제대로 된 문제 인식 없이 은 탄환을 바라기만 하는 것은 환상에 가깝습니다. < 사진 : Gemini >\n\n그리고, 여기서 엔지니어가 놓치기 쉬운 '우선 순위'라는 것이 존재합니다. 고객의 목표를 달성하기 위해 우리가 만든 기계나 앱, 서비스 들이 동작하지 않을 때, 아니면 정상적으로 동작할 때 가장 정상적이고 우수해야 하는 항목이 바로 우선 1순위가 되는 것이죠. 이게 중요한 이유는 많은 엔지니어들이 고객의 우선 순위와 본인의 우선 순위를 제대로 맞추지 않고, 엔지니어링의 의미를 제대로 이행하지 못하기 때문입니다. 엔지니어링은 '돈을 버는 기술'입니다. 우리는 '원리를 찾고, 새로운 걸 만드는 과학'과는 다른 일을 합니다. 고객의 문제를 빨리 해결해서, 돈을 벌 수 있도록 하는 것이 엔지니어링입니다.\n\n이 책은 실제 현장에서 간과하기 쉬운 '화장실에 쌓여있던 출력물', 'ERP 화면에서 업체를 찾기 위해 다음 페이지 버튼을 26번 누른 회계 직원', '최종 청구서 발행 이후 청구서만 출력의 체크박스를 체크하지 않아 수십 박스의 종이를 낭비한 직원' 들의 이야기를 늘어놓으면서, 그런 가르침을 차곡차곡 쌓아서 머리에 강제 주입시키는 책입니다. 고객을 관찰하고, 고객의 우선 순위를 나의 우선 순위에 맞추며, 근본적인 질문부터 가슴에 새기도록 만드는 책이랄까요?\n\n이런 꿈도 꾸었을 정도로 책에 빠져들었어요. 'Jet Brains IDE에서 TAB키를 여기서 누르면, 테스트 결과코드를 미리 여기 삽입할 수 있으니 시간이 20분 정도 줄었던 경험을 회사 전체 개발자들이 알게 된다면 얼마의 시간이 줄어들까? 무려 1만분 정도의 시간이 생기는 거잖아? 누구나 줄일 수 있는 이벤트의 수행시간은 일상에도 있는 거였어'라는 꿈을 꾼 겁니다. (직업  의식이 이렇게 무섭습니다.)\n\n은 탄환으로 모든 문제를 해결하기 보다, 하나씩 문제를 맞닥뜨리고 해결해 나가는데 이 책은 중요한 지침 중의 하나가 되지 않을까 싶습니다.\n\n참고로 이 책을 한 권 샀는데, Yes24 서평단에 당첨되면서 덜컥 책이 2권이 되었습니다. (한 권은 우리 개발자 줘야겠어요. ^^)\n\n![](https://blog.kakaocdn.net/dna/cbfklp/dJMcah30bem/AAAAAAAAAAAAAAAAAAAAAO_iJT3DVWlsYxriEq4H4kI7mA7OcFoCsLFcmsHFdgoX/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=wAPh9LDZvPjvkCDdeSoQgrCnLFI%3D)\n\n덜컥 2권이 되어버린.. 두껍다고 생각할지 모르지만 차트만 무시하면 금세 읽힌다. < 사진 : From me >\n",
-    "coverImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FEB7vG%2FdJMcaaqhbzS%2FAAAAAAAAAAAAAAAAAAAAAEMlmMNe3KOBOMs6WXOojylPyYWw2FEpDxrhEq5gCmbb%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1777561199%26allow_ip%3D%26allow_referer%3D%26signature%3DzdpsMvWbiI0vjXOKuCdImNp1HUQ%253D",
-    "date": "Dec 10, 2025",
-    "likes": 357,
-    "author": {
-      "name": "조남호 (namojo)",
-      "avatar": "/images/author-avatar.jpg"
-    },
-    "tags": [
-      "태그",
-      "howtomakethingfaster",
-      "yes24",
-      "일잘하는엔지니어의생각기법",
-      "장현희",
-      "책만",
-      "캐리밀샙"
-    ],
-    "category": "기술 잡담"
   },
   {
     "id": "google-antigravity-editor-agents",
@@ -941,28 +880,6 @@
     "category": "AI"
   },
   {
-    "id": "amazon-internal-ai-tool",
-    "title": "Amazon, 경쟁사 말고 자체 AI 코딩도구만 사용해!",
-    "excerpt": "로이터의 보도에 따르면 Amazon 내부에서 \\\"현재 사용중인 기존 개발 Tool은 계속 지원하지만, 추가적인 타사 AI 개발 Tool은 지원할 계획이 없다\\\"는 메모가 게시되었다고 합니다. 메모에는 \\\"Builder Community의 일원으로 여러분 모두 이런 제품을 만드는데 중요한 역할",
-    "content": "![](https://blog.kakaocdn.net/dna/Oohu5/dJMcahbMnkh/AAAAAAAAAAAAAAAAAAAAADKNJNXLyUO4rhAzJlJMNRtEYUYTAVYgNV8T56yXtZQ-/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=qoMPSNka3gpwcml3Co6M7niBeUc%3D)\n\n영국 맨체스터에 있는 Amazon 창고, Amazon의 행보가 시장을 읽기 제일 좋은 듯 해요. < 사진 : Reuter >\n\n로이터의 보도에 따르면 Amazon 내부에서 \"현재 사용중인 기존 개발 Tool은 계속 지원하지만, 추가적인 타사 AI 개발 Tool은 지원할 계획이 없다\"는 메모가 게시되었다고 합니다. 메모에는 \"Builder Community의 일원으로 여러분 모두 이런 제품을 만드는데 중요한 역할을 하며, 우리는 여러분의 피드백을 활용하여 제품을 적극적으로 개선합니다.\"라고도 적혀있었다고 해요.\n\n이 지침에 따르자고 하면, Amazon의 개발자들은 OpenAI의 Codex, Anthropic의 Claude Code, Cursor 등의 AI IDE와 같은 타사의 개발 Tool을 전면 사용하는 것이 금지될 것으로 보입니다.\n\n이 얘기는 아마존이 자체 개발한 Kiro라는 AI IDE를 사용하는 것이 강제된다는 뜻도 되는 것이죠. 일종의 개밥먹기로 자사 제품을 사용해 보고, 그것을 피드백 하는 활동이 자율적인 것이 아니라 강제화 되는 겁니다. 심지어 Kiro는 Claude Code의 상당 부분을 활용해서 기능이 동작하는데도요.\n\n![](https://blog.kakaocdn.net/dna/bsJ1BT/dJMcadmRtSF/AAAAAAAAAAAAAAAAAAAAACBiP9L7ORexDSZvupazwPwj45wouqNj2JX9V11uPwG_/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=9ZaQjhJweTTQvzqciTZOpPG%2Fz1A%3D)\n\nKiro는 스펙 기반의 Agentic IDE를 표방하지만 꽤 느리다는 평가가 많습니다. < 사진 : aws >\n\n이것은 Gemini 3 Pro가 등장한 이후에 일어나고 있는 아주 자그마한 신호지만, 커다란 AI 지형의 변화에 따른 여파일 수 있습니다. Amazon은 Anthropic에 80억 달러를 투자하고, OpenAI와는 380억 달러 규모의 클라우드 컴퓨팅 서비스 판매 계약을 했지만 파트너사의 서비스를 차단한다는건 이상하죠.\n\n국내에서도 네이버, 삼성, 카카오 등에서 AI 기반 코딩 어시스턴트를 개발해서 내부에서 활용하는 방안을 상당기간 추진해 온 것으로 알고 있지만, 아직까지 뚜렷한 성과라거나 외부에 제대로 알려진 바는 없죠. 보통은 Cline이나 VS Code 기반의 확장 플러그인을 통해 개발하기도 하고, Cursor를 도입하는 경우가 많습니다. 국내에서는 실제로 보면 MS Azure나 AWS에서 코딩 어시스턴트를 활용하는 경우가 제일 많기는 합니다. In-House AI IDE를 사용하는게 맞냐 아니냐를 얘기하기 위해서 글을 쓴 건 아닙니다. AWS가 왜 이런 지침을 내리게 되었을까 하는 거죠.\n\n아마존의 자체 Titan 모델은 임베딩 성능도 낮고, RAG에서는 Cohere 모델보다도 낮은 성능을 보일 때도 많지만, AWS 생태계 안에 너무 깊이 넣어놓았기 때문에 빼버릴 수도 없습니다. 그래도 다행스럽게 GPT-4o 수준으로 엔터프라이즈 서비스에 최적화된 평균 정도의 퍼포먼스를 보이고 있죠. 그렇다고는 해도 Google의 광폭 행보와 Claude가 개발자와 점점 친해지고 있는 걸 막을 방법이 없으니, 개밥먹기를 강화할 수 밖에 없다는 분석입니다.\n\nAI 개발 경쟁 마라톤에서 초반의 앞서거니 뒤서거니 하던 1차 접전이 마무리 되면서, 상위권 그룹과 중위, 하위권 그룹이 나워지게 되는 Phase에 접어들기 시작한 겁니다. 마라톤에서는 한 번 이렇게 그룹이 나눠지게 되면, 하위권은 다시는 상위권 그룹으로 다가가는 것이 어렵습니다. 그러니, 더 뒤쳐지기 전에 스퍼트를 내고 있는 것이 바로 AWS의 Kiro이고 Titan이 될 것 같아요.\n\n![](https://blog.kakaocdn.net/dna/boVoQF/dJMcagRtp0k/AAAAAAAAAAAAAAAAAAAAAAmBBD2S8n_Lx5i9NB_U4ArrNQBs2xj_LyQAsHRSgUXf/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=SozVuJ9t8lZoLLtaP943cWoeN8A%3D)\n\n아마존의 수익 상당 부분을 AWS가 차지하고, 전년 대비 20.2%나 성장했어요. < 사진 : @SergeyCYW >\n\n주목할 점은 Google이건 AWS건, 무한 체력으로 현금 흐름도 좋고 자본도 남아돈다는 거죠. AWS는 지난 분기에만 330억 달러의 매출과 114억 달러의 순이익을 내면서, 2022년 이후 가장 빠른 성장을 기록 중입니다. 누군가 패배 선언 하고 뒤로 물러나기 전에는 AI 치킨게임은 상당 기간 계속 될 듯 합니다.\n",
-    "coverImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FOohu5%2FdJMcahbMnkh%2FAAAAAAAAAAAAAAAAAAAAADKNJNXLyUO4rhAzJlJMNRtEYUYTAVYgNV8T56yXtZQ-%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1777561199%26allow_ip%3D%26allow_referer%3D%26signature%3DqoMPSNka3gpwcml3Co6M7niBeUc%253D",
-    "date": "Nov 26, 2025",
-    "likes": 383,
-    "author": {
-      "name": "조남호 (namojo)",
-      "avatar": "/images/author-avatar.jpg"
-    },
-    "tags": [
-      "태그",
-      "AI",
-      "amazon",
-      "AWS",
-      "IDE",
-      "kiro"
-    ],
-    "category": "AI"
-  },
-  {
     "id": "gemini-3-generative-ui",
     "title": "제미나이 3과 생성 UI : 인터페이스가 스스로 만들어질 때",
     "excerpt": "2025년 11월 18일 구글이 공개한 제미나이 3은 벤치마크 1위 복귀보다 더 흥미로운 것을 들고 왔습니다. 'Generative UI'라는 개념, 즉 질문에 맞춰 인터페이스 자체가 즉석에서 만들어지는 패러다임의 출발선입니다.",
@@ -1023,26 +940,6 @@
       "톤",
       "친절함",
       "모델업데이트"
-    ],
-    "category": "AI"
-  },
-  {
-    "id": "tesla-korea-fsd",
-    "title": "테슬라 코리아, FSD 주행 영상 공개",
-    "excerpt": "테슬라 코리아에서 드디어 FSD 주행 영상이 X를 통해 공개되었습니다. 한국에서 곧 출시될 것으로 예상되면서, 많은 테슬라 구매자들의 관심을 받았는데요. 이 영상에서는 신사동 주변에서 '감독형 자율주행'을 통해서, 복잡한 강남 도로를 장애물을 회피하고, 차단기에서 대기하다가 알아서 주차",
-    "content": "테슬라 코리아에서 드디어 FSD 주행 영상이 X를 통해 공개되었습니다.\n\n![](https://blog.kakaocdn.net/dna/d63F1v/dJMcafkD0y4/AAAAAAAAAAAAAAAAAAAAAJtCeFzrzzjBnK_g3XugAvL-88LhLL9NVwnXFY-Hgx9-/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=kPfUIdWwRrGj1rFbq2zzoh0lOKk%3D)\n\n보통 영상 공개 후 1개월 이후에 기능이 적용되니 한국에는 12월에 적용되지 않을까 싶긴 하네요. < 사진 : 테슬라코리아 X >\n\n한국에서 곧 출시될 것으로 예상되면서, 많은 테슬라 구매자들의 관심을 받았는데요. 이 영상에서는 신사동 주변에서 '감독형 자율주행'을 통해서, 복잡한 강남 도로를 장애물을 회피하고, 차단기에서 대기하다가 알아서 주차까지 완료하는 놀라운 모습을 보여주고 있습니다.\n\n그렇지만, 한국에서의 주행을 위한 주행용 지도데이터부터, 도심 복잡 구간에서 한국의 운전문화 학습이 제대로 되지 않았을 가능성도 있어서 안전에 대한 우려도 있긴 하죠. 그럼에도 불구하고, 주니퍼 모델이 한국에서 판매량 1위를 차지하는 등 많은 운전자들이 환호할만한 소식이긴 합니다.\n\n그런데, 이게 주니퍼에 바로 적용이 되느냐? 그렇지 않습니다. 이번 발표에 따르면 출시된다 하더라도 차대번호가 5나 7로 시작하면서, FSD 하드웨어가 4버전 이상인 경우로 이는 미국에서 생산한 테슬라 차량에 한정적으로 적용 가능합니다. 그러니까 한미(FTA)에 따라서 미국 안전규정에 맞게 생산된 차량만 FSD가 적용가능하니, 중국에서 생산한 테슬라 주니퍼 모델은 적용이 안되는거죠. 물론, 테슬라 코리아가 한국에서 별도의 안전승인을 받은 이후에는 적용가능성이 있습니다.\n\n미국에서는 이미 FSD가 버전 14까지 업그레이드 된 데다, 로봇택시용으로 개발된 기술까지 일반 소비자용 FSD에 적용하면서 더 많은 학습데이터가 축적되고, 엄청난 속도로 지속적인 개선이 이뤄지고 있죠. 또한 한국(GM)에서는 캐딜락 에스컬레이드에 슈퍼크루즈라는 준자율주행 수준의 ADAS를 내놓을 예정이고, 볼트 EUV가 업그레이드 되서 여기에서 슈퍼크루즈가 적용되어 곧 들어올지 모릅니다. 이런 환경에서 국내 자동차 업체들은 자율주행을 제대로 준비하고 있는지 심히 걱정스럽네요.\n\n![](https://blog.kakaocdn.net/dna/ZicVg/dJMcahbG0gg/AAAAAAAAAAAAAAAAAAAAAOYCRCTPYZ6WveQYG-yus8snJkLukLdWpnC_Vv6EFtk0/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&allow_ip=&allow_referer=&signature=42KCo4s4sZYQjHCVktBm7gxqFi0%3D)\n\n테슬라의 AI 4보다 40배 높은 성능의 AI 5가 장착되면, 테슬라의 모든 로봇부터 모든 하드웨어 성능이 대폭 향상될 예정 <사진 : Tesla Charger >\n\n여튼, 저는 이보다는 테슬라가 개발하고 있는 AI칩, 'AI 5' 소식에 주목하고 있습니다. TSMC, 삼성전자와 협력 개발중인 이 칩은 2027년부터 양산을 목표로 하고 있는데, 기존 AI 4칩 대비 40배의 성능 향상을 통해 FSD와 휴머노이드인 옵티머스, AI센터에 장착될 예정이라고 하죠. 엔비디아에 대한 의존성을 낮추려는 구글과 테슬라를 비롯한 여러 기업들의 노력은 멈추지 않을 걸로 보입니다. 이 와중에 엔비디아와 경쟁하는 AMD 주가는 또 11월 13일 기준, 9% 급증했구요.\n\n테슬라는 전기차 기업인가? 에너지? AI? 로봇? 우주 항공산업? 어떤 기업이라고 구분짓기 어려운 여러 산업분야를 아우르고 있죠. 그럼에도 엔지니어링 중심의 기업이고, 그 핵심 기술 중의 하나가 AI가 될 것은 자명해 보입니다. 테슬라에 투자할 방법이 전기차 밖에 없어서 그렇지, 아직 보여주지 않은 패를 손에 들고 있는게 많은 일론 머스크네요. 네, 저도 테슬람입니다.\n",
-    "coverImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fd63F1v%2FdJMcafkD0y4%2FAAAAAAAAAAAAAAAAAAAAAJtCeFzrzzjBnK_g3XugAvL-88LhLL9NVwnXFY-Hgx9-%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1777561199%26allow_ip%3D%26allow_referer%3D%26signature%3DkPfUIdWwRrGj1rFbq2zzoh0lOKk%253D",
-    "date": "Nov 13, 2025",
-    "likes": 289,
-    "author": {
-      "name": "조남호 (namojo)",
-      "avatar": "/images/author-avatar.jpg"
-    },
-    "tags": [
-      "태그",
-      "fsd",
-      "자율주행",
-      "테슬라"
     ],
     "category": "AI"
   },
