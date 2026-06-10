@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>삼성 iD Daily+ (가상 시안) — 일상 디지털 지출 한 장 통합 캐시백</title>
+<meta name="description" content="구독·배달 5%, 카페 3% 캐시백. 내 캐시백을 직접 계산해 보세요. (가상 캠페인 시안)">
+<style>
+/* =============================================================
+   삼성 iD Daily+ 캠페인 랜딩페이지
+   단일 파일 / 인라인 CSS·JS / 외부 의존성 0
+   ⚠️ 컬러는 시안용 추정 팔레트 — 실제 삼성카드 브랜드값 아님.
+      (디자인 스펙 2.1장 기준. 실제 집행 시 브랜드 부서 공식 값으로 교체)
+   디자인 토큰: 03_ux-designer_design-spec.md 와 1:1 매핑
+   ============================================================= */
+
+/* ---- 2.1 컬러 토큰 (시안용 추정 팔레트, 실제 브랜드값 아님) ---- */
+:root{
+  --color-primary:#0A2A66;          /* 헤더, 주 CTA 배경, 헤드라인 강조 (딥 네이비) */
+  --color-primary-hover:#082152;    /* 주 CTA 호버 */
+  --color-accent:#0E8A5F;           /* 캐시백 강조, 결과 숫자(대형), 적립률 배지 */
+  --color-accent-strong:#0A6E4B;    /* 결과 보조 숫자 (대비 보강) */
+  --color-accent-bg:#E6F4EE;        /* 결과 영역 배경, 적립률 칩 배경 */
+  --color-text:#1A1D24;             /* 본문 기본 텍스트 */
+  --color-text-muted:#5A6170;       /* 서브카피, 보조 설명 */
+  --color-text-fine:#41454F;        /* 조건 표기·푸터 고지 (가독 대비 확보) */
+  --color-bg:#FFFFFF;               /* 페이지 기본 배경 */
+  --color-bg-subtle:#F4F6FA;        /* 섹션 교차 배경, 혜택 카드 배경 */
+  --color-bg-footer:#EDF0F5;        /* 푸터 필수 고지 배경 */
+  --color-border:#D5DAE3;           /* 카드·입력 테두리, 구분선 */
+  --color-focus:#1B6BFF;            /* 포커스 링 (키보드) */
+  --color-disabled-bg:#C5CAD3;      /* 비활성 버튼 배경 */
+  --color-disabled-text:#5E6470;    /* 비활성 버튼 텍스트 (disabled-bg 대비 3.61:1, WCAG 보조정보 3:1 충족) */
+
+  /* ---- 2.2 타이포 토큰 (데스크톱 기준; 모바일 크기는 base에서 설정 후 미디어쿼리로 확장) ---- */
+  --font-stack:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+
+  /* ---- 2.3 스페이싱 토큰 (4px 배수) ---- */
+  --space-2xs:4px;
+  --space-xs:8px;
+  --space-sm:12px;
+  --space-md:16px;
+  --space-lg:24px;
+  --space-xl:32px;
+  --space-2xl:48px;
+  --space-3xl:64px;
+  --content-max:1120px;
+  --card-gap:24px;          /* --space-lg */
+  --radius-sm:8px;          /* 입력·칩 */
+  --radius-md:12px;         /* 카드·버튼 */
+  --radius-lg:16px;         /* 계산기 결과 패널 */
+
+  /* 섹션 상하 패딩 — 모바일 기본 48px, 데스크톱에서 64px로 확장 */
+  --section-pad-y:var(--space-2xl);
+
+  /* 모션 (6.3) — reduced-motion 시 미디어쿼리에서 0 으로 */
+  --motion-result:150ms;
+  --motion-hover:100ms;
+}
+
+/* ---- 리셋 ---- */
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  font-family:var(--font-stack);
+  color:var(--color-text);
+  background:var(--color-bg);
+  /* --font-body 모바일: 16px / 1.6 / 400 */
+  font-size:16px;
+  line-height:1.6;
+  font-weight:400;
+}
+img{max-width:100%;display:block;}
+h1,h2,h3,p{margin:0;}
+a{color:inherit;}
+
+/* ---- 레이아웃 컨테이너 ---- */
+.container{
+  width:100%;
+  max-width:var(--content-max);
+  margin-inline:auto;
+  padding-inline:var(--space-md); /* 모바일 거터 */
+}
+.section{padding-block:var(--section-pad-y);}
+.section--subtle{background:var(--color-bg-subtle);}
+
+/* ---- 포커스 링 (전역, 키보드 가시 포커스 2.4.7) ---- */
+:focus-visible{
+  outline:2px solid var(--color-focus);
+  outline-offset:2px;
+}
+
+/* =================== 타이포 유틸 (모바일 기본값) =================== */
+.t-display{font-size:30px;line-height:1.2;font-weight:700;}
+.t-h1{font-size:26px;line-height:1.25;font-weight:700;}
+.t-h2{font-size:20px;line-height:1.3;font-weight:600;}
+.t-result{font-size:34px;line-height:1.15;font-weight:700;}
+.t-result-sub{font-size:18px;line-height:1.3;font-weight:600;}
+.t-body{font-size:16px;line-height:1.6;font-weight:400;}
+.t-body-strong{font-size:16px;line-height:1.6;font-weight:600;}
+.t-label{font-size:15px;line-height:1.4;font-weight:600;}
+.t-fine{font-size:13px;line-height:1.55;font-weight:400;} /* 고지·조건·각주·디스클레이머 하한 13px */
+.t-fine-strong{font-size:13px;line-height:1.55;font-weight:600;}
+.muted{color:var(--color-text-muted);}
+.fine{color:var(--color-text-fine);}
+
+/* =================== 버튼 =================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:inherit;font-size:16px;line-height:1.6;font-weight:600;
+  border:none;border-radius:var(--radius-md);
+  padding:16px 28px;
+  cursor:pointer;text-decoration:none;
+  min-height:44px; /* 터치 타겟 */
+}
+.btn--primary{background:var(--color-primary);color:#FFFFFF;transition:background var(--motion-hover) linear;}
+.btn--primary:hover{background:var(--color-primary-hover);}
+.btn--primary:active{transform:translateY(1px);}
+.btn--secondary{
+  background:transparent;color:var(--color-primary);
+  border:1.5px solid var(--color-primary);
+  transition:background var(--motion-hover) linear;
+}
+.btn--secondary:hover{background:var(--color-accent-bg);}
+.btn:disabled,.btn[aria-disabled="true"]{
+  background:var(--color-disabled-bg);color:var(--color-disabled-text);
+  cursor:not-allowed;
+}
+
+/* =================== 적립률 배지/칩 =================== */
+.chip{
+  display:inline-block;
+  background:var(--color-accent-bg);color:var(--color-accent-strong);
+  font-size:15px;line-height:1.4;font-weight:600;
+  padding:4px 10px;border-radius:var(--radius-sm);
+}
+
+/* =================== 헤더 =================== */
+.site-header{background:var(--color-bg);border-bottom:1px solid var(--color-border);}
+.site-header .container{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-sm);
+  padding-block:var(--space-sm);
+}
+.logo-slot{
+  font-weight:700;color:var(--color-primary);font-size:17px;
+  display:inline-flex;align-items:center;gap:var(--space-xs);
+}
+.logo-slot .logo-mark{
+  width:24px;height:24px;border-radius:6px;
+  background:var(--color-primary);display:inline-block;flex:0 0 auto;
+}
+.header-cta{padding:10px 16px;min-height:44px;} /* 모바일 패딩 축소(텍스트 축약 없음) */
+
+/* =================== 0. 상단 혜택 요약 띠 =================== */
+.summary-band{background:var(--color-primary);color:#FFFFFF;}
+.summary-band .container{
+  padding-block:var(--space-xs);
+  text-align:center;
+}
+.summary-band p{font-size:15px;line-height:1.4;font-weight:600;}
+
+/* =================== 1. 히어로 =================== */
+.hero .container{display:flex;flex-direction:column;gap:var(--space-xl);}
+.hero-copy{display:flex;flex-direction:column;gap:var(--space-md);}
+.hero-headline{color:var(--color-text);}
+.hero-headline strong{color:var(--color-primary);}
+.hero-sub{color:var(--color-text-muted);}
+.hero-sub sup{font-weight:600;font-size:0.7em;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-2xs);}
+.hero-microcopy{color:var(--color-text-muted);}
+.hero-footnote{color:var(--color-text-fine);}
+
+/* 가상 카드 비주얼 목업 (CSS) */
+.card-mock{
+  width:100%;max-width:340px;aspect-ratio:1.586/1; /* ISO 카드 비율 */
+  background:linear-gradient(135deg,#0A2A66 0%,#082152 100%);
+  border-radius:var(--radius-lg);
+  padding:var(--space-lg);
+  color:#FFFFFF;
+  display:flex;flex-direction:column;justify-content:space-between;
+  align-self:flex-start;
+}
+.card-mock .card-brand{font-size:15px;font-weight:600;opacity:0.9;}
+.card-mock .card-name{font-size:20px;font-weight:700;line-height:1.3;}
+.card-mock .card-chip{
+  width:38px;height:28px;border-radius:6px;
+  background:rgba(255,255,255,0.85);
+}
+.card-mock .card-bottom{font-size:13px;opacity:0.8;}
+
+/* =================== 2. 핵심 혜택 =================== */
+.section-title{margin-bottom:var(--space-lg);}
+.benefits-grid{display:grid;grid-template-columns:1fr;gap:var(--card-gap);}
+.benefit-card{
+  background:var(--color-bg);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-md);
+  padding:var(--space-lg);
+  display:flex;flex-direction:column;gap:var(--space-sm);
+  transition:border-color var(--motion-hover) linear;
+}
+.benefit-card:hover{border-color:var(--color-primary);}
+.benefit-card .b-head{color:var(--color-text);}
+.benefit-card .b-sub{color:var(--color-text-muted);}
+.benefit-card .b-cond{
+  color:var(--color-text-fine);
+  border-top:1px solid var(--color-border);
+  padding-top:var(--space-sm);
+  margin-top:var(--space-2xs);
+}
+
+/* =================== 3. 혜택 계산기 =================== */
+.calc-grid{display:flex;flex-direction:column;gap:var(--space-xl);}
+.calc-input-block{display:flex;flex-direction:column;gap:var(--space-md);}
+.calc-value-display{font-size:20px;line-height:1.3;font-weight:600;color:var(--color-primary);}
+.calc-range-wrap{padding-block:var(--space-xs);}
+.calc-range-minmax{
+  display:flex;justify-content:space-between;
+  color:var(--color-text-muted);font-size:13px;line-height:1.55;
+  margin-top:var(--space-2xs);
+}
+.calc-help{color:var(--color-text-fine);}
+
+/* ---- 슬라이더 (네이티브 input[type=range] 커스텀 스타일) ---- */
+/* 채워진 트랙 비율은 JS가 --fill 변수로 갱신 */
+.range{
+  -webkit-appearance:none;appearance:none;
+  width:100%;
+  height:44px;          /* 터치 타겟 ≥44px: 투명 확장 영역 */
+  background:transparent;
+  cursor:pointer;
+  margin:0;
+}
+/* WebKit 트랙 */
+.range::-webkit-slider-runnable-track{
+  height:6px;border-radius:3px;
+  background:linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) var(--fill,0%),
+    var(--color-border) var(--fill,0%),
+    var(--color-border) 100%);
+}
+.range::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:24px;height:24px;border-radius:50%;
+  background:#FFFFFF;border:2px solid var(--color-primary);
+  margin-top:-9px; /* (24-6)/2 정렬 */
+}
+.range:focus-visible::-webkit-slider-thumb{
+  box-shadow:0 0 0 3px var(--color-focus);
+}
+/* Firefox 트랙 */
+.range::-moz-range-track{
+  height:6px;border-radius:3px;background:var(--color-border);
+}
+.range::-moz-range-progress{
+  height:6px;border-radius:3px;background:var(--color-primary);
+}
+.range::-moz-range-thumb{
+  width:24px;height:24px;border-radius:50%;
+  background:#FFFFFF;border:2px solid var(--color-primary);
+}
+.range:focus-visible::-moz-range-thumb{
+  box-shadow:0 0 0 3px var(--color-focus);
+}
+
+/* ---- 결과 패널 ---- */
+.calc-result{
+  background:var(--color-accent-bg);
+  border-radius:var(--radius-lg);
+  padding:var(--space-lg);
+  display:flex;flex-direction:column;gap:var(--space-sm);
+}
+.calc-result .res-label{color:var(--color-text);font-weight:600;}
+.calc-result .res-month{
+  font-size:34px;line-height:1.15;font-weight:700;
+  color:var(--color-accent);
+  transition:color var(--motion-result) linear, opacity var(--motion-result) linear;
+}
+.calc-result .res-year{
+  font-size:18px;line-height:1.3;font-weight:600;
+  color:var(--color-accent-strong);
+  transition:color var(--motion-result) linear, opacity var(--motion-result) linear;
+}
+.calc-result .res-aux{color:var(--color-text-muted);}
+/* 상한 도달 배지 영역 — min-height 예약으로 레이아웃 점프 방지 */
+.cap-badge-slot{min-height:30px;display:flex;align-items:center;}
+.cap-badge{display:inline-block;background:var(--color-accent-bg);color:var(--color-accent-strong);
+  font-size:15px;line-height:1.4;font-weight:600;padding:4px 10px;border-radius:var(--radius-sm);
+  border:1px solid var(--color-accent-strong);}
+.calc-disclaimer{
+  color:var(--color-text-fine);
+  border-top:1px solid var(--color-border);
+  padding-top:var(--space-md);
+  margin-top:var(--space-2xs);
+}
+.calc-cta{margin-top:var(--space-md);}
+
+/* =================== 4. 신뢰 요소 =================== */
+.trust-grid{display:grid;grid-template-columns:1fr;gap:var(--card-gap);}
+.trust-item{
+  display:flex;flex-direction:column;gap:var(--space-xs);
+  padding:var(--space-lg);
+  background:var(--color-bg);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-md);
+}
+.trust-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--color-accent-bg);color:var(--color-accent-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:18px;
+}
+.trust-item .ti-head{font-weight:600;color:var(--color-text);}
+.trust-item .ti-sub{color:var(--color-text-muted);}
+
+/* =================== 5. 최종 CTA =================== */
+.final-cta{text-align:center;}
+.final-cta .container{display:flex;flex-direction:column;align-items:center;gap:var(--space-md);}
+.final-cta h2{color:var(--color-text);}
+.final-cta h2 strong{color:var(--color-primary);}
+.final-note{color:var(--color-text-fine);}
+
+/* =================== 6. 필수 고지 푸터 =================== */
+.site-footer{background:var(--color-bg-footer);}
+.site-footer .container{padding-block:var(--space-2xl);}
+.disclosure-block{
+  color:var(--color-text-fine);
+  font-size:13px;line-height:1.55;
+}
+.disclosure-block + .disclosure-block{margin-top:var(--space-md);}
+.disclosure-block .d-label{font-weight:600;display:block;margin-bottom:var(--space-2xs);}
+/* 경고문구 — 좌측 보더로 약하게 강조하되 다른 고지보다 작지 않게 유지 */
+.disclosure-block--warn{
+  border-left:3px solid var(--color-text-fine);
+  padding-left:var(--space-sm);
+  font-weight:600;
+}
+
+/* 스크린리더 전용 */
+.visually-hidden{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ================================================================
+   반응형: 768px+ (태블릿), 1024px+ (데스크톱)
+   ================================================================ */
+@media (min-width:768px){
+  .container{padding-inline:var(--space-lg);} /* 데스크톱 거터 */
+  /* 타이포 데스크톱 크기로 확장 */
+  .t-body,.t-body-strong{font-size:17px;}
+  .hero-copy{max-width:none;}
+  /* 혜택: 태블릿 2열 */
+  .benefits-grid{grid-template-columns:repeat(2,1fr);align-items:stretch;}
+  /* 신뢰: 3열 */
+  .trust-grid{grid-template-columns:repeat(3,1fr);}
+}
+
+@media (min-width:1024px){
+  :root{--section-pad-y:var(--space-3xl);} /* 데스크톱 64px */
+  .t-display{font-size:48px;}
+  .t-h1{font-size:34px;}
+  .t-h2{font-size:24px;}
+  .t-result{font-size:44px;}
+  .t-result-sub{font-size:22px;}
+  .calc-result .res-month{font-size:44px;}
+  .calc-result .res-year{font-size:22px;}
+  .calc-value-display{font-size:22px;}
+
+  /* 히어로: 좌 텍스트 / 우 카드 2열 (약 7:5) */
+  .hero .container{flex-direction:row;align-items:center;}
+  .hero-copy{flex:7;}
+  .hero-visual{flex:5;display:flex;justify-content:center;}
+  .card-mock{max-width:380px;}
+
+  /* 혜택: 상단 3열 + 하단 2열 */
+  .benefits-grid{grid-template-columns:repeat(6,1fr);}
+  .benefit-card{grid-column:span 2;}        /* 기본 3열(2칸씩) */
+  .benefit-card:nth-child(4),
+  .benefit-card:nth-child(5){grid-column:span 3;} /* 하단 2열(3칸씩) */
+
+  /* 계산기: 좌 입력 / 우 결과 2열, 같은 뷰포트 */
+  .calc-grid{flex-direction:row;align-items:flex-start;}
+  .calc-input-block{flex:1;}
+  .calc-result{flex:1;}
+}
+
+/* ---- 6.3 모션 정책: reduced-motion 시 트랜지션 0 ---- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    transition-duration:0ms !important;
+    animation-duration:0ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== 헤더 ===================== -->
+<header class="site-header">
+  <div class="container">
+    <span class="logo-slot"><span class="logo-mark" aria-hidden="true"></span>삼성 iD Daily+</span>
+    <a class="btn btn--primary header-cta" href="#calculator">내 캐시백 계산하기</a>
+  </div>
+</header>
+
+<!-- ===================== 0. 상단 혜택 요약 띠 ===================== -->
+<div class="summary-band">
+  <div class="container">
+    <p>구독·배달 5% · 카페 3% · 전월실적 30만원</p>
+  </div>
+</div>
+
+<main>
+  <!-- ===================== 1. 히어로 (A안 기본) ===================== -->
+  <section class="hero section" aria-labelledby="hero-headline">
+    <div class="container">
+      <div class="hero-copy">
+        <h1 class="t-display hero-headline" id="hero-headline">매달 새던 일상, 한 장으로 돌려받기</h1>
+        <p class="t-body hero-sub">구독·배달 5%, 카페 3% 캐시백. 월 100만원 쓰면 연 약 20만원 예상.<sup>1</sup> (전월실적 30만원 이상, 월 통합 적립 최대 2만원)</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#calculator">내 캐시백 계산하기</a>
+          <a class="btn btn--secondary" href="#calculator">1분 확인</a>
+        </div>
+        <p class="t-fine hero-microcopy">슬라이더로 1분이면 확인됩니다</p>
+        <p class="t-fine hero-footnote"><sup>1</sup> 월 사용액 100만원·일상영역(구독·배달·카페) 지출 30% 가정 시 예시 금액. 실제 혜택은 상품설명서 및 약관 기준.</p>
+      </div>
+      <div class="hero-visual">
+        <div class="card-mock" role="img" aria-label="삼성 iD Daily+ 가상 카드 비주얼">
+          <div class="card-chip" aria-hidden="true"></div>
+          <div>
+            <div class="card-brand">SAMSUNG</div>
+            <div class="card-name">iD Daily+</div>
+          </div>
+          <div class="card-bottom">가상 시안 — 실제 카드 아님</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. 핵심 혜택 (5개 카드) ===================== -->
+  <section class="section section--subtle" aria-labelledby="benefits-title">
+    <div class="container">
+      <h2 class="t-h1 section-title" id="benefits-title">일상 3대 영역, 한 장으로 돌려받는 혜택</h2>
+      <div class="benefits-grid">
+
+        <!-- 혜택 1 -->
+        <article class="benefit-card">
+          <span class="chip">5%</span>
+          <h3 class="t-h2 b-head">구독료, 5% 돌려받기</h3>
+          <p class="t-body b-sub">OTT·음악·클라우드·멤버십 등 정기결제를 5% 캐시백으로 돌려받습니다. 매달 자동으로 빠져나가던 구독료의 일부가 결제대금에서 차감됩니다.</p>
+          <p class="t-fine b-cond">구독 영역 5% 적립. 전월실적 30만원 이상 시 적용. 구독·배달·카페 합산 월 통합 적립 최대 20,000원. 미달 시 기본 0.5% 적립.</p>
+        </article>
+
+        <!-- 혜택 2 -->
+        <article class="benefit-card">
+          <span class="chip">5%</span>
+          <h3 class="t-h2 b-head">배달앱, 5% 돌려받기</h3>
+          <p class="t-body b-sub">배달의민족·쿠팡이츠·요기요 결제를 5% 캐시백. 자주 시킬수록 돌아오는 금액도 쌓입니다(월 통합 상한 내).</p>
+          <p class="t-fine b-cond">배달 영역 5% 적립. 전월실적 30만원 이상 시 적용. 구독·배달·카페 합산 월 통합 적립 최대 20,000원.</p>
+        </article>
+
+        <!-- 혜택 3 -->
+        <article class="benefit-card">
+          <span class="chip">3%</span>
+          <h3 class="t-h2 b-head">카페, 3% 돌려받기</h3>
+          <p class="t-body b-sub">스타벅스·투썸·메가커피 등 카페·커피 업종에서 3% 캐시백. 매일의 커피 한 잔도 환급 대상입니다.</p>
+          <p class="t-fine b-cond">카페 영역 3% 적립. 전월실적 30만원 이상 시 적용. 구독·배달·카페 합산 월 통합 적립 최대 20,000원.</p>
+        </article>
+
+        <!-- 혜택 4 -->
+        <article class="benefit-card">
+          <span class="chip">0.5%</span>
+          <h3 class="t-h2 b-head">그 외 모든 결제도 기본 0.5%</h3>
+          <p class="t-body b-sub">3대 일상 영역 외 모든 국내 가맹점 결제는 기본 0.5% 적립. 이 기본 적립은 월 통합 상한과 별도로 한도 없이 쌓입니다.</p>
+          <p class="t-fine b-cond">기본 적립 0.5%는 전월실적·월 상한과 무관하게 적용(국내 일시불·할부 기준). 일부 업종은 적립 제외될 수 있음(상품설명서 기준).</p>
+        </article>
+
+        <!-- 혜택 5 -->
+        <article class="benefit-card">
+          <span class="chip">월 최대 2만원</span>
+          <h3 class="t-h2 b-head">낮은 문턱, 명확한 상한</h3>
+          <p class="t-body b-sub">전월실적 30만원이면 3대 영역 특별 적립이 시작됩니다. 매달 돌려받는 한도(통합 최대 2만원)가 명확해, 내가 얼마를 받는지 미리 계산할 수 있습니다.</p>
+          <p class="t-fine b-cond">전월실적은 일시불·할부 이용금액 기준(일부 항목 제외). 통합 적립 상한 월 20,000원. 연회비 국내전용 15,000원 / 해외겸용 18,000원.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. 혜택 계산기 ===================== -->
+  <section class="section" id="calculator" aria-labelledby="calc-title">
+    <div class="container">
+      <h2 class="t-h1 section-title" id="calc-title">내가 매달 얼마나 돌려받을까요?</h2>
+      <div class="calc-grid">
+
+        <!-- 입력 -->
+        <div class="calc-input-block">
+          <label class="t-label" for="spend">월 카드 사용액</label>
+          <div class="calc-value-display" id="spend-display">월 100만원</div>
+          <div class="calc-range-wrap">
+            <input type="range" class="range" id="spend"
+                   min="300000" max="2000000" step="100000" value="1000000"
+                   aria-label="월 카드 사용액 선택 슬라이더"
+                   aria-valuetext="월 100만원"
+                   aria-describedby="calc-help">
+            <div class="calc-range-minmax" aria-hidden="true">
+              <span>30만</span><span>200만</span>
+            </div>
+          </div>
+          <p class="t-fine calc-help" id="calc-help">슬라이더를 움직여 예상 캐시백을 확인하세요. 구독·배달·카페 지출을 사용액의 약 30%로 가정해 계산합니다.</p>
+        </div>
+
+        <!-- 결과 -->
+        <div class="calc-result">
+          <div aria-live="polite" aria-atomic="true">
+            <p class="t-body res-label">예상 캐시백 월</p>
+            <p class="res-month" id="res-month">약 16,400원</p>
+            <p class="res-year" id="res-year">연 환산 약 196,800원</p>
+            <p class="t-fine res-aux">이 중 일상 3대 영역 적립이 대부분이며, 월 통합 적립 상한 2만원이 적용됩니다.</p>
+            <div class="cap-badge-slot">
+              <span class="cap-badge" id="cap-badge" hidden>월 적립 한도(2만원) 도달</span>
+            </div>
+          </div>
+          <p class="t-fine calc-disclaimer">위 금액은 입력값과 가정(일상 3대 영역 지출 비중 30%, 평균 적립률 약 4.3%)에 따른 <strong>예시</strong>이며, 실제 적립액은 개인별 실제 이용내역·전월실적·월 통합 적립 상한(20,000원) 및 상품설명서·약관 기준으로 산정됩니다. 전월실적 30만원 미만 시 기본 0.5% 적립만 적용됩니다.</p>
+          <a class="btn btn--primary calc-cta" href="#final-cta">이 혜택으로 신청하기</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. 신뢰 요소 ===================== -->
+  <section class="section section--subtle" aria-labelledby="trust-title">
+    <div class="container">
+      <h2 class="visually-hidden" id="trust-title">삼성 iD Daily+ 신뢰 요소</h2>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">1</span>
+          <p class="t-body-strong ti-head">한 장에 모아</p>
+          <p class="t-body ti-sub">영역마다 카드를 나눠 쓸 필요 없이, 일상 디지털 지출을 한 장에 모아 캐시백으로 돌려받습니다.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">2</span>
+          <p class="t-body-strong ti-head">낮은 문턱</p>
+          <p class="t-body ti-sub">전월실적 30만원이면 3대 영역 특별 적립이 시작됩니다.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">3</span>
+          <p class="t-body-strong ti-head">명확한 상한</p>
+          <p class="t-body ti-sub">매달 돌려받는 한도(통합 최대 2만원)가 명확해, 내가 얼마를 받는지 미리 계산할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. 최종 CTA ===================== -->
+  <section class="section section--subtle final-cta" id="final-cta" aria-labelledby="final-title">
+    <div class="container">
+      <h2 class="t-h1" id="final-title">매달 새던 일상, 한 장으로 돌려받기</h2>
+      <a class="btn btn--primary" href="#calculator">카드 신청하기</a>
+      <p class="t-fine final-note">모바일로 1분이면 신청이 시작됩니다</p>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== 6. 필수 고지 푸터 (접히지 않는 고정 영역) ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <!-- 6개 고지 블록 전량·순서대로 렌더. compliance-qa 본검수 확정 문구 반영 완료(이용 조건 요약·신용카드 남용 경고문구). -->
+    <div class="disclosure-block">
+      <span class="d-label">[가상 시안 안내]</span>
+      본 페이지는 삼성카드 브랜드를 활용한 가상 캠페인 시안입니다. "삼성 iD Daily+" 및 모든 혜택 수치는 가상 설계값이며 실제 출시 상품·약관이 아닙니다.
+    </div>
+    <div class="disclosure-block">
+      <span class="d-label">[상품 요약 안내]</span>
+      연회비 국내전용 15,000원 / 해외겸용 18,000원. 적립 혜택은 전월실적 30만원 이상 시 적용되며, 구독·배달·카페 통합 월 적립 상한은 20,000원입니다. 기본 적립률 0.5%. 일부 업종·결제수단은 적립에서 제외될 수 있습니다. 자세한 내용은 상품설명서 및 약관을 확인하세요.
+    </div>
+    <div class="disclosure-block">
+      <span class="d-label">[이용 조건 요약]</span>
+      전월실적은 일시불·할부 이용금액 합산 기준이며 일부 항목(상품권·세금·공과금 등)은 제외됩니다. 적립 제외 업종 및 결제수단이 있으며, 캐시백은 익월 1회 결제대금에서 차감됩니다. 자세한 사항은 상품설명서 및 약관에 따릅니다. (가상 설계값)
+    </div>
+    <div class="disclosure-block">
+      <span class="d-label">[예시 수치 안내]</span>
+      본 페이지의 캐시백 금액은 예시이며 실제 혜택은 개인별 이용내역 및 약관에 따릅니다.
+    </div>
+    <div class="disclosure-block disclosure-block--warn">
+      <span class="d-label">[신용카드 남용 경고문구]</span>
+      과도한 빚, 고통의 시작입니다. (가상 시안 — 실제 심의 미실시)
+    </div>
+    <div class="disclosure-block">
+      <span class="d-label">[심의필 표기]</span>
+      가상 시안 — 실제 심의 미실시.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =============================================================
+   혜택 계산기
+   계산식 출처: _workspace/03_ux-designer_design-spec.md 5.2장
+   (분석 문서 01_brand-analyst_analysis.md "상품 스펙" 표 인용)
+   상품 스펙 변경 시 아래 상수만 수정.
+   ============================================================= */
+var SPECIAL_RATIO = 0.30;   // 일상 3대 영역(구독·배달·카페) 지출 비중 가정
+var SPECIAL_RATE  = 0.043;  // 특별영역 평균 적립률 4.3%
+var CAP           = 20000;  // 월 통합 적립 상한 (원)
+var BASE_RATE     = 0.005;  // 기본 적립률 0.5% (상한 없음)
+
+var MIN = 300000, MAX = 2000000;
+
+/**
+ * 월/연 캐시백 계산 (스펙 5.2)
+ * @param {number} M 월 카드 사용액(원)
+ * @returns {{month:number, year:number, capped:boolean}}
+ */
+function calcCashback(M){
+  var special  = M * SPECIAL_RATIO;          // 특별영역 지출
+  var rawBonus = special * SPECIAL_RATE;     // 특별영역 적립(캡 전)
+  var bSpecial = Math.min(rawBonus, CAP);    // 캡 적용
+  var bBase    = M * (1 - SPECIAL_RATIO) * BASE_RATE; // 일반영역 적립(상한 없음)
+  var month    = Math.floor(bSpecial + bBase);        // 원 단위 내림 (스펙 5.3)
+  var year     = month * 12;
+  return { month: month, year: year, capped: (bSpecial >= CAP) };
+}
+
+function won(n){ return n.toLocaleString('ko-KR'); }
+
+/* DOM 참조 */
+var slider      = document.getElementById('spend');
+var valueDisp   = document.getElementById('spend-display');
+var resMonth    = document.getElementById('res-month');
+var resYear     = document.getElementById('res-year');
+var capBadge    = document.getElementById('cap-badge');
+
+var manText = function(M){ return '월 ' + (M / 10000) + '만원'; };
+
+function render(M){
+  var r = calcCashback(M);
+  // 슬라이더 값 표시 + aria 동기화
+  valueDisp.textContent = manText(M);
+  slider.setAttribute('aria-valuetext', manText(M));
+  slider.setAttribute('aria-valuenow', String(M));
+  // 결과 (월/연) — "약" 접두어 항상 유지
+  resMonth.textContent = '약 ' + won(r.month) + '원';
+  resYear.textContent  = '연 환산 약 ' + won(r.year) + '원';
+  // 상한 도달 배지
+  capBadge.hidden = !r.capped;
+  // 채워진 트랙 비율 (WebKit gradient)
+  var pct = ((M - MIN) / (MAX - MIN)) * 100;
+  slider.style.setProperty('--fill', pct + '%');
+}
+
+slider.addEventListener('input', function(){
+  render(parseInt(slider.value, 10));
+});
+
+/* 초기 렌더 (기본값 100만원, 비동기 없음) */
+render(parseInt(slider.value, 10));
+</script>
+</body>
+</html>
