@@ -7,35 +7,36 @@
 <meta name="description" content="구독·배달 5%, 카페 3% 캐시백. 내 캐시백을 직접 계산해 보세요. (가상 캠페인 시안)">
 <style>
 /* =============================================================
-   삼성 iD Daily+ 캠페인 랜딩페이지
+   삼성 iD Daily+ 캠페인 랜딩페이지 (리디자인 — Calm Premium / Samsung Blue Monochrome)
    단일 파일 / 인라인 CSS·JS / 외부 의존성 0
-   ⚠️ 컬러는 시안용 추정 팔레트 — 실제 삼성카드 브랜드값 아님.
-      (디자인 스펙 2.1장 기준. 실제 집행 시 브랜드 부서 공식 값으로 교체)
-   디자인 토큰: 03_ux-designer_design-spec.md 와 1:1 매핑
+   ⚠️ 컬러는 삼성 블루 기반 시안용 팔레트 — 실제 삼성카드 브랜드 정본 아님.
+      (디자인 스펙 03 2.1장 개정 2026-06-11 기준. 실제 집행 시 브랜드 부서 공식 값으로 교체)
+   디자인 토큰: 03_ux-designer_design-spec.md(개정본) 와 1:1 매핑
    ============================================================= */
 
-/* ---- 2.1 컬러 토큰 (시안용 추정 팔레트, 실제 브랜드값 아님) ---- */
+/* ---- 2.1 컬러 토큰 (삼성 블루 기반 시안용 팔레트 — 실제 브랜드 정본 아님) ---- */
 :root{
-  --color-primary:#0A2A66;          /* 헤더, 주 CTA 배경, 헤드라인 강조 (딥 네이비) */
-  --color-primary-hover:#082152;    /* 주 CTA 호버 */
-  --color-accent:#0E8A5F;           /* 캐시백 강조, 결과 숫자(대형), 적립률 배지 */
-  --color-accent-strong:#0A6E4B;    /* 결과 보조 숫자 (대비 보강) */
-  --color-accent-bg:#E6F4EE;        /* 결과 영역 배경, 적립률 칩 배경 */
-  --color-text:#1A1D24;             /* 본문 기본 텍스트 */
-  --color-text-muted:#5A6170;       /* 서브카피, 보조 설명 */
-  --color-text-fine:#41454F;        /* 조건 표기·푸터 고지 (가독 대비 확보) */
+  --color-primary:#1428A0;          /* 헤더 마크, 주 CTA, 슬라이더 채움, 결과 숫자 (실제 삼성 블루) */
+  --color-primary-hover:#0F1F7A;    /* 주 CTA 호버 (한 단계 짙게) */
+  --color-primary-bright:#2B44D0;   /* 슬라이더 채움 그라데이션 끝점·장식 — 비텍스트 전용 */
+  --color-accent:#1428A0;           /* 캐시백 강조, 결과 숫자, 적립률 배지 — 그린 폐기, 블루 통일 */
+  --color-accent-strong:#1428A0;    /* 결과 보조 숫자 — 블루 통일 */
+  --color-accent-bg:#EEF1FC;        /* 결과 영역 배경, 적립률 칩·상한 배지 배경 (블루 6% 틴트) */
+  --color-text:#101317;             /* 본문 기본 텍스트, 헤드라인 (잉크블랙) */
+  --color-text-muted:#5B6473;       /* 서브카피, 보조 설명 */
+  --color-text-fine:#41454F;        /* 조건 표기·푸터 고지 (가독 대비 확보) — 변경 금지 */
   --color-bg:#FFFFFF;               /* 페이지 기본 배경 */
-  --color-bg-subtle:#F4F6FA;        /* 섹션 교차 배경, 혜택 카드 배경 */
-  --color-bg-footer:#EDF0F5;        /* 푸터 필수 고지 배경 */
-  --color-border:#D5DAE3;           /* 카드·입력 테두리, 구분선 */
-  --color-focus:#1B6BFF;            /* 포커스 링 (키보드) */
+  --color-bg-subtle:#F7F9FC;        /* 섹션 교차 배경, 카드 배경 (더 옅게) */
+  --color-bg-footer:#EDF0F5;        /* 푸터 필수 고지 배경 — 변경 금지 */
+  --color-border:#E3E7EF;           /* 카드·입력 테두리, 구분선 (더 옅게) */
+  --color-focus:#1B6BFF;            /* 포커스 링 (키보드) — 유지 */
   --color-disabled-bg:#C5CAD3;      /* 비활성 버튼 배경 */
   --color-disabled-text:#5E6470;    /* 비활성 버튼 텍스트 (disabled-bg 대비 3.61:1, WCAG 보조정보 3:1 충족) */
 
-  /* ---- 2.2 타이포 토큰 (데스크톱 기준; 모바일 크기는 base에서 설정 후 미디어쿼리로 확장) ---- */
+  /* ---- 2.2 타이포 토큰 ---- */
   --font-stack:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
 
-  /* ---- 2.3 스페이싱 토큰 (4px 배수) ---- */
+  /* ---- 2.3 스페이싱 토큰 (4·8px 배수) ---- */
   --space-2xs:4px;
   --space-xs:8px;
   --space-sm:12px;
@@ -44,18 +45,35 @@
   --space-xl:32px;
   --space-2xl:48px;
   --space-3xl:64px;
-  --content-max:1120px;
+  --space-4xl:96px;         /* 신설 — 섹션 호흡 */
+  --content-max:1160px;     /* 기존 1120 → 1160 (여유) */
   --card-gap:24px;          /* --space-lg */
+  --card-pad:32px;          /* 카드 내부 패딩 (기존 24 → 32) */
+  --panel-pad:32px;         /* 결과 패널 내부 패딩 (기존 24 → 32) */
   --radius-sm:8px;          /* 입력·칩 */
-  --radius-md:12px;         /* 카드·버튼 */
-  --radius-lg:16px;         /* 계산기 결과 패널 */
+  --radius-md:12px;         /* 버튼 */
+  --radius-lg:16px;         /* 혜택 카드 */
+  --radius-xl:20px;         /* 신설 — 결과 패널·카드 플레이트 */
 
-  /* 섹션 상하 패딩 — 모바일 기본 48px, 데스크톱에서 64px로 확장 */
-  --section-pad-y:var(--space-2xl);
+  /* 섹션 상하 패딩 — 모바일 기본 64px, 데스크톱에서 96px로 확장 */
+  --section-pad-y:var(--space-3xl);
+  /* 히어로 상하 패딩 — 모바일 72px, 데스크톱 120px */
+  --hero-pad-y:72px;
 
-  /* 모션 (6.3) — reduced-motion 시 미디어쿼리에서 0 으로 */
+  /* ---- 그림자 토큰 (신설 — 평면 탈피, 전부 블루 틴트/잉크 저채도) ---- */
+  --shadow-card:0 1px 3px rgba(16,19,23,.04), 0 8px 24px -16px rgba(16,19,23,.08);
+  --shadow-card-hover:0 2px 6px rgba(16,19,23,.06), 0 16px 32px -16px rgba(16,19,23,.12);
+  --shadow-cta:0 6px 20px -8px rgba(20,40,160,.4);
+  --shadow-cta-hover:0 10px 28px -8px rgba(20,40,160,.5);
+  --shadow-panel:0 8px 32px -12px rgba(20,40,160,.16);
+  --shadow-plate:0 24px 48px -16px rgba(20,40,160,.35);
+  --shadow-thumb:0 2px 8px rgba(20,40,160,.3);
+
+  /* 모션 (2.4·6.3) — reduced-motion 시 미디어쿼리에서 0 으로 */
   --motion-result:150ms;
-  --motion-hover:100ms;
+  --motion-hover:160ms;
+  --motion-fast:120ms;
+  --ease-oneui:cubic-bezier(0.2, 0, 0, 1);
 }
 
 /* ---- 리셋 ---- */
@@ -66,9 +84,9 @@ body{
   font-family:var(--font-stack);
   color:var(--color-text);
   background:var(--color-bg);
-  /* --font-body 모바일: 16px / 1.6 / 400 */
+  /* --font-body 모바일: 16px / 1.65 / 400 */
   font-size:16px;
-  line-height:1.6;
+  line-height:1.65;
   font-weight:400;
 }
 img{max-width:100%;display:block;}
@@ -92,15 +110,15 @@ a{color:inherit;}
 }
 
 /* =================== 타이포 유틸 (모바일 기본값) =================== */
-.t-display{font-size:30px;line-height:1.2;font-weight:700;}
-.t-h1{font-size:26px;line-height:1.25;font-weight:700;}
-.t-h2{font-size:20px;line-height:1.3;font-weight:600;}
-.t-result{font-size:34px;line-height:1.15;font-weight:700;}
-.t-result-sub{font-size:18px;line-height:1.3;font-weight:600;}
-.t-body{font-size:16px;line-height:1.6;font-weight:400;}
-.t-body-strong{font-size:16px;line-height:1.6;font-weight:600;}
+.t-display{font-size:32px;line-height:1.15;font-weight:800;letter-spacing:-0.02em;}
+.t-h1{font-size:26px;line-height:1.2;font-weight:700;letter-spacing:-0.015em;}
+.t-h2{font-size:20px;line-height:1.3;font-weight:700;letter-spacing:-0.01em;}
+.t-result{font-size:34px;line-height:1.05;font-weight:800;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+.t-result-sub{font-size:18px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+.t-body{font-size:16px;line-height:1.65;font-weight:400;}
+.t-body-strong{font-size:16px;line-height:1.65;font-weight:600;}
 .t-label{font-size:15px;line-height:1.4;font-weight:600;}
-.t-fine{font-size:13px;line-height:1.55;font-weight:400;} /* 고지·조건·각주·디스클레이머 하한 13px */
+.t-fine{font-size:13px;line-height:1.55;font-weight:400;} /* 고지·조건·각주·디스클레이머 하한 13px, 자간 0 */
 .t-fine-strong{font-size:13px;line-height:1.55;font-weight:600;}
 .muted{color:var(--color-text-muted);}
 .fine{color:var(--color-text-fine);}
@@ -108,27 +126,33 @@ a{color:inherit;}
 /* =================== 버튼 =================== */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
-  font-family:inherit;font-size:16px;line-height:1.6;font-weight:600;
+  font-family:inherit;font-size:16px;line-height:1.65;font-weight:600;
   border:none;border-radius:var(--radius-md);
   padding:16px 28px;
   cursor:pointer;text-decoration:none;
   min-height:44px; /* 터치 타겟 */
 }
-.btn--primary{background:var(--color-primary);color:#FFFFFF;transition:background var(--motion-hover) linear;}
-.btn--primary:hover{background:var(--color-primary-hover);}
-.btn--primary:active{transform:translateY(1px);}
+.btn--primary{
+  background:var(--color-primary);color:#FFFFFF;
+  box-shadow:var(--shadow-cta);
+  transition:background var(--motion-hover) var(--ease-oneui),
+             box-shadow var(--motion-hover) var(--ease-oneui),
+             transform var(--motion-hover) var(--ease-oneui);
+}
+.btn--primary:hover{background:var(--color-primary-hover);box-shadow:var(--shadow-cta-hover);transform:translateY(-1px);}
+.btn--primary:active{transform:translateY(0);}
 .btn--secondary{
   background:transparent;color:var(--color-primary);
   border:1.5px solid var(--color-primary);
-  transition:background var(--motion-hover) linear;
+  transition:background var(--motion-hover) var(--ease-oneui);
 }
 .btn--secondary:hover{background:var(--color-accent-bg);}
 .btn:disabled,.btn[aria-disabled="true"]{
   background:var(--color-disabled-bg);color:var(--color-disabled-text);
-  cursor:not-allowed;
+  box-shadow:none;cursor:not-allowed;
 }
 
-/* =================== 적립률 배지/칩 =================== */
+/* =================== 적립률 배지/칩 (블루 통일) =================== */
 .chip{
   display:inline-block;
   background:var(--color-accent-bg);color:var(--color-accent-strong);
@@ -146,6 +170,7 @@ a{color:inherit;}
 .logo-slot{
   font-weight:700;color:var(--color-primary);font-size:17px;
   display:inline-flex;align-items:center;gap:var(--space-xs);
+  letter-spacing:-0.01em;
 }
 .logo-slot .logo-mark{
   width:24px;height:24px;border-radius:6px;
@@ -153,55 +178,81 @@ a{color:inherit;}
 }
 .header-cta{padding:10px 16px;min-height:44px;} /* 모바일 패딩 축소(텍스트 축약 없음) */
 
-/* =================== 0. 상단 혜택 요약 띠 =================== */
-.summary-band{background:var(--color-primary);color:#FFFFFF;}
+/* =================== 0. 상단 혜택 요약 띠 (경량화 — 흰 배경 + 블루 틴트 칩) =================== */
+.summary-band{background:var(--color-bg);border-bottom:1px solid var(--color-border);}
 .summary-band .container{
-  padding-block:var(--space-xs);
-  text-align:center;
+  padding-block:var(--space-sm);
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:var(--space-xs);
 }
-.summary-band p{font-size:15px;line-height:1.4;font-weight:600;}
+.summary-band .chip{white-space:nowrap;}
 
 /* =================== 1. 히어로 =================== */
-.hero .container{display:flex;flex-direction:column;gap:var(--space-xl);}
-.hero-copy{display:flex;flex-direction:column;gap:var(--space-md);}
-.hero-headline{color:var(--color-text);}
-.hero-headline strong{color:var(--color-primary);}
+.hero{padding-block:var(--hero-pad-y);}
+.hero .container{display:flex;flex-direction:column;gap:var(--space-2xl);}
+.hero-copy{display:flex;flex-direction:column;gap:var(--space-lg);}
+.hero-headline{color:var(--color-text);}  /* 잉크블랙 단색 — 색강조 폐기 */
 .hero-sub{color:var(--color-text-muted);}
 .hero-sub sup{font-weight:600;font-size:0.7em;}
 .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-2xs);}
 .hero-microcopy{color:var(--color-text-muted);}
 .hero-footnote{color:var(--color-text-fine);}
 
-/* 가상 카드 비주얼 목업 (CSS) */
-.card-mock{
-  width:100%;max-width:340px;aspect-ratio:1.586/1; /* ISO 카드 비율 */
-  background:linear-gradient(135deg,#0A2A66 0%,#082152 100%);
-  border-radius:var(--radius-lg);
+/* ---- 2.5 가상 카드 비주얼 목업 (세로형 CSS 플레이트) ---- */
+.card-visual-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-xs);}
+.card-plate{
+  position:relative;
+  width:100%;max-width:240px;aspect-ratio:0.63 / 1; /* 세로형 (실제 iD 포맷) */
+  background:linear-gradient(180deg,#1428A0 0%,#0F1F7A 100%); /* 세로 미묘 그라데이션 */
+  border-radius:var(--radius-xl);
   padding:var(--space-lg);
   color:#FFFFFF;
   display:flex;flex-direction:column;justify-content:space-between;
-  align-self:flex-start;
+  overflow:hidden;
+  box-shadow:var(--shadow-plate);
 }
-.card-mock .card-brand{font-size:15px;font-weight:600;opacity:0.9;}
-.card-mock .card-name{font-size:20px;font-weight:700;line-height:1.3;}
-.card-mock .card-chip{
-  width:38px;height:28px;border-radius:6px;
-  background:rgba(255,255,255,0.85);
+/* 표면 광택 1줄 (메탈/플라스틱 광택 모사 — 이 1줄만 허용) */
+.card-plate::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg, rgba(255,255,255,.12) 0%, transparent 30%);
+  pointer-events:none;
 }
-.card-mock .card-bottom{font-size:13px;opacity:0.8;}
+/* 아주 옅은 비네팅으로 평면감 제거 */
+.card-plate::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 70% 20%, transparent 55%, rgba(0,0,0,.12) 100%);
+  pointer-events:none;
+}
+.card-plate .card-chip{
+  position:relative;z-index:1;
+  width:42px;height:30px;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,#E8D9A8,#C9A95C); /* 금색 그라데이션 칩 */
+}
+.card-plate .card-wordmark{
+  position:relative;z-index:1;
+  font-size:44px;font-weight:800;letter-spacing:-0.03em;line-height:1;
+}
+.card-plate .card-brand{
+  position:relative;z-index:1;
+  font-size:13px;font-weight:600;letter-spacing:0.04em;opacity:0.9;
+}
+.card-caption{color:var(--color-text-fine);font-size:13px;line-height:1.55;}
 
 /* =================== 2. 핵심 혜택 =================== */
-.section-title{margin-bottom:var(--space-lg);}
+.section-title{margin-bottom:var(--space-xl);}
 .benefits-grid{display:grid;grid-template-columns:1fr;gap:var(--card-gap);}
 .benefit-card{
   background:var(--color-bg);
   border:1px solid var(--color-border);
-  border-radius:var(--radius-md);
-  padding:var(--space-lg);
+  border-radius:var(--radius-lg);
+  padding:var(--card-pad);
   display:flex;flex-direction:column;gap:var(--space-sm);
-  transition:border-color var(--motion-hover) linear;
+  box-shadow:var(--shadow-card);
+  transition:transform var(--motion-hover) var(--ease-oneui),
+             box-shadow var(--motion-hover) var(--ease-oneui);
 }
-.benefit-card:hover{border-color:var(--color-primary);}
+.benefit-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+.benefit-card .chip{align-self:flex-start;}
 .benefit-card .b-head{color:var(--color-text);}
 .benefit-card .b-sub{color:var(--color-text-muted);}
 .benefit-card .b-cond{
@@ -214,7 +265,10 @@ a{color:inherit;}
 /* =================== 3. 혜택 계산기 =================== */
 .calc-grid{display:flex;flex-direction:column;gap:var(--space-xl);}
 .calc-input-block{display:flex;flex-direction:column;gap:var(--space-md);}
-.calc-value-display{font-size:20px;line-height:1.3;font-weight:600;color:var(--color-primary);}
+.calc-value-display{
+  font-size:22px;line-height:1.3;font-weight:700;color:var(--color-primary);
+  letter-spacing:-0.01em;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+}
 .calc-range-wrap{padding-block:var(--space-xs);}
 .calc-range-minmax{
   display:flex;justify-content:space-between;
@@ -224,7 +278,7 @@ a{color:inherit;}
 .calc-help{color:var(--color-text-fine);}
 
 /* ---- 슬라이더 (네이티브 input[type=range] 커스텀 스타일) ---- */
-/* 채워진 트랙 비율은 JS가 --fill 변수로 갱신 */
+/* 채워진 트랙 비율은 JS가 --fill 변수로 갱신. 채움은 블루 그라데이션 */
 .range{
   -webkit-appearance:none;appearance:none;
   width:100%;
@@ -236,61 +290,80 @@ a{color:inherit;}
 /* WebKit 트랙 */
 .range::-webkit-slider-runnable-track{
   height:6px;border-radius:3px;
-  background:linear-gradient(
-    to right,
-    var(--color-primary) 0%,
-    var(--color-primary) var(--fill,0%),
-    var(--color-border) var(--fill,0%),
-    var(--color-border) 100%);
+  background:
+    linear-gradient(90deg, var(--color-primary), var(--color-primary-bright)) 0 / var(--fill,0%) 100% no-repeat,
+    var(--color-border);
 }
 .range::-webkit-slider-thumb{
   -webkit-appearance:none;appearance:none;
   width:24px;height:24px;border-radius:50%;
   background:#FFFFFF;border:2px solid var(--color-primary);
+  box-shadow:var(--shadow-thumb);
   margin-top:-9px; /* (24-6)/2 정렬 */
+  transition:transform var(--motion-fast) var(--ease-oneui);
 }
+.range:hover::-webkit-slider-thumb,
+.range:active::-webkit-slider-thumb{transform:scale(1.08);}
 .range:focus-visible::-webkit-slider-thumb{
-  box-shadow:0 0 0 3px var(--color-focus);
+  box-shadow:var(--shadow-thumb), 0 0 0 3px var(--color-focus);
 }
 /* Firefox 트랙 */
 .range::-moz-range-track{
   height:6px;border-radius:3px;background:var(--color-border);
 }
 .range::-moz-range-progress{
-  height:6px;border-radius:3px;background:var(--color-primary);
+  height:6px;border-radius:3px;
+  background:linear-gradient(90deg, var(--color-primary), var(--color-primary-bright));
 }
 .range::-moz-range-thumb{
   width:24px;height:24px;border-radius:50%;
   background:#FFFFFF;border:2px solid var(--color-primary);
+  box-shadow:var(--shadow-thumb);
+  transition:transform var(--motion-fast) var(--ease-oneui);
 }
+.range:hover::-moz-range-thumb,
+.range:active::-moz-range-thumb{transform:scale(1.08);}
 .range:focus-visible::-moz-range-thumb{
-  box-shadow:0 0 0 3px var(--color-focus);
+  box-shadow:var(--shadow-thumb), 0 0 0 3px var(--color-focus);
 }
 
-/* ---- 결과 패널 ---- */
+/* ---- 결과 패널 (그림자형 — 흰 배경 + 옅은 블루 보더 + 부드러운 깊이) ---- */
 .calc-result{
-  background:var(--color-accent-bg);
-  border-radius:var(--radius-lg);
-  padding:var(--space-lg);
+  background:var(--color-bg);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-xl);
+  padding:var(--panel-pad);
+  box-shadow:var(--shadow-panel);
   display:flex;flex-direction:column;gap:var(--space-sm);
 }
 .calc-result .res-label{color:var(--color-text);font-weight:600;}
+/* 월 결과: 금액 숫자만 크게/굵게, "약"·"원" 부속어는 한 단계 작게(muted) */
 .calc-result .res-month{
-  font-size:34px;line-height:1.15;font-weight:700;
   color:var(--color-accent);
   transition:color var(--motion-result) linear, opacity var(--motion-result) linear;
+}
+.calc-result .res-month .amount{
+  font-size:34px;line-height:1.05;font-weight:800;letter-spacing:-0.02em;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+}
+.calc-result .res-month .affix{
+  font-size:18px;font-weight:600;color:var(--color-text-muted);
 }
 .calc-result .res-year{
   font-size:18px;line-height:1.3;font-weight:600;
   color:var(--color-accent-strong);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
   transition:color var(--motion-result) linear, opacity var(--motion-result) linear;
 }
 .calc-result .res-aux{color:var(--color-text-muted);}
 /* 상한 도달 배지 영역 — min-height 예약으로 레이아웃 점프 방지 */
 .cap-badge-slot{min-height:30px;display:flex;align-items:center;}
-.cap-badge{display:inline-block;background:var(--color-accent-bg);color:var(--color-accent-strong);
+.cap-badge{
+  display:inline-block;background:var(--color-accent-bg);color:var(--color-accent-strong);
   font-size:15px;line-height:1.4;font-weight:600;padding:4px 10px;border-radius:var(--radius-sm);
-  border:1px solid var(--color-accent-strong);}
+  opacity:1;transition:opacity var(--motion-fast) var(--ease-oneui);
+}
+.cap-badge[hidden]{display:none;}
 .calc-disclaimer{
   color:var(--color-text-fine);
   border-top:1px solid var(--color-border);
@@ -303,17 +376,23 @@ a{color:inherit;}
 .trust-grid{display:grid;grid-template-columns:1fr;gap:var(--card-gap);}
 .trust-item{
   display:flex;flex-direction:column;gap:var(--space-xs);
-  padding:var(--space-lg);
+  padding:var(--card-pad);
   background:var(--color-bg);
   border:1px solid var(--color-border);
-  border-radius:var(--radius-md);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);
+  transition:transform var(--motion-hover) var(--ease-oneui),
+             box-shadow var(--motion-hover) var(--ease-oneui);
 }
+.trust-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+/* 신뢰 픽토그램 — 옅은 블루 틴트 원 + 인라인 SVG 라인 아이콘(currentColor=#1428A0) */
 .trust-icon{
-  width:40px;height:40px;border-radius:10px;
-  background:var(--color-accent-bg);color:var(--color-accent-strong);
+  width:48px;height:48px;border-radius:50%;
+  background:var(--color-accent-bg);color:var(--color-primary);
   display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:18px;
+  margin-bottom:var(--space-2xs);
 }
+.trust-icon svg{width:24px;height:24px;display:block;}
 .trust-item .ti-head{font-weight:600;color:var(--color-text);}
 .trust-item .ti-sub{color:var(--color-text-muted);}
 
@@ -321,7 +400,6 @@ a{color:inherit;}
 .final-cta{text-align:center;}
 .final-cta .container{display:flex;flex-direction:column;align-items:center;gap:var(--space-md);}
 .final-cta h2{color:var(--color-text);}
-.final-cta h2 strong{color:var(--color-primary);}
 .final-note{color:var(--color-text-fine);}
 
 /* =================== 6. 필수 고지 푸터 =================== */
@@ -361,21 +439,22 @@ a{color:inherit;}
 }
 
 @media (min-width:1024px){
-  :root{--section-pad-y:var(--space-3xl);} /* 데스크톱 64px */
-  .t-display{font-size:48px;}
-  .t-h1{font-size:34px;}
+  :root{--section-pad-y:var(--space-4xl);--hero-pad-y:120px;} /* 데스크톱 96px / 히어로 120px */
+  .t-display{font-size:52px;}
+  .t-h1{font-size:36px;}
   .t-h2{font-size:24px;}
-  .t-result{font-size:44px;}
+  .t-result{font-size:48px;}
   .t-result-sub{font-size:22px;}
-  .calc-result .res-month{font-size:44px;}
+  .calc-result .res-month .amount{font-size:48px;}
+  .calc-result .res-month .affix{font-size:22px;}
   .calc-result .res-year{font-size:22px;}
-  .calc-value-display{font-size:22px;}
 
   /* 히어로: 좌 텍스트 / 우 카드 2열 (약 7:5) */
   .hero .container{flex-direction:row;align-items:center;}
   .hero-copy{flex:7;}
   .hero-visual{flex:5;display:flex;justify-content:center;}
-  .card-mock{max-width:380px;}
+  .card-visual-wrap{align-items:center;}
+  .card-plate{max-width:300px;transform:rotate(-4deg);} /* 데스크톱만 회전 */
 
   /* 혜택: 상단 3열 + 하단 2열 */
   .benefits-grid{grid-template-columns:repeat(6,1fr);}
@@ -383,13 +462,13 @@ a{color:inherit;}
   .benefit-card:nth-child(4),
   .benefit-card:nth-child(5){grid-column:span 3;} /* 하단 2열(3칸씩) */
 
-  /* 계산기: 좌 입력 / 우 결과 2열, 같은 뷰포트 */
+  /* 계산기: 좌 입력 / 우 결과 2열, 결과 패널을 시각적 주인공으로(flex 1.1) */
   .calc-grid{flex-direction:row;align-items:flex-start;}
   .calc-input-block{flex:1;}
-  .calc-result{flex:1;}
+  .calc-result{flex:1.1;}
 }
 
-/* ---- 6.3 모션 정책: reduced-motion 시 트랜지션 0 ---- */
+/* ---- 6.3 모션 정책: reduced-motion 시 트랜지션·애니메이션 0 ---- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     transition-duration:0ms !important;
@@ -408,16 +487,18 @@ a{color:inherit;}
   </div>
 </header>
 
-<!-- ===================== 0. 상단 혜택 요약 띠 ===================== -->
+<!-- ===================== 0. 상단 혜택 요약 띠 (경량화: 흰 배경 + 블루 틴트 칩) ===================== -->
 <div class="summary-band">
   <div class="container">
-    <p>구독·배달 5% · 카페 3% · 전월실적 30만원</p>
+    <span class="chip">구독·배달 5%</span>
+    <span class="chip">카페 3%</span>
+    <span class="chip">전월실적 30만원</span>
   </div>
 </div>
 
 <main>
   <!-- ===================== 1. 히어로 (A안 기본) ===================== -->
-  <section class="hero section" aria-labelledby="hero-headline">
+  <section class="hero" aria-labelledby="hero-headline">
     <div class="container">
       <div class="hero-copy">
         <h1 class="t-display hero-headline" id="hero-headline">매달 새던 일상, 한 장으로 돌려받기</h1>
@@ -430,13 +511,13 @@ a{color:inherit;}
         <p class="t-fine hero-footnote"><sup>1</sup> 월 사용액 100만원·일상영역(구독·배달·카페) 지출 30% 가정 시 예시 금액. 실제 혜택은 상품설명서 및 약관 기준.</p>
       </div>
       <div class="hero-visual">
-        <div class="card-mock" role="img" aria-label="삼성 iD Daily+ 가상 카드 비주얼">
-          <div class="card-chip" aria-hidden="true"></div>
-          <div>
-            <div class="card-brand">SAMSUNG</div>
-            <div class="card-name">iD Daily+</div>
+        <div class="card-visual-wrap">
+          <div class="card-plate" role="img" aria-label="삼성 iD Daily+ 가상 카드 비주얼">
+            <div class="card-chip" aria-hidden="true"></div>
+            <div class="card-wordmark" aria-hidden="true">iD</div>
+            <div class="card-brand" aria-hidden="true">SAMSUNG</div>
           </div>
-          <div class="card-bottom">가상 시안 — 실제 카드 아님</div>
+          <p class="card-caption">가상 시안 — 실제 카드 아님</p>
         </div>
       </div>
     </div>
@@ -519,7 +600,7 @@ a{color:inherit;}
         <div class="calc-result">
           <div aria-live="polite" aria-atomic="true">
             <p class="t-body res-label">예상 캐시백 월</p>
-            <p class="res-month" id="res-month">약 16,400원</p>
+            <p class="res-month" id="res-month"><span class="affix">약 </span><span class="amount">16,400</span><span class="affix">원</span></p>
             <p class="res-year" id="res-year">연 환산 약 196,800원</p>
             <p class="t-fine res-aux">이 중 일상 3대 영역 적립이 대부분이며, 월 통합 적립 상한 2만원이 적용됩니다.</p>
             <div class="cap-badge-slot">
@@ -540,17 +621,32 @@ a{color:inherit;}
       <h2 class="visually-hidden" id="trust-title">삼성 iD Daily+ 신뢰 요소</h2>
       <div class="trust-grid">
         <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">1</span>
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect>
+              <line x1="2.5" y1="9.5" x2="21.5" y2="9.5"></line>
+              <line x1="6" y1="14.5" x2="11" y2="14.5"></line>
+            </svg>
+          </span>
           <p class="t-body-strong ti-head">한 장에 모아</p>
           <p class="t-body ti-sub">영역마다 카드를 나눠 쓸 필요 없이, 일상 디지털 지출을 한 장에 모아 캐시백으로 돌려받습니다.</p>
         </div>
         <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">2</span>
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 13l4.5 4.5L20 6"></path>
+            </svg>
+          </span>
           <p class="t-body-strong ti-head">낮은 문턱</p>
           <p class="t-body ti-sub">전월실적 30만원이면 3대 영역 특별 적립이 시작됩니다.</p>
         </div>
         <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">3</span>
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </span>
           <p class="t-body-strong ti-head">명확한 상한</p>
           <p class="t-body ti-sub">매달 돌려받는 한도(통합 최대 2만원)가 명확해, 내가 얼마를 받는지 미리 계산할 수 있습니다.</p>
         </div>
@@ -645,12 +741,13 @@ function render(M){
   valueDisp.textContent = manText(M);
   slider.setAttribute('aria-valuetext', manText(M));
   slider.setAttribute('aria-valuenow', String(M));
-  // 결과 (월/연) — "약" 접두어 항상 유지
-  resMonth.textContent = '약 ' + won(r.month) + '원';
+  // 결과 (월) — "약" 접두어/"원" 접미어는 부속어(작게), 금액 숫자만 강조
+  resMonth.innerHTML = '<span class="affix">약 </span><span class="amount">' + won(r.month) + '</span><span class="affix">원</span>';
+  // 결과 (연) — "약" 접두어 항상 유지
   resYear.textContent  = '연 환산 약 ' + won(r.year) + '원';
   // 상한 도달 배지
   capBadge.hidden = !r.capped;
-  // 채워진 트랙 비율 (WebKit gradient)
+  // 채워진 트랙 비율 (그라데이션 size)
   var pct = ((M - MIN) / (MAX - MIN)) * 100;
   slider.style.setProperty('--fill', pct + '%');
 }
