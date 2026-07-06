@@ -68,9 +68,10 @@ def parse_front_matter(text):
 
 
 def date_to_display(date_str):
-    """'2024-02-20 09:00:00 +0900' -> 'Feb 20, 2024'"""
+    """'2024-02-20 09:00:00 +0900' -> 'Feb 20, 2024'
+    %-d(리눅스/맥)는 Windows에서 ValueError를 내므로 일(day)을 직접 조립해 플랫폼 독립적으로 처리한다."""
     d = datetime.strptime(date_str.split(" ")[0], "%Y-%m-%d")
-    return d.strftime("%b %-d, %Y")
+    return f"{d.strftime('%b')} {d.day}, {d.year}"
 
 
 def post_to_entry(md_path):
@@ -120,6 +121,21 @@ new_entries = sorted(
     key=lambda e: e["_sort_date"],
     reverse=True,
 )
+
+# id 중복 제거 안전장치 —
+# 같은 slug(id)가 서로 다른 날짜 파일로 존재하면 posts.json에 중복 엔트리가 생기고,
+# React 렌더에서 key 충돌로 카드가 비거나 같은 글이 여러 번 노출된다(2026-07 사고).
+# 정렬이 최신순이므로 먼저 만난(=가장 최신 날짜) 엔트리만 남기고 이후 중복은 버린다.
+seen_ids = set()
+deduped_entries = []
+for e in new_entries:
+    if e["id"] in seen_ids:
+        print(f"  [dedup] 중복 id 건너뜀: {e['id']} ({e['_sort_date']})")
+        continue
+    seen_ids.add(e["id"])
+    deduped_entries.append(e)
+new_entries = deduped_entries
+
 for e in new_entries:
     e.pop("_sort_date")
 

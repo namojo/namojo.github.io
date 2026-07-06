@@ -5,7 +5,7 @@ import { SubscribeForm } from '../components/SubscribeForm';
 import { getPosts } from '../services/dataService';
 import { Post } from '../types';
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 12;
 
 export const Home: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);

@@ -23,20 +23,43 @@ const INITIAL_POSTS: Post[] = [
   },
 ];
 
+/**
+ * 목록에 노출할 포스트를 정규화한다.
+ * 1) 'about' 제외
+ * 2) id 기준 중복 제거 (배포 시 build_posts_json.py가 중복 엔트리를 만들면
+ *    React key 충돌로 카드가 비거나 같은 글이 여러 번 보이는 사고가 났었다.
+ *    빌드 스크립트에서도 막지만, 여기서 한 번 더 방어한다.)
+ * 3) 날짜 내림차순 정렬 ('May 8, 2026' 형식은 Date로 파싱 가능)
+ */
+const normalizePosts = (data: Post[]): Post[] => {
+  const seen = new Set<string>();
+  const unique = data.filter((p) => {
+    if (p.id === 'about') return false;
+    if (seen.has(p.id)) return false;
+    seen.add(p.id);
+    return true;
+  });
+  return unique.sort((a, b) => {
+    const ta = Date.parse(a.date);
+    const tb = Date.parse(b.date);
+    if (isNaN(ta) || isNaN(tb)) return 0; // 파싱 실패 시 원래 순서 유지
+    return tb - ta;
+  });
+};
+
 export const getPosts = async (): Promise<Post[]> => {
   try {
     // Attempt to fetch from the public posts.json file (Static CMS pattern)
     // In dev, this might 404 if not set up, falling back to INITIAL_POSTS
     const response = await fetch(`./posts.json?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to fetch posts');
-    
+
     const data: Post[] = await response.json();
-    // Filter out 'about' for the main list if it exists in the json
-    return data.filter(p => p.id !== 'about');
+    return normalizePosts(data);
   } catch (error) {
     console.warn('Could not fetch posts.json, falling back to initial data.', error);
     return new Promise((resolve) => {
-        setTimeout(() => resolve(INITIAL_POSTS.filter(p => p.id !== 'about')), 300);
+        setTimeout(() => resolve(normalizePosts(INITIAL_POSTS)), 300);
     });
   }
 };

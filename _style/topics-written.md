@@ -12,3 +12,7 @@
 - 2026-05-22 | google-io-2026-gemini-omni | 구글 I/O 2026 Gemini Omni — 영상 생성과 세계 모델, SynthID | 구글,멀티모달,영상생성
 - 2026-05-31 | claude-opus-4-8-honesty | Claude Opus 4.8 — '정직함'과 다이내믹 워크플로, 겸손한 AI의 역설 | 앤트로픽,환각,AI신뢰
 - 2026-06-07 | jensen-huang-korea-tour-hbm4 | 젠슨 황 방한·HBM4 3사 자격 — Please Make More와 피지컬 AI | 엔비디아,HBM4,소버린AI
+- 2026-06-12 | apple-wwdc-siri-open-ai | 2026-06-08 WWDC에서 애플이 iOS 27 'Extensions'로 Siri를 Claude·Gemini·ChatGPT·Grok에 개방. Gemini 기반 Siri(보도상 연 10억 달러·1.2조 파라미터 맞춤 모델). '닫힌 정원'의 전략적 개방 vs 수세적 후퇴 양면 해석, 국산 AI 기회. | 애플, Siri, iOS27, AI에이전트, 플랫폼전략
+- 2026-06-27 | june-2026-model-flood-naming | 6월 모델 홍수 — Opus 4.8(5월 말), GPT-5.6 프리뷰 정부목록 게이팅(6/26), Gemini 3.5 Pro 토큰 과소비로 7월 연기. 성능 경쟁에서 이름·가격·배포방식 경쟁으로. 인텔 펜티엄 명명 일화. | 모델경쟁, 오픈AI, 구글, 앤트로픽, 실용주의, AI전략
+- 2026-07-01 | white-house-ai-crackdown-china | 백악관 AI 수출통제 강화(CNBC 6/30)가 오히려 자국 앤트로픽 출시 2주 지연 + 중국 오픈웨이트(즈푸 GLM 5.2) 확산의 틈. 1990년대 암호전쟁 역설, 오픈웨이트는 빗장으로 못 막음. | 수출통제, 미중경쟁, 오픈웨이트, 앤트로픽, 중국AI, AI주권
+- 2026-07-04 | tokenmaxxing-to-efficiency | '토큰맥싱' 종말 — 우버 예산 4개월 소진→월 $1,500 상한, MS Claude Code 구독 취소, 메타 리더보드 철거, 팔란티어 카프 과금모델 비판(7/1), Lindy→DeepSeek. 소비량≠성과, 굿하트의 법칙. | 토큰맥싱, AI효율, 엔터프라이즈, 과금모델, ROI, 팔란티어

@@ -127,14 +127,21 @@
 | 2026-05-07 | anthropics/financial-services 레포 Outlook manifest 지원 추가 (커밋 #127) | 5/5 발표 시 "coming soon"이었던 Outlook 합류 |
 | 2026-05-07 | **EU AI Act '디지털 옴니버스' 잠정 합의** — 고위험 AI(Annex III) 의무 2026-08-02→2027-12-02 16개월 연기, SME 완화, 딥페이크 음란물·CSAM 생성 신규 금지(2026-12-02 발효). 정식 표결 8월 2일 전 예정 | Consilium·White&Case·InsidePrivacy 교차 확인 |
 | 2026-05-15 | **OpenAI ChatGPT 개인 금융 도구** 프리뷰 (미국 Pro, 웹·iOS). Plaid 통해 12,000+ 금융기관 연결. 잔액·거래·투자·부채 읽기 가능, 계좌번호 열람·변경 불가. Intuit 연동 예정 | TechCrunch·OpenAI·American Banker 교차 |
-| 2026-05-19 | **Google I/O 2026** — 통합 멀티모달 'Gemini Omni' 공개(피차이·허사비스). 첫 모델 Gemini Omni Flash가 영상 출력부터 시작, Gemini 앱·Flow·YouTube에 롤아웃. 모든 영상 SynthID 워터마크. Gemini 3.5 Flash도 발표 | blog.google·TechCrunch 교차 확인 |
+| 2026-05-19 | **Google I/O 2026** — 통합 멀티모달 'Gemini Omni' 공개(피차이·허사비스). 첫 모델 Gemini Omni Flash가 영상 출력부터 시작, Gemini 앱·Flow·YouTube에 롤아웃. 모든 영상 SynthID 워터마크. Gemini 3.5 Flash 발표. Gemini 3.5 Pro는 "다음 달" 예고 → 이후 토큰 과소비 피드백으로 7월로 연기 | blog.google·TechCrunch 교차 확인 |
 | 2026-05-28 | **Anthropic Claude Opus 4.8** 공개 — 코딩·에이전트 벤치마크 개선, Claude Code 'dynamic workflows'(오케스트레이터가 수백 서브에이전트 병렬 생성), claude.ai 'effort' 조절. '정직함' 강조(코드 결함을 지적 없이 통과시킬 확률 전작 대비 약 1/4). 가격 $5/$25(1M, 입력/출력) | Anthropic·TechCrunch·Simon Willison 교차 |
 | 2026-06-01 | NVIDIA Vera Rubin AI 플랫폼 풀 생산 진입 발표. 삼성·SK하이닉스·마이크론 3사 HBM4 공급 자격. 첫 시스템 Q3 출하 예정 | TechTimes·Seoul Economic Daily 교차 |
 | 2026-06-02 | **Microsoft Build 2026** — 자체 MAI 모델 7종 공개(추론 MAI-Thinking-1 등), Microsoft Scout 업무 에이전트, Microsoft IQ, GitHub Copilot 데스크톱 앱. (벤치마크 자사 주장 미검증) | blogs.microsoft·Tom's Guide. 본 회차 포스트화 보류 |
 | 2026-06-02 | **컴퓨텍스 2026**(대만 타이베이) SK하이닉스 부스 HBM4E 웨이퍼에 젠슨 황 "Please Make More" 친필 서명 | TechTimes·UPI·Seoul Economic Daily. ※ 방한(6/5~7)과 별개 사건·장소 |
 | 2026-06-05 | **젠슨 황 방한** — 공항서 "3사 모두 퀄 통과·양산 중" 확인. Faker에 사인 RTX 5090 전달, 두산 베어스 시구(등번호 93) | KoreaJoongAngDaily·TechTimes 교차 |
 | 2026-06-05~07 | 젠슨 황, 삼성·LG(구광모)·SK(최태원)·현대차·네이버(이해진) 회장단 회동. 두산 베어스 유니폼·시구. '피지컬 AI(Physical AI)' 생태계 동맹 | KoreaJoongAngDaily·Seoul Economic Daily |
-| 2026-06-08 | **오늘** (이 파일의 기준 시점) | |
+| 2026-06-08 | **Apple WWDC 2026** — iOS 27 'Extensions' 공개. Siri·Writing Tools·Image Playground를 Claude·ChatGPT·Gemini·Grok에 개방(전용 마켓플레이스). 재구축 Siri는 Gemini 기반(Private Cloud Compute). 정식 공개 9월 예상, iPhone 15 Pro+ | 보도상 애플→구글 연 $1B·1.2T 파라미터 맞춤 모델(미확정) |
+| 2026-06-26 | OpenAI GPT-5.6 프리뷰 공개 (알려진 코드네임 Sol/Terra/Luna) — 약 20개 미국 정부 관련 조직 접근 목록 뒤 게이팅 | |
+| 2026-06-26 | CNBC "tokenmaxxing→efficiency" 보도. Uber 연간 AI 예산 4개월 소진→월 $1,500 지출 계층, MS 일부 부서 Claude Code 구독 취소, Meta 토큰맥싱 리더보드 철거, Lindy CEO 트래픽 100% DeepSeek 전환 | D.A. Davidson Gil Luria 경고 |
+| 2026-06-30 | Anthropic **Claude Sonnet 5** 공개 (Free/Pro 기본). intro $2/$10 → 이후 $3/$15(백만 토큰), 1M 컨텍스트/128K 출력, "Opus 4.8 근접·저가", 신규 토크나이저(영문 ~1.4x) | |
+| 2026-06-30 | CNBC "백악관 AI 단속이 중국 모델에 틈" — 수출통제로 앤트로픽 최신 프런티어 모델 2주 지연 후 일부 기업·연방기관 허용. 즈푸 GLM 5.2(오픈웨이트) 일부 사이버 벤치마크 대등 '주장' | 2026-04 백악관 "산업 규모 절취" 비난의 연장선 |
+| 2026-07-01 | Palantir CEO Alex Karp, OpenAI·Anthropic 토큰 과금 모델 비판 ("something has gone completely wrong" 취지, CNBC) | |
+| 2026-07 예정 | Google Gemini 3.5 Pro (토큰 과소비 피드백으로 6월→7월 연기) | |
+| 2026-07-06 | **오늘** (이 파일의 기준 시점) | |
 
 ---
 
