@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && python3 _workspace/build_posts_json.py && node scripts/build-static-posts.mjs",
+    "build": "python3 _workspace/build_posts_json.py && vite build && node scripts/build-static-posts.mjs",
     "build:spa": "vite build",
     "build:static": "node scripts/build-static-posts.mjs",
     "build:posts": "python3 _workspace/build_posts_json.py",
