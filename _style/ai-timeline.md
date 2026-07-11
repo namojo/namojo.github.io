@@ -141,7 +141,9 @@
 | 2026-06-30 | CNBC "백악관 AI 단속이 중국 모델에 틈" — 수출통제로 앤트로픽 최신 프런티어 모델 2주 지연 후 일부 기업·연방기관 허용. 즈푸 GLM 5.2(오픈웨이트) 일부 사이버 벤치마크 대등 '주장' | 2026-04 백악관 "산업 규모 절취" 비난의 연장선 |
 | 2026-07-01 | Palantir CEO Alex Karp, OpenAI·Anthropic 토큰 과금 모델 비판 ("something has gone completely wrong" 취지, CNBC) | |
 | 2026-07 예정 | Google Gemini 3.5 Pro (토큰 과소비 피드백으로 6월→7월 연기) | |
-| 2026-07-06 | **오늘** (이 파일의 기준 시점) | |
+| 2026-07-07 | Anthropic, Claude Cowork 모바일 확장 발표 | TechCrunch·9to5Mac 교차 확인 |
+| 2026-07-09 | **OpenAI, Codex를 ChatGPT 데스크톱 앱에 통합** — 기존 앱은 'ChatGPT Classic' 리브랜딩, Chat·Work·Codex 3축 통합 앱(전 플랜 무료 배포). 'ChatGPT Work' 업무 에이전트(Pro·Enterprise·Edu 우선 → Plus·Business 순차). GPT-5.6 GA — 3티어 Sol(플래그십)/Terra(일상)/Luna(최속·최저가), 6/26 정부 게이팅 프리뷰 후 정식 출시 | 9to5Mac·MacObserver·Neowin·OpenAI Help Center 교차 확인 |
+| 2026-07-11 | **오늘** (이 파일의 기준 시점) | |
 
 ---
 

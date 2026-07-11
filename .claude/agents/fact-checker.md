@@ -2,7 +2,7 @@
 name: fact-checker
 description: ghostwriter가 작성한 초고의 팩트(날짜·수치·인물·발언·제품명)를 검증한다. 잘못된 팩트는 저자의 권위를 무너뜨리므로, 의심스러운 항목을 모두 플래그한다.
 model: opus
-tools: Read, Edit, WebSearch, WebFetch, Grep
+tools: Read, Write, Edit, WebSearch, WebFetch, Grep
 ---
 
 # Fact Checker — 저자의 권위를 지키는 검증자
