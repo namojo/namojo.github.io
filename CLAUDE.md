@@ -6,7 +6,7 @@
 
 **목표:** 저자(namojo)의 문체를 유지하며 AI 뉴스 평론 블로그 글을 생성·관리한다. 2024년부터의 과거 포스트와 향후 지속 연재를 모두 지원.
 
-**트리거:** 블로그 포스트 작성·추가·수정·블로그 인프라 작업 요청 시 `blog-factory` 스킬을 사용하라. 책 내용 자체에 대한 질문(요약, 교정)은 일반 응답 가능.
+**트리거:** 블로그 포스트 작성·추가·수정·블로그 인프라 작업 요청 시 `blog-factory` 스킬을 사용하라. "데일리 포스트", "오늘의 글 자동 발행" 등 무인 자동 발행은 `daily-post` 스킬 사용 (매일 09시 클라우드 스케줄 에이전트가 이 레포에서 실행). 책 내용 자체에 대한 질문(요약, 교정)은 일반 응답 가능.
 
 **기술 스택:** React 19 + Vite 5 + TypeScript + React Router (HashRouter) + Tailwind CSS. 포스트 데이터는 `public/posts.json` 단일 배열로 관리. Jekyll 아님.
 
@@ -40,3 +40,4 @@
 | 2026-04-24 | 기존 샘플 포스트 4편(id 1~4) 삭제 | _workspace/build_posts_json.py, services/dataService.ts INITIAL_POSTS | 사용자 명시 요청: "The Future of Generative AI in Creative Work / Agile Methodologies / Sketching Ideas / The Art of Storytelling 포스트는 삭제하세요". 이전 "기존 엔트리 절대 삭제 금지" 규칙의 특별 예외. posts.json 총 엔트리 수 14 → 10(about + 한국어 9편)으로 감소. git 히스토리에서 복구 가능. |
 | 2026-07-06 | 중복 포스트 사고 수정 + 페이지네이션·정렬 방어 | _posts/(us-ai-china·mcp-summit 04-24 중복 삭제, 교정본을 원본 날짜에 반영), _workspace/build_posts_json.py, pages/Home.tsx, services/dataService.ts | 라이브에서 '삼각편대' 등 일부 글이 모든 페이지에 중복 노출되는 사고. 원인: 배포 시 build_posts_json.py가 `_posts/*.md`에서 posts.json을 재생성하는데 같은 slug(id)가 서로 다른 날짜 파일로 존재(04-13/04-24, 04-06/04-24)해 중복 엔트리 생성 → React key 충돌. 조치: (1)중복 파일 삭제·교정본 병합, (2)빌드 스크립트에 id 중복 제거 안전장치, (3)dataService.getPosts에 id 중복 제거+날짜 내림차순 정렬 방어, (4)date_to_display를 %-d 미사용으로 Windows 호환. Home POSTS_PER_PAGE 9→12. ※ 작업 중 원격(origin/main)이 크게 앞서 있어(다른 세션이 5~6월 포스트 5편 추가 + firstmove·tesla 등 5편 의도적 삭제 + 카드캠페인 페이지) rebase로 병합함. 원격의 삭제·신규·커버를 모두 존중하고, 원격에 아직 남아있던 04-24 중복만 제거. (firstmove는 상류에서 삭제 확정되어 복구하지 않음) |
 | 2026-07-06 | 신규 포스트 4편 추가 (2026-06~07 공백 구간) | _posts/2026-06-12-apple-wwdc-siri-open-ai.md, 2026-06-27-june-2026-model-flood-naming.md, 2026-07-01-white-house-ai-crackdown-china.md, 2026-07-04-tokenmaxxing-to-efficiency.md, _style/topics-written.md, _style/ai-timeline.md | 발행 공백(마지막 05-08) 해소 요청. 웹 리서치로 6~7월 실제 이벤트 검증(WWDC iOS27 Extensions, 6월 모델 홍수, 백악관 수출통제 vs 중국 오픈웨이트, tokenmaxxing→efficiency) 후 스타일 가이드 준수하여 집필. 병기는 실제 발행 관례(괄호형)로 통일, coverImage 없이 hero-home.jpg 폴백. 타임라인·작성이력 갱신. |
+| 2026-07-11 | 매일 09시 자동 발행 파이프라인 구축 | .claude/skills/daily-post (신규), .claude/agents/news-curator.md, .claude/skills/blog-factory, public/images/covers/daily/ (신규 6장) | 피드백: "매일 아침 9시에 최신 IT소식을 내 문체로 1편씩 자동 업로드". 클라우드 스케줄 에이전트가 이 레포에서 daily-post 스킬 실행 → 토픽 1개 자동 선정(AI 우선, IT 확장) → 작성 → 팩트체크(실패 시 발행 보류) → main push(GitHub Actions가 배포). 클라우드에서 이미지 생성 불가하므로 카테고리별 범용 커버 6장을 사전 생성해 커밋. news-curator에 데일리 모드 규칙 추가. |
