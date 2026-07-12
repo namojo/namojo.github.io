@@ -140,6 +140,7 @@
 | 2026-06-30 | Anthropic **Claude Sonnet 5** 공개 (Free/Pro 기본). intro $2/$10 → 이후 $3/$15(백만 토큰), 1M 컨텍스트/128K 출력, "Opus 4.8 근접·저가", 신규 토크나이저(영문 ~1.4x) | |
 | 2026-06-30 | CNBC "백악관 AI 단속이 중국 모델에 틈" — 수출통제로 앤트로픽 최신 프런티어 모델 2주 지연 후 일부 기업·연방기관 허용. 즈푸 GLM 5.2(오픈웨이트) 일부 사이버 벤치마크 대등 '주장' | 2026-04 백악관 "산업 규모 절취" 비난의 연장선 |
 | 2026-07-01 | Palantir CEO Alex Karp, OpenAI·Anthropic 토큰 과금 모델 비판 ("something has gone completely wrong" 취지, CNBC) | |
+| 2026-07-01 | **Sysdig, JADEPUFFER 공개** — 문서화된 최초의 '에이전틱 랜섬웨어'. LLM 에이전트가 정찰~자격증명 탈취~측면이동~DB 암호화~협박 전 과정을 자율 수행. Langflow 인증누락 RCE(CVE-2025-3248, 1.3.0 패치·2025-05 CISA KEV)로 침투, Nacos 1,342개 암호화, 실패복구 31초. 특정 LLM 미확정 | Sysdig 원문·TheHackerNews·BleepingComputer·CyberScoop 교차 확인 |
 | 2026-07 예정 | Google Gemini 3.5 Pro (토큰 과소비 피드백으로 6월→7월 연기) | |
 | 2026-07-07 | Anthropic, Claude Cowork 모바일 확장 발표 | TechCrunch·9to5Mac 교차 확인 |
 | 2026-07-09 | **OpenAI, Codex를 ChatGPT 데스크톱 앱에 통합** — 기존 앱은 'ChatGPT Classic' 리브랜딩, Chat·Work·Codex 3축 통합 앱(전 플랜 무료 배포). 'ChatGPT Work' 업무 에이전트(Pro·Enterprise·Edu 우선 → Plus·Business 순차). GPT-5.6 GA — 3티어 Sol(플래그십)/Terra(일상)/Luna(최속·최저가), 6/26 정부 게이팅 프리뷰 후 정식 출시 | 9to5Mac·MacObserver·Neowin·OpenAI Help Center 교차 확인 |

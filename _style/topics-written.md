@@ -17,3 +17,4 @@
 - 2026-07-01 | white-house-ai-crackdown-china | 백악관 AI 수출통제 강화(CNBC 6/30)가 오히려 자국 앤트로픽 출시 2주 지연 + 중국 오픈웨이트(즈푸 GLM 5.2) 확산의 틈. 1990년대 암호전쟁 역설, 오픈웨이트는 빗장으로 못 막음. | 수출통제, 미중경쟁, 오픈웨이트, 앤트로픽, 중국AI, AI주권
 - 2026-07-04 | tokenmaxxing-to-efficiency | '토큰맥싱' 종말 — 우버 예산 4개월 소진→월 $1,500 상한, MS Claude Code 구독 취소, 메타 리더보드 철거, 팔란티어 카프 과금모델 비판(7/1), Lindy→DeepSeek. 소비량≠성과, 굿하트의 법칙. | 토큰맥싱, AI효율, 엔터프라이즈, 과금모델, ROI, 팔란티어
 - 2026-07-11 | codex-chatgpt-superapp | 오픈AI Codex→ChatGPT 통합 'ChatGPT Work' 슈퍼앱 + GPT-5.6 GA — 슈퍼앱의 유혹, 편의와 잠금의 딜레마 | 슈퍼앱,오픈AI,챗GPT,코덱스,워크플로,잠금효과
+- 2026-07-12 | jadepuffer-agentic-ransomware | 시스디그가 7/1 공개한 JADEPUFFER — 최초로 문서화된 '에이전틱 랜섬웨어'(LLM 에이전트가 정찰~암호화~협박 전 과정 자율 수행). Langflow CVE-2025-3248 침투, Nacos 1,342개 암호화, 실패복구 31초. 에이전틱 능력의 뒷면, 기술문턱 붕괴·LLMjacking, 에이전틱 SOC와 속도 대칭, 보안 위생 재확인. 노벨 다이너마이트 비유. | 에이전틱AI,보안,랜섬웨어,JADEPUFFER,LLMjacking,에이전틱SOC
