@@ -4,7 +4,7 @@ title: "구글 앤티그래비티 : 개발자가 지휘자가 되는 IDE"
 date: 2025-12-06 09:00:00 +0900
 categories: [ai-news]
 tags: [antigravity, 구글, ide, 에이전트, vscode]
-excerpt: "2025년 12월 초 구글이 공개한 앤티그래비티Antigravity는 VS Code를 포크한 새로운 에이전트 개발 플랫폼입니다. Editor View와 Manager View라는 이중 구조는 개발자의 역할을 '코드를 쓰는 사람'에서 '여러 에이전트를 지휘하는 매니저'로 재정의하고 있습니다."
+excerpt: "2025년 12월 초 구글이 공개한 앤티그래비티는 VS Code를 포크한 새로운 에이전트 개발 플랫폼입니다. Editor View와 Manager View라는 이중 구조는 개발자의 역할을 '코드를 쓰는 사람'에서 '여러 에이전트를 지휘하는 매니저'로 재정의하고 있습니다."
 coverImage: "/images/covers/google-antigravity-editor-agents.jpg"
 category: "AI"
 ---
