@@ -113,11 +113,19 @@
 
 ## 6. 어휘·표기 규칙
 
-### 한국어-영어 병기
-- **붙여 쓰는 형식이 기본**: `챗GPTChatGPT`, `트랜스포머Transformer`, `멀티모달Multi Modal`, `토큰Token`
-- 인물: 한국어 이름 뒤에 영문 병기. `샘 올트먼Sam Altman`, `다리오 아모데이Dario Amodei`, `팀 버너스 리Tim Berners-Lee`
-- 회사·제품 첫 등장: 한글 이름 + 영문. `앤트로픽Anthropic`, `딥씨크DeepSeek`, `칸미고Khanmigo`, `제미나이Gemini`
-- 약어: 한글 풀이 병기가 아니라 영문 약어 + 풀네임. `BCIBrain-Computer Interface`, `MoEMixture of Experts`, `RSPResponsible Scaling Policy`
+### 한국어-영어 병기 (2026-07 개정 — 블로그 기준)
+> 책 원고는 붙여쓰기 병기(`챗GPTChatGPT`)를 썼으나, 저자가 블로그에는 아래 규칙을 지시했다. **블로그 포스트는 이 규칙이 절대 우선한다.** (붙여쓰기 병기는 블로그에서 폐기)
+
+1. **병기가 필요하면 `한글(영어)` 괄호 형식으로 쓴다.** 붙여쓰기 병기(`반이중half-duplex`)는 쓰지 않는다.
+   - 예: `반이중(half-duplex)`, `전이중(full-duplex)`, `강화학습(reinforcement learning)`
+2. **널리 알려진 고유명사·회사·제품·서비스명은 영어 단독**으로 쓰고, 억지 한글 표기나 음차 병기를 하지 않는다.
+   - 예: `OpenAI`, `ChatGPT`, `GPT-Live`, `Advanced Voice Mode`, `Realtime API`, `Agora`, `Anthropic`, `turn-taking`
+   - (한글 표기가 이미 대중적으로 굳어진 경우는 한글도 허용하되, `아고라Agora` 같은 억지 음차 병기는 피한다.)
+3. **불필요하면 병기하지 않는다.** 한글만으로 충분한 인명·일반어에 영문을 덧붙이지 않는다.
+   - 예: `알렉산더 그레이엄 벨` (○) / `알렉산더 그레이엄 벨Alexander Graham Bell` (✗)
+4. **의성어·의태어·추임새에는 영어를 병기하지 않는다.** 소리를 흉내 낸 말에 영어 단어를 붙이지 않는다.
+   - 예: `"음", "네"` (○) / `"음mhmm", "네yeah"`, `흠(Hmmm)` (✗)
+5. 약어는 한글 풀이 병기가 아니라 영문 약어를 그대로 쓰되, 첫 등장 시 필요하면 `MoE(Mixture of Experts)` 괄호 형식으로 푼다.
 
 ### 강조
 - **볼드** 사용은 핵심 개념 정의문이나 소제목 캡션에서. 남발 금지.
