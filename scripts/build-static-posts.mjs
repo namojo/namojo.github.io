@@ -186,6 +186,7 @@ function postHtml(post) {
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-45066414********"
      crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-45066414********">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}"/>
   <meta name="author" content="${escapeHtml(SITE_AUTHOR)}"/>
