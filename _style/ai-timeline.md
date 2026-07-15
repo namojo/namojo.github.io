@@ -146,7 +146,8 @@
 | 2026-07-08 | **OpenAI, GPT-Live 공개** — 듣기·말하기 동시(풀듀플렉스) 음성 모델. 2024년 도입한 Advanced Voice Mode(반이중 턴테이킹) 대체. GPT-Live-1(Go·Plus·Pro 기본값)/GPT-Live-1 mini(무료 기본값), 글로벌 순차 롤아웃. 초당 여러 번 발화·경청·침묵 판단, "mhmm"/"yeah" 백채널, 무거운 작업은 백그라운드 프런티어 모델에 위임(출시 시점 GPT-5.5). API는 미개방("곧" 제공 예정). Agora 측정: 끼어들 때 Advanced 대비 ~498ms yield 회귀 | OpenAI 공식·TechCrunch·MarkTechPost·MLQ·Agora 교차 확인 |
 | 2026-07-09 | **OpenAI, Codex를 ChatGPT 데스크톱 앱에 통합** — 기존 앱은 'ChatGPT Classic' 리브랜딩, Chat·Work·Codex 3축 통합 앱(전 플랜 무료 배포). 'ChatGPT Work' 업무 에이전트(Pro·Enterprise·Edu 우선 → Plus·Business 순차). GPT-5.6 GA — 3티어 Sol(플래그십)/Terra(일상)/Luna(최속·최저가), 6/26 정부 게이팅 프리뷰 후 정식 출시 | 9to5Mac·MacObserver·Neowin·OpenAI Help Center 교차 확인 |
 | 2026-07-10 | **애플, 오픈AI 영업비밀 침해 제소** — 캘리포니아 북부지법. 피고 OpenAI·io Products·탕 탄(하드웨어 총괄, 전 애플 VP)·창 리우(전 애플 선임 전기 엔지니어). 영업비밀 침해+계약 위반. 애플 출신 400명+ 오픈AI 재직, "부품 지참 show and tell"·노트북 미반납 클라우드 접근·수십 파일 다운로드 혐의. "at every level"·"rotten to its core". 오픈AI(드루 푸사테리) "다른 회사 영업비밀에 관심 없다" 반박. 배경: 오픈AI의 io(조니 아이브) 65억달러 인수(2025-07 완료)·화면 없는 AI 기기(2027 예상) | CNBC·Axios·NBC·Engadget·Bloomberg 교차 확인 |
-| 2026-07-14 | **오늘** (이 파일의 기준 시점) | |
+| 2026-07-15 | **The Information, 인큐먼트 공유 에이전트 프로토콜 동맹 보도** — 구글·마이크로소프트·Salesforce·Snowflake·ServiceNow가 엔터프라이즈 AI 에이전트용 공유 백엔드 프로토콜을 함께 지원, Anthropic·OpenAI를 "beat back" 하려는 움직임으로 프레이밍. 앤트로픽 MCP(2024-11 공개, 월 9,700만 SDK 다운로드·16개월차)가 사실상 표준으로 선점한 '배관 층'을 겨냥. 역설: 다수가 이미 리눅스 재단 AAIF(2025-12)에서 MCP 함께 관리. 별도 대체표준 vs 기존표준 위 거버넌스 재편인지 미확정 | The Information·Linux Foundation·Salesforce Developers 교차 확인 |
+| 2026-07-15 | **오늘** (이 파일의 기준 시점) | |
 
 ---
 
