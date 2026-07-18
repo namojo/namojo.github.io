@@ -16,6 +16,31 @@
 - 09:00 KST = **00:00 UTC** → cron: `0 0 * * *`
 - 하루 1편. 같은 날 중복 실행은 스킬의 게이트(`_posts/오늘날짜-*.md` 존재 시 즉시 종료)가 막는다.
 
+## 루틴 등록 방법 (다른 계정에서, 단계별)
+
+**A. Claude Code 웹(claude.ai/code)에서 — 권장, 사람 손으로 1회 설정**
+
+1. 옮길 **다른 Claude 계정으로 로그인** → `claude.ai/code` (Claude Code on the web) 접속.
+2. **GitHub 연결**: 그 계정이 `namojo/namojo.github.io`에 접근하도록 허용. (조직 레포면 관리자 설정 `claude.ai/admin-settings`에서 레포 접근 승인이 필요할 수 있다.)
+3. **환경(Environment) 생성**: 소스로 `namojo/namojo.github.io`를 지정. 네트워크 정책은 **아웃바운드 웹 허용**(토픽 검색·팩트체크에 WebSearch/WebFetch 필요) + **git push 허용**으로 고른다. (커버 자동 생성용 Chromium은 기본 이미지에 이미 포함.)
+4. **스케줄(Routine/Trigger) 생성**: 그 환경에 대해 예약 작업을 만든다.
+   - 반복 주기(cron): `0 0 * * *` (= 매일 09:00 KST)
+   - 매 실행마다 **새 세션**으로 이 레포 최신 main에서 시작하도록 설정.
+   - 프롬프트: 아래 "루틴 프롬프트"를 그대로 붙여넣는다.
+5. **첫 실행 확인**: 예약 시각을 기다리거나 수동 1회 실행(“지금 실행”) 후, `https://namojo.github.io`에 새 글 + 고유 커버가 뜨는지 확인.
+
+문서: https://code.claude.com/docs/en/claude-code-on-the-web (환경·소스·트리거·네트워크 정책 설명)
+
+**B. claude-code-remote MCP를 쓰는 경우 — 그 계정의 세션 안에서**
+
+그 계정으로 연 Claude Code 세션 안에서 아래를 요청하면 스케줄이 만들어진다(도구: `create_trigger`, `create_new_session_on_fire=true`):
+
+- cron: `0 0 * * *`
+- 프롬프트: 아래 "루틴 프롬프트"
+- 매 발화 시 새 세션 생성(fresh-session) 모드.
+
+> ⚠️ 트리거는 **그 계정에서 직접** 만들어야 한다. 한 계정의 세션에서 다른 계정에 트리거를 만들 수는 없다(권한 분리). 이 레포에서 내(현재 계정) 세션으로는 다른 계정 스케줄을 등록할 수 없으므로, 위 A 또는 B를 그 계정에서 수행한다.
+
 ## 루틴 프롬프트 (그대로 붙여넣기)
 
 다른 계정의 스케줄 작업(Routine/Trigger)에 아래 프롬프트를 넣고 위 크론으로 건다:
