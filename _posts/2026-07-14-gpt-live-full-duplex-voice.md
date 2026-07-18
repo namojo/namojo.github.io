@@ -5,7 +5,7 @@ date: 2026-07-14 09:00:00 +0900
 categories: [ai-news]
 tags: [OpenAI, GPT-Live, 음성AI, 전이중, 레이턴시, 대화]
 excerpt: "OpenAI가 듣기와 말하기를 동시에 하는 음성 모델 GPT-Live를 내놓았습니다. AI 대화가 무전기식 순서 주고받기에서 전화기식 겹쳐 말하기로 넘어간 사건인데, 자연스러워진 것이 곧 빨라지고 우월해진 것은 아니라는 데 진짜 이야기가 있습니다."
-coverImage: "/images/covers/daily/model-release.jpg"
+coverImage: ""
 category: "AI"
 ---
 

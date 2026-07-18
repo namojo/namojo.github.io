@@ -5,7 +5,7 @@ date: 2026-07-16 09:00:00 +0900
 categories: [ai]
 tags: [중국AI규제, 인격화AI, AI반려, 두바오, ELIZA효과, AI윤리]
 excerpt: "2026년 7월 15일, 중국은 세계에서 처음으로 '사람인 척하는 AI'를 정면으로 겨냥한 규정을 발효했습니다. Doubao와 Qwen은 당일로 이용자가 만든 반려 에이전트를 내렸지요. 성능도 표준도 아닌, AI의 감정적 얼굴을 국가가 관리 대상으로 삼기 시작한 사건입니다."
-coverImage: "/images/covers/daily/policy.jpg"
+coverImage: ""
 category: "AI"
 ---
 

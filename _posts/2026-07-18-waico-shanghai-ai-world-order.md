@@ -5,7 +5,7 @@ date: 2026-07-18 09:00:00 +0900
 categories: [ai-news]
 tags: [WAICO, AI거버넌스, 미중경쟁, 소버린AI, 글로벌사우스, 표준]
 excerpt: "7월 16일 상하이에서 29개국이 세계AI협력기구(WAICO) 창설에 서명하고, 다음 날 시진핑이 WAIC 사상 첫 기조연설에 나섰습니다. '독주가 아니라 교향곡'이라는 그의 말 뒤에는 갈라지는 AI 세계질서와, 그 사이에 낀 한국의 자리 문제가 놓여 있습니다."
-coverImage: "/images/covers/daily/policy.jpg"
+coverImage: ""
 category: "AI"
 ---
 

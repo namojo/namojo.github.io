@@ -173,6 +173,8 @@ function postHtml(post) {
   const description = (post.excerpt || '').replace(/\n/g, ' ').trim();
   const isoDate = toIsoDate(post.date);
   const image = post.coverImage || '';
+  // og:image·twitter:image는 절대 URL이라야 소셜 크롤러가 미리보기를 가져온다.
+  const imageAbs = image ? (/^https?:/.test(image) ? image : `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`) : '';
   const contentHtml = markdownToHtml(post.content || '');
   const tags = (post.tags || []).map(t => `<span class="tag">#${escapeHtml(t)}</span>`).join(' ');
   const articleTags = (post.tags || [])
@@ -196,8 +198,8 @@ function postHtml(post) {
   <meta property="og:description" content="${escapeHtml(description)}"/>
   <meta property="og:url" content="${url}"/>
   <meta property="og:locale" content="ko_KR"/>
-  ${image ? `<meta property="og:image" content="${image}"/>` : ''}
-  ${image ? `<meta property="og:image:alt" content="${escapeHtml(post.title)}"/>` : ''}
+  ${imageAbs ? `<meta property="og:image" content="${imageAbs}"/>` : ''}
+  ${imageAbs ? `<meta property="og:image:alt" content="${escapeHtml(post.title)}"/>` : ''}
   <meta property="article:author" content="${escapeHtml(SITE_AUTHOR)}"/>
   ${isoDate ? `<meta property="article:published_time" content="${isoDate}T09:00:00+09:00"/>` : ''}
   <meta property="article:section" content="${escapeHtml(post.category || 'AI')}"/>
@@ -207,7 +209,7 @@ function postHtml(post) {
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="${escapeHtml(post.title)}"/>
   <meta name="twitter:description" content="${escapeHtml(description)}"/>
-  ${image ? `<meta name="twitter:image" content="${image}"/>` : ''}
+  ${imageAbs ? `<meta name="twitter:image" content="${imageAbs}"/>` : ''}
 
   <!-- Pretendard (한글 최적, SF Pro 대응) — 본문·UI 통일 -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>

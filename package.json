@@ -11,6 +11,7 @@
     "build:static": "node scripts/build-static-posts.mjs",
     "build:posts": "python3 _workspace/build_posts_json.py",
     "new": "node scripts/new-post.mjs",
+    "cover": "node scripts/generate-cover.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -54,28 +54,30 @@ date: YYYY-MM-DD 09:00:00 +0900
 categories: [ai-news]
 tags: [태그3~6개, 한국어]
 excerpt: "2~3문장 요약. 본문 첫 문단과 겹치지 않게."
-coverImage: "/images/covers/daily/{category}.jpg"
+coverImage: ""
 category: "AI"
 ---
 ```
 
 - 제목에 `"`가 포함되면 **작은따옴표로 감싼다** (build_posts_json.py 파서 제약).
+- **`coverImage`는 빈 문자열(`""`)로 둔다.** 커버는 아래 "커버 생성" 단계에서 `public/images/covers/{slug}.jpg`로 만들고, `build_posts_json.py`가 파일명 매칭으로 자동 연결한다. 생성이 실패해도 빌드가 `hero-home.jpg`로 폴백하므로 발행은 막지 않는다.
 - 본문은 기존 포스트 분량(공백 포함 2,500~4,000자) 수준. 소제목은 `### ▸ ` 프리픽스 관례를 따른다.
 - **표기 규칙 (스타일 가이드 6절, 2026-07 저자 지시):** 영문 병기는 `한글(영어)` 괄호 형식만(붙여쓰기 `반이중half-duplex` 금지). 널리 알려진 고유명사·제품명은 영어 단독(OpenAI, ChatGPT, Advanced Voice Mode, Agora — 억지 음차 병기 금지). 불필요하면 병기하지 않는다. **의성어·추임새에 영어 병기 금지**(`"음"`, `"네"` — `"음mhmm"`, `흠(Hmmm)` 금지). 문장은 간결하게, 이미 설명한 맥락을 반복하지 않는다.
-- **인라인 이미지는 넣지 않는다.** 데일리 모드는 이미지 생성 수단이 없다. 커버만으로 충분하다.
+- **인라인 이미지는 넣지 않는다.** 데일리 모드는 AI 이미지 생성 수단이 없다. 커버(자동 생성)만으로 충분하다.
 
-**커버 선택 — 범용 커버 풀 (`public/images/covers/daily/`):**
+**커버 생성 (Phase 2 필수 단계) — `scripts/generate-cover.mjs`:**
 
-| 토픽 성격 | 파일 |
-|----------|------|
-| 새 모델·AI 제품 출시 | `model-release.jpg` |
-| 정책·규제·정부·법 | `policy.jpg` |
-| 기업 전략·투자·시장·인수 | `industry.jpg` |
-| 개발자 도구·오픈소스·프로토콜 | `dev-tools.jpg` |
-| 반도체·하드웨어·인프라 | `semiconductor.jpg` |
-| 그 외 전부 | `general.jpg` |
+초고 파일을 저장한 뒤 반드시 다음을 실행한다:
 
-풀에 없는 파일명을 만들어 쓰지 않는다 — 존재하지 않는 이미지 경로는 깨진 커버로 배포된다.
+```bash
+node scripts/generate-cover.mjs _posts/YYYY-MM-DD-{slug}.md
+```
+
+- 슬러그의 영문 키워드 + 카테고리 + 날짜 + 브랜드 팔레트(Ink/Warm/Coral)로 **글마다 고유한 커버**를 결정적으로 렌더한다. 미리 깔린 Chromium(Playwright)으로 1200×630 JPG를 `public/images/covers/{slug}.jpg`에 저장한다. 외부 네트워크·AI·폰트 의존이 없다(클라우드 환경엔 한글 폰트가 없어 **그림 안에 한글 제목을 넣지 않는 설계** — 제목은 카드/페이지의 텍스트로 노출됨).
+- **비차단:** 스크립트가 실패하거나(exit 2) Chromium이 없으면 커버 없이도 발행을 계속한다. 이 경우 빌드가 `hero-home.jpg`로 폴백한다. 실행 보고에 "커버 생성 실패, hero 폴백"을 남긴다.
+- 생성된 `{slug}.jpg`는 Phase 4에서 반드시 `git add` 한다(이 이미지가 안 올라가면 라이브에서 hero로 폴백된다).
+
+> 예전 범용 커버 풀(`public/images/covers/daily/*.jpg`)은 폐기하지 않고 **비상 폴백 자산**으로만 남긴다. 더 이상 기본 경로로 지정하지 않는다.
 
 **시점 규율:** 오늘 날짜(KST) 시점에서 쓴다. `_style/ai-timeline.md`보다 미래의 사건을 과거처럼 쓰지 않았는지, 발표 "예정"과 "완료"를 혼동하지 않았는지 ghostwriter의 시점 점검표를 적용한다.
 
@@ -93,7 +95,7 @@ category: "AI"
 
 1. `_style/topics-written.md`에 오늘 토픽 한 줄 append (날짜, 제목, 슬러그).
 2. 업계 지형을 바꾸는 굵직한 사건이면 `_style/ai-timeline.md`의 해당 월에도 한 줄 append (fact-checker의 다음 실행이 이 파일을 기준으로 삼는다).
-3. 커밋: 신규 파일(`_posts/`, `_workspace/daily/`)과 `_style/` 변경만 스테이징한다. `git add -A`로 무관한 변경을 쓸어 담지 않는다.
+3. 커밋: 신규 파일(`_posts/`, `_workspace/daily/`, **생성된 커버 `public/images/covers/{slug}.jpg`**)과 `_style/` 변경만 스테이징한다. `git add -A`로 무관한 변경을 쓸어 담지 않는다. **`public/posts.json`은 스테이징하지 않는다(CI 재생성).**
    - 커밋 메시지: `post: {제목} (데일리 자동 발행)`
 4. `git push`. non-fast-forward로 실패하면 `git pull --rebase` 후 재push. 충돌이 나면 **원격 내용을 보존**하는 방향으로 해결한다 (원격에만 있는 글은 사용자가 라이브 Editor로 발행한 글이다).
 5. 실행 보고: 제목, 슬러그, 선정 사유, 팩트체크 결과 요약, 커밋 해시.
@@ -114,7 +116,7 @@ category: "AI"
 | 스타일 가이드 파일 없음 | 즉시 중단. 가이드 없이 쓴 글은 저자 글이 아니다. |
 | 팩트체크 재실패 | 발행 중단 (Phase 3 참조) |
 | push 실패 반복 | pull --rebase 1회 후에도 실패하면 커밋은 로컬 브랜치 `daily/YYYY-MM-DD`에 남기고 보고 |
-| 커버 풀 디렉토리 없음 | `general.jpg` 경로로도 확인, 그래도 없으면 coverImage 프런트매터 생략 (빌드 폴백 존재) |
+| 커버 생성 실패 (Chromium 없음·렌더 오류, exit 2) | 발행을 막지 않는다. `coverImage: ""` 그대로 두면 빌드가 `hero-home.jpg`로 폴백. 실행 보고에 "커버 생성 실패, hero 폴백" 명시 |
 
 ## 테스트 시나리오
 

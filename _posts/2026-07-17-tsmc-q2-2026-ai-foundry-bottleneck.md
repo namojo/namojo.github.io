@@ -5,7 +5,7 @@ date: 2026-07-17 09:00:00 +0900
 categories: [ai]
 tags: [TSMC, 파운드리, 반도체, AI인프라, 모리스창, 대만]
 excerpt: "어제 발표된 TSMC의 2분기 실적은 매출 402억 달러, 순이익 5개 분기 연속 사상 최대였습니다. 우리가 매일 쫓는 모델 이름과 소송과 규제의 밑바닥에는, AI라는 엔진이 반드시 통과해야 하는 단 하나의 물리적 관문이 있습니다. 대만의 한 공장 이야기입니다."
-coverImage: "/images/covers/daily/semiconductor.jpg"
+coverImage: ""
 category: "AI"
 ---
 

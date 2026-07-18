@@ -5,7 +5,7 @@ date: 2026-07-15 09:00:00 +0900
 categories: [ai]
 tags: [MCP, 에이전트, 표준전쟁, 프로토콜, 소버린AI, 엔터프라이즈]
 excerpt: "The Information이 이번 주 보도한 기존 강자 진영의 공유 프로토콜 동맹은 앤트로픽의 사실상 표준 MCP를 겨눈 반격으로 읽힙니다. 하지만 승패보다 중요한 건 이 거인들이 힘을 모은 전장이 '모델'이 아니라 '연결 표준'이라는 사실입니다. AI 권력의 무게중심이 배관으로 옮겨가고 있습니다."
-coverImage: "/images/covers/daily/industry.jpg"
+coverImage: ""
 category: "AI"
 ---
 

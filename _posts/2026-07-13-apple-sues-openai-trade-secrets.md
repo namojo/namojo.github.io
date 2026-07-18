@@ -5,7 +5,7 @@ date: 2026-07-13 09:00:00 +0900
 categories: [ai-news]
 tags: [애플, 오픈AI, 영업비밀, 경업금지, 하드웨어, 인재전쟁]
 excerpt: "비밀주의의 대명사 애플이, 개방의 상징 오픈AI를 '비밀을 훔쳤다'며 법정에 세웠습니다. 화면 없는 AI 기기를 둘러싼 이 소송의 진짜 쟁점은, 엔지니어의 머릿속 지식과 훔친 영업비밀 사이의 경계입니다."
-coverImage: "/images/covers/daily/industry.jpg"
+coverImage: ""
 category: "AI"
 ---
 
