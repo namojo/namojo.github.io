@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 """Build public/posts.json by merging existing entries + new Korean posts from _posts/"""
-import hashlib
 import json
 import re
 from pathlib import Path
 from datetime import datetime
-
-
-def hashed_likes(slug: str, lo: int = 83, hi: int = 547) -> int:
-    """slug 기반 결정적 해시로 [lo, hi] 범위의 '그럴듯한' likes 수 반환.
-    리빌드해도 값이 바뀌지 않아 사용자가 체감하는 숫자가 안정적이다."""
-    h = int(hashlib.md5(slug.encode("utf-8")).hexdigest(), 16)
-    return lo + (h % (hi - lo + 1))
 
 # 이 스크립트는 _workspace/ 안에 있으므로 부모의 부모가 리포 루트.
 # 로컬(macOS)과 CI(GitHub Actions Linux) 모두에서 올바르게 동작하도록 상대 경로 사용.
@@ -34,7 +26,9 @@ COVERS = {
     "ai-tutor-and-blooms-2sigma-in-korea": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
 }
 
-# Likes — 사용자 요청(2026-04-24)에 따라 모든 포스트 랜덤화. slug 해시 기반 결정적 랜덤.
+# Likes — base는 0에서 시작한다(가짜 숫자 생성 기능 제거, 2026-07-18 저자 지시).
+# 실제 좋아요는 프런트엔드가 관리한다(현재는 브라우저별 localStorage). 특정 글의
+# base를 수동으로 지정하고 싶으면 {slug: 정수}로 넣을 수 있으나, 기본값은 0이다.
 LIKES = {}
 
 
@@ -107,7 +101,7 @@ def post_to_entry(md_path):
         "content": body,
         "coverImage": cover,
         "date": date_to_display(fm.get("date", date_part)),
-        "likes": LIKES.get(slug_part, hashed_likes(slug_part)),
+        "likes": LIKES.get(slug_part, 0),
         "author": AUTHOR,
         "tags": fm.get("tags", []),
         "category": category,
@@ -170,7 +164,7 @@ about_entry = {
     """,
     "coverImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     "date": "Updated Apr 2026",
-    "likes": 999,
+    "likes": 0,
     "author": AUTHOR,
     "tags": ["Profile", "About", "인문학적IT기술론"],
     "category": "Story",
