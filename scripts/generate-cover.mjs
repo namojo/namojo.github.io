@@ -134,7 +134,6 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
       <div class="eyebrow">${eyebrow}</div>
       <div class="keyword">${keyword.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>
       <div class="rule"></div>
-      <div class="brand">엔지니어를 위한 이야기 공장</div>
     </div>
   </div>
 </body></html>`;
