@@ -1,21 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Post } from '../types';
+import { likesEnabled, fetchAllCounts, hasLikedLocally } from '../services/likeService';
 
 interface PostCardProps {
   post: Post;
 }
-
-// localStorage의 liked_posts를 보고, 이 포스트가 좋아요 눌린 상태면 +1을 반영한다.
-// PostView와 같은 규칙 — 목록·상세 간 숫자가 어긋나지 않도록 한다.
-const likedFromLocal = (id: string): boolean => {
-  try {
-    const map = JSON.parse(localStorage.getItem('liked_posts') || '{}');
-    return !!map[id];
-  } catch {
-    return false;
-  }
-};
 
 /**
  * Airbnb 숙소 카드 감성 + Apple 제품 카드의 정돈된 메타 처리.
@@ -24,7 +14,21 @@ const likedFromLocal = (id: string): boolean => {
  * - 메타는 상단 eyebrow(카테고리) + 하단 저자·날짜로 양극 배치
  */
 export const PostCard: React.FC<PostCardProps> = ({ post }) => {
-  const displayedLikes = post.likes + (likedFromLocal(post.id) ? 1 : 0);
+  // 서버 누적 카운트(전체 1회 캐시)를 우선 표시. 미설정/로딩 전엔 로컬 폴백.
+  const [serverCount, setServerCount] = useState<number | null>(null);
+  useEffect(() => {
+    if (!likesEnabled) return;
+    let alive = true;
+    fetchAllCounts().then((m) => {
+      if (alive) setServerCount(m[post.id] ?? 0);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [post.id]);
+
+  const displayedLikes =
+    serverCount !== null ? serverCount : post.likes + (hasLikedLocally(post.id) ? 1 : 0);
   return (
     <Link
       to={`/post/${post.id}`}

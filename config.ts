@@ -33,6 +33,15 @@ export const COMMENTS = {
   },
 };
 
+export const SUPABASE = {
+  // 좋아요 누적 카운터용. **anon(publishable) 키만** 넣는다 — 클라이언트 공개가 정상이며
+  // RLS로 보호된다(anon은 카운트 조회 + increment/decrement RPC만 가능).
+  // ⚠ 시크릿(sb_secret_… / service_role) 키는 절대 여기 넣지 말 것.
+  // 비워두면 좋아요는 자동으로 '브라우저별 로컬' 폴백 모드로 동작한다.
+  url: "https://hagbjrkazryxxxpaupdo.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhZ2JqcmthenJ5eHh4cGF1cGRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDY2NDMsImV4cCI6MjA5Nzc4MjY0M30.LaKlTNdy2L-1iZ71GzbcODx9sj9Ru6avBKB9eu_nO0E",
+};
+
 export const SHARE = {
   // [선택] 카카오톡 공유 버튼을 쓰려면 https://developers.kakao.com 에서 앱 생성 후 JavaScript 키 입력.
   // 비워두면 카카오톡 버튼은 자동으로 숨겨집니다.

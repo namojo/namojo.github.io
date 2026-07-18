@@ -7,6 +7,14 @@ import { ShareButtons } from '../components/ShareButtons';
 import { Comments } from '../components/Comments';
 import { SubscribeForm } from '../components/SubscribeForm';
 import { authService } from '../services/authService';
+import {
+  likesEnabled,
+  fetchCount,
+  incrementLike,
+  decrementLike,
+  hasLikedLocally,
+  setLikedLocally,
+} from '../services/likeService';
 import { SITE } from '../config';
 
 /**
@@ -32,11 +40,11 @@ export const PostView: React.FC = () => {
       const found = posts.find((p) => p.id === id);
       if (found) {
         setPost(found);
-        const liked = JSON.parse(localStorage.getItem('liked_posts') || '{}');
-        const hasLiked = !!liked[found.id];
+        const hasLiked = hasLikedLocally(found.id);
         setIsLiked(hasLiked);
-        // 저장된 좋아요면 +1을 반영해 표시 (로컬 누적만, 소셜 프루프 용도)
-        setLikes(found.likes + (hasLiked ? 1 : 0));
+        // 서버 누적 카운트를 우선 사용. 미설정/실패 시 로컬 폴백(base 0 + 내 좋아요).
+        const server = await fetchCount(found.id);
+        setLikes(server !== null ? server : found.likes + (hasLiked ? 1 : 0));
       }
       setLoading(false);
       // 포스트 진입 시 상단 스크롤
@@ -44,15 +52,19 @@ export const PostView: React.FC = () => {
     })();
   }, [id]);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (!post) return;
     const next = !isLiked;
+    // 낙관적 업데이트: 즉시 UI 반영
     setIsLiked(next);
-    setLikes((v) => (next ? v + 1 : v - 1));
-    const liked = JSON.parse(localStorage.getItem('liked_posts') || '{}');
-    if (next) liked[post.id] = true;
-    else delete liked[post.id];
-    localStorage.setItem('liked_posts', JSON.stringify(liked));
+    setLikes((v) => Math.max(0, next ? v + 1 : v - 1));
+    setLikedLocally(post.id, next);
+
+    // 서버 누적 반영. 반환된 실제 값으로 재조정(실패 시 낙관적 값 유지 — 로컬 폴백).
+    if (likesEnabled) {
+      const server = next ? await incrementLike(post.id) : await decrementLike(post.id);
+      if (server !== null) setLikes(server);
+    }
   };
 
   if (loading) return <div className="min-h-[60vh] flex items-center justify-center text-ink-500">Loading…</div>;
