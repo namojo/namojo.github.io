@@ -99,6 +99,7 @@
 | 2025-12-11 | OpenAI GPT-5.2 (Microsoft 365 Copilot), Google 최심층 AI research agent 공개 (같은 날) | |
 | 2025-12 | Linux Foundation **Agentic AI Foundation (AAIF)** 출범. 창립사 6곳: OpenAI, Anthropic, Google, Microsoft, AWS, Block | |
 | 2025-12 | Anthropic, MCP를 Linux Foundation AAIF에 기부 | |
+| 2025-11-22~26 | **엔비디아, "unlike Lucent" 애널리스트 메모 유출** — 추수감사절 주말 IR이 월가 애널리스트에게 돌린 7페이지 메모. 엔비디아를 엔론·루슨트(1999~2001 벤더 파이낸싱 붕괴)에 빗댄 비판적 Substack 뉴스레터에 대한 반박. 짐 채노스는 당시 Yahoo Finance 인터뷰에서 루슨트 비교에 동의 | 24/7 Wall St.·Money Morning·DCD 교차 확인 |
 
 ## 2026년 (현재)
 
@@ -158,6 +159,8 @@
 | 2026-07-24 | **'Open Weights and American AI Leadership' 공개서한** — NVIDIA 호스팅, 초기 서명 25곳(NVIDIA·Microsoft·Meta·Dell·IBM·Palantir·Mistral·Mozilla·리눅스 재단·Hugging Face·a16z·Y Combinator 등). 초기 불참 OpenAI·Anthropic·Google. 하루 만에 50곳으로 확대(Google·OpenAI·AMD·Cisco·Cloudflare·GitHub·Block·Ollama 추가), **Amazon·Anthropic은 07-25~26 집계 시점까지 불참**. 요지: 다운로드 가능한 가중치를 국가 전략 인프라로 취급, 성급한 규제 자제. 젠슨 황 생애 첫 X 게시물로 공유, 1980년대 오픈소스 논쟁에 비유 | Fortune·Tom's Hardware·Forbes·TechCrunch 교차 |
 | 2026-07-27 | **Kimi K3 가중치 공개** — 00:00 UTC(KST 09:00) Hugging Face `moonshotai/Kimi-K3`. 4비트(MXFP4) 기준 약 1.4TB, 단일 가속기 구동 불가·합산 GPU 메모리 1.4TB 이상, 권장 구성 가속기 64개 이상 슈퍼노드. 사상 최대 규모 오픈웨이트 | |
 | 2026-08 예정 | 백악관 프런티어 AI 정책 틀 8월 1일 이전 발표 **전망**(미발표) / 과기정통부 독자 파운데이션 모델('국가대표 AI', 2027년까지 약 5,300억 원) 8월 중 오픈소스 공개 계획 | 둘 다 예정·미확정 |
+| 2026-07-25 | **SK그룹–엔비디아 5,000억 달러+ 파트너십 의향서(LOI)** — SK텔레콤 2GW AI 데이터센터(2027년 1단계), SK하이닉스 HBM4 공동개발·장기 공급 | SK hynix Newsroom·NVIDIA Newsroom |
+| 2026-07-26~27 | **엔비디아, 오픈AI 오하이오 파이크턴 데이터센터에 약 2,500억 달러 금융 보증(backstop) 검토** (WSJ 특종 7/26, Bloomberg 같은 날, CNBC·Axios 7/27 확인). 별도 칩 구매자금 최대 3,500억 달러 논의(합산 최대 6,000억). 오픈AI 투자적격 등급 부재가 배경. 협의 단계, 체결 아님. 엔비디아 주가 장중 5%+↓, 5년물 CDS 0.14%p↑(약 0.82%p). 마이클 버리·짐 채노스 순환 금융 비판, 2025-11 "unlike Lucent" 메모가 재조명됨 | CNBC·Bloomberg·Axios·Tom's Hardware 교차 확인 |
 | 2026-07-27 | **오늘** (이 파일의 기준 시점) | |
 
 ---
