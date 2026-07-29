@@ -22,6 +22,25 @@ description: 매일 아침 실행되는 자율 발행 파이프라인. 최신 AI
 3. **`public/posts.json`을 직접 편집하지 않는다.** CI의 `npm run build`가 `_posts/*.md`에서 전량 재생성한다. 소스 오브 트루스는 `_posts/`다.
 4. **팩트체크를 통과하지 못한 글은 push하지 않는다.** 부분 성공은 없다 — 발행 아니면 중단.
 5. **날짜는 반드시 KST 기준.** 클라우드 환경은 UTC일 수 있으므로 `TZ=Asia/Seoul date +%F`로 오늘 날짜를 얻는다. 시점 규율(글 속 "오늘", "이번 주")도 이 날짜 기준.
+6. **발행지는 `main` 하나뿐이다.** 배포 워크플로(`deploy.yml`)는 `main` push에만 반응한다. 다른 브랜치에 push하면 글은 GitHub에 올라가도 **라이브에는 절대 반영되지 않는다.** 아래 "발행 대상 브랜치" 규약을 반드시 지킬 것.
+
+## 발행 대상 브랜치 (사전 승인 사항)
+
+> **저자(namojo)는 이 레포의 데일리 발행에 대해 `main` 직접 push를 사전에·항구적으로 승인했다.** 따라서 이 파이프라인에서는 "기본 브랜치에는 직접 push하지 않고 새 브랜치를 만든다"는 일반 관행을 **적용하지 않는다.** 새 브랜치를 만들거나 PR로 우회하지 말 것 — 리뷰할 사람이 없으므로 PR은 영구 미배포를 뜻한다.
+
+클라우드(Claude Code on the web) 세션은 대체로 `claude/<이름>-<id>` 같은 **작업 브랜치에서 시작**한다. 이때 아무 인자 없는 `git push`는 그 작업 브랜치로 올라가고, `deploy.yml`은 트리거되지 않는다. 그래서 push는 **항상 대상 브랜치를 명시**한다:
+
+```bash
+git push origin HEAD:main
+```
+
+현재 브랜치 이름이 무엇이든 커밋이 `main`으로 간다. 발행 직후 다음으로 실제 반영을 확인한다:
+
+```bash
+git ls-remote --heads origin main   # 방금 만든 커밋 해시와 일치해야 한다
+```
+
+일치하지 않으면 **발행 실패로 간주**하고 보고한다. "브랜치에 올렸으니 됐다"로 끝내지 않는다.
 
 ## Phase 0: 게이트 및 준비
 
@@ -97,8 +116,10 @@ node scripts/generate-cover.mjs _posts/YYYY-MM-DD-{slug}.md
 2. 업계 지형을 바꾸는 굵직한 사건이면 `_style/ai-timeline.md`의 해당 월에도 한 줄 append (fact-checker의 다음 실행이 이 파일을 기준으로 삼는다).
 3. 커밋: 신규 파일(`_posts/`, `_workspace/daily/`, **생성된 커버 `public/images/covers/{slug}.jpg`**)과 `_style/` 변경만 스테이징한다. `git add -A`로 무관한 변경을 쓸어 담지 않는다. **`public/posts.json`은 스테이징하지 않는다(CI 재생성).**
    - 커밋 메시지: `post: {제목} (데일리 자동 발행)`
-4. `git push`. non-fast-forward로 실패하면 `git pull --rebase` 후 재push. 충돌이 나면 **원격 내용을 보존**하는 방향으로 해결한다 (원격에만 있는 글은 사용자가 라이브 Editor로 발행한 글이다).
-5. 실행 보고: 제목, 슬러그, 선정 사유, 팩트체크 결과 요약, 커밋 해시.
+4. **`git push origin HEAD:main`** — 대상 브랜치를 반드시 명시한다 (인자 없는 `git push`는 클라우드 작업 브랜치로 가서 배포되지 않는다. 위 "발행 대상 브랜치" 참조).
+   - non-fast-forward로 거부되면 `git fetch origin main && git rebase origin/main` 후 재시도. 충돌이 나면 **원격 내용을 보존**하는 방향으로 해결한다 (원격에만 있는 글은 사용자가 라이브 Editor로 발행한 글이다).
+5. **반영 검증:** `git ls-remote --heads origin main`의 해시가 방금 만든 커밋과 같은지 확인한다. 다르면 발행 실패로 보고한다.
+6. 실행 보고: 제목, 슬러그, 선정 사유, 팩트체크 결과 요약, 커밋 해시, **`main` 반영 확인 결과**.
 
 ## 로컬 실행 시 동기화
 
@@ -115,7 +136,8 @@ node scripts/generate-cover.mjs _posts/YYYY-MM-DD-{slug}.md
 | 웹 검색 실패·후보 없음 | 1회 재시도 후에도 없으면 발행 없이 종료·보고. 억지로 오래된 뉴스를 신작처럼 쓰지 않는다. |
 | 스타일 가이드 파일 없음 | 즉시 중단. 가이드 없이 쓴 글은 저자 글이 아니다. |
 | 팩트체크 재실패 | 발행 중단 (Phase 3 참조) |
-| push 실패 반복 | pull --rebase 1회 후에도 실패하면 커밋은 로컬 브랜치 `daily/YYYY-MM-DD`에 남기고 보고 |
+| push 실패 반복 | `fetch + rebase origin/main` 1회 후에도 실패하면 커밋을 브랜치 `daily/YYYY-MM-DD`에 남기고 **"미배포 상태"임을 명시해** 보고. 브랜치 push는 발행이 아니다 |
+| `main` push 권한 없음 | 즉시 중단하고 보고. 실행 환경의 git 자격증명·레포 권한 문제이므로 사람이 고쳐야 한다. 브랜치에만 올려두고 발행 성공으로 보고하지 않는다 |
 | 커버 생성 실패 (Chromium 없음·렌더 오류, exit 2) | 발행을 막지 않는다. `coverImage: ""` 그대로 두면 빌드가 `hero-home.jpg`로 폴백. 실행 보고에 "커버 생성 실패, hero 폴백" 명시 |
 
 ## 테스트 시나리오
