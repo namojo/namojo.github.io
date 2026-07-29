@@ -38,9 +38,8 @@ namojo.github.io에 배포할 **React + Vite + TypeScript + Tailwind** 기반 SP
 - **SNS 로그인 댓글** — `components/Comments.tsx`. 기본 Disqus(트위터·페이스북·구글·Disqus 계정 지원), 옵션 Giscus(GitHub). `config.ts`의 `COMMENTS.provider`로 전환. 설정 미입력 시 안내 박스 표시.
 - **공유용 정적 랜딩 페이지** — `scripts/build-static-posts.mjs`가 빌드 시 `dist/p/{id}/index.html`을 생성한다. 각 페이지는 포스트별 **OG/Twitter Card 메타 + JSON-LD 구조화 데이터 + 브랜드 타이포그래피**를 인라인으로 포함. SNS 크롤러가 제대로 된 미리보기 카드를 받을 수 있고, 외부 링크 클릭 시에도 Noto Serif/Sans KR로 깨끗하게 렌더링된다. ShareButtons는 `/p/{id}/`로 공유.
 - **사이트 메타데이터** — 루트 `dist/index.html`의 OG·Twitter Card 태그, `sitemap.xml`, `robots.txt`도 같은 빌드 스크립트가 생성/주입.
-- **RSS 피드** — 같은 빌드 스크립트가 `dist/feed.xml` (RSS 2.0)을 생성. 최신 20편, 전체 본문(content:encoded) 포함. 이 피드는 **Buttondown RSS-to-email** 자동화가 폴링하여 신규 글을 구독자에게 자동 발송.
-- **이메일 구독** — `components/SubscribeForm.tsx`가 Substack(기본) 또는 Buttondown(대안)으로 이메일을 전달. Substack은 이메일 prefill URL(`https://{handle}.substack.com/subscribe?email=...`)로 새 탭 이동 방식. Buttondown은 RSS-to-email 자동 발송이 가능한 대안이므로 자동화가 필요하면 provider만 교체. `config.ts`의 `SUBSCRIBE.provider`, `substackHandle`/`buttondownUsername` 설정. Home·PostView·About 3곳에 배치.
-  - Substack 한계: Substack 자사 플랫폼에서 발행한 글만 자동 이메일 발송. 블로그 글은 저자가 Substack에도 별도 발행(전문 복사 or 요약+링크) 필요. 완전 자동화가 필수면 Buttondown 사용 권고.
+- **RSS 피드** — 같은 빌드 스크립트가 `dist/feed.xml` (RSS 2.0)을 생성. 최신 20편, 전체 본문(content:encoded) 포함. 새 글 알림 수단은 이 피드가 유일하다.
+- **이메일 구독 — 없음(2026-07-29 제거)** — Buttondown/Substack 연동이 정상 동작하지 않아 `components/SubscribeForm.tsx`와 `config.ts`의 `SUBSCRIBE` 설정을 완전히 삭제했다. Home·PostView·About의 구독 카드도 제거. **구독 폼을 다시 추가하지 말 것** — 저자가 명시적으로 요청할 때만 재도입한다.
 - **글 작성 CLI** — `scripts/new-post.mjs` (`npm run new`). 제목·슬러그·날짜·태그·카테고리·커버를 대화형으로 입력받아 `_posts/YYYY-MM-DD-slug.md` 스캐폴딩. 저자는 그 파일의 본문만 채우면 됨. `npm run build`가 posts.json과 정적 페이지, RSS를 모두 재생성.
 - **배포 워크플로** — `.github/workflows/deploy.yml` 유지.
 

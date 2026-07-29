@@ -48,30 +48,5 @@ export const SHARE = {
   kakaoJsKey: "99aaf4c9e117c47d9927c06c943673eb",
 };
 
-export const SUBSCRIBE = {
-  // 구독 서비스 선택: "substack" | "buttondown" | "none"
-  provider: "buttondown" as "substack" | "buttondown" | "none",
-
-  // [Substack] https://substack.com 에서 뉴스레터 생성 후 handle을 입력하세요.
-  // 예시) https://namojo.substack.com → handle은 "namojo"
-  //
-  // 작동 방식:
-  //   · 독자가 이메일 입력 후 "구독하기" 클릭 → Substack 구독 페이지에 이메일이
-  //     미리 채워진 상태로 새 탭 열림 → 한 번의 "Subscribe" 클릭으로 완료
-  //   · 이후 구독자 관리는 Substack이 전담
-  //
-  // ⚠ 중요: Substack은 자사 플랫폼에서 작성·발행한 글만 구독자에게 이메일로
-  //   보냅니다. 이 블로그의 RSS 피드를 자동으로 읽어 발송해주지 않습니다.
-  //   저자는 블로그에 글을 올린 뒤, Substack에도 요약+링크(또는 전문 복사)
-  //   형태로 별도 발행해야 구독자가 이메일을 받습니다.
-  substackHandle: "namojo",
-
-  // [Buttondown] 하위호환 — Substack을 쓰지 않을 때의 대안.
-  // provider를 "buttondown"으로 바꾸면 다시 사용됩니다.
-  // RSS-to-email 자동 발송 기능이 있어 자동화에는 더 유리.
-  buttondownUsername: "namojo",
-
-  // 구독 폼에 표시되는 문구
-  heading: "AI 이야기, 메일함으로 받아보기",
-  subheading: "새 글 요약과 링크를 Substack 뉴스레터로 보내드립니다. 언제든 해지할 수 있어요.",
-};
+// 이메일 구독(뉴스레터) 기능은 2026-07-29에 제거되었습니다.
+// 새 글 알림은 RSS 피드(https://namojo.github.io/feed.xml)로 제공합니다.

@@ -5,7 +5,6 @@ import { getPosts } from '../services/dataService';
 import { MarkdownRenderer } from '../components/MarkdownRenderer';
 import { ShareButtons } from '../components/ShareButtons';
 import { Comments } from '../components/Comments';
-import { SubscribeForm } from '../components/SubscribeForm';
 import { authService } from '../services/authService';
 import {
   likesEnabled,
@@ -163,17 +162,8 @@ export const PostView: React.FC = () => {
         </div>
       )}
 
-      {/* ───── Subscribe — 글 끝에서 자연스럽게 구독 제안 ───── */}
-      <div className="max-w-[720px] mx-auto px-6 mt-20">
-        <SubscribeForm
-          variant="card"
-          heading="이런 글, 메일함으로 받아보시겠어요?"
-          subheading="새 글이 올라오면 바로 보내드립니다. 저자가 직접 쓴 글만 도착해요."
-        />
-      </div>
-
       {/* ───── Comments ───── */}
-      <div className="max-w-[720px] mx-auto px-6">
+      <div className="max-w-[720px] mx-auto px-6 mt-20">
         <Comments
           postId={post.id}
           title={post.title}

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { getPost } from '../services/dataService';
 import { authService } from '../services/authService';
 import { MarkdownRenderer } from '../components/MarkdownRenderer';
-import { SubscribeForm } from '../components/SubscribeForm';
 import { Post } from '../types';
 
 /**
@@ -65,11 +64,6 @@ export const About: React.FC = () => {
       {/* ───── 본문 — Pretendard 장문 가독성 ───── */}
       <section className="max-w-[720px] mx-auto px-6 pt-20 sm:pt-24 text-[1.05rem]">
         <MarkdownRenderer content={post.content} />
-      </section>
-
-      {/* ───── Subscribe ───── */}
-      <section className="max-w-[720px] mx-auto px-6 mt-20">
-        <SubscribeForm variant="card" />
       </section>
 
       {/* ───── CTA ───── */}

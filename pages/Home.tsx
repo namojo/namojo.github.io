@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
-import { SubscribeForm } from '../components/SubscribeForm';
 import { getPosts } from '../services/dataService';
 import { Post } from '../types';
 
@@ -217,10 +216,7 @@ export const Home: React.FC = () => {
         </p>
       </section>
 
-      {/* ───── Subscribe ───── */}
-      <section className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12 pt-24 sm:pt-32 pb-12">
-        <SubscribeForm variant="card" />
-      </section>
+      <div className="pb-24 sm:pb-32" />
     </div>
   );
 };

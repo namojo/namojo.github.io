@@ -567,7 +567,7 @@ ${urls.map(u =>
 `;
   writeFileSync(join(DIST, 'sitemap.xml'), sitemap, 'utf-8');
 
-  // feed.xml (RSS 2.0) — Buttondown 등 구독 서비스가 폴링하여 새 글을 자동 발송
+  // feed.xml (RSS 2.0) — 독자가 RSS 리더로 새 글을 받아보는 유일한 알림 경로
   writeFileSync(join(DIST, 'feed.xml'), buildRss(generatable), 'utf-8');
 
   console.log(`[build-static-posts] Generated ${generatable.length} static post pages under dist/p/`);
@@ -575,8 +575,7 @@ ${urls.map(u =>
 }
 
 // ─── RSS 2.0 피드 ─────────────────────────────────────────────────────
-// Buttondown의 RSS-to-email 자동화가 이 피드를 폴링해 새 item을 감지하면
-// 구독자에게 전체 본문(content:encoded)을 발송한다.
+// RSS 리더가 이 피드를 폴링해 새 item과 전체 본문(content:encoded)을 읽는다.
 function toRfc822(dateDisplay) {
   const iso = toIsoDate(dateDisplay);
   if (!iso) return new Date().toUTCString();

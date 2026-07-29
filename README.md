@@ -76,7 +76,7 @@ npm run build   # posts.json + 정적 페이지 + RSS 전부 재생성
 git add . && git commit -m "post: 새 글 제목" && git push
 ```
 
-GitHub Pages가 자동 배포되고, Buttondown이 RSS를 감지해 구독자에게 자동 이메일을 발송합니다. **저자는 마크다운만 쓰면 됩니다.**
+GitHub Pages가 자동 배포되고, `feed.xml`(RSS)도 함께 갱신됩니다. **저자는 마크다운만 쓰면 됩니다.**
 
 ### 방법 2 — Claude Code 하네스 사용 (저자 문체 자동 재현)
 
@@ -86,38 +86,17 @@ GitHub Pages가 자동 배포되고, Buttondown이 RSS를 감지해 구독자에
 
 `public/posts.json`의 배열에 새 객체를 직접 추가하는 것도 가능합니다 (비권장).
 
-## 이메일 구독 (뉴스레터)
+## 새 글 알림 (RSS)
 
-### Substack 기본 사용
+이메일 구독(뉴스레터) 기능은 2026-07-29에 **완전히 제거**되었습니다. 외부 뉴스레터 서비스(Buttondown/Substack) 연동이 정상 동작하지 않아 구독 폼·설정·관련 코드를 모두 삭제했습니다.
 
-1. [substack.com](https://substack.com)에서 뉴스레터 생성 → handle을 정합니다 (예: `namojo` → `https://namojo.substack.com`).
-2. 저장소의 `config.ts`에서 `SUBSCRIBE.provider = "substack"`, `substackHandle = "namojo"`로 입력.
-3. `npm run build && git push` → 완료.
+새 글 알림은 RSS 피드로만 제공합니다:
 
-### 구독 흐름
-1. 독자가 홈·글 끝·소개 페이지의 구독 카드에 이메일 입력 → **구독하기** 클릭
-2. 새 탭에서 `https://{handle}.substack.com/subscribe?email=...`로 이동 (이메일 prefill됨)
-3. 독자는 Substack에서 한 번 더 확인 클릭 → 구독 완료
-4. 이후 Substack이 구독자 관리·confirmation 이메일을 전담
+```
+https://namojo.github.io/feed.xml
+```
 
-### ⚠ 중요한 제약 — Substack은 외부 RSS를 자동 발송하지 않습니다
-Substack은 **자사 플랫폼에서 작성·발행한 글만** 구독자에게 이메일로 보냅니다. 이 블로그의 `feed.xml`을 자동으로 읽어 구독자에게 메일을 쏘는 기능이 **없습니다**. 따라서 저자의 작업 흐름:
-
-1. 블로그에 새 글 게시 (`npm run new` → `npm run build` → `git push`)
-2. Substack 에디터를 열어 같은 글을 발행
-   - **옵션 A**: 전문을 복사 붙여넣기 → Substack에서도 풀버전 열람 가능
-   - **옵션 B (권장)**: 첫 몇 문단 + "전문 읽기 → [블로그 링크]" 형태의 짧은 안내 글 발행. 블로그 유입을 유도하면서도 구독자에게 알림 역할.
-
-### 자동화가 꼭 필요하다면 Buttondown으로 복귀
-Substack에는 외부 RSS-to-email이 없으므로, 자동 발송이 절대 조건이라면:
-- `config.ts`에서 `provider = "buttondown"`으로 바꾸고
-- `buttondownUsername` 값을 채운 뒤
-- Buttondown 대시보드의 **Automation → RSS feeds**에 `https://namojo.github.io/feed.xml`을 등록
-- 글을 쓰고 빌드·푸시만 하면 구독자 이메일 자동 발송
-
-두 서비스의 코드는 모두 `SubscribeForm`에 구현되어 있어 `provider` 값만 바꾸면 전환됩니다.
-
-미설정 상태(handle/username 비어 있음)에서는 구독 카드에 "설정 필요" 안내 박스가 자동 표시되어 프로덕션에서도 깨지지 않습니다.
+`npm run build`가 최신 20편(전체 본문 포함)을 담은 `dist/feed.xml`을 계속 생성하므로, 독자는 원하는 RSS 리더에 위 주소를 등록하면 됩니다.
 
 ## 공유 시 타이포그래피 유지 (정적 페이지 생성)
 
@@ -185,7 +164,7 @@ dist/
   ├── assets/index-xxx.js (Vite 번들)
   ├── images/             (히어로·저자 이미지)
   ├── p/{id}/index.html   (포스트별 정적 공유 페이지 × 13)
-  ├── feed.xml            (RSS 2.0, Buttondown이 폴링)
+  ├── feed.xml            (RSS 2.0, 새 글 알림용)
   ├── sitemap.xml
   └── robots.txt
 ```

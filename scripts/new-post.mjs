@@ -174,7 +174,7 @@ category: "${category}"
   console.log(`  ${c.warm('2.')} 작성이 끝나면 빌드하여 posts.json에 반영합니다.`);
   console.log(`     ${c.dim('npm run build')}`);
   console.log(`  ${c.warm('3.')} GitHub에 푸시하면 GitHub Pages가 자동 배포하고,`);
-  console.log(`     ${c.dim('Buttondown이 RSS를 감지해 구독자에게 이메일을 보냅니다.')}`);
+  console.log(`     ${c.dim('feed.xml(RSS)도 함께 갱신됩니다.')}`);
   console.log();
 }
 
