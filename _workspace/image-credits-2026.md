@@ -6,4 +6,4 @@
 
 | 파일 | 피사체 | 출처 | 라이선스(있으면) |
 |------|--------|------|------------------|
-| covers/meta-muse-glimmer-open-weight-return.jpg | 메타 본사 사인 (1 Hacker Way, 멘로파크) | 저자 제공 | — |
+| covers/meta-muse-glimmer-open-weight-return.jpg | 메타 본사 사인 (1 Hacker Way, 멘로파크) | Wikimedia Commons | — |
