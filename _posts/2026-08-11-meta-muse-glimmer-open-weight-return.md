@@ -5,7 +5,7 @@ date: 2026-08-11 09:00:00 +0900
 categories: [ai-news]
 tags: [오픈웨이트, 메타, 온디바이스AI, 저커버그, 국가대표AI, 양자화]
 excerpt: "8월 10일 메타가 Muse Glimmer 30B의 가중치를 Apache 2.0으로 공개하고, 같은 날 저커버그는 6,500단어 에세이를 냈습니다. 넉 달 전 개방을 버렸던 회사가 유료 에이전트를 판 닷새 뒤에 문을 열었습니다. 1981년 IBM도 늦었기 때문에 열었지요."
-coverImage: ""
+coverImage: "/images/covers/meta-muse-glimmer-open-weight-return.jpg?v=2"
 category: "AI"
 ---
 
