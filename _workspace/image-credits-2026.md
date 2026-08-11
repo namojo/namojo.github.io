@@ -7,3 +7,6 @@
 | 파일 | 피사체 | 출처 | 라이선스(있으면) |
 |------|--------|------|------------------|
 | covers/meta-muse-glimmer-open-weight-return.jpg | 메타 본사 사인 (1 Hacker Way, 멘로파크) | Wikimedia Commons | — |
+| covers/anthropic-theseus-tenant-grid-bill.jpg | 동부 텍사스의 송전탑(일몰) — 08-12 포스트 커버 | Wikimedia Commons "Transmission towers at sunset in East Texas.jpg" — Matthew T Rader | CC BY-SA 4.0 |
+| covers/anthropic-theseus-tenant-grid-bill-trireme.jpg | 복원된 고대 아테네 삼단노선 올림피아스호 — 08-12 포스트 본문 | Wikimedia Commons "The trireme Olympias on 23 February 2019.jpg" — George E. Koronaios | CC BY-SA 4.0 |
+| covers/anthropic-theseus-tenant-grid-bill-map.jpg | 미국 데이터센터 분포와 송전망 지도 — 08-12 포스트 본문 | Wikimedia Commons "Data center infrastructure in the United States.jpg" — DOE / National Renewable Energy Laboratory (NREL) | Public domain |
