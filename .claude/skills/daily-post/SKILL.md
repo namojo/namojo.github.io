@@ -47,6 +47,7 @@ git ls-remote --heads origin main   # 방금 만든 커밋 해시와 일치해�
 1. `git pull` (이미 최신 클론이어도 안전). 사용자가 라이브 Editor로 직접 발행한 글이 원격에만 있을 수 있으므로, 원격이 항상 우선이다.
 2. `TZ=Asia/Seoul date +%F`로 오늘 날짜 확보. `_posts/`에 오늘 날짜 파일이 있으면 **즉시 종료**하고 "오늘자 포스트가 이미 존재해 건너뜀"을 보고.
 3. 다음 파일을 읽는다: `_style/style-guide.md`(문체), `_style/topics-written.md`(중복 방지), `_style/ai-timeline.md`(시점 규율), 최근 `_posts/` 파일명 10개(최근 다룬 주제 감각).
+4. **도입부 다양화 확인 (2026-08-11 저자 지시):** 최근 발행된 `_posts/` 3편을 열어 각각의 첫 문단만 확인한다. 2편 이상이 "1981년, IBM이…"처럼 연도로 문장을 열었다면, 이번 글은 스타일 가이드 3절의 템플릿 B·C·E·F·G 중에서 연도로 시작하지 않는 도입부를 쓴다(ghostwriter 원칙 8 참조).
 
 ## Phase 1: 토픽 선정 (news-curator 역할)
 
