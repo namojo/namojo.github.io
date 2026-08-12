@@ -10,3 +10,5 @@
 | covers/anthropic-theseus-tenant-grid-bill.jpg | 동부 텍사스의 송전탑(일몰) — 08-12 포스트 커버 | Wikimedia Commons "Transmission towers at sunset in East Texas.jpg" — Matthew T Rader | CC BY-SA 4.0 |
 | covers/anthropic-theseus-tenant-grid-bill-trireme.jpg | 복원된 고대 아테네 삼단노선 올림피아스호 — 08-12 포스트 본문 | Wikimedia Commons "The trireme Olympias on 23 February 2019.jpg" — George E. Koronaios | CC BY-SA 4.0 |
 | covers/anthropic-theseus-tenant-grid-bill-map.jpg | 미국 데이터센터 분포와 송전망 지도 — 08-12 포스트 본문 | Wikimedia Commons "Data center infrastructure in the United States.jpg" — DOE / National Renewable Energy Laboratory (NREL) | Public domain |
+| covers/google-pixel-11-tensor-g6-on-device-limit.jpg | Made by Google 2026에서 공개된 픽셀 제품군 | Google | — |
+| covers/google-pixel-11-tensor-g6-on-device-limit-devcheck.jpg | 픽셀 11 실기에서 DevCheck로 확인한 Tensor G6 CPU 구성 — 08-13 포스트 본문 | Android Authority | — |
