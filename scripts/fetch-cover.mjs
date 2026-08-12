@@ -22,6 +22,9 @@
  *   --slug      포스트 슬러그. 결과는 public/images/covers/{slug}.jpg. 필수.
  *   --subject   크레딧 표에 적을 피사체 설명. 생략하면 파일명에서 유추.
  *   --credits   크레딧 파일 경로. 기본 _workspace/image-credits-{연도}.md
+ *               같은 슬러그로 다시 실행하면 기존 행을 **제자리에서 갱신**한다(중복 추가 없음).
+ *               커버를 더 나은 사진으로 교체했는데 표에는 이전 출처가 남는 사고를 막는다.
+ *               실행 끝에 파일이 없는 고아 크레딧 행이 있으면 경고만 남긴다(발행은 막지 않음).
  *   --focus     크롭 기준점 (center|top|bottom). 기본 center.
  *   --dry-run   라이선스·출처만 조회해 출력하고 파일은 쓰지 않는다.
  *   --local     Commons가 아닌 출처(뉴스 매체 이미지 등)나 에그레스 차단 환경용.
@@ -234,11 +237,35 @@ let credits = existsSync(creditsPath) ? readFileSync(creditsPath, 'utf-8') : `# 
 | 파일 | 피사체 | 출처 | 라이선스(있으면) |
 |------|--------|------|------------------|
 `;
-if (!credits.includes(`covers/${slug}.jpg |`)) {
+// 같은 슬러그로 커버를 교체 재실행하는 경우가 흔하다(더 나은 사진을 찾았을 때).
+// 예전에는 행이 이미 있으면 통째로 건너뛰어서 **이전 이미지의 출처가 그대로 남는**
+// 크레딧 불일치가 생겼다(2026-08-12 실제 발생). 그래서 있으면 제자리에서 갱신한다.
+const slugRe = slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const rowRe = new RegExp(`^\\|\\s*covers/${slugRe}\\.jpg\\s*\\|.*$`, 'm');
+let creditAction;
+if (rowRe.test(credits)) {
+  const before = credits;
+  credits = credits.replace(rowRe, row);
+  creditAction = before === credits ? '변경 없음(동일 출처)' : '기존 행 갱신(이미지 교체 반영)';
+} else {
   credits = credits.replace(/\s*$/, '\n') + row + '\n';
-  writeFileSync(creditsPath, credits, 'utf-8');
+  creditAction = '새 행 추가';
 }
+writeFileSync(creditsPath, credits, 'utf-8');
 
 console.log(`[cover:fetch] 저장 완료: public/images/covers/${slug}.jpg (${(statSync(outPath).size / 1024).toFixed(0)}KB)`);
-console.log(`[cover:fetch] 크레딧 기록: ${creditsPath.replace(ROOT + '/', '')}`);
+console.log(`[cover:fetch] 크레딧 기록: ${creditsPath.replace(ROOT + '/', '')} — ${creditAction}`);
+
+// 파일이 사라졌는데 크레딧 행만 남은 경우를 경고한다(작업 중 만들었다 지운 후보 이미지 등).
+// 경고일 뿐 발행을 막지 않는다.
+const orphans = credits
+  .split('\n')
+  .map((l) => l.match(/^\|\s*covers\/([A-Za-z0-9._-]+\.jpg)\s*\|/))
+  .filter(Boolean)
+  .map((m) => m[1])
+  .filter((f) => !existsSync(resolve(ROOT, 'public/images/covers', f)));
+if (orphans.length) {
+  console.warn(`[cover:fetch] 경고 — 크레딧 표에만 남은 항목 ${orphans.length}건(파일 없음): ${orphans.join(', ')}`);
+  console.warn('[cover:fetch]   삭제한 후보 이미지라면 해당 행을 지우세요.');
+}
 process.exit(0);
