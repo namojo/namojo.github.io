@@ -12,3 +12,6 @@
 | covers/anthropic-theseus-tenant-grid-bill-map.jpg | 미국 데이터센터 분포와 송전망 지도 — 08-12 포스트 본문 | Wikimedia Commons "Data center infrastructure in the United States.jpg" — DOE / National Renewable Energy Laboratory (NREL) | Public domain |
 | covers/google-pixel-11-tensor-g6-on-device-limit.jpg | Made by Google 2026에서 공개된 픽셀 제품군 | Google | — |
 | covers/google-pixel-11-tensor-g6-on-device-limit-devcheck.jpg | 픽셀 11 실기에서 DevCheck로 확인한 Tensor G6 CPU 구성 — 08-13 포스트 본문 | Android Authority | — |
+| covers/anthropic-decart-inference-margin.jpg | 엔비디아 H100 가속기 카드 — 08-14 포스트 커버 | Wikimedia Commons "NVIDIA H100 (极客湾Geekerwan) 011.png" — 极客湾Geekerwan | CC BY 3.0 |
+| covers/anthropic-decart-inference-margin-tpu.jpg | 구글 TPU v4 보드 — 08-14 포스트 본문 | Wikimedia Commons "TPU v4.png" — Norman P. Jouppi, George Kurian, Sheng Li, Peter Ma, Rahul Nagarajan, Lifeng Nai, Nishant Patil, Suvinay Subramanian, Andy Swing, Brian Towles, Cliff Young, Xiang Zhou, Zongwei Zhou, and David Patterson | CC BY 4.0 |
+| covers/anthropic-decart-inference-margin-racks.jpg | 데이터센터 서버 랙 — 08-14 포스트 본문(MFU: 빌린 칩의 절반이 노는 문제) | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
