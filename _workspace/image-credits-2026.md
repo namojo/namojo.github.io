@@ -15,3 +15,5 @@
 | covers/anthropic-decart-inference-margin.jpg | 엔비디아 H100 가속기 카드 — 08-14 포스트 커버 | Wikimedia Commons "NVIDIA H100 (极客湾Geekerwan) 011.png" — 极客湾Geekerwan | CC BY 3.0 |
 | covers/anthropic-decart-inference-margin-tpu.jpg | 구글 TPU v4 보드 — 08-14 포스트 본문 | Wikimedia Commons "TPU v4.png" — Norman P. Jouppi, George Kurian, Sheng Li, Peter Ma, Rahul Nagarajan, Lifeng Nai, Nishant Patil, Suvinay Subramanian, Andy Swing, Brian Towles, Cliff Young, Xiang Zhou, Zongwei Zhou, and David Patterson | CC BY 4.0 |
 | covers/anthropic-decart-inference-margin-racks.jpg | 데이터센터 서버 랙 — 08-14 포스트 본문(MFU: 빌린 칩의 절반이 노는 문제) | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
+| covers/manus-meta-unwind-jurisdiction-flip.jpg | 베이징 국가발전개혁위원회(NDRC) 청사 | Wikimedia Commons "National Development and Reform Commission (20200921163307).jpg" — N509FZ | CC BY-SA 4.0 |
+| covers/manus-meta-unwind-jurisdiction-flip-singapore.jpg | 싱가포르 중심업무지구(CBD) 스카이라인 | Wikimedia Commons "Skylines of the Central Business District, Singapore at dusk.jpg" — Basile Morin | CC BY-SA 4.0 |
