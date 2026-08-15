@@ -17,3 +17,5 @@
 | covers/anthropic-decart-inference-margin-racks.jpg | 데이터센터 서버 랙 — 08-14 포스트 본문(MFU: 빌린 칩의 절반이 노는 문제) | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
 | covers/manus-meta-unwind-jurisdiction-flip.jpg | 베이징 국가발전개혁위원회(NDRC) 청사 | Wikimedia Commons "National Development and Reform Commission (20200921163307).jpg" — N509FZ | CC BY-SA 4.0 |
 | covers/manus-meta-unwind-jurisdiction-flip-singapore.jpg | 싱가포르 중심업무지구(CBD) 스카이라인 | Wikimedia Commons "Skylines of the Central Business District, Singapore at dusk.jpg" — Basile Morin | CC BY-SA 4.0 |
+| covers/samsung-ai-ready-data-fab-bottleneck.jpg | 패턴이 새겨진 실리콘 웨이퍼 | Flickr (Rico-san, 'Wafer Processing') — Rico-san | CC BY-NC-ND 2.0 |
+| covers/samsung-ai-ready-data-fab-bottleneck-cleanroom.jpg | NXP 네이메헌 공장 클린룸 출입 구역 | Flickr (International Transport Forum) — International Transport Forum | CC BY-NC-ND 2.0 |

@@ -73,8 +73,10 @@ const focus = ['center', 'top', 'bottom'].includes(opt.focus) ? opt.focus : 'cen
 
 // ── curl 래퍼 ───────────────────────────────────────────────
 // HTTPS_PROXY와 CA 번들을 이미 읽는 클라이언트를 쓰는 게 가장 안전하다.
+// User-Agent를 반드시 붙인다 — 위키미디어는 curl 기본 UA를 봇으로 보고 429를 준다.
+const UA = 'namojo-blog-cover/1.0 (https://namojo.github.io; daily-post cover fetcher)';
 function curl(args) {
-  return execFileSync('curl', ['-fsSL', '--max-time', '60', ...args], {
+  return execFileSync('curl', ['-fsSL', '--max-time', '60', '-A', UA, ...args], {
     encoding: 'buffer',
     maxBuffer: 64 * 1024 * 1024,
   });
