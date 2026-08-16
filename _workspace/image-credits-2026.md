@@ -19,3 +19,5 @@
 | covers/manus-meta-unwind-jurisdiction-flip-singapore.jpg | 싱가포르 중심업무지구(CBD) 스카이라인 | Wikimedia Commons "Skylines of the Central Business District, Singapore at dusk.jpg" — Basile Morin | CC BY-SA 4.0 |
 | covers/samsung-ai-ready-data-fab-bottleneck.jpg | 패턴이 새겨진 실리콘 웨이퍼 | Flickr (Rico-san, 'Wafer Processing') — Rico-san | CC BY-NC-ND 2.0 |
 | covers/samsung-ai-ready-data-fab-bottleneck-cleanroom.jpg | NXP 네이메헌 공장 클린룸 출입 구역 | Flickr (International Transport Forum) — International Transport Forum | CC BY-NC-ND 2.0 |
+| covers/google-heir-encrypted-inference-no-chatbot.jpg | 데이터센터 서버룸 | Wikimedia Commons "BalticServers data center.jpg" — BalticServers.com | CC BY-SA 3.0 |
+| covers/google-heir-encrypted-inference-no-chatbot-gpu.jpg | NVIDIA A100 데이터센터 GPU 가속기 | Wikimedia Commons "Nvidia Tesla A100.png" — Nvidia | CC BY-SA 4.0 |
