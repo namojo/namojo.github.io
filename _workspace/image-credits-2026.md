@@ -21,3 +21,5 @@
 | covers/samsung-ai-ready-data-fab-bottleneck-cleanroom.jpg | NXP 네이메헌 공장 클린룸 출입 구역 | Flickr (International Transport Forum) — International Transport Forum | CC BY-NC-ND 2.0 |
 | covers/google-heir-encrypted-inference-no-chatbot.jpg | 데이터센터 서버룸 | Wikimedia Commons "BalticServers data center.jpg" — BalticServers.com | CC BY-SA 3.0 |
 | covers/google-heir-encrypted-inference-no-chatbot-gpu.jpg | NVIDIA A100 데이터센터 GPU 가속기 | Wikimedia Commons "Nvidia Tesla A100.png" — Nvidia | CC BY-SA 4.0 |
+| covers/stripe-openrouter-payment-not-tokens.jpg | 스트라이프 공동창업자 겸 CEO 패트릭 콜리슨 | Flickr / JD Lasica — JD Lasica | CC BY 2.0 |
+| covers/stripe-openrouter-payment-not-tokens-router.jpg | 데이터센터의 네트워크 코어 장비 | Flickr / motleypixel — motleypixel | CC BY 2.0 |
