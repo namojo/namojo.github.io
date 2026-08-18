@@ -23,3 +23,5 @@
 | covers/google-heir-encrypted-inference-no-chatbot-gpu.jpg | NVIDIA A100 데이터센터 GPU 가속기 | Wikimedia Commons "Nvidia Tesla A100.png" — Nvidia | CC BY-SA 4.0 |
 | covers/stripe-openrouter-payment-not-tokens.jpg | 스트라이프 공동창업자 겸 CEO 패트릭 콜리슨 | Flickr / JD Lasica — JD Lasica | CC BY 2.0 |
 | covers/stripe-openrouter-payment-not-tokens-router.jpg | 데이터센터의 네트워크 코어 장비 | Flickr / motleypixel — motleypixel | CC BY 2.0 |
+| covers/openai-chatgpt-teens-age-prediction.jpg | 공항에서 스마트폰을 쓰는 젊은 이용자들 — 08-19 포스트 커버 | Wikimedia Commons "Young people texting on smartphones.jpg" — Chris Olszewski | CC BY-SA 4.0 |
+| covers/openai-chatgpt-teens-age-prediction-court.jpg | 서울 재동 헌법재판소 — 08-19 포스트 본문(2012년 인터넷 실명제 위헌 결정) | Wikimedia Commons "Constitutional Court of Korea (2015).jpg" — Wei-Te Wong | CC BY-SA 2.0 |
