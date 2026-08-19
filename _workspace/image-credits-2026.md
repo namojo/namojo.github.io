@@ -25,3 +25,5 @@
 | covers/stripe-openrouter-payment-not-tokens-router.jpg | 데이터센터의 네트워크 코어 장비 | Flickr / motleypixel — motleypixel | CC BY 2.0 |
 | covers/openai-chatgpt-teens-age-prediction.jpg | 공항에서 스마트폰을 쓰는 젊은 이용자들 — 08-19 포스트 커버 | Wikimedia Commons "Young people texting on smartphones.jpg" — Chris Olszewski | CC BY-SA 4.0 |
 | covers/openai-chatgpt-teens-age-prediction-court.jpg | 서울 재동 헌법재판소 — 08-19 포스트 본문(2012년 인터넷 실명제 위헌 결정) | Wikimedia Commons "Constitutional Court of Korea (2015).jpg" — Wei-Te Wong | CC BY-SA 2.0 |
+| covers/nvidia-h200-china-import-permit.jpg | TSUBAME 4.0 계산 노드에 장착된 NVIDIA H100 GPU 4장 | Wikimedia Commons / Fukumoto (CC BY-SA 4.0) | — |
+| covers/nvidia-h200-china-import-permit-racks.jpg | TSUBAME 4.0 슈퍼컴퓨터의 계산 노드 랙 | Wikimedia Commons / Fukumoto (CC BY-SA 4.0) | — |
