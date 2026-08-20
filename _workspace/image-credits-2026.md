@@ -27,3 +27,6 @@
 | covers/openai-chatgpt-teens-age-prediction-court.jpg | 서울 재동 헌법재판소 — 08-19 포스트 본문(2012년 인터넷 실명제 위헌 결정) | Wikimedia Commons "Constitutional Court of Korea (2015).jpg" — Wei-Te Wong | CC BY-SA 2.0 |
 | covers/nvidia-h200-china-import-permit.jpg | TSUBAME 4.0 계산 노드에 장착된 NVIDIA H100 GPU 4장 | Wikimedia Commons / Fukumoto (CC BY-SA 4.0) | — |
 | covers/nvidia-h200-china-import-permit-racks.jpg | TSUBAME 4.0 슈퍼컴퓨터의 계산 노드 랙 | Wikimedia Commons / Fukumoto (CC BY-SA 4.0) | — |
+| covers/fda-ai-device-clearance-evidence-gap.jpg | FDA CDRH 66동 (의료기기·방사선건강센터) | Wikimedia Commons "FDA Building 66 - CDRH (5160772175).jpg" — The U.S. Food and Drug Administration | Public domain |
+| covers/fda-ai-device-clearance-evidence-gap-funnel.jpg | 논문 그림 3 — FDA 허가 AI 기기 1,357개의 임상 근거 감소 깔때기 (08-21 포스트 본문) | PLOS Digital Health, Abulibdeh et al., DOI 10.1371/journal.pdig.0001597 | CC BY 4.0 |
+| covers/fda-ai-device-clearance-evidence-gap-exclusions.jpg | 논문 그림 2 — 전문 분야별 임상시험 제외 환자군 (08-21 포스트 본문) | PLOS Digital Health, Abulibdeh et al., DOI 10.1371/journal.pdig.0001597 | CC BY 4.0 |
