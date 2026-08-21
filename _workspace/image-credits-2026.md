@@ -30,3 +30,5 @@
 | covers/fda-ai-device-clearance-evidence-gap.jpg | FDA CDRH 66동 (의료기기·방사선건강센터) | Wikimedia Commons "FDA Building 66 - CDRH (5160772175).jpg" — The U.S. Food and Drug Administration | Public domain |
 | covers/fda-ai-device-clearance-evidence-gap-funnel.jpg | 논문 그림 3 — FDA 허가 AI 기기 1,357개의 임상 근거 감소 깔때기 (08-21 포스트 본문) | PLOS Digital Health, Abulibdeh et al., DOI 10.1371/journal.pdig.0001597 | CC BY 4.0 |
 | covers/fda-ai-device-clearance-evidence-gap-exclusions.jpg | 논문 그림 2 — 전문 분야별 임상시험 제외 환자군 (08-21 포스트 본문) | PLOS Digital Health, Abulibdeh et al., DOI 10.1371/journal.pdig.0001597 | CC BY 4.0 |
+| covers/binance-agent-os-mcp-trading-scope.jpg | 바이낸스 가입 화면(태블릿) | https://www.flickr.com/photos/196993421@N03/52521305410 — alpha_photo (Flickr) | CC BY-NC 2.0 |
+| covers/binance-agent-os-mcp-trading-scope-botlog.jpg | 오픈소스 자동매매 봇 freqtrade의 실행 로그 | Wikimedia Commons "Crypto Trading Bot running.png" — Fabo.Hax | CC BY-SA 4.0 |
