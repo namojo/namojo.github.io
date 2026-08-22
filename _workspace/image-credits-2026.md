@@ -32,3 +32,5 @@
 | covers/fda-ai-device-clearance-evidence-gap-exclusions.jpg | 논문 그림 2 — 전문 분야별 임상시험 제외 환자군 (08-21 포스트 본문) | PLOS Digital Health, Abulibdeh et al., DOI 10.1371/journal.pdig.0001597 | CC BY 4.0 |
 | covers/binance-agent-os-mcp-trading-scope.jpg | 바이낸스 가입 화면(태블릿) | https://www.flickr.com/photos/196993421@N03/52521305410 — alpha_photo (Flickr) | CC BY-NC 2.0 |
 | covers/binance-agent-os-mcp-trading-scope-botlog.jpg | 오픈소스 자동매매 봇 freqtrade의 실행 로그 | Wikimedia Commons "Crypto Trading Bot running.png" — Fabo.Hax | CC BY-SA 4.0 |
+| covers/linear-ai-half-issues-total-time-up.jpg | 개발자들이 모니터 앞에서 작업하는 사무실 (인도의 게임 개발사) | Wikimedia Commons "A typical game development company in India.jpg" — Red Apple Learning | CC BY-SA 4.0 |
+| covers/linear-ai-half-issues-total-time-up-amdahl.jpg | 암달의 법칙 — 직렬 구간이 남아 있을 때 프로세서를 늘려도 속도 향상에 상한이 생긴다 | Wikimedia Commons "AmdahlsLaw.svg" — Daniels220 at English Wikipedia | CC BY-SA 3.0 |
