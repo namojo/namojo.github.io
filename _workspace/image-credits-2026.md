@@ -38,3 +38,5 @@
 | covers/linkedin-ai-slop-button-seems-not-is-trough.jpg | 여물통 앞의 돼지들 (slop의 원래 뜻) | Wikimedia Commons "Pigs in a trough - geograph.org.uk - 3437574.jpg" — Richard Humphrey | CC BY-SA 2.0 |
 | covers/huggingface-13b-sale-neutral-default.jpg | 허깅페이스 공동창업자 겸 CEO 클레망 들랑그 | Wikimedia Commons "Clément Delangue on SiliconANGLE theCUBE.jpg" — SiliconANGLE theCUBE | CC BY 3.0 |
 | covers/huggingface-13b-sale-neutral-default-vienna.jpg | 빈 회의 최종 문서 (오스트리아 국립문서보관소, 촬영 Thomas Ledl) | Wikimedia Commons | — |
+| covers/anthropic-claude-tag-silence-classifier.jpg | 노트북을 놓고 한 테이블에 모여 일하는 팀 | Unsplash — Annie Spratt | — |
+| covers/anthropic-claude-tag-silence-classifier-badge.jpg | 읽지 않은 알림이 6,753건 쌓인 휴대폰 화면 | Unsplash — Brian J. Tromp | — |
