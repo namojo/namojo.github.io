@@ -40,3 +40,5 @@
 | covers/huggingface-13b-sale-neutral-default-vienna.jpg | 빈 회의 최종 문서 (오스트리아 국립문서보관소, 촬영 Thomas Ledl) | Wikimedia Commons | — |
 | covers/anthropic-claude-tag-silence-classifier.jpg | 노트북을 놓고 한 테이블에 모여 일하는 팀 | Unsplash — Annie Spratt | — |
 | covers/anthropic-claude-tag-silence-classifier-badge.jpg | 읽지 않은 알림이 6,753건 쌓인 휴대폰 화면 | Unsplash — Brian J. Tromp | — |
+| covers/amazon-mechanical-turk-shutdown-verified-human.jpg | 요제프 라크니츠의 1789년 판화 — 미케니컬 터크 캐비닛에 사람이 숨는 방식을 재현한 그림 | Wikimedia Commons (Joseph Racknitz, 1789, Public domain) | — |
+| covers/amazon-mechanical-turk-shutdown-verified-human-exterior.jpg | 관객에게 공개된 미케니컬 터크 — 캐비닛 문을 열어도 톱니만 보인다 | Wikimedia Commons "Tuerkischer schachspieler windisch4.jpg" (1783년 판화, W. de Kempelen del. / P. G. Pintz sc.) | Public domain |

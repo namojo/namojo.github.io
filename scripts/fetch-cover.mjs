@@ -74,23 +74,40 @@ const focus = ['center', 'top', 'bottom'].includes(opt.focus) ? opt.focus : 'cen
 // ── curl 래퍼 ───────────────────────────────────────────────
 // HTTPS_PROXY와 CA 번들을 이미 읽는 클라이언트를 쓰는 게 가장 안전하다.
 // User-Agent를 반드시 붙인다 — 위키미디어는 curl 기본 UA를 봇으로 보고 429를 준다.
+// Referer도 반드시 붙인다 — upload.wikimedia.org는 Referer 없는 요청에 429를 준다
+// (클라우드 세션은 공용 프록시 IP를 쓰므로 레이트 리밋에 특히 잘 걸린다).
 const UA = 'namojo-blog-cover/1.0 (https://namojo.github.io; daily-post cover fetcher)';
+const REFERER = 'https://commons.wikimedia.org/';
 function curl(args) {
-  return execFileSync('curl', ['-fsSL', '--max-time', '60', '-A', UA, ...args], {
+  return execFileSync('curl', ['-fsSL', '--max-time', '60', '-A', UA, '-e', REFERER, ...args], {
     encoding: 'buffer',
     maxBuffer: 64 * 1024 * 1024,
   });
 }
+// 429는 대개 일시적이다 — 지수 백오프로 재시도한다.
+function curlRetry(args, label) {
+  const delays = [0, 3, 8, 15, 25];
+  let last;
+  for (let i = 0; i < delays.length; i++) {
+    if (delays[i]) execFileSync('sleep', [String(delays[i])]);
+    try { return curl(args); } catch (e) {
+      last = e;
+      const msg = e.message.split('\n')[0];
+      if (i < delays.length - 1) console.error(`[cover:fetch] ${label} 재시도 ${i + 1}/${delays.length - 1} — ${msg}`);
+    }
+  }
+  throw last;
+}
 function curlText(url) {
   try {
-    return curl([url]).toString('utf-8');
+    return curlRetry([url], 'API').toString('utf-8');
   } catch (e) {
     throw new Error(`요청 실패(${url}): ${e.message.split('\n')[0]}`);
   }
 }
 function curlFile(url, outPath) {
   try {
-    curl(['-o', outPath, url]);
+    curlRetry(['-o', outPath, url], '다운로드');
   } catch (e) {
     throw new Error(`다운로드 실패(${url}): ${e.message.split('\n')[0]}`);
   }
