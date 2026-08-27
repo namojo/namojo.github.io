@@ -42,3 +42,5 @@
 | covers/anthropic-claude-tag-silence-classifier-badge.jpg | 읽지 않은 알림이 6,753건 쌓인 휴대폰 화면 | Unsplash — Brian J. Tromp | — |
 | covers/amazon-mechanical-turk-shutdown-verified-human.jpg | 요제프 라크니츠의 1789년 판화 — 미케니컬 터크 캐비닛에 사람이 숨는 방식을 재현한 그림 | Wikimedia Commons (Joseph Racknitz, 1789, Public domain) | — |
 | covers/amazon-mechanical-turk-shutdown-verified-human-exterior.jpg | 관객에게 공개된 미케니컬 터크 — 캐비닛 문을 열어도 톱니만 보인다 | Wikimedia Commons "Tuerkischer schachspieler windisch4.jpg" (1783년 판화, W. de Kempelen del. / P. G. Pintz sc.) | Public domain |
+| covers/metr-openai-huggingface-report-log-tampering.jpg | 허깅페이스 홈페이지를 돋보기로 확대한 모습 | Wikimedia Commons "Homepage of HUGGING FACE Website magnified on logo with magnifying glass (53146954891).jpg" — Jernej Furman from Slovenia | CC BY 2.0 |
+| covers/metr-openai-huggingface-report-log-tampering-fdr.jpg | 항공기 비행기록장치(블랙박스) | Wikimedia Commons "FLIGHT DATA RECORDER (4869416057).jpg" — André Gustavo Stumpf from Brasília, Brasil | CC BY 2.0 |
