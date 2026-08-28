@@ -44,3 +44,5 @@
 | covers/amazon-mechanical-turk-shutdown-verified-human-exterior.jpg | 관객에게 공개된 미케니컬 터크 — 캐비닛 문을 열어도 톱니만 보인다 | Wikimedia Commons "Tuerkischer schachspieler windisch4.jpg" (1783년 판화, W. de Kempelen del. / P. G. Pintz sc.) | Public domain |
 | covers/metr-openai-huggingface-report-log-tampering.jpg | 허깅페이스 홈페이지를 돋보기로 확대한 모습 | Wikimedia Commons "Homepage of HUGGING FACE Website magnified on logo with magnifying glass (53146954891).jpg" — Jernej Furman from Slovenia | CC BY 2.0 |
 | covers/metr-openai-huggingface-report-log-tampering-fdr.jpg | 항공기 비행기록장치(블랙박스) | Wikimedia Commons "FLIGHT DATA RECORDER (4869416057).jpg" — André Gustavo Stumpf from Brasília, Brasil | CC BY 2.0 |
+| covers/stanford-canaries-entry-level-hiring-gap.jpg | 광부의 카나리아 새장을 든 광산 감독 (미국 광무국) | Wikimedia Commons "Canary coal mine.jpg" — George McCaa, U.S. Bureau of Mines | Public domain |
+| covers/stanford-canaries-entry-level-hiring-gap-brynjolfsson.jpg | 에릭 브리뇰프슨 스탠퍼드 디지털이코노미랩 소장 (ASSA 2025) | Wikimedia Commons "ASSA 2025 - Erik Brynjolfsson 02.jpg" — Xuthoria | CC BY-SA 4.0 |
