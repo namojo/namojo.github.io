@@ -49,3 +49,5 @@
 | covers/anthropic-pentagon-aup-first-amendment.jpg | 미국 국방부 청사(펜타곤) 항공 사진 | Wikimedia Commons "The Pentagon January 2008.jpg" — David B. Gleason from Chicago, IL | CC BY-SA 2.0 |
 | covers/anthropic-pentagon-aup-first-amendment-hegseth.jpg | 피트 헤그세스 미국 국방장관 공식 초상 | Wikimedia Commons "Pete Hegseth Official Portrait.jpg" — U.S. Department of Defense | Public domain |
 | covers/anthropic-pentagon-aup-first-amendment-courthouse.jpg | 샌프란시스코 필립 버튼 연방청사·연방법원 (캘리포니아 북부연방지방법원 소재지) | Wikimedia Commons "Phillip Burton Federal Building & United States Courthouse.jpg" — Marincyclist | CC BY-SA 4.0 |
+| covers/openai-cursor-cutoff-five-percent.jpg | 샘 올트먼 OpenAI CEO (TechCrunch Disrupt SF 2019) | Wikimedia Commons — TechCrunch | CC BY 2.0 |
+| covers/openai-cursor-cutoff-five-percent-musk.jpg | 일론 머스크 (2022년 미 공군사관학교 강연) | Wikimedia Commons — U.S. Air Force Academy | Public domain |
