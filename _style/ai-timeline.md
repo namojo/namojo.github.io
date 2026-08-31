@@ -228,7 +228,9 @@
 | 2026-06-16 | **SpaceX, Cursor 모회사 앤스피어(Anysphere) 인수 발표** — 600억 달러 전량 주식 교환. 나스닥 상장(SPCX, 발표 4일 전) 직후. 스타트업 엑싯 사상 최대 규모로 보도. Cursor ARR은 2025-11 10억 → 2026-02 20억 → 2026-06 초 40억 달러 | CNBC·Quartz |
 | 2026-08-14 | **앤스피어 인수 종결** — Cursor는 신설 SpaceXAI 부문 산하 완전자회사가 됨 | SatNews·CNBC |
 | 2026-08-28 | **OpenAI, Cursor에 대한 모델 공급 종료 통보** — 인수 종결 **14일** 만. 제시한 차단일 **2026-11-12**. 사유는 기술·가격·품질이 아니라 인수 주체: "머스크의 회사들이 계약을 위반해 온 경험에 비추어 SpaceX가 이용약관 범위 안에서 쓰리라 확신할 수 없다". 근거로 트위터 인수 후 계약 위반, 2026년 4월 재판에서 머스크가 선서 하에 인정한 xAI의 약관 위반을 듦. 협업 기간은 OpenAI 표현으로 "거의 4년". ⚠ **핵심 반전 수치: 트루엘이 밝힌 OpenAI 모델의 Cursor 트래픽 비중은 약 5%**. 차단 후에도 Claude·Google·Grok 4.5/4.6·Composer 2.5는 잔존. 같은 날 밤 톰 브라운(Anthropic 공동창업자)이 Cursor용 Claude 컴퓨트 증설을 예고. 8/31 현재 양사 협의 중 | OpenAI 입장문·CNBC·Engadget·트루엘 X |
-| 2026-08-31 | **오늘** (이 파일의 기준 시점) | |
+| 2026-08-11 | **앤트로픽, Claude Sonnet 5 도입가 영구화** — 100만 토큰당 입력 **$2**·출력 **$10**은 원래 "8월 31일까지"의 도입가로 **9월 1일부터 $3/$15 인상 예정**이었으나 취소. 공식 계정 원문: "We're making Claude Sonnet 5's introductory pricing permanent. … that price will remain unchanged." → **2026-09-01 이후 포스트에서 Sonnet 5 가격은 $2/$10로 쓸 것** | @claudeai 공식 게시물 |
+| 2026-08-29 | **앤트로픽, Claude Code 주간 한도 "영구 25% 인상" 발표 → 실제로는 현재 대비 17% 감소** — 대상 Pro·Max·Team·좌석 기반 Enterprise, 시행 **9/14**. 2026-05-13부터 적용돼 온 **임시 50% 상향**(여름 동안 네 차례 연장)이 종료되므로 원래 기준의 150% → 125%가 된다. 앤트로픽도 인정: "Compared to today, this works out to a 17% reduction in weekly limits on Claude Code." 발표 본문은 25%만 앞세우고 감소분은 답글에 두었다가 커뮤니티 노트가 붙었고, 원 글 삭제·재게시 보도가 이어짐. 후속으로 "사용량 가시성·통제 확대" 예고. **배경 사실: 앤트로픽은 어떤 플랜에서도 한도의 절대 토큰 수를 공개하지 않고 배수만 공개**(Pro는 5시간 세션 기준 무료의 최소 5배, Max 5x=Pro의 5배, Max 20x=Pro의 20배) | BleepingComputer·Notebookcheck·XenoSpectrum 교차 |
+| 2026-09-01 | **오늘** (이 파일의 기준 시점) | |
 
 ---
 

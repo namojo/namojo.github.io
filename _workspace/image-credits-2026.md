@@ -51,3 +51,4 @@
 | covers/anthropic-pentagon-aup-first-amendment-courthouse.jpg | 샌프란시스코 필립 버튼 연방청사·연방법원 (캘리포니아 북부연방지방법원 소재지) | Wikimedia Commons "Phillip Burton Federal Building & United States Courthouse.jpg" — Marincyclist | CC BY-SA 4.0 |
 | covers/openai-cursor-cutoff-five-percent.jpg | 샘 올트먼 OpenAI CEO (TechCrunch Disrupt SF 2019) | Wikimedia Commons — TechCrunch | CC BY 2.0 |
 | covers/openai-cursor-cutoff-five-percent-musk.jpg | 일론 머스크 (2022년 미 공군사관학교 강연) | Wikimedia Commons — U.S. Air Force Academy | Public domain |
+| covers/anthropic-claude-code-limit-baseline.jpg | 앤트로픽 샌프란시스코 본사 | Wikimedia Commons "Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg" — Department for Science, Innovation and Technology | CC BY 2.0 |
