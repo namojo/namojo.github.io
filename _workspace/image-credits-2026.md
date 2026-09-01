@@ -52,3 +52,6 @@
 | covers/openai-cursor-cutoff-five-percent.jpg | 샘 올트먼 OpenAI CEO (TechCrunch Disrupt SF 2019) | Wikimedia Commons — TechCrunch | CC BY 2.0 |
 | covers/openai-cursor-cutoff-five-percent-musk.jpg | 일론 머스크 (2022년 미 공군사관학교 강연) | Wikimedia Commons — U.S. Air Force Academy | Public domain |
 | covers/anthropic-claude-code-limit-baseline.jpg | 앤트로픽 샌프란시스코 본사 | Wikimedia Commons "Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg" — Department for Science, Innovation and Technology | CC BY 2.0 |
+| covers/openai-mac-mini-computer-use-training-link.jpg | 링크 트레이너(Air Zoo 소장) | Wikimedia Commons "Air Zoo December 2019 073 (Link Trainer).jpg" — Michael Barera | CC BY-SA 4.0 |
+| covers/openai-mac-mini-computer-use-training.jpg | 맥미니(M4, 2024) | Wikimedia Commons "M4 Mac mini.jpg" — Kyu3a | CC BY-SA 4.0 |
+| covers/openai-mac-mini-computer-use-training-macmini.jpg | 맥미니(M4, 2024) 후면 포트 | Wikimedia Commons "Mac mini (M4, 2024) - Backside.jpg" — AzureSaturn | CC0 |

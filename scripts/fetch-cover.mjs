@@ -121,7 +121,7 @@ const plain = (v) => String(v ?? '')
 
 // ── 1) Commons에서 원본 URL + 저작자 + 라이선스 조회 ─────────
 // --local 모드면 이 단계를 건너뛴다 (출처 정보는 인자로 받는다).
-let artist, license, licenseUrl, descUrl, srcUrl, dims = '';
+let artist, license, licenseUrl, descUrl, srcUrl, srcCandidates = [], dims = '';
 if (opt.local) {
   artist = plain(opt.artist);
   license = plain(opt.license);
@@ -158,7 +158,12 @@ artist = plain(meta.Artist?.value) || plain(meta.Credit?.value) || '(저작자 �
 license = plain(meta.LicenseShortName?.value) || plain(meta.License?.value) || '(라이선스 불명)';
 licenseUrl = plain(meta.LicenseUrl?.value);
 descUrl = info.descriptionurl || `https://commons.wikimedia.org/wiki/${encodeURIComponent(fileTitle.replace(/ /g, '_'))}`;
-srcUrl = info.thumburl || info.url;
+// 스케일본을 먼저 노린다(원본이 수십 MB일 수 있다). 다만 위키미디어는 임의 크기의
+// 썸네일 요청을 거부하기 시작했고(허용 목록에 없는 폭은 400 "Use thumbnail sizes listed on
+// https://w.wiki/GHai"), 그때도 원본 URL은 그대로 서빙된다. 그래서 둘 다 후보로 들고
+// 다니다가 앞의 것이 실패하면 뒤의 것으로 넘어간다.
+srcCandidates = [info.thumburl, info.url].filter(Boolean);
+srcUrl = srcCandidates[0];
 dims = `${info.width}x${info.height}`;
 
 // ── 2) 라이선스는 기록만 한다 (게이트 아님) ──────────────────
@@ -187,10 +192,20 @@ if (opt.local) {
   if (!existsSync(tmpPath)) die(`로컬 파일이 없다: ${tmpPath}`);
 } else {
   tmpPath = resolve(tmpdir(), `cover-src-${slug}-${process.pid}`);
-  try {
-    curlFile(srcUrl, tmpPath);
-  } catch (e) {
-    die(`${e.message}\n  → upload.wikimedia.org가 막혀 있으면 이 경로는 쓸 수 없다.`);
+  let lastErr;
+  for (const url of srcCandidates) {
+    try {
+      curlFile(url, tmpPath);
+      lastErr = null;
+      if (url !== srcCandidates[0]) console.log(`[cover:fetch] 스케일본이 거부돼 원본으로 받았다: ${url}`);
+      break;
+    } catch (e) {
+      lastErr = e;
+      console.error(`[cover:fetch] ${e.message.split('\n')[0]} — 다음 후보 URL로 넘어간다.`);
+    }
+  }
+  if (lastErr) {
+    die(`${lastErr.message}\n  → upload.wikimedia.org가 막혀 있으면 이 경로는 쓸 수 없다.`);
   }
 }
 const bytes = statSync(tmpPath).size;
