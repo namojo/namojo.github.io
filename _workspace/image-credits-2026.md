@@ -55,3 +55,6 @@
 | covers/openai-mac-mini-computer-use-training-link.jpg | 링크 트레이너(Air Zoo 소장) | Wikimedia Commons "Air Zoo December 2019 073 (Link Trainer).jpg" — Michael Barera | CC BY-SA 4.0 |
 | covers/openai-mac-mini-computer-use-training.jpg | 맥미니(M4, 2024) | Wikimedia Commons "M4 Mac mini.jpg" — Kyu3a | CC BY-SA 4.0 |
 | covers/openai-mac-mini-computer-use-training-macmini.jpg | 맥미니(M4, 2024) 후면 포트 | Wikimedia Commons "Mac mini (M4, 2024) - Backside.jpg" — AzureSaturn | CC0 |
+| covers/eu-dsa-chatgpt-vlose-search-engine.jpg | 유럽위원회 본부 베를레몽 빌딩(브뤼셀) | Wikimedia Commons "Berlaymont building 2024.jpg" — Cbliu | CC BY-SA 4.0 |
+| covers/eu-dsa-chatgpt-vlose-search-engine-virkkunen.jpg | 헨나 비르쿠넨 유럽위원회 기술주권·안보·민주주의 담당 집행부위원장 | Wikimedia Commons "Visit of Henna Virkkunen, Executive Vice-President of the European Commission, to Greece (P-067965-00-01).jpg" — Europäische Kommission - Audiovisueller Dienst, CE - Service audiovisuel, EC - Audiovisual Service, FACTSTORY, Yorgos Karahalis | CC BY 4.0 |
+| covers/eu-dsa-chatgpt-vlose-search-engine-openai.jpg | 샌프란시스코 미션베이 1515 서드스트리트 — 촬영 시점(2025-06) OpenAI 본사 | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY 4.0 |
