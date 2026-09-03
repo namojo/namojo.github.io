@@ -58,3 +58,5 @@
 | covers/eu-dsa-chatgpt-vlose-search-engine.jpg | 유럽위원회 본부 베를레몽 빌딩(브뤼셀) | Wikimedia Commons "Berlaymont building 2024.jpg" — Cbliu | CC BY-SA 4.0 |
 | covers/eu-dsa-chatgpt-vlose-search-engine-virkkunen.jpg | 헨나 비르쿠넨 유럽위원회 기술주권·안보·민주주의 담당 집행부위원장 | Wikimedia Commons "Visit of Henna Virkkunen, Executive Vice-President of the European Commission, to Greece (P-067965-00-01).jpg" — Europäische Kommission - Audiovisueller Dienst, CE - Service audiovisuel, EC - Audiovisual Service, FACTSTORY, Yorgos Karahalis | CC BY 4.0 |
 | covers/eu-dsa-chatgpt-vlose-search-engine-openai.jpg | 샌프란시스코 미션베이 1515 서드스트리트 — 촬영 시점(2025-06) OpenAI 본사 | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY 4.0 |
+| covers/doj-openai-nyt-fair-use-oligopoly.jpg | 미국 법무부 청사(로버트 F. 케네디 빌딩), 워싱턴 D.C. | Wikimedia Commons "Robert F. Kennedy Department of Justice Building.jpg" — APK | CC BY 4.0 |
+| covers/doj-openai-nyt-fair-use-oligopoly-courthouse.jpg | 뉴욕 남부연방지방법원(대니얼 패트릭 모이니핸 연방법원 청사), 맨해튼 | Wikimedia Commons "Daniel Patrick Moynihan U.S. Courthouse, Manhattan, New York (7237347688).jpg" — Ken Lund from Reno, Nevada, USA | CC BY-SA 2.0 |
