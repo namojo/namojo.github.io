@@ -60,3 +60,6 @@
 | covers/eu-dsa-chatgpt-vlose-search-engine-openai.jpg | 샌프란시스코 미션베이 1515 서드스트리트 — 촬영 시점(2025-06) OpenAI 본사 | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY 4.0 |
 | covers/doj-openai-nyt-fair-use-oligopoly.jpg | 미국 법무부 청사(로버트 F. 케네디 빌딩), 워싱턴 D.C. | Wikimedia Commons "Robert F. Kennedy Department of Justice Building.jpg" — APK | CC BY 4.0 |
 | covers/doj-openai-nyt-fair-use-oligopoly-courthouse.jpg | 뉴욕 남부연방지방법원(대니얼 패트릭 모이니핸 연방법원 청사), 맨해튼 | Wikimedia Commons "Daniel Patrick Moynihan U.S. Courthouse, Manhattan, New York (7237347688).jpg" — Ken Lund from Reno, Nevada, USA | CC BY-SA 2.0 |
+| covers/humain-m3-minimax-sovereign-weights.jpg | 리야드 킹 압둘라 금융지구(KAFD) | Wikimedia Commons "King Abdullah Financial District 184706.jpg" — Ahmed | CC BY-SA 4.0 |
+| covers/humain-m3-minimax-sovereign-weights-nvidia.jpg | 엔비디아 본사(캘리포니아 산타클라라) | Wikimedia Commons "NVIDIA Headquarters.jpg" — Coolcaesar | CC BY-SA 4.0 |
+| covers/humain-m3-minimax-sovereign-weights-sejong.jpg | 정부세종청사 — 과학기술정보통신부가 입주해 있다 | Wikimedia Commons "Government Complex Sejong (N).jpg" — Minseong Kim | CC BY-SA 4.0 |
