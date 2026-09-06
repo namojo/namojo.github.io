@@ -65,3 +65,5 @@
 | covers/humain-m3-minimax-sovereign-weights-sejong.jpg | 정부세종청사 — 과학기술정보통신부가 입주해 있다 | Wikimedia Commons "Government Complex Sejong (N).jpg" — Minseong Kim | CC BY-SA 4.0 |
 | covers/mckinsey-build-vs-buy-run-cost.jpg | CERN 데이터센터 서버실 | Wikimedia Commons "Cern datacenter.jpg" — Hugovanmeijeren | CC BY-SA 3.0 |
 | covers/mckinsey-build-vs-buy-run-cost-mit.jpg | MIT 그레이트 돔(매사추세츠공과대학교) | Wikimedia Commons "Great Dome, Massachusetts Institute of Technology, Aug 2019 (3 by 2).jpg" — Mys 721tx | CC BY-SA 3.0 |
+| covers/anthropic-fermat-lean-kernel-verification.jpg | 디오판토스 『아리스메티카』 1670년판 제2권 8번 문제 여백의 페르마 주석 | Wikimedia Commons | — |
+| covers/anthropic-fermat-lean-kernel-verification-imperial.jpg | 임페리얼칼리지런던 사우스켄싱턴 캠퍼스 | Wikimedia Commons | — |
