@@ -67,3 +67,5 @@
 | covers/mckinsey-build-vs-buy-run-cost-mit.jpg | MIT 그레이트 돔(매사추세츠공과대학교) | Wikimedia Commons "Great Dome, Massachusetts Institute of Technology, Aug 2019 (3 by 2).jpg" — Mys 721tx | CC BY-SA 3.0 |
 | covers/anthropic-fermat-lean-kernel-verification.jpg | 디오판토스 『아리스메티카』 1670년판 제2권 8번 문제 여백의 페르마 주석 | Wikimedia Commons | — |
 | covers/anthropic-fermat-lean-kernel-verification-imperial.jpg | 임페리얼칼리지런던 사우스켄싱턴 캠퍼스 | Wikimedia Commons | — |
+| covers/openai-agent-workdays-intervention-rate.jpg | 샌프란시스코 미션베이 1515 서드 스트리트 — OpenAI가 우버로부터 전대해 쓰는 사옥 | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY-SA |
+| covers/openai-agent-workdays-intervention-rate-gpu.jpg | 호주 CSIRO 캔버라 데이터센터의 GPU 클러스터 | Wikimedia Commons "CSIRO ScienceImage 11313 The CSIRO GPU cluster at the data centre.jpg" — CSIRO | CC BY 3.0 |
