@@ -69,3 +69,5 @@
 | covers/anthropic-fermat-lean-kernel-verification-imperial.jpg | 임페리얼칼리지런던 사우스켄싱턴 캠퍼스 | Wikimedia Commons | — |
 | covers/openai-agent-workdays-intervention-rate.jpg | 샌프란시스코 미션베이 1515 서드 스트리트 — OpenAI가 우버로부터 전대해 쓰는 사옥 | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY-SA |
 | covers/openai-agent-workdays-intervention-rate-gpu.jpg | 호주 CSIRO 캔버라 데이터센터의 GPU 클러스터 | Wikimedia Commons "CSIRO ScienceImage 11313 The CSIRO GPU cluster at the data centre.jpg" — CSIRO | CC BY 3.0 |
+| covers/mistral-samsung-series-d-onprem-lease.jpg | 네덜란드 펠트호번의 ASML 본사 | Wikimedia Commons "ASML headquarters Veldhoven.jpg" — A ansems | Public domain |
+| covers/mistral-samsung-series-d-onprem-lease-datacenter.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
