@@ -71,3 +71,5 @@
 | covers/openai-agent-workdays-intervention-rate-gpu.jpg | 호주 CSIRO 캔버라 데이터센터의 GPU 클러스터 | Wikimedia Commons "CSIRO ScienceImage 11313 The CSIRO GPU cluster at the data centre.jpg" — CSIRO | CC BY 3.0 |
 | covers/mistral-samsung-series-d-onprem-lease.jpg | 네덜란드 펠트호번의 ASML 본사 | Wikimedia Commons "ASML headquarters Veldhoven.jpg" — A ansems | Public domain |
 | covers/mistral-samsung-series-d-onprem-lease-datacenter.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
+| covers/nsa-china-distillation-altered-responses.jpg | 위스키 증류소의 구리 증류기 | Unsplash — François Hoppet | — |
+| covers/nsa-china-distillation-altered-responses-deepseek.jpg | DeepSeek 앱 첫 화면 | Unsplash — Solen Feyissa | — |
