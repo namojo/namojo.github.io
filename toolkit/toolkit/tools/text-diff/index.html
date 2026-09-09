@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko" data-tool-id="text-diff">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TK:HEAD -->
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39; data: blob:; font-src &#39;self&#39;; media-src &#39;self&#39; blob:; connect-src &#39;none&#39;; frame-src &#39;self&#39;; form-action &#39;none&#39;; base-uri &#39;none&#39;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>텍스트 비교 · TOOLKIT</title>
+  <meta name="description" content="두 텍스트를 줄 단위로 비교해 변경점을 표시하고 통합 diff로 내보냅니다.">
+  <link rel="canonical" href="https://namojo.github.io/toolkit/tools/text-diff/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TOOLKIT">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="텍스트 비교 · TOOLKIT">
+  <meta property="og:description" content="두 텍스트를 줄 단위로 비교해 변경점을 표시하고 통합 diff로 내보냅니다.">
+  <meta property="og:url" content="https://namojo.github.io/toolkit/tools/text-diff/">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="../../assets/base.css">
+<!-- /TK:HEAD -->
+  <script src="../../assets/tk-sdk.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+<body>
+<!-- TK:HEADER -->
+  <a class="skip" href="#main">본문으로 건너가기</a>
+  <header class="site-head">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">TK</span><span>TOOLKIT</span></a>
+    <nav aria-label="주요">
+      <a href="../../index.html">전체 도구</a>
+      <a href="../../about.html">소개</a>
+    </nav>
+  </header>
+<!-- /TK:HEADER -->
+
+<main id="main" class="wrap">
+
+  <div class="tool-head">
+    <h1>텍스트 비교</h1>
+    <p>두 텍스트를 줄 단위로 비교해 추가·삭제된 줄을 표시합니다. 통합 diff 형식으로 복사하거나 파일로 내보낼 수 있습니다.</p>
+  </div>
+
+  <p class="notice" data-tk-env>이 페이지의 모든 처리는 브라우저 안에서 이뤄집니다.</p>
+
+  <div class="panels panels-2">
+    <section class="panel">
+      <h2>원본 <span class="sp"></span><button class="btn btn-sm" type="button" id="clear-a">비우기</button></h2>
+      <div class="panel-body">
+        <label class="skip" for="a">원본 텍스트</label>
+        <textarea id="a" spellcheck="false" placeholder="여기에 원본 텍스트를 붙여 넣으세요."></textarea>
+      </div>
+      <p class="stat"><span>줄 <b id="a-lines">0</b></span><span>글자 <b id="a-chars">0</b></span></p>
+    </section>
+
+    <section class="panel">
+      <h2>변경본 <span class="sp"></span><button class="btn btn-sm" type="button" id="clear-b">비우기</button></h2>
+      <div class="panel-body">
+        <label class="skip" for="b">변경된 텍스트</label>
+        <textarea id="b" spellcheck="false" placeholder="여기에 비교할 텍스트를 붙여 넣으세요."></textarea>
+      </div>
+      <p class="stat"><span>줄 <b id="b-lines">0</b></span><span>글자 <b id="b-chars">0</b></span></p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>비교 옵션</h2>
+    <div class="panel-body">
+      <div class="panels panels-3">
+        <div>
+          <label class="check"><input type="checkbox" id="opt-trim"><span>줄 앞뒤 <b>공백 무시</b></span></label>
+          <label class="check"><input type="checkbox" id="opt-case"><span><b>대소문자 무시</b></span></label>
+        </div>
+        <div>
+          <label class="check"><input type="checkbox" id="opt-blank"><span><b>빈 줄 무시</b></span></label>
+          <label class="check"><input type="checkbox" id="opt-collapse" checked><span>같은 부분 <b>접어 보기</b></span></label>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" type="button" id="run">비교하기</button>
+          <button class="btn" type="button" id="swap">↕ 좌우 교환</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>
+      비교 결과
+      <span class="sp"></span>
+      <button class="btn btn-sm" type="button" id="copy" disabled>📋 통합 diff 복사</button>
+      <button class="btn btn-sm" type="button" id="save" disabled>내보내기 .diff</button>
+    </h2>
+    <div class="panel-body flush">
+      <div class="diff" id="out" role="region" aria-label="비교 결과" tabindex="0"></div>
+    </div>
+    <p class="stat">
+      <span>추가 <b id="n-add">0</b></span>
+      <span>삭제 <b id="n-del">0</b></span>
+      <span>동일 <b id="n-eq">0</b></span>
+      <span>유사도 <b id="n-sim">—</b></span>
+    </p>
+  </section>
+
+</main>
+
+<!-- TK:TRACKER -->
+  <!-- sensitive: true → 트래커/광고 스니펫 주입 금지 -->
+<!-- /TK:TRACKER -->
+<!-- TK:FOOTER -->
+  <footer class="site-foot">
+    <p><span class="mono">v1.0.0</span> · 2026-09-09 · 외부 통신 없음</p>
+    <p>입력한 파일과 텍스트는 브라우저를 벗어나지 않습니다. 이 페이지는 서버로 데이터를 보내지 않습니다.</p>
+    <p>© 2026 One Day AI · <a href="mailto:namho.cho@samsung.com">namho.cho@samsung.com</a></p>
+  </footer>
+<!-- /TK:FOOTER -->
+</body>
+</html>

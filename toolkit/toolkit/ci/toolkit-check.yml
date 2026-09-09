@@ -1,0 +1,57 @@
+# 저장소 루트의 .github/workflows/ 로 복사해서 쓰세요.
+#
+# 하는 일: tools.json 을 기준으로 다시 빌드했을 때 커밋된 생성물과 달라지면 실패시킵니다.
+# 즉 "빌드를 안 돌리고 커밋한" 상태를 잡아 줍니다. 배포 자체는 GitHub Pages 가
+# 정적 파일을 그대로 서빙하므로 이 워크플로가 배포를 하지는 않습니다.
+
+name: toolkit build check
+
+on:
+  push:
+    paths: ['toolkit/**']
+  pull_request:
+    paths: ['toolkit/**']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 1단계: 레지스트리 검증만 (파일을 쓰지 않음)
+      #   id 중복·형식, 없는 카테고리, sensitive/network 미선언,
+      #   등록되지 않은 고아 디렉터리, 파일 부재를 잡는다
+      - name: 레지스트리 검증
+        working-directory: toolkit
+        run: node scripts/build.mjs --check
+
+      # 2단계: 실제로 빌드해 보고 생성물이 커밋된 것과 같은지 확인
+      - name: 생성물 최신 여부
+        working-directory: toolkit
+        run: |
+          node scripts/build.mjs
+          if ! git diff --exit-code -- .; then
+            echo ""
+            echo "::error::생성물이 오래되었습니다. 로컬에서 'node scripts/build.mjs' 를 돌린 뒤 다시 커밋하세요."
+            exit 1
+          fi
+
+      # 3단계: 브라우저 검증 (격리·XSS·CSP·기능)
+      - name: 브라우저 검증
+        working-directory: toolkit
+        run: |
+          npm i --no-save playwright
+          npx playwright install --with-deps chromium
+          node verify/browser-check.mjs
+
+      - name: 스크린샷 업로드
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toolkit-shots
+          path: toolkit/verify/shots/
+          if-no-files-found: ignore

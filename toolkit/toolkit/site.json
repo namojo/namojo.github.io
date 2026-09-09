@@ -1,0 +1,23 @@
+{
+  "name": "TOOLKIT",
+  "owner": "One Day AI",
+  "baseUrl": "https://namojo.github.io",
+  "basePath": "/toolkit/",
+  "locale": "ko_KR",
+  "lang": "ko",
+  "contact": "namho.cho@samsung.com",
+  "tagline": "설치도 로그인도 없이, 브라우저 안에서 끝내는 도구 모음",
+  "description": "파일과 텍스트를 서버로 보내지 않고 브라우저 안에서 처리하는 무료 웹 도구 모음입니다.",
+
+  "_comment_tracker": "민감도(sensitive: true) 페이지에는 이 스니펫이 절대 주입되지 않습니다. 정책이 아니라 빌드 파이프라인이 격리를 보장합니다. 비워 두면 어떤 페이지에도 주입되지 않습니다.",
+  "tracker": {
+    "enabled": false,
+    "snippet": ""
+  },
+
+  "_comment_csp": "network 선언값에 따라 도구별 connect-src가 자동 결정됩니다. build.mjs 의 CSP_BY_NETWORK 참고.",
+  "verification": {
+    "google": "",
+    "naver": ""
+  }
+}

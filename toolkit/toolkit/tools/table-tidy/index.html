@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko" data-tool-id="table-tidy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TK:HEAD -->
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39; data: blob:; font-src &#39;self&#39;; media-src &#39;self&#39; blob:; connect-src &#39;none&#39;; frame-src &#39;self&#39;; form-action &#39;none&#39;; base-uri &#39;none&#39;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>표 데이터 정리 · TOOLKIT</title>
+  <meta name="description" content="CSV·TSV를 붙여넣거나 끌어다 놓으면 구분자를 자동 판별해 정리하고 CSV·Markdown·JSON으로 내보냅니다.">
+  <link rel="canonical" href="https://namojo.github.io/toolkit/tools/table-tidy/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TOOLKIT">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="표 데이터 정리 · TOOLKIT">
+  <meta property="og:description" content="CSV·TSV를 붙여넣거나 끌어다 놓으면 구분자를 자동 판별해 정리하고 CSV·Markdown·JSON으로 내보냅니다.">
+  <meta property="og:url" content="https://namojo.github.io/toolkit/tools/table-tidy/">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="../../assets/base.css">
+<!-- /TK:HEAD -->
+  <script src="../../assets/tk-sdk.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+<body>
+<!-- TK:HEADER -->
+  <a class="skip" href="#main">본문으로 건너가기</a>
+  <header class="site-head">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">TK</span><span>TOOLKIT</span></a>
+    <nav aria-label="주요">
+      <a href="../../index.html">전체 도구</a>
+      <a href="../../about.html">소개</a>
+    </nav>
+  </header>
+<!-- /TK:HEADER -->
+
+<main id="main" class="wrap">
+
+  <div class="tool-head">
+    <h1>표 데이터 정리</h1>
+    <p>CSV·TSV를 붙여넣거나 파일을 끌어다 놓으면 구분자를 자동으로 판별해 정리합니다.
+       공백 제거·빈 행 제거·중복 제거·정렬을 거쳐 CSV, Markdown, JSON으로 내보낼 수 있습니다.</p>
+  </div>
+
+  <p class="notice" data-tk-env>이 페이지의 모든 처리는 브라우저 안에서 이뤄집니다.</p>
+
+  <div class="panels panels-2">
+    <section class="panel">
+      <h2>입력 <span class="sp"></span><button class="btn btn-sm" type="button" id="demo">예시 넣기</button><button class="btn btn-sm" type="button" id="clear">비우기</button></h2>
+      <div class="panel-body">
+        <div class="drop" id="drop">
+          <b>CSV·TSV 파일을 클릭하거나 끌어다 놓으세요</b>
+          <span>파일은 업로드되지 않고 브라우저에서 바로 읽습니다</span>
+        </div>
+        <input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values,text/plain" hidden>
+        <div class="field">
+          <label for="src">또는 직접 붙여넣기</label>
+          <textarea id="src" spellcheck="false" placeholder="이름,부서,점수&#10;홍길동,기획,88"></textarea>
+        </div>
+      </div>
+      <p class="stat"><span id="src-info">입력 없음</span></p>
+    </section>
+
+    <section class="panel">
+      <h2>정리 옵션</h2>
+      <div class="panel-body">
+        <div class="field">
+          <label for="delim">구분자</label>
+          <select id="delim">
+            <option value="auto">자동 판별</option>
+            <option value=",">쉼표 ,</option>
+            <option value="\t">탭</option>
+            <option value=";">세미콜론 ;</option>
+            <option value="|">파이프 |</option>
+          </select>
+          <span class="hint" id="delim-info"></span>
+        </div>
+        <label class="check"><input type="checkbox" id="opt-header" checked><span>첫 행을 <b>헤더</b>로 사용</span></label>
+        <label class="check"><input type="checkbox" id="opt-trim" checked><span>셀 앞뒤 <b>공백 제거</b></span></label>
+        <label class="check"><input type="checkbox" id="opt-blankrow" checked><span><b>빈 행 제거</b></span></label>
+        <label class="check"><input type="checkbox" id="opt-blankcol"><span>전부 비어 있는 <b>열 제거</b></span></label>
+        <label class="check"><input type="checkbox" id="opt-dedupe"><span><b>중복 행 제거</b></span></label>
+        <div class="field">
+          <label for="filter">행 필터 (포함하는 문자열)</label>
+          <input type="text" id="filter" autocomplete="off" placeholder="예: 기획">
+        </div>
+      </div>
+      <p class="stat" id="clean-info"><span>—</span></p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>
+      결과 <span class="hint" id="sort-info"></span>
+      <span class="sp"></span>
+      <button class="btn btn-sm" type="button" id="copy-tsv" disabled>📋 표로 복사</button>
+      <button class="btn btn-sm" type="button" id="dl-csv" disabled>.csv</button>
+      <button class="btn btn-sm" type="button" id="dl-md" disabled>.md</button>
+      <button class="btn btn-sm" type="button" id="dl-json" disabled>.json</button>
+    </h2>
+    <div class="panel-body flush">
+      <div class="table-scroll" id="table-scroll">
+        <table class="data" id="table">
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="stat">
+      <span>행 <b id="n-rows">0</b></span>
+      <span>열 <b id="n-cols">0</b></span>
+      <span id="n-drop"></span>
+      <span class="hint">헤더를 클릭하면 정렬됩니다 (최대 500행 표시)</span>
+    </p>
+  </section>
+
+</main>
+
+<!-- TK:TRACKER -->
+  <!-- sensitive: true → 트래커/광고 스니펫 주입 금지 -->
+<!-- /TK:TRACKER -->
+<!-- TK:FOOTER -->
+  <footer class="site-foot">
+    <p><span class="mono">v1.0.0</span> · 2026-09-09 · 외부 통신 없음</p>
+    <p>입력한 파일과 텍스트는 브라우저를 벗어나지 않습니다. 이 페이지는 서버로 데이터를 보내지 않습니다.</p>
+    <p>© 2026 One Day AI · <a href="mailto:namho.cho@samsung.com">namho.cho@samsung.com</a></p>
+  </footer>
+<!-- /TK:FOOTER -->
+</body>
+</html>

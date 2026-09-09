@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TK:HEAD -->
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39; data: blob:; font-src &#39;self&#39;; media-src &#39;self&#39; blob:; connect-src &#39;none&#39;; frame-src &#39;self&#39;; form-action &#39;none&#39;; base-uri &#39;none&#39;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>TOOLKIT — 설치도 로그인도 없이, 브라우저 안에서 끝내는 도구 모음</title>
+  <meta name="description" content="파일과 텍스트를 서버로 보내지 않고 브라우저 안에서 처리하는 무료 웹 도구 모음입니다.">
+  <link rel="canonical" href="https://namojo.github.io/toolkit/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TOOLKIT">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="TOOLKIT — 설치도 로그인도 없이, 브라우저 안에서 끝내는 도구 모음">
+  <meta property="og:description" content="파일과 텍스트를 서버로 보내지 않고 브라우저 안에서 처리하는 무료 웹 도구 모음입니다.">
+  <meta property="og:url" content="https://namojo.github.io/toolkit/">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="assets/base.css">
+<!-- /TK:HEAD -->
+  <script src="assets/hub.js" defer></script>
+</head>
+<body>
+<!-- TK:HEADER -->
+  <a class="skip" href="#main">본문으로 건너가기</a>
+  <header class="site-head">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">TK</span><span>TOOLKIT</span></a>
+    <nav aria-label="주요">
+      <a href="index.html">전체 도구</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </header>
+<!-- /TK:HEADER -->
+
+<main id="main" class="wrap">
+
+  <section class="hero">
+    <h1>설치도 로그인도 없이,<br>브라우저 안에서 끝내는 도구 모음</h1>
+    <p>문서 정리, 표 변환, 이미지 처리 같은 잔업을 브라우저에서 바로 처리합니다.
+       파일과 텍스트는 서버로 올라가지 않고 여러분의 기기 안에서만 다뤄집니다.</p>
+    <p class="pledge">
+      <span aria-hidden="true">🔒</span>
+      <span><b>업로드 없음</b> · 계정 없음 · 각 도구는 <b>격리된 샌드박스</b>에서 실행됩니다</span>
+    </p>
+  </section>
+
+  <section class="controls" aria-label="도구 찾기">
+    <div class="search">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <label class="skip" for="q">도구 검색</label>
+      <input id="q" type="text" autocomplete="off" spellcheck="false"
+             placeholder="도구 이름이나 하고 싶은 일을 입력하세요 (예: csv, 비교, 리사이즈)">
+      <button id="q-clear" type="button" aria-label="검색어 지우기">✕</button>
+    </div>
+
+    <div class="chips" role="group" aria-label="카테고리">
+      <!-- TK:CATS -->
+        <button class="chip is-on" type="button" data-cat="*">전체<span class="n">3</span></button>
+        <button class="chip" type="button" data-cat="@fav">즐겨찾기<span class="n" data-fav-count>0</span></button>
+        <button class="chip" type="button" data-cat="text">문서·텍스트<span class="n">1</span></button>
+        <button class="chip" type="button" data-cat="data">데이터·표<span class="n">1</span></button>
+        <button class="chip" type="button" data-cat="media">이미지·미디어<span class="n">1</span></button>
+<!-- /TK:CATS -->
+    </div>
+
+    <div class="chips" role="group" aria-label="태그">
+      <!-- TK:TAGS -->
+        <button class="chip chip-sm" type="button" data-tag="변환">#변환<span class="n">2</span></button>
+        <button class="chip chip-sm" type="button" data-tag="데이터">#데이터<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="리뷰">#리뷰<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="비교">#비교<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="이미지">#이미지<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="정리">#정리<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="텍스트">#텍스트<span class="n">1</span></button>
+        <button class="chip chip-sm" type="button" data-tag="프라이버시">#프라이버시<span class="n">1</span></button>
+<!-- /TK:TAGS -->
+    </div>
+
+    <p class="filter-note" id="filter-note" role="status"></p>
+  </section>
+
+  <section class="grid" id="grid" aria-label="도구 목록">
+    <!-- TK:CARDS -->
+      <article class="card" data-id="text-diff" data-cat="text"
+               data-tags="텍스트|비교|리뷰"
+               data-search="텍스트 비교 두 텍스트를 줄 단위로 비교해 변경점을 표시하고 통합 diff로 내보냅니다. diff 비교 변경점 차이 리뷰 버전 compare 텍스트 비교 리뷰 문서·텍스트"
+               data-path="tools/text-diff/">
+        <button class="star" type="button" aria-pressed="false"
+                aria-label="텍스트 비교 즐겨찾기 토글">
+          <span aria-hidden="true">☆</span>
+        </button>
+        <p class="card-cat">문서·텍스트</p>
+        <h3 class="card-title"><a href="tools/text-diff/">텍스트 비교</a></h3>
+        <p class="card-sum">두 텍스트를 줄 단위로 비교해 변경점을 표시하고 통합 diff로 내보냅니다.</p>
+        <ul class="tags"><li class="tag">텍스트</li><li class="tag">비교</li><li class="tag">리뷰</li></ul>
+        <p class="card-meta"><span class="mono">v1.0.0</span> · 2026-09-09 · <span class="badge">외부통신 없음</span></p>
+      </article>
+      <article class="card" data-id="table-tidy" data-cat="data"
+               data-tags="데이터|변환|정리"
+               data-search="표 데이터 정리 csv·tsv를 붙여넣거나 끌어다 놓으면 구분자를 자동 판별해 정리하고 csv·markdown·json으로 내보냅니다. csv tsv 표 엑셀 정리 중복제거 markdown json table 데이터 변환 정리 데이터·표"
+               data-path="tools/table-tidy/">
+        <button class="star" type="button" aria-pressed="false"
+                aria-label="표 데이터 정리 즐겨찾기 토글">
+          <span aria-hidden="true">☆</span>
+        </button>
+        <p class="card-cat">데이터·표</p>
+        <h3 class="card-title"><a href="tools/table-tidy/">표 데이터 정리</a></h3>
+        <p class="card-sum">CSV·TSV를 붙여넣거나 끌어다 놓으면 구분자를 자동 판별해 정리하고 CSV·Markdown·JSON으로 내보냅니다.</p>
+        <ul class="tags"><li class="tag">데이터</li><li class="tag">변환</li><li class="tag">정리</li></ul>
+        <p class="card-meta"><span class="mono">v1.0.0</span> · 2026-09-09 · <span class="badge">외부통신 없음</span></p>
+      </article>
+      <article class="card" data-id="image-resize" data-cat="media"
+               data-tags="이미지|변환|프라이버시"
+               data-search="이미지 리사이즈 여러 이미지를 한 번에 축소하고 형식을 바꿉니다. 재인코딩 과정에서 exif 위치정보가 함께 제거됩니다. 이미지 리사이즈 축소 webp jpeg png exif 용량 resize 이미지 변환 프라이버시 이미지·미디어"
+               data-path="tools/image-resize/">
+        <button class="star" type="button" aria-pressed="false"
+                aria-label="이미지 리사이즈 즐겨찾기 토글">
+          <span aria-hidden="true">☆</span>
+        </button>
+        <p class="card-cat">이미지·미디어</p>
+        <h3 class="card-title"><a href="tools/image-resize/">이미지 리사이즈</a></h3>
+        <p class="card-sum">여러 이미지를 한 번에 축소하고 형식을 바꿉니다. 재인코딩 과정에서 EXIF 위치정보가 함께 제거됩니다.</p>
+        <ul class="tags"><li class="tag">이미지</li><li class="tag">변환</li><li class="tag">프라이버시</li></ul>
+        <p class="card-meta"><span class="mono">v1.0.0</span> · 2026-09-09 · <span class="badge">외부통신 없음</span></p>
+      </article>
+<!-- /TK:CARDS -->
+  </section>
+
+  <p class="empty" id="empty" hidden>
+    조건에 맞는 도구가 없습니다. 검색어를 지우거나 다른 카테고리를 선택해 보세요.
+  </p>
+
+  <div class="prose wrap-narrow">
+    <h2>이 사이트는 어떻게 동작하나요</h2>
+    <p>모든 도구는 <b>클라이언트 사이드</b>로 동작합니다. 입력한 문서·표·이미지는 서버로 전송되지 않고
+       브라우저 안에서 계산된 뒤 사라집니다. 그래서 네트워크가 끊긴 상태에서도 대부분의 도구가 그대로 돌아갑니다.</p>
+
+    <h3>격리 실행이 무슨 뜻인가요</h3>
+    <p>허브에서 도구를 열면 그 도구는 <code>&lt;iframe sandbox="allow-scripts"&gt;</code> 안에서 실행됩니다.
+       같은 도메인에 얹혀 있어도 <b>별개의 오리진</b>으로 취급되기 때문에, 어떤 도구가 문제를 일으켜도
+       이 사이트의 다른 페이지나 저장된 설정에 손을 댈 수 없습니다.
+       도구가 설정을 저장해야 할 때만 허브에 요청하고, 허브가 그 요청을 검증한 뒤 자기 이름표를 붙여 보관합니다.</p>
+
+    <h3>즐겨찾기는 어디에 저장되나요</h3>
+    <p>여러분 브라우저의 로컬 저장소입니다. 서버에 계정이 없으므로 다른 기기와 동기화되지 않고,
+       브라우저 데이터를 지우면 함께 사라집니다.</p>
+
+    <h2>자주 묻는 질문</h2>
+    <div class="faq">
+      <details>
+        <summary>정말 파일이 서버로 올라가지 않나요</summary>
+        <p>각 도구 페이지에는 <code>connect-src 'none'</code> 이 박힌 콘텐츠 보안 정책(CSP)이 적용됩니다.
+           브라우저 차원에서 외부 통신이 차단되므로, 코드에 실수나 악의가 있어도 데이터가 나갈 경로가 없습니다.
+           브라우저 개발자도구의 네트워크 탭을 열어 직접 확인해 보셔도 됩니다.</p>
+      </details>
+      <details>
+        <summary>회원가입이나 결제가 필요한가요</summary>
+        <p>둘 다 없습니다. 계정 체계 자체가 없어서 수집할 개인정보도, 유출될 계정도 없습니다.</p>
+      </details>
+      <details>
+        <summary>회사 문서를 넣어도 괜찮나요</summary>
+        <p>기술적으로는 데이터가 기기를 벗어나지 않습니다. 다만 소속 조직의 정보보호 규정은
+           도구의 동작 방식과 별개로 적용될 수 있으니, 사내 문서라면 규정을 먼저 확인하시기 바랍니다.</p>
+      </details>
+      <details>
+        <summary>도구를 추가해 달라고 요청할 수 있나요</summary>
+        <p>가능합니다. 하단의 메일 주소로 어떤 작업을 자동화하고 싶은지 알려 주세요.</p>
+      </details>
+    </div>
+  </div>
+
+</main>
+
+<dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-bar">
+    <h2 id="viewer-title"></h2>
+    <span class="iso" title="이 도구는 불투명 오리진의 샌드박스에서 실행됩니다">
+      <span aria-hidden="true">🛡</span> 격리 실행
+    </span>
+    <span class="sp"></span>
+    <a id="viewer-open" href="#" target="_blank" rel="noopener noreferrer">새 탭에서 열기 ↗</a>
+    <button id="viewer-close" type="button">닫기 ✕</button>
+  </div>
+  <iframe id="viewer-frame" title="도구 실행 영역"
+          sandbox="allow-scripts allow-downloads"
+          allow="clipboard-write"
+          referrerpolicy="no-referrer"></iframe>
+</dialog>
+
+<!-- TK:TRACKER -->
+  <!-- tracker.enabled = false -->
+<!-- /TK:TRACKER -->
+<!-- TK:FOOTER -->
+  <footer class="site-foot">
+    <p>외부 통신 없음</p>
+    <p>입력한 파일과 텍스트는 브라우저를 벗어나지 않습니다. 이 페이지는 서버로 데이터를 보내지 않습니다.</p>
+    <p>© 2026 One Day AI · <a href="mailto:namho.cho@samsung.com">namho.cho@samsung.com</a></p>
+  </footer>
+<!-- /TK:FOOTER -->
+</body>
+</html>

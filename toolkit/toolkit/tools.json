@@ -1,0 +1,47 @@
+{
+  "categories": [
+    { "id": "text",  "label": "문서·텍스트", "desc": "문서와 텍스트를 정리·비교·변환합니다." },
+    { "id": "data",  "label": "데이터·표",   "desc": "CSV와 표 데이터를 정리하고 다른 형식으로 내보냅니다." },
+    { "id": "media", "label": "이미지·미디어", "desc": "이미지 크기·형식을 바꾸고 메타데이터를 제거합니다." },
+    { "id": "ai",    "label": "AI 유틸",     "desc": "프롬프트와 모델 입출력을 다루는 유틸리티입니다." }
+  ],
+
+  "tools": [
+    {
+      "id": "text-diff",
+      "category": "text",
+      "title": "텍스트 비교",
+      "summary": "두 텍스트를 줄 단위로 비교해 변경점을 표시하고 통합 diff로 내보냅니다.",
+      "keywords": ["diff", "비교", "변경점", "차이", "리뷰", "버전", "compare"],
+      "tags": ["텍스트", "비교", "리뷰"],
+      "version": "1.0.0",
+      "updated": "2026-09-09",
+      "sensitive": true,
+      "network": "none"
+    },
+    {
+      "id": "table-tidy",
+      "category": "data",
+      "title": "표 데이터 정리",
+      "summary": "CSV·TSV를 붙여넣거나 끌어다 놓으면 구분자를 자동 판별해 정리하고 CSV·Markdown·JSON으로 내보냅니다.",
+      "keywords": ["csv", "tsv", "표", "엑셀", "정리", "중복제거", "markdown", "json", "table"],
+      "tags": ["데이터", "변환", "정리"],
+      "version": "1.0.0",
+      "updated": "2026-09-09",
+      "sensitive": true,
+      "network": "none"
+    },
+    {
+      "id": "image-resize",
+      "category": "media",
+      "title": "이미지 리사이즈",
+      "summary": "여러 이미지를 한 번에 축소하고 형식을 바꿉니다. 재인코딩 과정에서 EXIF 위치정보가 함께 제거됩니다.",
+      "keywords": ["이미지", "리사이즈", "축소", "webp", "jpeg", "png", "exif", "용량", "resize"],
+      "tags": ["이미지", "변환", "프라이버시"],
+      "version": "1.0.0",
+      "updated": "2026-09-09",
+      "sensitive": true,
+      "network": "none"
+    }
+  ]
+}
