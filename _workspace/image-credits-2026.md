@@ -73,3 +73,5 @@
 | covers/mistral-samsung-series-d-onprem-lease-datacenter.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
 | covers/nsa-china-distillation-altered-responses.jpg | 위스키 증류소의 구리 증류기 | Unsplash — François Hoppet | — |
 | covers/nsa-china-distillation-altered-responses-deepseek.jpg | DeepSeek 앱 첫 화면 | Unsplash — Solen Feyissa | — |
+| covers/california-ai-auditor-registry-ivo.jpg | 캘리포니아 주 의사당(새크라멘토) | Wikimedia Commons "California State Capitol from Capitol Mall - Sacramento (26429122855).jpg" — Tony Webster from Minneapolis, Minnesota, United States | CC BY-SA 2.0 |
+| covers/california-ai-auditor-registry-ivo-enron.jpg | 엔론 윤리강령 책자 | Wikimedia Commons "December 2017- Enron Code of Ethics.jpg" — Federal Bureau of Investigation (FBI) | Public domain |
