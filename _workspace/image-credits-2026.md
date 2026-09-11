@@ -75,3 +75,4 @@
 | covers/nsa-china-distillation-altered-responses-deepseek.jpg | DeepSeek 앱 첫 화면 | Unsplash — Solen Feyissa | — |
 | covers/california-ai-auditor-registry-ivo.jpg | 캘리포니아 주 의사당(새크라멘토) | Wikimedia Commons "California State Capitol from Capitol Mall - Sacramento (26429122855).jpg" — Tony Webster from Minneapolis, Minnesota, United States | CC BY-SA 2.0 |
 | covers/california-ai-auditor-registry-ivo-enron.jpg | 엔론 윤리강령 책자 | Wikimedia Commons "December 2017- Enron Code of Ethics.jpg" — Federal Bureau of Investigation (FBI) | Public domain |
+| covers/openai-agents-api-free-harness-compaction.jpg | 수레에 연결된 마구를 채운 말 | Unsplash — Alex Gorin | — |
