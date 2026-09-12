@@ -76,3 +76,4 @@
 | covers/california-ai-auditor-registry-ivo.jpg | 캘리포니아 주 의사당(새크라멘토) | Wikimedia Commons "California State Capitol from Capitol Mall - Sacramento (26429122855).jpg" — Tony Webster from Minneapolis, Minnesota, United States | CC BY-SA 2.0 |
 | covers/california-ai-auditor-registry-ivo-enron.jpg | 엔론 윤리강령 책자 | Wikimedia Commons "December 2017- Enron Code of Ethics.jpg" — Federal Bureau of Investigation (FBI) | Public domain |
 | covers/openai-agents-api-free-harness-compaction.jpg | 수레에 연결된 마구를 채운 말 | Unsplash — Alex Gorin | — |
+| covers/anthropic-threat-report-observable-misuse.jpg | 앤트로픽 CEO 다리오 아모데이 (TechCrunch Disrupt 2023) | Wikimedia Commons "Dario Amodei at TechCrunch Disrupt 2023 06.jpg" — TechCrunch | CC BY 2.0 |
