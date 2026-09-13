@@ -77,3 +77,5 @@
 | covers/california-ai-auditor-registry-ivo-enron.jpg | 엔론 윤리강령 책자 | Wikimedia Commons "December 2017- Enron Code of Ethics.jpg" — Federal Bureau of Investigation (FBI) | Public domain |
 | covers/openai-agents-api-free-harness-compaction.jpg | 수레에 연결된 마구를 채운 말 | Unsplash — Alex Gorin | — |
 | covers/anthropic-threat-report-observable-misuse.jpg | 앤트로픽 CEO 다리오 아모데이 (TechCrunch Disrupt 2023) | Wikimedia Commons "Dario Amodei at TechCrunch Disrupt 2023 06.jpg" — TechCrunch | CC BY 2.0 |
+| covers/cognition-swe2-kimi-k3-base-shape.jpg | 스콧 우, 2016 ACM-ICPC 세계대회 | Wikimedia Commons "Scott Wu at the 2016 ACM-ICPC World Finals.jpg" — ICPCNews | CC BY 2.0 |
+| covers/cognition-swe2-kimi-k3-base-shape-moonshot.jpg | 문샷 AI 심벌 | Wikimedia Commons "Moonshot AI.png" — CNAIPlus | CC0 |
