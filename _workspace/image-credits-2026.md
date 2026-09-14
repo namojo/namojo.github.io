@@ -79,3 +79,4 @@
 | covers/anthropic-threat-report-observable-misuse.jpg | 앤트로픽 CEO 다리오 아모데이 (TechCrunch Disrupt 2023) | Wikimedia Commons "Dario Amodei at TechCrunch Disrupt 2023 06.jpg" — TechCrunch | CC BY 2.0 |
 | covers/cognition-swe2-kimi-k3-base-shape.jpg | 스콧 우, 2016 ACM-ICPC 세계대회 | Wikimedia Commons "Scott Wu at the 2016 ACM-ICPC World Finals.jpg" — ICPCNews | CC BY 2.0 |
 | covers/cognition-swe2-kimi-k3-base-shape-moonshot.jpg | 문샷 AI 심벌 | Wikimedia Commons "Moonshot AI.png" — CNAIPlus | CC0 |
+| covers/amodei-pace-the-frontier-unilateral-step.jpg | 2023년 5월 백악관 루스벨트룸의 AI 기업 CEO 회동 | Wikimedia Commons — The White House | Public domain |
