@@ -80,3 +80,6 @@
 | covers/cognition-swe2-kimi-k3-base-shape.jpg | 스콧 우, 2016 ACM-ICPC 세계대회 | Wikimedia Commons "Scott Wu at the 2016 ACM-ICPC World Finals.jpg" — ICPCNews | CC BY 2.0 |
 | covers/cognition-swe2-kimi-k3-base-shape-moonshot.jpg | 문샷 AI 심벌 | Wikimedia Commons "Moonshot AI.png" — CNAIPlus | CC0 |
 | covers/amodei-pace-the-frontier-unilateral-step.jpg | 2023년 5월 백악관 루스벨트룸의 AI 기업 CEO 회동 | Wikimedia Commons — The White House | Public domain |
+| covers/google-antigravity-claude-opus5-quota.jpg | 구글 본사(마운틴뷰 구글플렉스) | Wikimedia Commons "Googleplex HQ (cropped).jpg" — Asoundd | CC BY-SA 4.0 |
+| covers/google-antigravity-claude-opus5-quota-amazon.jpg | 아마존 시애틀 본사 더 스피어스 | Wikimedia Commons "Amazon spheres W.jpg" — Sea Cow | CC BY-SA 4.0 |
+| covers/google-antigravity-claude-opus5-quota-ide.jpg | 코드 편집기(VS Code) 화면 | Wikimedia Commons "VS Code Screenshot.png" — Cycling2 | CC0 |
