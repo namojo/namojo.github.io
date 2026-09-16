@@ -83,3 +83,5 @@
 | covers/google-antigravity-claude-opus5-quota.jpg | 구글 본사(마운틴뷰 구글플렉스) | Wikimedia Commons "Googleplex HQ (cropped).jpg" — Asoundd | CC BY-SA 4.0 |
 | covers/google-antigravity-claude-opus5-quota-amazon.jpg | 아마존 시애틀 본사 더 스피어스 | Wikimedia Commons "Amazon spheres W.jpg" — Sea Cow | CC BY-SA 4.0 |
 | covers/google-antigravity-claude-opus5-quota-ide.jpg | 코드 편집기(VS Code) 화면 | Wikimedia Commons "VS Code Screenshot.png" — Cycling2 | CC0 |
+| covers/apple-ios27-siri-gemini-trust-boundary.jpg | 애플 파크(쿠퍼티노) | Wikimedia Commons "Aerial view of Apple Park dllu.jpg" — Daniel L. Lu (user:dllu) | CC BY-SA 4.0 |
+| covers/apple-ios27-siri-gemini-trust-boundary-datacenter.jpg | 구글 데이터센터 조감(아이오와 카운실블러프스) | Wikimedia Commons "Google Data Center, Council Bluffs Iowa (49062863796).jpg" — Chad Davis | CC BY 2.0 |
