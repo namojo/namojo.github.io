@@ -85,3 +85,5 @@
 | covers/google-antigravity-claude-opus5-quota-ide.jpg | 코드 편집기(VS Code) 화면 | Wikimedia Commons "VS Code Screenshot.png" — Cycling2 | CC0 |
 | covers/apple-ios27-siri-gemini-trust-boundary.jpg | 애플 파크(쿠퍼티노) | Wikimedia Commons "Aerial view of Apple Park dllu.jpg" — Daniel L. Lu (user:dllu) | CC BY-SA 4.0 |
 | covers/apple-ios27-siri-gemini-trust-boundary-datacenter.jpg | 구글 데이터센터 조감(아이오와 카운실블러프스) | Wikimedia Commons "Google Data Center, Council Bluffs Iowa (49062863796).jpg" — Chad Davis | CC BY 2.0 |
+| covers/openai-sponsored-agents-context-direction.jpg | 파이어니어 빌딩(샌프란시스코 미션 디스트릭트) — OpenAI 사무실이 있는 건물 | Wikimedia Commons "Pioneer Building, San Francisco (2019) -1.jpg" — HaeB | CC BY-SA 4.0 |
+| covers/openai-sponsored-agents-context-direction-hicks.jpg | Angi 공동창업자 앤지 힉스(왼쪽, 2018년 촬영) | Wikimedia Commons "Senator Todd Young with Angie Hicks.jpg" — Office of Senator Todd Young | Public domain (US Congress) |
