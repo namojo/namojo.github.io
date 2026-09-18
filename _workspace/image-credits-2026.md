@@ -87,3 +87,5 @@
 | covers/apple-ios27-siri-gemini-trust-boundary-datacenter.jpg | 구글 데이터센터 조감(아이오와 카운실블러프스) | Wikimedia Commons "Google Data Center, Council Bluffs Iowa (49062863796).jpg" — Chad Davis | CC BY 2.0 |
 | covers/openai-sponsored-agents-context-direction.jpg | 파이어니어 빌딩(샌프란시스코 미션 디스트릭트) — OpenAI 사무실이 있는 건물 | Wikimedia Commons "Pioneer Building, San Francisco (2019) -1.jpg" — HaeB | CC BY-SA 4.0 |
 | covers/openai-sponsored-agents-context-direction-hicks.jpg | Angi 공동창업자 앤지 힉스(왼쪽, 2018년 촬영) | Wikimedia Commons "Senator Todd Young with Angie Hicks.jpg" — Office of Senator Todd Young | Public domain (US Congress) |
+| covers/spain-aepd-first-ai-agent-breach-notification.jpg | 스페인 개인정보보호청(AEPD) 청사, 마드리드 | Wikimedia Commons "Madrid - Calle de Jorge Juan, Agencia Española de Protección de Datos.jpg" — Zarateman | CC0 |
+| covers/spain-aepd-first-ai-agent-breach-notification-racks.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
