@@ -89,3 +89,5 @@
 | covers/openai-sponsored-agents-context-direction-hicks.jpg | Angi 공동창업자 앤지 힉스(왼쪽, 2018년 촬영) | Wikimedia Commons "Senator Todd Young with Angie Hicks.jpg" — Office of Senator Todd Young | Public domain (US Congress) |
 | covers/spain-aepd-first-ai-agent-breach-notification.jpg | 스페인 개인정보보호청(AEPD) 청사, 마드리드 | Wikimedia Commons "Madrid - Calle de Jorge Juan, Agencia Española de Protección de Datos.jpg" — Zarateman | CC0 |
 | covers/spain-aepd-first-ai-agent-breach-notification-racks.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
+| covers/house-ratepayer-protection-act-state-consideration.jpg | 미국 하원 본회의장 | Wikimedia Commons "United States House of Representatives chamber.jpg" — United States House of Representatives or Office of the Speaker of the House | Public domain |
+| covers/house-ratepayer-protection-act-state-consideration-grid.jpg | 500kV 3상 송전선로 | Wikimedia Commons "500kV 3-Phase Transmission Lines.png" — Varistor60 | CC BY-SA 4.0 |
