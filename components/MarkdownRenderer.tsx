@@ -160,6 +160,15 @@ export const MarkdownRenderer: React.FC<Props> = ({ content }) => {
       i++; continue;
     }
 
+    // ── Horizontal rule ───────────────────────────────────────
+    // 커버 크레딧 줄 위의 구분선(2026-09-04 관례). 없으면 "---"가 본문에 그대로 보인다.
+    if (/^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
+      blocks.push(
+        <hr key={`hr-${key++}`} className="my-10 border-0 border-t border-ink-200 dark:border-ink-700" />,
+      );
+      i++; continue;
+    }
+
     // ── Blockquote (연속된 > 라인들을 하나의 blockquote로) ───
     if (line.startsWith('> ')) {
       const items: string[] = [];

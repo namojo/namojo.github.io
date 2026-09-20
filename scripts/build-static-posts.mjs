@@ -41,11 +41,27 @@ function escapeHtml(s) {
 
 function renderInline(line) {
   // Image  ![alt](url) — 독립 줄로 처리하므로 여기 이전에 match함
-  // Bold   **text** → <strong>
-  // Link   [text](url) → <a>
-  let out = escapeHtml(line);
-  out = out.replace(/\*\*([^*]+?)\*\*/g, (_, g1) => `<strong>${g1}</strong>`);
-  out = out.replace(/\[([^\]]+?)\]\(([^)]+?)\)/g, (_, text, url) => `<a href="${url}">${text}</a>`);
+  // Bold   **text** → <strong>   /  Code `text` → <code>
+  // Link   [text](url) → <a>     /  Italic *text* → <em>
+  //
+  // MarkdownRenderer.tsx와 **같은 단일 regex·같은 순서**로 처리한다. 예전에는 bold와
+  // link만 치환해서, 이미지 출처 줄(`*출처: OOO*`)과 커버 크레딧 줄이 정적 공유 페이지
+  // (dist/p/{id}/)에서 별표가 그대로 노출됐다. 순서가 중요하다 — **가 *보다,
+  // 백틱이 그 안의 별표보다 먼저 소비되어야 한다.
+  const text = escapeHtml(line);
+  const pattern = /(\*\*([^*]+?)\*\*)|(`([^`]+?)`)|(\[([^\]]+?)\]\(([^)]+?)\))|(\*([^*]+?)\*)/g;
+  let out = '';
+  let lastIndex = 0;
+  let m;
+  while ((m = pattern.exec(text)) !== null) {
+    out += text.slice(lastIndex, m.index);
+    if (m[1]) out += `<strong>${m[2]}</strong>`;
+    else if (m[3]) out += `<code>${m[4]}</code>`;
+    else if (m[5]) out += `<a href="${m[6 + 1]}">${m[6]}</a>`;
+    else if (m[8]) out += `<em>${m[9]}</em>`;
+    lastIndex = m.index + m[0].length;
+  }
+  out += text.slice(lastIndex);
   return out;
 }
 
@@ -93,6 +109,14 @@ function markdownToHtml(md) {
       if (!text) continue; // 빈 헤딩은 건너뜀
       const tag = level === 1 ? 'h2' : `h${level}`; // h1은 타이틀 중복 방지로 h2로
       out.push(`<${tag}>${renderInline(text)}</${tag}>`);
+      continue;
+    }
+
+    // Horizontal rule — 커버 크레딧 줄 위의 구분선(2026-09-04 관례)이 여기 해당한다.
+    // `- ` 리스트 매치보다 먼저 걸러야 안전하다.
+    if (/^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
+      closeList(); closeQuote();
+      out.push('<hr/>');
       continue;
     }
 
@@ -365,6 +389,16 @@ function postHtml(post) {
     }
     .body-content blockquote p { margin-bottom: .6rem; }
     .body-content strong { color: var(--text); font-weight: 700; }
+    .body-content em { font-style: italic; color: var(--text-muted); }
+    .body-content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92em; padding: .12em .38em; border-radius: 5px;
+      background: var(--warm-bg); color: var(--text);
+    }
+    .body-content hr {
+      border: 0; border-top: 1px solid var(--hairline);
+      margin: 2.6rem 0 1.6rem;
+    }
     .body-content figure { margin: 2.5rem 0; }
     .body-content img { max-width: 100%; height: auto; border-radius: 16px; }
     .body-content figcaption {

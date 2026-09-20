@@ -91,3 +91,5 @@
 | covers/spain-aepd-first-ai-agent-breach-notification-racks.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
 | covers/house-ratepayer-protection-act-state-consideration.jpg | 미국 하원 본회의장 | Wikimedia Commons "United States House of Representatives chamber.jpg" — United States House of Representatives or Office of the Speaker of the House | Public domain |
 | covers/house-ratepayer-protection-act-state-consideration-grid.jpg | 500kV 3상 송전선로 | Wikimedia Commons "500kV 3-Phase Transmission Lines.png" — Varistor60 | CC BY-SA 4.0 |
+| covers/plugin4shell-sha-pinning-checkout-verification.jpg | AI 코딩 도우미 패널이 붙은 코드 편집기와 터미널 | Wikimedia Commons "GitHub Codespaces side by side terminal.webp" — Wikideas1 | CC0 |
+| covers/plugin4shell-sha-pinning-checkout-verification-repro.jpg | git checkout이 핀한 해시가 아니라 동명 브랜치로 가는 것을 재현한 터미널 화면 | 자체 제작 (git 2.43.0에서 직접 재현, scripts 외부 1회성 렌더) | 자체 제작 |
