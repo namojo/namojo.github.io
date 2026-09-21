@@ -93,3 +93,5 @@
 | covers/house-ratepayer-protection-act-state-consideration-grid.jpg | 500kV 3상 송전선로 | Wikimedia Commons "500kV 3-Phase Transmission Lines.png" — Varistor60 | CC BY-SA 4.0 |
 | covers/plugin4shell-sha-pinning-checkout-verification.jpg | AI 코딩 도우미 패널이 붙은 코드 편집기와 터미널 | Wikimedia Commons "GitHub Codespaces side by side terminal.webp" — Wikideas1 | CC0 |
 | covers/plugin4shell-sha-pinning-checkout-verification-repro.jpg | git checkout이 핀한 해시가 아니라 동명 브랜치로 가는 것을 재현한 터미널 화면 | 자체 제작 (git 2.43.0에서 직접 재현, scripts 외부 1회성 렌더) | 자체 제작 |
+| covers/us-military-ai-intel-report-second-call-pentagon.jpg | 미 국방부 청사(펜타곤) | Wikimedia Commons — David B. Gleason | CC BY-SA 2.0 |
+| covers/us-military-ai-intel-report-second-call.jpg | 북아라비아만에서 미 해군 검문검색(VBSS)팀이 화물을 확인하는 모습 (2004) | Wikimedia Commons — U.S. Navy, Photographer's Mate 1st Class Chadwick Vann | Public domain |
