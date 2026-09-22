@@ -95,3 +95,5 @@
 | covers/plugin4shell-sha-pinning-checkout-verification-repro.jpg | git checkout이 핀한 해시가 아니라 동명 브랜치로 가는 것을 재현한 터미널 화면 | 자체 제작 (git 2.43.0에서 직접 재현, scripts 외부 1회성 렌더) | 자체 제작 |
 | covers/us-military-ai-intel-report-second-call-pentagon.jpg | 미 국방부 청사(펜타곤) | Wikimedia Commons — David B. Gleason | CC BY-SA 2.0 |
 | covers/us-military-ai-intel-report-second-call.jpg | 북아라비아만에서 미 해군 검문검색(VBSS)팀이 화물을 확인하는 모습 (2004) | Wikimedia Commons — U.S. Navy, Photographer's Mate 1st Class Chadwick Vann | Public domain |
+| covers/harvey-negative-margin-open-weight-tenet.jpg | 예일 로스쿨 도서관 열람실 | Wikimedia Commons — PENG Yanan (Neo-Jay) | CC BY-SA 3.0 |
+| covers/harvey-negative-margin-open-weight-tenet-frontier.jpg | 하비 테넷의 품질-비용 프런티어 차트 (태스크당 비용 대비 LAB all-pass rate) | Harvey 공식 블로그 「Harvey Tenet Research Preview」(2026-08-20) | — |
