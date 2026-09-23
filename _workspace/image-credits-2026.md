@@ -97,3 +97,5 @@
 | covers/us-military-ai-intel-report-second-call.jpg | 북아라비아만에서 미 해군 검문검색(VBSS)팀이 화물을 확인하는 모습 (2004) | Wikimedia Commons — U.S. Navy, Photographer's Mate 1st Class Chadwick Vann | Public domain |
 | covers/harvey-negative-margin-open-weight-tenet.jpg | 예일 로스쿨 도서관 열람실 | Wikimedia Commons — PENG Yanan (Neo-Jay) | CC BY-SA 3.0 |
 | covers/harvey-negative-margin-open-weight-tenet-frontier.jpg | 하비 테넷의 품질-비용 프런티어 차트 (태스크당 비용 대비 LAB all-pass rate) | Harvey 공식 블로그 「Harvey Tenet Research Preview」(2026-08-20) | — |
+| covers/intrinsic-core-apache-control-layer.jpg | 오픈 머신 텐딩 솔루션 시연 장면 | Intrinsic | — |
+| covers/intrinsic-core-apache-control-layer-calibration.jpg | 카메라 캘리브레이션·자세 추정 표현 이미지 (본문 삽입) | Intrinsic | — |
