@@ -99,3 +99,5 @@
 | covers/harvey-negative-margin-open-weight-tenet-frontier.jpg | 하비 테넷의 품질-비용 프런티어 차트 (태스크당 비용 대비 LAB all-pass rate) | Harvey 공식 블로그 「Harvey Tenet Research Preview」(2026-08-20) | — |
 | covers/intrinsic-core-apache-control-layer.jpg | 오픈 머신 텐딩 솔루션 시연 장면 | Intrinsic | — |
 | covers/intrinsic-core-apache-control-layer-calibration.jpg | 카메라 캘리브레이션·자세 추정 표현 이미지 (본문 삽입) | Intrinsic | — |
+| covers/safa-finra-without-sec.jpg | UN 안전보장이사회 회의장 | Wikimedia Commons "UN Security Council Nov 16 2023.jpg" — Wikiweeki | CC BY 4.0 |
+| covers/safa-finra-without-sec-hq.jpg | 미국 증권거래위원회(SEC) 청사(워싱턴 D.C.) | Wikimedia Commons, AgnosticPreachersKid | — |
