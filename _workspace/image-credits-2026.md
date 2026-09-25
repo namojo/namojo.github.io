@@ -101,3 +101,4 @@
 | covers/intrinsic-core-apache-control-layer-calibration.jpg | 카메라 캘리브레이션·자세 추정 표현 이미지 (본문 삽입) | Intrinsic | — |
 | covers/safa-finra-without-sec.jpg | UN 안전보장이사회 회의장 | Wikimedia Commons "UN Security Council Nov 16 2023.jpg" — Wikiweeki | CC BY 4.0 |
 | covers/safa-finra-without-sec-hq.jpg | 미국 증권거래위원회(SEC) 청사(워싱턴 D.C.) | Wikimedia Commons, AgnosticPreachersKid | — |
+| covers/openai-agent-medicare-84-days.jpg | 앤서니 앨버니지 호주 총리 (2026) | Wikimedia Commons "Anthony Albanese at the 2026 Australian Labor Party National Conference (028A9074).jpg" — Yu Chu Chin | CC BY-SA 4.0 |
