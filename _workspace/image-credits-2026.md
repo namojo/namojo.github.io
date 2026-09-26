@@ -102,3 +102,5 @@
 | covers/safa-finra-without-sec.jpg | UN 안전보장이사회 회의장 | Wikimedia Commons "UN Security Council Nov 16 2023.jpg" — Wikiweeki | CC BY 4.0 |
 | covers/safa-finra-without-sec-hq.jpg | 미국 증권거래위원회(SEC) 청사(워싱턴 D.C.) | Wikimedia Commons, AgnosticPreachersKid | — |
 | covers/openai-agent-medicare-84-days.jpg | 앤서니 앨버니지 호주 총리 (2026) | Wikimedia Commons "Anthony Albanese at the 2026 Australian Labor Party National Conference (028A9074).jpg" — Yu Chu Chin | CC BY-SA 4.0 |
+| covers/anthropic-akamai-cpu-warrant.jpg | 서버룸의 범용 서버 랙 | Wikimedia Commons "A view of the server room at The National Archives.jpg" — The National Archives (UK) | CC BY 3.0 |
+| covers/anthropic-akamai-cpu-warrant-cpu.jpg | IBM POWER7 프로세서 모듈 (2010년 촬영) | Wikimedia Commons "Blue Waters POWER7 CPU (5185722428).jpg" — Patrick Finnegan from Lafayette, IN, USA | CC BY 2.0 |
