@@ -104,3 +104,4 @@
 | covers/openai-agent-medicare-84-days.jpg | 앤서니 앨버니지 호주 총리 (2026) | Wikimedia Commons "Anthony Albanese at the 2026 Australian Labor Party National Conference (028A9074).jpg" — Yu Chu Chin | CC BY-SA 4.0 |
 | covers/anthropic-akamai-cpu-warrant.jpg | 서버룸의 범용 서버 랙 | Wikimedia Commons "A view of the server room at The National Archives.jpg" — The National Archives (UK) | CC BY 3.0 |
 | covers/anthropic-akamai-cpu-warrant-cpu.jpg | IBM POWER7 프로세서 모듈 (2010년 촬영) | Wikimedia Commons "Blue Waters POWER7 CPU (5185722428).jpg" — Patrick Finnegan from Lafayette, IN, USA | CC BY 2.0 |
+| covers/openai-dns-alert-kill-switch-delay.jpg | OpenAI 본사가 입주한 샌프란시스코 파이어니어 빌딩 | Wikimedia Commons "Pioneer Building, San Francisco (2019) -1.jpg" — HaeB | CC BY-SA 4.0 |
