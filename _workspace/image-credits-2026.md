@@ -105,3 +105,5 @@
 | covers/anthropic-akamai-cpu-warrant.jpg | 서버룸의 범용 서버 랙 | Wikimedia Commons "A view of the server room at The National Archives.jpg" — The National Archives (UK) | CC BY 3.0 |
 | covers/anthropic-akamai-cpu-warrant-cpu.jpg | IBM POWER7 프로세서 모듈 (2010년 촬영) | Wikimedia Commons "Blue Waters POWER7 CPU (5185722428).jpg" — Patrick Finnegan from Lafayette, IN, USA | CC BY 2.0 |
 | covers/openai-dns-alert-kill-switch-delay.jpg | OpenAI 본사가 입주한 샌프란시스코 파이어니어 빌딩 | Wikimedia Commons "Pioneer Building, San Francisco (2019) -1.jpg" — HaeB | CC BY-SA 4.0 |
+| covers/nvidia-openshell-sentry-policy-prover.jpg | 엔비디아 본사(캘리포니아 산타클라라) | Wikimedia Commons "NVIDIA Headquarters.jpg" — Coolcaesar | CC BY-SA 4.0 |
+| covers/nvidia-openshell-sentry-policy-prover-huang.jpg | 젠슨 황 엔비디아 CEO (2026년 4월 스탠퍼드대, 본문 삽입) | Wikimedia Commons "Jensen huang stanford 2026-04-30 023.jpg" — Anderseidesvik | CC BY-SA 4.0 |
