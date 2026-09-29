@@ -107,3 +107,6 @@
 | covers/openai-dns-alert-kill-switch-delay.jpg | OpenAI 본사가 입주한 샌프란시스코 파이어니어 빌딩 | Wikimedia Commons "Pioneer Building, San Francisco (2019) -1.jpg" — HaeB | CC BY-SA 4.0 |
 | covers/nvidia-openshell-sentry-policy-prover.jpg | 엔비디아 본사(캘리포니아 산타클라라) | Wikimedia Commons "NVIDIA Headquarters.jpg" — Coolcaesar | CC BY-SA 4.0 |
 | covers/nvidia-openshell-sentry-policy-prover-huang.jpg | 젠슨 황 엔비디아 CEO (2026년 4월 스탠퍼드대, 본문 삽입) | Wikimedia Commons "Jensen huang stanford 2026-04-30 023.jpg" — Anderseidesvik | CC BY-SA 4.0 |
+| covers/amd-world-labs-workload-roadmap.jpg | 페이페이 리 (2017년 ITU AI for Good 서밋) | Wikimedia Commons — ITU Pictures | CC BY 2.0 |
+| covers/amd-world-labs-workload-roadmap-3dgs.jpg | 가우시안 스플래팅 뷰어 화면 (3DGS, 2,030만 개 인스턴스) | Wikimedia Commons — Jurdein | CC BY-SA 4.0 |
+| covers/amd-world-labs-workload-roadmap-su.jpg | 리사 수 AMD 회장 겸 CEO (2024년 SXSW) | Wikimedia Commons — Fuzheado | CC BY 4.0 |
