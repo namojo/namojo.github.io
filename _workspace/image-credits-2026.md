@@ -110,3 +110,5 @@
 | covers/amd-world-labs-workload-roadmap.jpg | 페이페이 리 (2017년 ITU AI for Good 서밋) | Wikimedia Commons — ITU Pictures | CC BY 2.0 |
 | covers/amd-world-labs-workload-roadmap-3dgs.jpg | 가우시안 스플래팅 뷰어 화면 (3DGS, 2,030만 개 인스턴스) | Wikimedia Commons — Jurdein | CC BY-SA 4.0 |
 | covers/amd-world-labs-workload-roadmap-su.jpg | 리사 수 AMD 회장 겸 CEO (2024년 SXSW) | Wikimedia Commons — Fuzheado | CC BY 4.0 |
+| covers/sign-in-with-chatgpt-plan-usage-limit.jpg | 샘 올트먼 OpenAI CEO (TED 무대) | Wikimedia Commons "Sam Altman speaking at TED.jpg" — Steve Jurvetson | CC BY 2.0 |
+| covers/sign-in-with-chatgpt-plan-usage-limit-hq.jpg | 샌프란시스코 미션베이의 OpenAI 본사 (2025년 6월) | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY 4.0 |
