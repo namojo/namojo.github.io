@@ -112,3 +112,6 @@
 | covers/amd-world-labs-workload-roadmap-su.jpg | 리사 수 AMD 회장 겸 CEO (2024년 SXSW) | Wikimedia Commons — Fuzheado | CC BY 4.0 |
 | covers/sign-in-with-chatgpt-plan-usage-limit.jpg | 샘 올트먼 OpenAI CEO (TED 무대) | Wikimedia Commons "Sam Altman speaking at TED.jpg" — Steve Jurvetson | CC BY 2.0 |
 | covers/sign-in-with-chatgpt-plan-usage-limit-hq.jpg | 샌프란시스코 미션베이의 OpenAI 본사 (2025년 6월) | Wikimedia Commons "1515 Third Street.jpg" — Coolcaesar | CC BY 4.0 |
+| covers/google-suncatcher-mvp-orbit-heat.jpg | 라이드셰어 임무를 싣고 오르는 스페이스X 팰컨 9 (Transporter-6) | Wikimedia Commons "Falcon 9 Transporter-6 Launch (7805962).jpg" — U.S. Space Force photo by Joshua Conti | Public domain |
+| inline/suncatcher-planet-doves.jpg | 국제우주정거장에서 방출되는 플래닛의 소형 위성 | Wikimedia Commons "Planet Labs satellite launch from ISS.jpg" — Expedition 38 crew member Steve Jurvetson from Menlo Park, USA | Public domain |
+| inline/suncatcher-iss-radiators.jpg | 국제우주정거장의 라디에이터 패널 | Wikimedia Commons "ISS 63 Behnken near radiators.jpg" — NASA | Public domain |
