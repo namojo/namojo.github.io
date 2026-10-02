@@ -115,3 +115,5 @@
 | covers/google-suncatcher-mvp-orbit-heat.jpg | 라이드셰어 임무를 싣고 오르는 스페이스X 팰컨 9 (Transporter-6) | Wikimedia Commons "Falcon 9 Transporter-6 Launch (7805962).jpg" — U.S. Space Force photo by Joshua Conti | Public domain |
 | inline/suncatcher-planet-doves.jpg | 국제우주정거장에서 방출되는 플래닛의 소형 위성 | Wikimedia Commons "Planet Labs satellite launch from ISS.jpg" — Expedition 38 crew member Steve Jurvetson from Menlo Park, USA | Public domain |
 | inline/suncatcher-iss-radiators.jpg | 국제우주정거장의 라디에이터 패널 | Wikimedia Commons "ISS 63 Behnken near radiators.jpg" — NASA | Public domain |
+| covers/si-accord-audit-layers-without-disclosure.jpg | 백악관 북쪽 정면(노스 포티코) | Wikimedia Commons "White House Washington.JPG" — User:Cezary Piwowarczyk | CC BY-SA 4.0 |
+| covers/si-accord-audit-layers-without-disclosure-capitol.jpg | 미국 국회의사당 서쪽 정면 (본문 중간 이미지) | Wikimedia Commons "United States Capitol west front edit2.jpg" — United_States_Capitol_-_west_front.jpg : Architect of the Capitol derivative work: O.J. | Public domain |
