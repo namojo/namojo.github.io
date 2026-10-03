@@ -117,3 +117,5 @@
 | inline/suncatcher-iss-radiators.jpg | 국제우주정거장의 라디에이터 패널 | Wikimedia Commons "ISS 63 Behnken near radiators.jpg" — NASA | Public domain |
 | covers/si-accord-audit-layers-without-disclosure.jpg | 백악관 북쪽 정면(노스 포티코) | Wikimedia Commons "White House Washington.JPG" — User:Cezary Piwowarczyk | CC BY-SA 4.0 |
 | covers/si-accord-audit-layers-without-disclosure-capitol.jpg | 미국 국회의사당 서쪽 정면 (본문 중간 이미지) | Wikimedia Commons "United States Capitol west front edit2.jpg" — United_States_Capitol_-_west_front.jpg : Architect of the Capitol derivative work: O.J. | Public domain |
+| covers/anthropic-frontier-academy-nomination-only.jpg | 앤트로픽 샌프란시스코 사무실 | Wikimedia Commons "Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg" — Department for Science, Innovation and Technology | CC BY 2.0 |
+| covers/anthropic-frontier-academy-nomination-only-morgan-stanley.jpg | 모건스탠리 본사(뉴욕 1585 브로드웨이) | Wikimedia Commons "1585 Broadway - Morgan Stanley Building (55283615766).jpg" — Ajay Suresh | CC BY 4.0 |
