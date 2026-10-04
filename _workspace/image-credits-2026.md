@@ -119,3 +119,5 @@
 | covers/si-accord-audit-layers-without-disclosure-capitol.jpg | 미국 국회의사당 서쪽 정면 (본문 중간 이미지) | Wikimedia Commons "United States Capitol west front edit2.jpg" — United_States_Capitol_-_west_front.jpg : Architect of the Capitol derivative work: O.J. | Public domain |
 | covers/anthropic-frontier-academy-nomination-only.jpg | 앤트로픽 샌프란시스코 사무실 | Wikimedia Commons "Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg" — Department for Science, Innovation and Technology | CC BY 2.0 |
 | covers/anthropic-frontier-academy-nomination-only-morgan-stanley.jpg | 모건스탠리 본사(뉴욕 1585 브로드웨이) | Wikimedia Commons "1585 Broadway - Morgan Stanley Building (55283615766).jpg" — Ajay Suresh | CC BY 4.0 |
+| covers/hfs-math-random-session-key-chain.jpg | 여러 가지 주사위 | Wikimedia Commons "Würfel, gemischt -- 2021 -- 5577.jpg" — Dietmar Rabich | CC BY-SA 4.0 |
+| inline/hfs-math-random-session-key-chain-ui.jpg | HFS 2.3 beta 관리 화면 스크린샷 (2011) — 10-05 포스트 본문 중간 이미지 | Wikimedia Commons "HTTPFileServer.png" — rejetto | CC BY-SA 3.0 |
