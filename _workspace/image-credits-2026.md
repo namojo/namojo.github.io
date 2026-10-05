@@ -121,3 +121,5 @@
 | covers/anthropic-frontier-academy-nomination-only-morgan-stanley.jpg | 모건스탠리 본사(뉴욕 1585 브로드웨이) | Wikimedia Commons "1585 Broadway - Morgan Stanley Building (55283615766).jpg" — Ajay Suresh | CC BY 4.0 |
 | covers/hfs-math-random-session-key-chain.jpg | 여러 가지 주사위 | Wikimedia Commons "Würfel, gemischt -- 2021 -- 5577.jpg" — Dietmar Rabich | CC BY-SA 4.0 |
 | inline/hfs-math-random-session-key-chain-ui.jpg | HFS 2.3 beta 관리 화면 스크린샷 (2011) — 10-05 포스트 본문 중간 이미지 | Wikimedia Commons "HTTPFileServer.png" — rejetto | CC BY-SA 3.0 |
+| covers/reflection-beam-open-weight-compute-baseline.jpg | 엔비디아 DGX GB200 NVL72 랙 | Wikimedia Commons — Pokiiri | CC BY-SA 4.0 |
+| inline/reflection-beam-open-weight-compute-baseline-shinsegae.jpg | 서울 신세계백화점 본점 | Wikimedia Commons "Shinsegae Department Store in Seoul.jpg" — Minseong Kim | CC BY-SA 4.0 |
