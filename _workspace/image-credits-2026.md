@@ -123,3 +123,5 @@
 | inline/hfs-math-random-session-key-chain-ui.jpg | HFS 2.3 beta 관리 화면 스크린샷 (2011) — 10-05 포스트 본문 중간 이미지 | Wikimedia Commons "HTTPFileServer.png" — rejetto | CC BY-SA 3.0 |
 | covers/reflection-beam-open-weight-compute-baseline.jpg | 엔비디아 DGX GB200 NVL72 랙 | Wikimedia Commons — Pokiiri | CC BY-SA 4.0 |
 | inline/reflection-beam-open-weight-compute-baseline-shinsegae.jpg | 서울 신세계백화점 본점 | Wikimedia Commons "Shinsegae Department Store in Seoul.jpg" — Minseong Kim | CC BY-SA 4.0 |
+| covers/openai-textgrain-watermark-endpoint-provenance.jpg | 유럽연합 집행위원회 본부(베를레몽 빌딩), 브뤼셀 | Wikimedia Commons "Belgique - Bruxelles - Schuman - Berlaymont - 01.jpg" — EmDee | CC BY-SA 4.0 |
+| inline/openai-textgrain-watermark-handmade-paper.jpg | 1787년 에든버러판 번스 시집의 손으로 뜬 종이에 비쳐 보이는 플뢰르 드 리스 워터마크 — 10-07 포스트 본문 중간 이미지 | Wikimedia Commons "A fleur-de-lis watermark on handmade paper, 1787 Edinburgh Edition, Burns Poems.jpg" — Rosser1954 | CC BY-SA 4.0 |
