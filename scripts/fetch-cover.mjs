@@ -136,7 +136,9 @@ const qs = new URLSearchParams({
   titles: fileTitle,
   prop: 'imageinfo',
   iiprop: 'url|size|extmetadata',
-  iiurlwidth: '2400',            // 원본이 수십 MB일 수 있어 스케일본을 받는다
+  iiurlwidth: '1920',            // 원본이 수십 MB일 수 있어 스케일본을 받는다. 1920은 위키미디어가
+                                 // 허용하는 표준 폭이고, 커버가 1200px이라 충분하다. 2400을 요구하면
+                                 // 원본이 그보다 좁을 때 thumburl이 아예 오지 않아 원본 URL만 남는다.
   format: 'json',
   formatversion: '2',
   origin: '*',
@@ -153,6 +155,23 @@ try {
   die(`${e.message}\n  → 이 환경에서 commons.wikimedia.org가 막혀 있으면(EGRESS_BLOCKED/403) 이 경로는 쓸 수 없다.\n     환경의 네트워크 정책에 commons.wikimedia.org와 upload.wikimedia.org를 허용해야 한다.`);
 }
 
+/**
+ * 원본 URL에서 썸네일 URL을 만든다.
+ *   .../commons/9/9a/Foo.jpg → .../commons/thumb/9/9a/Foo.jpg/1280px-Foo.jpg
+ * 위키미디어는 허용 목록 밖의 폭을 400으로 거절하므로 표준 폭만 쓴다.
+ */
+function thumbFallbacks(originalUrl) {
+  if (!originalUrl) return [];
+  const m = /^(https?:\/\/[^/]+)\/wikipedia\/([^/]+)\/([0-9a-f])\/([0-9a-f]{2})\/([^?]+)/.exec(originalUrl);
+  if (!m) return [];
+  const [, host, project, d1, d2, name] = m;
+  if (/\.svg$/i.test(name)) return [];
+  const thumbHost = host.replace('upload.wikimedia.org', 'thumb.wikimedia.org');
+  return [1280, 800].map(
+    (w) => `${thumbHost}/wikipedia/${project}/thumb/${d1}/${d2}/${name}/${w}px-${name}`
+  );
+}
+
 const meta = info.extmetadata || {};
 artist = plain(meta.Artist?.value) || plain(meta.Credit?.value) || '(저작자 표기 없음)';
 license = plain(meta.LicenseShortName?.value) || plain(meta.License?.value) || '(라이선스 불명)';
@@ -162,7 +181,10 @@ descUrl = info.descriptionurl || `https://commons.wikimedia.org/wiki/${encodeURI
 // 썸네일 요청을 거부하기 시작했고(허용 목록에 없는 폭은 400 "Use thumbnail sizes listed on
 // https://w.wiki/GHai"), 그때도 원본 URL은 그대로 서빙된다. 그래서 둘 다 후보로 들고
 // 다니다가 앞의 것이 실패하면 뒤의 것으로 넘어간다.
-srcCandidates = [info.thumburl, info.url].filter(Boolean);
+// upload.wikimedia.org(원본 호스트)는 공유 IP에서 429로 막히는 일이 잦다. 반면 thumb 호스트는
+// 같은 시각에도 응답한다. 그래서 API가 thumburl을 주지 않았을 때(원본이 요청 폭보다 좁을 때)를
+// 대비해 허용 폭의 썸네일 URL을 직접 만들어 후보에 끼워 넣는다. 원본 URL은 마지막 수단이다.
+srcCandidates = [info.thumburl, ...thumbFallbacks(info.url), info.url].filter(Boolean);
 srcUrl = srcCandidates[0];
 dims = `${info.width}x${info.height}`;
 

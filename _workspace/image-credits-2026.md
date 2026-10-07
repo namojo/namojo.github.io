@@ -125,3 +125,5 @@
 | inline/reflection-beam-open-weight-compute-baseline-shinsegae.jpg | 서울 신세계백화점 본점 | Wikimedia Commons "Shinsegae Department Store in Seoul.jpg" — Minseong Kim | CC BY-SA 4.0 |
 | covers/openai-textgrain-watermark-endpoint-provenance.jpg | 유럽연합 집행위원회 본부(베를레몽 빌딩), 브뤼셀 | Wikimedia Commons "Belgique - Bruxelles - Schuman - Berlaymont - 01.jpg" — EmDee | CC BY-SA 4.0 |
 | inline/openai-textgrain-watermark-handmade-paper.jpg | 1787년 에든버러판 번스 시집의 손으로 뜬 종이에 비쳐 보이는 플뢰르 드 리스 워터마크 — 10-07 포스트 본문 중간 이미지 | Wikimedia Commons "A fleur-de-lis watermark on handmade paper, 1787 Edinburgh Edition, Burns Poems.jpg" — Rosser1954 | CC BY-SA 4.0 |
+| covers/meta-sierra-personal-agent-protocol-declare.jpg | 브렛 테일러 시에라 공동창업자, TechCrunch Disrupt 2024 | Wikimedia Commons "TechCrunch Disrupt 2024 D2 Bret Taylor-3.jpg" — TechCrunch | CC BY 2.0 |
+| inline/meta-sierra-pap-amazon-fulfillment.jpg | 아마존 물류센터(MSP1), 미네소타 섀코피 — 10-08 포스트 본문 중간 이미지 | Wikimedia Commons "Amazon Fulfillment Center MSP1 (48609899896).jpg" — Tony Webster from Minneapolis, Minnesota, United States | CC BY 2.0 |
