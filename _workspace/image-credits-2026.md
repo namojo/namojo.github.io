@@ -129,3 +129,5 @@
 | inline/meta-sierra-pap-amazon-fulfillment.jpg | 아마존 물류센터(MSP1), 미네소타 섀코피 — 10-08 포스트 본문 중간 이미지 | Wikimedia Commons "Amazon Fulfillment Center MSP1 (48609899896).jpg" — Tony Webster from Minneapolis, Minnesota, United States | CC BY 2.0 |
 | covers/openai-math-sign-error-formalization-coverage.jpg | 고등연구소 풀드 홀, 프린스턴 | Wikimedia Commons "Fuld Hall, Institute for Advanced Study, Princeton, NJ.jpg" — Zeete | CC BY-SA 4.0 |
 | inline/openai-math-terence-tao-ipam.jpg | 테렌스 타오(UCLA), IPAM 좌담회 2026-03-04 — 10-09 포스트 본문 중간 이미지 | Wikimedia Commons "Terence Tao at IPAM's Fireside Chat 2026 (50m16s) (cropped).jpg" — Institute for Pure & Applied Mathematics | CC BY 4.0 |
+| covers/crowdstrike-artex-korean-banks-agent-artifacts.jpg | 서울 여의도 금융가 | Wikimedia Commons "Skyline of Yeouido, a prominent finance district in Seoul.jpg" — S h y numis | CC BY 4.0 |
+| inline/crowdstrike-artex-national-assembly.jpg | 대한민국 국회의사당(서울 여의도) 야경 — 10-10 포스트 본문 중간 이미지 | Wikimedia Commons "National Assembly Building of South Korea night view.jpg" — Ox1997cow | CC BY-SA 3.0 |
