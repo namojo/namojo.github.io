@@ -131,3 +131,5 @@
 | inline/openai-math-terence-tao-ipam.jpg | 테렌스 타오(UCLA), IPAM 좌담회 2026-03-04 — 10-09 포스트 본문 중간 이미지 | Wikimedia Commons "Terence Tao at IPAM's Fireside Chat 2026 (50m16s) (cropped).jpg" — Institute for Pure & Applied Mathematics | CC BY 4.0 |
 | covers/crowdstrike-artex-korean-banks-agent-artifacts.jpg | 서울 여의도 금융가 | Wikimedia Commons "Skyline of Yeouido, a prominent finance district in Seoul.jpg" — S h y numis | CC BY 4.0 |
 | inline/crowdstrike-artex-national-assembly.jpg | 대한민국 국회의사당(서울 여의도) 야경 — 10-10 포스트 본문 중간 이미지 | Wikimedia Commons "National Assembly Building of South Korea night view.jpg" — Ox1997cow | CC BY-SA 3.0 |
+| covers/cloudflare-deno-node-compat-gravity-well.jpg | 라이언 달, YUIConf 2010 (캘리포니아 서니베일) | Wikimedia Commons "Ryan Dahl.jpg" — David Calhoun | CC BY 2.0 |
+| inline/cloudflare-deno-office-entrance.jpg | 클라우드플레어 사무실 입구(101 타운센드 스트리트, 샌프란시스코), 2021-12 촬영 — 10-11 포스트 본문 중간 이미지 | Wikimedia Commons "Cloudflare office entrance area.jpg" — HaeB | CC BY-SA 4.0 |
