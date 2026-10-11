@@ -133,3 +133,4 @@
 | inline/crowdstrike-artex-national-assembly.jpg | 대한민국 국회의사당(서울 여의도) 야경 — 10-10 포스트 본문 중간 이미지 | Wikimedia Commons "National Assembly Building of South Korea night view.jpg" — Ox1997cow | CC BY-SA 3.0 |
 | covers/cloudflare-deno-node-compat-gravity-well.jpg | 라이언 달, YUIConf 2010 (캘리포니아 서니베일) | Wikimedia Commons "Ryan Dahl.jpg" — David Calhoun | CC BY 2.0 |
 | inline/cloudflare-deno-office-entrance.jpg | 클라우드플레어 사무실 입구(101 타운센드 스트리트, 샌프란시스코), 2021-12 촬영 — 10-11 포스트 본문 중간 이미지 | Wikimedia Commons "Cloudflare office entrance area.jpg" — HaeB | CC BY-SA 4.0 |
+| covers/anthropic-eval-agents-live-internet-containment.jpg | 오랜 기간 필라델피아 경찰국 본부로 쓰인 '라운드하우스' | Wikimedia Commons — Beyond My Ken | CC BY-SA 4.0 |
