@@ -136,3 +136,4 @@
 | covers/anthropic-eval-agents-live-internet-containment.jpg | 오랜 기간 필라델피아 경찰국 본부로 쓰인 '라운드하우스' | Wikimedia Commons — Beyond My Ken | CC BY-SA 4.0 |
 | covers/microsoft-maia-300-tokens-per-megawatt.jpg | 마이크로소프트 데이터센터(네덜란드 미던메이르) 외부의 냉각 설비 | Wikimedia Commons "Microsoft Data Center Middenmeer, the Netherlands - 2.jpg" — Hay Kranen | CC BY 4.0 |
 | inline/maia-300-rack-power.jpg | 오크리지 국립연구소 Frontier 슈퍼컴퓨터 캐비닛과 천장에서 내려오는 전력 설비 — 10-13 포스트 본문 중간 이미지 | Wikimedia Commons "Frontier supercomputer (52280657003).jpg" — Oak Ridge National Laboratory | CC BY 2.0 |
+| covers/alibaba-qwen-n1-iris-payment-infrared.jpg | 사람의 홍채 접사 | Wikimedia Commons "Iris of human male.jpg" — Osmo Lundell | CC BY-SA 4.0 |
