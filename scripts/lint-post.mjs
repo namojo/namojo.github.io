@@ -43,7 +43,7 @@ const FORMULA_ENDINGS = [
 const BANNED_WORDS = [
   { re: /현지시각/g, msg: '"현지시각"은 쓰지 않는다 (스타일 가이드 6절 2026-10-13). 그냥 "10월 6일"로 적는다.' },
   { re: /[\u201C\u201D\u2018\u2019]/g, msg: '굽은 따옴표가 있다. 레포 관례는 곧은 따옴표(")다.' },
-  { re: /\bOpenAI\b/g, msg: '본문에서는 "오픈AI"로 쓴다 (스타일 가이드 6절 2026-10-13). 제품명 ChatGPT·Codex는 영문 유지.', bodyOnly: true },
+  { re: /\bOpenAI\b/g, msg: '본문에서는 "오픈AI"가 기본이다 (스타일 가이드 6절 2026-10-13). 제품명 ChatGPT·Codex는 영문 유지. ※ 저자가 PAP 편에서는 "OpenAI 이사회 의장"으로 영문을 쓴 전례가 있어 차단이 아니라 경고다.', bodyOnly: true, warn: true },
 ];
 
 function parse(file) {
@@ -91,7 +91,7 @@ function lint(file) {
   for (const b of BANNED_WORDS) {
     const hay = b.bodyOnly ? body : body + '\n' + title;
     const hits = hay.match(b.re);
-    if (hits) errs.push(`${b.msg} (${hits.length}회)`);
+    if (hits) (b.warn ? warns : errs).push(`${b.msg} (${hits.length}회)`);
   }
 
   // ── 분량·구조 (4절·11절) ─────────────────────────────────
