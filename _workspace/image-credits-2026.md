@@ -137,3 +137,5 @@
 | covers/microsoft-maia-300-tokens-per-megawatt.jpg | 마이크로소프트 데이터센터(네덜란드 미던메이르) 외부의 냉각 설비 | Wikimedia Commons "Microsoft Data Center Middenmeer, the Netherlands - 2.jpg" — Hay Kranen | CC BY 4.0 |
 | inline/maia-300-rack-power.jpg | 오크리지 국립연구소 Frontier 슈퍼컴퓨터 캐비닛과 천장에서 내려오는 전력 설비 — 10-13 포스트 본문 중간 이미지 | Wikimedia Commons "Frontier supercomputer (52280657003).jpg" — Oak Ridge National Laboratory | CC BY 2.0 |
 | covers/alibaba-qwen-n1-iris-payment-infrared.jpg | 사람의 홍채 접사 | Wikimedia Commons "Iris of human male.jpg" — Osmo Lundell | CC BY-SA 4.0 |
+| covers/india-karur-egocentric-data-robot-learning.jpg | 인도의 섬유공장에서 수건을 개는 노동자 | Unsplash — EqualStock | Unsplash License |
+| inline/india-karur-robot-hand.jpg | 사람 손을 본뜬 로봇 손 접사 — 10-15 포스트 본문 중간 이미지 | Unsplash — Enchanted Tools | Unsplash License |
