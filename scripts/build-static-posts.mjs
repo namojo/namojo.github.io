@@ -57,7 +57,10 @@ function renderInline(line) {
     out += text.slice(lastIndex, m.index);
     if (m[1]) out += `<strong>${m[2]}</strong>`;
     else if (m[3]) out += `<code>${m[4]}</code>`;
-    else if (m[5]) out += `<a href="${m[6 + 1]}">${m[6]}</a>`;
+    // 외부 링크는 SPA(MarkdownRenderer)와 같이 새 창으로 연다
+    else if (m[5]) out += /^https?:/.test(m[7])
+      ? `<a href="${m[7]}" target="_blank" rel="noopener noreferrer">${m[6]}</a>`
+      : `<a href="${m[7]}">${m[6]}</a>`;
     else if (m[8]) out += `<em>${m[9]}</em>`;
     lastIndex = m.index + m[0].length;
   }

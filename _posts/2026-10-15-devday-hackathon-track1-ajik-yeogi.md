@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Codex 해커톤 트랙 1 참가기, 4분이면 충분했을까?"
+title: "Codex Community 2026 해커톤 : 4분의 벽은 높았다"
 date: 2026-10-15 18:00:00 +0900
 categories: [기술-잡담]
 tags: [해커톤, Codex, OpenAI, 재난대응, GEO, 회고]
