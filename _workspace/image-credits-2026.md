@@ -139,3 +139,4 @@
 | covers/alibaba-qwen-n1-iris-payment-infrared.jpg | 사람의 홍채 접사 | Wikimedia Commons "Iris of human male.jpg" — Osmo Lundell | CC BY-SA 4.0 |
 | covers/india-karur-egocentric-data-robot-learning.jpg | 인도의 섬유공장에서 수건을 개는 노동자 | Unsplash — EqualStock | Unsplash License |
 | inline/india-karur-robot-hand.jpg | 사람 손을 본뜬 로봇 손 접사 — 10-15 포스트 본문 중간 이미지 | Unsplash — Enchanted Tools | Unsplash License |
+| covers/liquid-ai-lfm25-moe-active-params-bandwidth.jpg | 노트북용 LPDDR5X 메모리 모듈(LPCAMM2) | Wikimedia Commons "Essencore LPCAMM2 module on display at Computex 2025.jpg" — 4300streetcar | CC BY 4.0 |
