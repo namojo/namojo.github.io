@@ -140,3 +140,5 @@
 | covers/india-karur-egocentric-data-robot-learning.jpg | 인도의 섬유공장에서 수건을 개는 노동자 | Unsplash — EqualStock | Unsplash License |
 | inline/india-karur-robot-hand.jpg | 사람 손을 본뜬 로봇 손 접사 — 10-15 포스트 본문 중간 이미지 | Unsplash — Enchanted Tools | Unsplash License |
 | covers/liquid-ai-lfm25-moe-active-params-bandwidth.jpg | 노트북용 LPDDR5X 메모리 모듈(LPCAMM2) | Wikimedia Commons "Essencore LPCAMM2 module on display at Computex 2025.jpg" — 4300streetcar | CC BY 4.0 |
+| covers/ghostaction-workflow-git-history-secrets.jpg | 악성 워크플로 security-audit.yml의 실행을 깃허브가 보류시킨 화면(2026-10-10) | GitGuardian 블로그 "GhostAction Returns" | — |
+| inline/ghostaction-secret-names.jpg | 고스트액션 1차 파동 페이로드에 박혀 있던 시크릿 이름 분포 막대그래프 — 10-17 포스트 본문 중간 이미지 | GitGuardian 블로그 "GhostAction Returns" | — |
