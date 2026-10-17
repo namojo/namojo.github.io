@@ -142,3 +142,5 @@
 | covers/liquid-ai-lfm25-moe-active-params-bandwidth.jpg | 노트북용 LPDDR5X 메모리 모듈(LPCAMM2) | Wikimedia Commons "Essencore LPCAMM2 module on display at Computex 2025.jpg" — 4300streetcar | CC BY 4.0 |
 | covers/ghostaction-workflow-git-history-secrets.jpg | 악성 워크플로 security-audit.yml의 실행을 깃허브가 보류시킨 화면(2026-10-10) | GitGuardian 블로그 "GhostAction Returns" | — |
 | inline/ghostaction-secret-names.jpg | 고스트액션 1차 파동 페이로드에 박혀 있던 시크릿 이름 분포 막대그래프 — 10-17 포스트 본문 중간 이미지 | GitGuardian 블로그 "GhostAction Returns" | — |
+| covers/google-willow-magic-state-cultivation.jpg | 윌로우 양자 프로세서 실물과 마법 상태를 나타낸 블로흐 구 | 구글 블로그 "Bringing the magic: Google breaks open a bottleneck in quantum computing"(2026-10-15) | — |
+| inline/magic-state-cultivation-stages.jpg | 마법 상태 길러내기의 3단계(주입→길러내기→탈출) 개념도 — 10-18 포스트 본문 중간 이미지 | Gidney·Shutty·Jones, "Magic state cultivation", arXiv:2409.17595 Figure 4 | — |
