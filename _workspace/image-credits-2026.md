@@ -144,3 +144,5 @@
 | inline/ghostaction-secret-names.jpg | 고스트액션 1차 파동 페이로드에 박혀 있던 시크릿 이름 분포 막대그래프 — 10-17 포스트 본문 중간 이미지 | GitGuardian 블로그 "GhostAction Returns" | — |
 | covers/google-willow-magic-state-cultivation.jpg | 윌로우 양자 프로세서 실물과 마법 상태를 나타낸 블로흐 구 | 구글 블로그 "Bringing the magic: Google breaks open a bottleneck in quantum computing"(2026-10-15) | — |
 | inline/magic-state-cultivation-stages.jpg | 마법 상태 길러내기의 3단계(주입→길러내기→탈출) 개념도 — 10-18 포스트 본문 중간 이미지 | Gidney·Shutty·Jones, "Magic state cultivation", arXiv:2409.17595 Figure 4 | — |
+| covers/celestica-ds6005-cpo-copper-dsp.jpg | 광섬유 케이블이 연결된 데이터센터용 스위치 섀시 | Wikimedia Commons "Fibre Channel Director.jpg" — Scottkipp | CC BY-SA 4.0 |
+| inline/pluggable-optical-transceivers.jpg | 플러거블 광 트랜시버 2종(SFP+·X2) 제품 사진 — 10-19 포스트 본문 중간 이미지 | Wikimedia Commons "X2 vs SFP+ optical transceiver.jpg" — Martijn Boer | Public domain |
