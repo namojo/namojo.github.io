@@ -139,10 +139,7 @@
 | covers/alibaba-qwen-n1-iris-payment-infrared.jpg | 사람의 홍채 접사 | Wikimedia Commons "Iris of human male.jpg" — Osmo Lundell | CC BY-SA 4.0 |
 | covers/india-karur-egocentric-data-robot-learning.jpg | 인도의 섬유공장에서 수건을 개는 노동자 | Unsplash — EqualStock | Unsplash License |
 | inline/india-karur-robot-hand.jpg | 사람 손을 본뜬 로봇 손 접사 — 10-15 포스트 본문 중간 이미지 | Unsplash — Enchanted Tools | Unsplash License |
-| covers/liquid-ai-lfm25-moe-active-params-bandwidth.jpg | 노트북용 LPDDR5X 메모리 모듈(LPCAMM2) | Wikimedia Commons "Essencore LPCAMM2 module on display at Computex 2025.jpg" — 4300streetcar | CC BY 4.0 |
-| covers/ghostaction-workflow-git-history-secrets.jpg | 악성 워크플로 security-audit.yml의 실행을 깃허브가 보류시킨 화면(2026-10-10) | GitGuardian 블로그 "GhostAction Returns" | — |
-| inline/ghostaction-secret-names.jpg | 고스트액션 1차 파동 페이로드에 박혀 있던 시크릿 이름 분포 막대그래프 — 10-17 포스트 본문 중간 이미지 | GitGuardian 블로그 "GhostAction Returns" | — |
-| covers/google-willow-magic-state-cultivation.jpg | 윌로우 양자 프로세서 실물과 마법 상태를 나타낸 블로흐 구 | 구글 블로그 "Bringing the magic: Google breaks open a bottleneck in quantum computing"(2026-10-15) | — |
-| inline/magic-state-cultivation-stages.jpg | 마법 상태 길러내기의 3단계(주입→길러내기→탈출) 개념도 — 10-18 포스트 본문 중간 이미지 | Gidney·Shutty·Jones, "Magic state cultivation", arXiv:2409.17595 Figure 4 | — |
-| covers/celestica-ds6005-cpo-copper-dsp.jpg | 광섬유 케이블이 연결된 데이터센터용 스위치 섀시 | Wikimedia Commons "Fibre Channel Director.jpg" — Scottkipp | CC BY-SA 4.0 |
-| inline/pluggable-optical-transceivers.jpg | 플러거블 광 트랜시버 2종(SFP+·X2) 제품 사진 — 10-19 포스트 본문 중간 이미지 | Wikimedia Commons "X2 vs SFP+ optical transceiver.jpg" — Martijn Boer | Public domain |
+| covers/forward-deployed-engineers-ai-services.jpg | 회의 중인 업무 팀 | Wikimedia Commons "Work Meeting.jpg" — Amtec Photos | CC BY 2.0 |
+| covers/banks-block-third-party-ai-agents.jpg | 체이스 은행 지점(뉴욕 브루클린) | Wikimedia Commons "Chase Bank Bushwick Av 819 Grand St jeh.jpg" — Jim.henderson | CC BY-SA 4.0 |
+| covers/china-draft-export-controls-open-weight-models.jpg | 중국 상무부 청사(베이징) | Wikimedia Commons "Ministry of Commerce of China (20210527180200).jpg" — N509FZ | CC BY-SA 4.0 |
+| covers/equipment-booked-datacenters-stalled.jpg | 변전소의 750kV 대형 변압기 | Wikimedia Commons "High-voltage transformer 750 kV Трансформатор 750 кВ.jpg" — Novoklimov | CC0 |
