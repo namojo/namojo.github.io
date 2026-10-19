@@ -143,3 +143,5 @@
 | covers/banks-block-third-party-ai-agents.jpg | 체이스 은행 지점(뉴욕 브루클린) | Wikimedia Commons "Chase Bank Bushwick Av 819 Grand St jeh.jpg" — Jim.henderson | CC BY-SA 4.0 |
 | covers/china-draft-export-controls-open-weight-models.jpg | 중국 상무부 청사(베이징) | Wikimedia Commons "Ministry of Commerce of China (20210527180200).jpg" — N509FZ | CC BY-SA 4.0 |
 | covers/equipment-booked-datacenters-stalled.jpg | 변전소의 750kV 대형 변압기 | Wikimedia Commons "High-voltage transformer 750 kV Трансформатор 750 кВ.jpg" — Novoklimov | CC0 |
+| covers/deepseek-search-api-token-bill.jpg | 도서관 카드 색인함 | Wikimedia Commons "Card Catalog 2.jpg" — https://www.flickr.com/photos/mamsy/ | CC BY 2.0 |
+| inline/deepseek-search-api-token-bill-fields.jpg | DeepSeek 검색 API 응답 필드 표 — 10-20 포스트 본문(snippet/summary/content 구분) | DeepSeek 공식 API 문서 https://api-docs.deepseek.com/guides/search 화면 갈무리 | — |
