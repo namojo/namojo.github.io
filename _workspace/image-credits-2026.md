@@ -145,3 +145,5 @@
 | covers/equipment-booked-datacenters-stalled.jpg | 변전소의 750kV 대형 변압기 | Wikimedia Commons "High-voltage transformer 750 kV Трансформатор 750 кВ.jpg" — Novoklimov | CC0 |
 | covers/deepseek-search-api-token-bill.jpg | 도서관 카드 색인함 | Wikimedia Commons "Card Catalog 2.jpg" — https://www.flickr.com/photos/mamsy/ | CC BY 2.0 |
 | inline/deepseek-search-api-token-bill-fields.jpg | DeepSeek 검색 API 응답 필드 표 — 10-20 포스트 본문(snippet/summary/content 구분) | DeepSeek 공식 API 문서 https://api-docs.deepseek.com/guides/search 화면 갈무리 | — |
+| covers/ai-agents-breached-100-companies-fifty-dollars.jpg | 산길을 따라 늘어선 돌탑 | Unsplash — Luc Santeramo | Unsplash License |
+| inline/ai-agents-breached-100-companies-fifty-dollars-ants.jpg | 페로몬 자취를 따라 줄지어 이동하는 개미들 — 10-21 포스트 본문(스티그머지 설명) | Pexels — oandremoura https://www.pexels.com/photo/black-ants-lining-up-2563028/ | Pexels License |
