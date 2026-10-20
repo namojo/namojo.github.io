@@ -591,6 +591,7 @@ function main() {
     { loc: `${SITE_URL}/`, priority: '1.0' },
     // 정적 서브사이트 (public/ 에서 그대로 복사되는 페이지)
     { loc: `${SITE_URL}/aiguild/`, priority: '0.9' },
+    { loc: `${SITE_URL}/aiguild/curriculum/`, priority: '0.7' },
     ...generatable.map(p => ({
       loc: `${SITE_URL}/p/${p.id}/`,
       lastmod: toIsoDate(p.date) || undefined,
