@@ -589,6 +589,8 @@ function main() {
   // sitemap.xml
   const urls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
+    // 정적 서브사이트 (public/ 에서 그대로 복사되는 페이지)
+    { loc: `${SITE_URL}/aiguild/`, priority: '0.9' },
     ...generatable.map(p => ({
       loc: `${SITE_URL}/p/${p.id}/`,
       lastmod: toIsoDate(p.date) || undefined,
