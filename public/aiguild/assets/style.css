@@ -509,3 +509,32 @@ details .inner > :first-child { margin-top: 0; }
 .quiz li.graded .why { display: block; }
 .quiz-actions { display: flex; gap: 8px; align-items: center; margin: 4px 0 12px; flex-wrap: wrap; }
 .quiz-score { font-weight: 700; font-size: 14.5px; }
+
+/* ── 도식 다듬기 — 그림자 · 파일 칩 · 범례 ─────────────────── */
+.dg .box, .dg .hot, .dg .chk, .dg .inv { filter: url(#dg-sh); }
+.dg text { font-size: 12.5px; font-weight: 650; letter-spacing: -.01em; }
+.dg text.sm { font-size: 10.5px; font-weight: 500; letter-spacing: 0; }
+.dg text.mono, .dg text.file-t { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0; }
+.dg text.file-t { fill: var(--ink-2); }
+.dg text.inv-t { fill: var(--bg); }
+.dg text.warm-t { fill: var(--warm); font-size: 10.5px; font-weight: 700; }
+.dg text.ok-t { fill: var(--ok); }
+.dg .inv { fill: var(--ink); stroke: none; }
+.dg .file { fill: var(--bg-sunk); stroke: var(--line); stroke-width: 1; }
+.dg .skill { fill: var(--bg); stroke: var(--ink-4); stroke-width: 1.1; stroke-dasharray: 4 3; }
+.dg .band { fill: var(--bg-sunk); stroke: var(--line); stroke-width: 1; }
+.dg .ln { stroke: var(--ink-4); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.dg .ln.warm { stroke: var(--warm); }
+.dg .head-w { fill: var(--warm); }
+.dg .num { fill: var(--ink); }
+.dg .num.hot-n { fill: var(--warm); }
+.dg text.num-t { fill: var(--bg); font-size: 10.5px; font-weight: 800; }
+
+.figure { margin: 18px 0; padding: 16px 16px 12px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); }
+.figure figcaption { margin: 10px 2px 0; font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+.figure figcaption b { color: var(--ink-2); }
+
+/* 패턴 카드의 실무 사례 줄 */
+.pat .case { margin: 10px 0 0; padding-top: 9px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--ink-3); }
+.pat .case a { font-weight: 700; }
+.pat .case .tag { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--warm); background: var(--warm-bg); border: 1px solid var(--warm-line); border-radius: 5px; padding: 0 5px; margin-right: 5px; }

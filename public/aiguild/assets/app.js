@@ -251,6 +251,73 @@
     renderBrief();
   }
 
+  /* ── 스킬 의뢰서 생성기 ──────────────────────────────── */
+  var skillOut = document.getElementById('skill-out');
+  if (skillOut) {
+    var SKILL_KEY = 'aiguild.skill.brief.v1';
+    var SK_EXAMPLE = {
+      name: 'weekly-report',
+      what: '흩어진 업무 메모를 우리 팀 주간보고 양식으로 정리한다',
+      when: '주간보고 써줘, 이번 주 보고 정리해줘, 메모를 보고서로',
+      input: '내가 붙여 넣은 메모나 지정한 파일',
+      output: '실적 / 이슈 / 다음 주 계획 세 섹션, 항목마다 한 줄',
+      must: '수치·고객사·일정은 원문 그대로 쓰고, 원문에 없는 내용은 지어내지 않는다',
+      unknown: '양식을 채울 정보가 없으면 그 칸에 \'확인 필요\'라고 쓰고, 마지막에 무엇을 물어봐야 하는지 적는다'
+    };
+    var SAMPLE_MEMO = ['- 월: A사 미팅, 견적 1,200만 원 제출', '- 수: 신규 배너 시안 2종 공유, 피드백 대기', '- 금: 다음 주 B사 킥오프 (날짜 미정)'].join('\n');
+    var SK = { name: 'sk-name', what: 'sk-what', when: 'sk-when', input: 'sk-in', output: 'sk-out', must: 'sk-must', unknown: 'sk-unknown' };
+    var sk = {};
+    Object.keys(SK).forEach(function (k) { sk[k] = document.getElementById(SK[k]); });
+
+    var skRead = function () {
+      try { var raw = localStorage.getItem(SKILL_KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+    };
+    var skWrite = function (v) { try { localStorage.setItem(SKILL_KEY, JSON.stringify(v)); } catch (e) {} };
+    var skFill = function (v) { Object.keys(SK).forEach(function (k) { if (v[k] !== undefined) sk[k].value = v[k]; }); };
+    var slug = function (x) {
+      var s = String(x || '').toLowerCase().replace(/[\s_]+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+      return s || 'my-skill';
+    };
+    var skRender = function () {
+      var v = {};
+      Object.keys(SK).forEach(function (k) { v[k] = sk[k].value.trim(); });
+      var name = slug(v.name);
+      var triggers = v.when.split(/[,，、]/).map(function (t) { return t.trim().replace(/^["“”']|["“”']$/g, ''); }).filter(Boolean);
+      var quoted = triggers.length ? triggers.map(function (t) { return '"' + t + '"'; }).join(', ') : '"[내가 실제로 하는 말]"';
+      skillOut.textContent = [
+        '하네스 구성해줘. 이번에는 에이전트 팀이 아니라 내가 자주 쓸 스킬 하나만 필요해.',
+        '스킬 이름: ' + name,
+        '하는 일: ' + (v.what || '[무슨 일을 하는가]'),
+        '언제 쓰나: ' + quoted + ' 같은 요청',
+        '입력: ' + (v.input || '[무엇을 받는가]'),
+        '결과 형식: ' + (v.output || '[무엇이 어떤 모양으로 나와야 하는가]'),
+        '꼭 지킬 것: ' + (v.must || '[틀리면 안 되는 것]'),
+        '모르면: ' + (v.unknown || '[정보가 모자랄 때 어떻게 하는가]'),
+        'description 에는 위 "언제 쓰나" 표현을 그대로 넣어 언제 불려야 하는지 구체적으로 적고,',
+        '하지 않는 일(범위 밖)도 한 줄 적어줘. 스킬 안에는 예시 입력과 기대 출력을 하나 넣어줘.'
+      ].join('\n');
+      var first = triggers[0] || '[언제 쓰나에 적은 표현]';
+      var isExample = name === SK_EXAMPLE.name;
+      document.getElementById('skill-test').textContent = first + '\n\n' + (isExample ? SAMPLE_MEMO : '[여기에 실제 자료를 붙여 넣거나 파일 경로를 적으세요]');
+      document.getElementById('skill-fix').textContent =
+        name + ' 스킬이 방금 요청에 불리지 않았어. description 을 보여 주고,\n' +
+        '내가 실제로 쓰는 표현(' + quoted + ')으로 불리도록 고쳐줘.\n비슷하지만 이 스킬이 맡지 않는 요청도 하나 적어서 구분되게 해줘.';
+      document.getElementById('skill-copy-win').textContent =
+        'cd C:\\aiguild\\my-skill\n' +
+        'New-Item -ItemType Directory -Force "$env:USERPROFILE\\.claude\\skills" | Out-Null\n' +
+        'Copy-Item -Recurse -Force ".claude\\skills\\' + name + '" "$env:USERPROFILE\\.claude\\skills"\n' +
+        'Get-ChildItem "$env:USERPROFILE\\.claude\\skills\\' + name + '"';
+      document.getElementById('skill-copy-mac').textContent =
+        'cd ~/aiguild/my-skill\n' +
+        'mkdir -p ~/.claude/skills && cp -R .claude/skills/' + name + ' ~/.claude/skills/';
+      skWrite(v);
+    };
+    skFill(skRead() || SK_EXAMPLE);
+    Object.keys(SK).forEach(function (k) { sk[k].addEventListener('input', skRender); });
+    document.getElementById('sk-reset').addEventListener('click', function () { skFill(SK_EXAMPLE); skRender(); });
+    skRender();
+  }
+
   /* ── 테마 ────────────────────────────────────────────── */
   var toggle = document.getElementById('theme-toggle');
   function applyTheme(t) {
