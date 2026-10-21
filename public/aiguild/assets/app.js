@@ -121,6 +121,136 @@
     select(0);
   });
 
+  /* ── 일의 단계 판정기 ────────────────────────────────── */
+  var lvOut = document.getElementById('lv-out');
+  if (lvOut) {
+    var lvIds = ['lv-freq', 'lv-qual', 'lv-people'];
+    var judge = function () {
+      var sum = lvIds.reduce(function (s, id) { return s + (+document.getElementById(id).value); }, 0);
+      var msg;
+      if (sum <= 4) msg = '<b>' + sum + '점 · L1 혼자</b> — 단일 에이전트에게 그때그때 시키는 것이 가장 빠릅니다. 하네스를 만들면 설계 비용이 더 큽니다.';
+      else if (sum <= 7) msg = '<b>' + sum + '점 · L2 팀</b> — 깊이나 검증이 필요할 때만 나눠 맡기세요. 같은 모양으로 자주 반복되기 시작하면 하네스로 굳힐 때입니다.';
+      else msg = '<b>' + sum + '점 · L3 시스템(하네스)</b> — 역할·절차·검증을 파일로 남길 가치가 큽니다. 처음 설계에 든 시간을 반복으로 회수할 수 있습니다.';
+      lvOut.innerHTML = msg;
+    };
+    lvIds.forEach(function (id) { document.getElementById(id).addEventListener('change', judge); });
+    judge();
+  }
+
+  /* ── 패턴 퀴즈 ───────────────────────────────────────── */
+  var quiz = document.getElementById('pattern-quiz');
+  if (quiz) {
+    var PATTERNS = [
+      ['', '— 고르세요 —'], ['pipeline', '파이프라인'], ['fanout', '팬아웃 · 팬인'], ['pool', '전문가 풀'],
+      ['review', '생성 · 검증'], ['supervisor', '감독자'], ['hier', '계층적 위임']
+    ];
+    var items = Array.prototype.slice.call(quiz.querySelectorAll('.quiz li'));
+    items.forEach(function (li) {
+      var sel = li.querySelector('select');
+      PATTERNS.forEach(function (p) {
+        var o = document.createElement('option');
+        o.value = p[0]; o.textContent = p[1];
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function () {
+        li.classList.remove('graded');
+        var r = li.querySelector('.res'); r.textContent = ''; r.className = 'res';
+      });
+    });
+    var score = document.getElementById('quiz-score');
+    document.getElementById('quiz-grade').addEventListener('click', function () {
+      var right = 0;
+      items.forEach(function (li) {
+        var v = li.querySelector('select').value;
+        var r = li.querySelector('.res');
+        var ok = v === li.dataset.answer;
+        if (ok) right++;
+        r.textContent = !v ? '안 고름' : ok ? '✓ 맞음' : '✗ 다시 보기';
+        r.className = 'res ' + (ok ? 'ok' : 'no');
+        li.classList.add('graded');
+      });
+      score.textContent = items.length + '문제 중 ' + right + '개 맞음';
+    });
+    document.getElementById('quiz-reset').addEventListener('click', function () {
+      items.forEach(function (li) {
+        li.querySelector('select').value = '';
+        li.classList.remove('graded');
+        var r = li.querySelector('.res'); r.textContent = ''; r.className = 'res';
+      });
+      score.textContent = '';
+    });
+  }
+
+  /* ── showreel 의뢰서(brief) 생성기 ───────────────────── */
+  var briefOut = document.getElementById('brief-out');
+  if (briefOut) {
+    var BRIEF_KEY = 'aiguild.reel.brief.v1';
+    var EXAMPLE = {
+      type: '도서', len: '15초', title: '생존을 위한 최소한의 AI 교양', maker: '조남호 (저자)',
+      must: 'AI Agent Guild 10월 세미나 북토크, 2026년 10월 29일(목) 19:00, 온라인',
+      aud: 'AI를 써 보고 싶지만 어디서 시작할지 모르는 직장인', mood: '미니멀하고 또렷하게', cta: '북토크에서 만나요'
+    };
+    var HINTS = {
+      '도서': ['저자 · 옮긴이 · 출판사', '출간일, 출판사, 북토크·사인회 일정, 구매 링크'],
+      '영화': ['감독 · 주연 · 배급사', '개봉일, 상영관 또는 OTT, 관람 등급'],
+      '행사': ['주최 · 주관 · 연사', '일시(요일까지), 장소 또는 온라인, 신청 방법·링크, 참가비'],
+      '게임': ['개발사 · 배급사', '출시일, 플랫폼, 장르, 사전 예약·체험판 여부']
+    };
+    var F = {
+      type: 'bf-type', len: 'bf-len', title: 'bf-title', maker: 'bf-maker',
+      must: 'bf-must', aud: 'bf-aud', mood: 'bf-mood', cta: 'bf-cta'
+    };
+    var el = {};
+    Object.keys(F).forEach(function (k) { el[k] = document.getElementById(F[k]); });
+
+    var readSaved = function () {
+      try { var raw = localStorage.getItem(BRIEF_KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+    };
+    var writeSaved = function (v) { try { localStorage.setItem(BRIEF_KEY, JSON.stringify(v)); } catch (e) {} };
+
+    var fillForm = function (v) {
+      Object.keys(F).forEach(function (k) { if (v[k] !== undefined) el[k].value = v[k]; });
+    };
+    var current = function () {
+      var v = {};
+      Object.keys(F).forEach(function (k) { v[k] = el[k].value.trim(); });
+      return v;
+    };
+    var line = function (label, value) { return '- ' + label + ': ' + (value || '(비움 — 조사로 찾기)'); };
+    var renderBrief = function () {
+      var v = current();
+      var h = HINTS[v.type] || HINTS['도서'];
+      el.maker.placeholder = h[0];
+      el.must.placeholder = h[1];
+      document.getElementById('bf-maker-hint').textContent = '예: ' + h[0];
+      document.getElementById('bf-must-hint').textContent = '예: ' + h[1] + ' — 모르면 비워 두세요';
+      briefOut.textContent = [
+        '아래 내용 그대로 brief.md 파일을 만들어줘. 내용은 고치지 마.',
+        '',
+        '# brief — showreel 의뢰서',
+        '',
+        line('유형', v.type),
+        line('제목', v.title),
+        line('만든 이', v.maker),
+        line('꼭 넣을 정보', v.must.replace(/\s*\n\s*/g, ', ')),
+        line('보는 사람', v.aud),
+        line('분위기', v.mood),
+        line('길이', v.len),
+        line('끝 화면 문구(CTA)', v.cta),
+        '- 하지 말 것: 줄거리 반전·결말, 포스터·표지·스틸·로고 같은 저작물 이미지'
+      ].join('\n');
+      writeSaved(v);
+    };
+
+    fillForm(readSaved() || EXAMPLE);
+    Object.keys(F).forEach(function (k) {
+      el[k].addEventListener('input', renderBrief);
+      el[k].addEventListener('change', renderBrief);
+    });
+    document.getElementById('bf-reset').addEventListener('click', function () { fillForm(EXAMPLE); renderBrief(); });
+    renderBrief();
+  }
+
   /* ── 테마 ────────────────────────────────────────────── */
   var toggle = document.getElementById('theme-toggle');
   function applyTheme(t) {

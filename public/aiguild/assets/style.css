@@ -430,3 +430,82 @@ details .inner > :first-child { margin-top: 0; }
   content: '✓'; position: absolute; left: 0; top: 0;
   color: var(--ok); font-weight: 800; font-size: 14px;
 }
+
+/* ── 도식(SVG) — 테마 변수로 색을 받는다 ────────────────── */
+.dg { width: 100%; height: auto; display: block; }
+.dg text { font-family: var(--sans); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.dg text.sm { font-size: 10.5px; font-weight: 500; fill: var(--ink-3); }
+.dg .box { fill: var(--bg-soft); stroke: var(--ink-4); stroke-width: 1.2; }
+.dg .hot { fill: var(--warm-bg); stroke: var(--warm); stroke-width: 1.4; }
+.dg .chk { fill: var(--ok-bg); stroke: var(--ok); stroke-width: 1.4; }
+.dg .ln  { stroke: var(--ink-3); stroke-width: 1.3; fill: none; }
+.dg .ln.dash { stroke-dasharray: 3 3; stroke: var(--ink-4); }
+.dg .ln.warm { stroke: var(--warm); }
+.dg .head { fill: var(--ink-3); }
+.dg .ctx { fill: var(--bg-sunk); stroke: none; }
+.dg .ctx-fill { fill: var(--ink-4); opacity: .55; }
+
+/* ── 단일 vs 멀티 비교 카드 ────────────────────────────── */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+.duo-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 14px; }
+.duo-card h4 { margin: 0 0 4px; font-size: 1rem; }
+.duo-card .sub { margin: 0 0 10px; color: var(--ink-3); font-size: 13.5px; }
+.duo-card ul { margin: 10px 0 0; font-size: 14.5px; color: var(--ink-2); }
+.duo-card li { margin: 4px 0; }
+@media (max-width: 640px) { .duo { grid-template-columns: 1fr; } }
+
+/* ── 아키텍처 패턴 카드 ───────────────────────────────── */
+.patterns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0; }
+.pat { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 12px; display: flex; flex-direction: column; }
+.pat-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+.pat-head .no { font-family: var(--mono); font-size: 12px; color: var(--warm); font-weight: 700; }
+.pat-head h4 { margin: 0; font-size: 1.02rem; }
+.pat-head .en { font-size: 12px; color: var(--ink-3); font-weight: 500; }
+.pat .dg { margin: 4px 0 8px; border-radius: var(--radius-sm); background: var(--bg-sunk); }
+.pat dl { margin: 0; font-size: 14px; color: var(--ink-2); display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; }
+.pat dt { font-weight: 700; color: var(--ink-3); font-size: 12.5px; padding-top: 1px; white-space: nowrap; }
+.pat dd { margin: 0; }
+@media (max-width: 640px) { .patterns { grid-template-columns: 1fr; } }
+
+/* ── 폼 공통 (브리프 생성기 · 판정기 · 퀴즈) ───────────────── */
+.panel { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 6px; margin: 16px 0; }
+.panel-title { font-size: 13px; font-weight: 700; color: var(--ink-3); letter-spacing: .04em; margin: 0 0 10px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; min-width: 0; }
+.field.wide { grid-column: 1 / -1; }
+.field label, .field .lbl { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.field .hint { font-size: 12.5px; color: var(--ink-3); }
+.panel input, .panel select, .panel textarea {
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 10px; width: 100%; min-width: 0;
+}
+.panel textarea { min-height: 64px; resize: vertical; line-height: 1.55; }
+.panel input:focus, .panel select:focus, .panel textarea:focus { outline: 2px solid var(--warm); outline-offset: 1px; border-color: transparent; }
+@media (max-width: 640px) { .fields { grid-template-columns: 1fr; } }
+
+.btn {
+  font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--bg);
+  padding: 7px 14px; border-radius: var(--radius-sm);
+}
+.btn:hover { opacity: .88; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+
+.verdict { margin: 4px 0 12px; padding: 11px 14px; border-radius: var(--radius-sm); background: var(--bg-sunk); font-size: 15px; }
+.verdict b { color: var(--warm); }
+
+/* 퀴즈 */
+.quiz { list-style: none; padding: 0; margin: 0 0 8px; counter-reset: q; }
+.quiz li { counter-increment: q; border-bottom: 1px dashed var(--line); padding: 10px 0; margin: 0; }
+.quiz li:last-child { border-bottom: 0; }
+.quiz .qtext { font-size: 15px; margin: 0 0 6px; }
+.quiz .qtext::before { content: counter(q) '. '; font-weight: 800; color: var(--warm); }
+.quiz .qrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.quiz select { width: auto; flex: 1 1 200px; }
+.quiz .res { font-size: 13.5px; font-weight: 700; }
+.quiz .res.ok { color: var(--ok); }
+.quiz .res.no { color: var(--warm); }
+.quiz .why { display: none; margin: 6px 0 0; font-size: 14px; color: var(--ink-2); }
+.quiz li.graded .why { display: block; }
+.quiz-actions { display: flex; gap: 8px; align-items: center; margin: 4px 0 12px; flex-wrap: wrap; }
+.quiz-score { font-weight: 700; font-size: 14.5px; }
