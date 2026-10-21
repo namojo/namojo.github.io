@@ -147,3 +147,4 @@
 | inline/deepseek-search-api-token-bill-fields.jpg | DeepSeek 검색 API 응답 필드 표 — 10-20 포스트 본문(snippet/summary/content 구분) | DeepSeek 공식 API 문서 https://api-docs.deepseek.com/guides/search 화면 갈무리 | — |
 | covers/ai-agents-breached-100-companies-fifty-dollars.jpg | 산길을 따라 늘어선 돌탑 | Unsplash — Luc Santeramo | Unsplash License |
 | inline/ai-agents-breached-100-companies-fifty-dollars-ants.jpg | 페로몬 자취를 따라 줄지어 이동하는 개미들 — 10-21 포스트 본문(스티그머지 설명) | Pexels — oandremoura https://www.pexels.com/photo/black-ants-lining-up-2563028/ | Pexels License |
+| covers/emudhra-ca-keys-recoverable.jpg | 하드웨어 보안 모듈(HSM) nShield F3 | Wikimedia Commons "NCipher nShield F3 Hardware Security Module.jpg" — Alexander Klink | CC BY 3.0 |
