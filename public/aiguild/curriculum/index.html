@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커리큘럼 — 하네스 엔지니어링 핸즈온</title>
-<meta name="description" content="하네스 엔지니어링 핸즈온 3시간 과정의 운영 설계. 학습 목표, 분 단위 시간 배분, 세션별 체크포인트, 강사 노트, 시간이 모자랄 때의 대응까지.">
+<title>커리큘럼 — 하네스 핸즈온 · AI Agent Guild</title>
+<meta name="description" content="북토크와 Claude 기반 하네스 핸즈온 3시간 과정의 운영 설계. 학습 목표, 분 단위 배분, 통과 기준, 강사 노트, 실습 정답표.">
 <link rel="canonical" href="https://namojo.github.io/aiguild/curriculum/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="AI Agent Guild">
-<meta property="og:title" content="커리큘럼 — 하네스 엔지니어링 핸즈온">
-<meta property="og:description" content="3시간 과정의 운영 설계. 학습 목표, 분 단위 배분, 체크포인트, 강사 노트.">
+<meta property="og:title" content="커리큘럼 — 하네스 핸즈온 · AI Agent Guild">
+<meta property="og:description" content="3시간 과정의 운영 설계. 학습 목표, 분 단위 배분, 통과 기준, 강사 노트, 실습 정답표.">
 <meta property="og:url" content="https://namojo.github.io/aiguild/curriculum/">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -37,14 +37,16 @@
     <a href="./" aria-current="page">커리큘럼</a>
   </nav>
   <p class="eyebrow">Curriculum · 운영 설계</p>
-  <h1>하네스 엔지니어링<br>입문 과정</h1>
-  <p class="lede">3시간 안에 참가자가 <b>자기 손으로 하네스 하나를 완성해 두 번 돌려 보는</b> 것을 목표로 짰습니다.
-    아래는 그 과정의 설계도입니다. 학습 목표, 분 단위 배분, 각 세션의 통과 기준, 그리고 진행이 어긋날 때의 대응을 담았습니다.</p>
+  <h1>북토크에서<br>첫 하네스까지</h1>
+  <p class="lede">3시간 안에 참가자가 <b>완성된 하네스를 뜯어보고, 자기 손으로 하나를 만들어 두 번 돌려 보는</b> 것을 목표로 짰습니다.
+    직접 파일을 쓰는 대신 이미 검증된 도구를 씁니다. 대표 실습은 <a href="https://namojo.github.io/harness-edu/" target="_blank" rel="noopener">harness-edu</a>,
+    팀 생성은 <a href="https://github.com/revfactory/harness" target="_blank" rel="noopener">revfactory/harness</a>,
+    시연은 <a href="https://github.com/revfactory/showreel" target="_blank" rel="noopener">revfactory/showreel</a>입니다.</p>
   <dl class="facts">
-    <div class="fact"><dt>총 시간</dt><dd>3시간<br>(사전 준비 10분 별도)</dd></div>
+    <div class="fact"><dt>총 시간</dt><dd>3시간<br>(사전 준비 15분 별도)</dd></div>
     <div class="fact"><dt>형식</dt><dd>온라인 라이브<br>따라 하기 실습</dd></div>
-    <div class="fact"><dt>선수 지식</dt><dd>터미널에 명령 한 줄<br>프로그래밍 경험 불필요</dd></div>
-    <div class="fact"><dt>수료 기준</dt><dd>게이트 2회 통과<br>+ 내 업무 과제 선정</dd></div>
+    <div class="fact"><dt>선수 지식</dt><dd>복사·붙여넣기<br>코딩 경험 불필요</dd></div>
+    <div class="fact"><dt>수료 기준</dt><dd>내 하네스 2회 실행<br>+ 내 업무 과제 선정</dd></div>
   </dl>
 </section>
 
@@ -55,32 +57,31 @@
     <h2>누구를 위한 과정인가</h2>
   </div>
 
-  <p>AI 도구를 이미 써 봤지만, <b>결과가 들쭉날쭉해 결국 손으로 고치고 있는 사람</b>을 전제로 설계했습니다.
-     모델을 더 잘 고르는 법이나 프롬프트를 더 잘 쓰는 법은 다루지 않습니다.
-     같은 일을 매번 같은 품질로 끝내는 <b>작업 환경</b>을 만드는 것이 이 과정의 전부입니다.</p>
+  <p>책을 읽고 AI에 관심이 생겼지만, 써 보면 <b>결과가 들쭉날쭉해 결국 손으로 고치고 있는 사람</b>을 전제로 설계했습니다.
+     개발자가 아니어도 됩니다. 터미널은 명령을 붙여 넣는 창으로만 씁니다.</p>
 
   <div class="note">
     <span class="note-title">이 과정이 다루지 않는 것</span>
-    프롬프트 엔지니어링 기법, 모델 성능 비교, 파인튜닝, RAG 파이프라인 구축.
-    이것들은 <b>한 번의 결과</b>를 좋게 하는 방법이고, 이 과정은 <b>반복되는 결과</b>를 고르게 하는 방법입니다.
+    로컬 LLM 설치와 모델 선택, 프롬프트 기법, 에이전트 정의 파일을 손으로 쓰는 법.
+    앞의 둘은 <b>한 번의 결과</b>를 좋게 하는 방법이고, 마지막은 3시간 안에 끝나지 않습니다.
+    이 과정은 <b>반복되는 결과</b>를 고르게 하는 구조를 보고, 만들고, 돌려 보는 데 집중합니다.
   </div>
 
   <h3>수료 시 할 수 있는 것</h3>
   <ol class="obj">
-    <li>Claude Code를 자기 작업 폴더에서 띄우고, 그 폴더가 왜 권한 범위가 되는지 설명할 수 있다.</li>
-    <li>같은 지시가 왜 다른 결과를 내는지 설명하고, 원인을 '규약이 없음'으로 진단할 수 있다.</li>
-    <li><code>CLAUDE.md</code>에 산출물 형식과 금지 사항을 적어 에이전트의 행동 범위를 좁힐 수 있다.</li>
-    <li>서브에이전트로 역할을 나누고, <code>tools:</code>로 각자에게 필요한 권한만 줄 수 있다.</li>
-    <li>스킬로 작업 순서를 고정하고, 재시도 횟수와 실패 시 행동까지 적을 수 있다.</li>
-    <li>판정 기준을 검증 스크립트로 옮기고, 통과하지 못한 산출물이 나가지 못하게 막을 수 있다.</li>
-    <li>자기 업무의 반복 작업 하나를 골라 같은 구조로 옮기는 계획을 세울 수 있다.</li>
+    <li>Claude Code를 작업 폴더에서 띄우고, 승인 창을 읽고 판단할 수 있다.</li>
+    <li>단일 프롬프트와 하네스의 결과 차이가 <b>중간 산출물과 검증자 분리</b>에서 온다는 것을 설명할 수 있다.</li>
+    <li>하네스 폴더를 열어 <code>CLAUDE.md</code> · 에이전트 · 스킬이 각각 무슨 역할인지 말할 수 있다.</li>
+    <li>“하네스 구성해줘”에 도메인 · 입력 · 산출물 · 품질 기준을 담아 에이전트 팀을 만들 수 있다.</li>
+    <li>만들어진 하네스를 두 번 돌려 산출물의 구조가 고정됐는지 확인할 수 있다.</li>
+    <li>자기 업무의 반복 작업 하나를 골라 같은 프롬프트 틀로 옮길 계획을 세울 수 있다.</li>
   </ol>
 
   <div class="tnote">
     <span class="note-title">설계 의도</span>
-    목표 1~2는 <b>진단</b>, 3~6은 <b>조립</b>, 7은 <b>이전(transfer)</b>입니다.
-    많은 실습 과정이 3~6만 가르치고 끝나는데, 그러면 참가자는 "파일 몇 개 만드는 법"을 배우고 돌아갑니다.
-    2번(왜 필요한지를 몸으로 아는 것)과 7번(내 일로 가져가는 것)이 이 과정의 실제 가치입니다.
+    목표 1~3은 <b>읽기</b>, 4~5는 <b>만들기</b>, 6은 <b>옮기기</b>입니다.
+    이전 판은 에이전트·스킬 파일을 손으로 쓰며 조립하는 과정이었습니다. 3시간 온라인 진행에서는 경로 하나만 틀려도 진도가 멈추는 구조입니다.
+    이번 판은 조립을 플러그인에 맡기고, 그 대신 <b>무엇이 만들어졌는지 읽어 내는 눈</b>을 기르는 데 시간을 씁니다.
   </div>
 </section>
 
@@ -91,19 +92,21 @@
     <h2>왜 이 순서인가</h2>
   </div>
 
-  <p>세 세션은 <b>문제 → 체험 → 해결</b>로 이어집니다. 순서를 바꾸면 작동하지 않습니다.</p>
+  <p>세 세션과 시연은 <b>문제 → 관찰 → 제작 → 확장</b>으로 이어집니다.</p>
 
   <ul class="pillars">
-    <li><span class="k">1</span><span><b>북토크 — 문제에 이름 붙이기</b><span class="d">AI를 '쓰는 일'에서 '맡기는 일'로 넘어갈 때 무엇이 어려워지는지 언어를 갖습니다. 아직 실습은 없습니다.</span></span></li>
-    <li><span class="k">2</span><span><b>Claude Code — 문제를 몸으로 겪기</b><span class="d">같은 지시를 두 번 줘서 결과가 갈리는 것을 직접 봅니다. <b>이 체험이 세션 3의 동기 전부입니다.</b></span></span></li>
-    <li><span class="k">3</span><span><b>하네스 조립 — 문제 풀기</b><span class="d">규약·역할·절차·게이트를 세우고, 두 번 돌려 기준이 고정됐음을 확인합니다.</span></span></li>
+    <li><span class="k">1</span><span><b>북토크 — 문제에 이름 붙이기</b><span class="d">AI를 쓰는 일에서 맡기는 일로 넘어갈 때 무엇이 어려워지는지 말로 갖습니다. 실습은 없습니다.</span></span></li>
+    <li><span class="k">2</span><span><b>대표 실습 — 완성품을 뜯어보기</b><span class="d">같은 입력에 대한 단일 프롬프트와 하네스의 결과를 나란히 놓고 차이의 근원을 찾습니다. <b>만들기 전에 좋은 것을 먼저 봅니다.</b></span></span></li>
+    <li><span class="k">3</span><span><b>하네스 만들기 — 한 문장으로 짓기</b><span class="d">세션 2에서 본 구조를 플러그인으로 만들고, 같은 눈으로 점검하고, 두 번 돌립니다.</span></span></li>
+    <li><span class="k">+</span><span><b>showreel 시연 — 끝까지 커진 모습</b><span class="d">스킬 하나가 콘셉트부터 검수까지 가는 대형 하네스에서 오늘의 네 원리를 다시 찾습니다.</span></span></li>
   </ul>
 
   <div class="tnote">
-    <span class="note-title">가장 흔한 설계 실수</span>
-    세션 2를 "도구 설치 시간"으로 보고 줄이는 것입니다. 그러면 세션 3이 <b>이유를 모르는 채 파일을 만드는 지루한 작업</b>이 됩니다.
-    세션 2의 마지막 15분(두 번 실행하고 비교하기)은 <b>어떤 경우에도 줄이지 마세요.</b>
-    줄여야 한다면 세션 3의 ② 역할 단계를 미리 배포한 템플릿 복사로 대체하는 쪽이 낫습니다.
+    <span class="note-title">세션 2를 먼저 두는 이유</span>
+    한 번도 좋은 하네스를 보지 못한 사람에게 “하네스 구성해줘”를 시키면, 만들어진 파일 더미를 보고 판단할 기준이 없습니다.
+    세션 2에서 <b>검증자가 따로 있다</b>, <b>중간 산출물이 있다</b>를 먼저 확인해 둬야 세션 3에서 자기 팀을 점검할 수 있습니다.
+    harness-edu 과정이 직접 만들기(4차시) 뒤에 남의 하네스 읽기(7차시)를 두는 것과는 반대 순서인데,
+    3시간짜리 입문에서는 <b>손으로 짓는 경험</b>이 없으므로 보는 쪽이 먼저여야 합니다.
   </div>
 </section>
 
@@ -112,185 +115,235 @@
   <div class="sec-head">
     <p class="sec-tag">03 · 세션별 설계</p>
     <h2>분 단위 운영안</h2>
-    <p class="meta">각 블록에 학습 목표 · 시간 배분 · 통과 기준 · 강사 노트를 함께 적었습니다.</p>
+    <p class="meta">각 블록에 목표 · 시간 배분 · 통과 기준 · 강사 노트를 함께 적었습니다.</p>
   </div>
 
   <!-- S0 -->
   <div class="block">
-    <div class="block-head"><h3>Session 0 · 환경 준비</h3><span class="when">세미나 전 · 10분 · 비대면</span></div>
-    <div class="goal"><b>목표</b>당일 실습에 쓸 환경이 돌아가는 상태로 만들어 둔다.</div>
+    <div class="block-head"><h3>Session 0 · 환경 준비</h3><span class="when">세미나 전 · 15분 · 비대면</span></div>
+    <div class="goal"><b>목표</b>당일에 바로 실습할 수 있도록 Claude Code · 플러그인 · 실습 저장소를 준비해 둔다.</div>
     <table class="mins"><tbody>
-      <tr><td>3분</td><td>Node.js 설치 및 <code>node -v</code> 확인</td><td>개별</td></tr>
-      <tr><td>3분</td><td><code>npm i -g @anthropic-ai/claude-code</code> 설치</td><td>개별</td></tr>
-      <tr><td>2분</td><td><code>claude</code> 실행 → 로그인</td><td>개별</td></tr>
-      <tr><td>2분</td><td>빈 폴더에서 <code>hello.txt</code> 생성 (승인 창 경험)</td><td>개별</td></tr>
+      <tr><td>3분</td><td>Git 설치 · <code>git --version</code></td><td>개별</td></tr>
+      <tr><td>3분</td><td>Claude Code 한 줄 설치 · <code>claude --version</code></td><td>개별</td></tr>
+      <tr><td>2분</td><td><code>claude</code> 실행 → Claude Pro 이상 계정으로 로그인</td><td>개별</td></tr>
+      <tr><td>4분</td><td>플러그인 설치 — harness · document-skills, 재시작 후 <code>/plugin</code> 확인</td><td>개별</td></tr>
+      <tr><td>3분</td><td><code>git clone</code>으로 harness-edu 내려받기</td><td>개별</td></tr>
     </tbody></table>
     <h4>통과 기준</h4>
     <ul class="check">
-      <li><code>claude --version</code>이 버전을 출력한다</li>
-      <li>빈 폴더에서 파일 생성 지시가 승인 창을 띄우고, 승인하면 파일이 생긴다</li>
+      <li><code>/plugin</code> 목록에 <b>harness</b>와 <b>document-skills</b>가 보인다</li>
+      <li><code>harness-edu/harness/</code> 폴더에 제안서 docx 두 개가 있다</li>
     </ul>
     <div class="tnote">
       <span class="note-title">강사 노트</span>
-      마지막 단계(hello.txt)를 빼지 마세요. 설치 확인용이 아니라 <b>승인 창을 미리 한 번 보게 하려는 것</b>입니다.
-      세션 2의 권한 이야기와 세션 3의 <code>tools:</code> 한 줄이 이 경험 위에 올라갑니다.
+      안내 메일에 실습 교재 주소와 함께 <b>“Pro 이상 구독 필요, 무료 계정 불가”</b>를 굵게 적으세요. 당일 가장 많이 막히는 지점입니다.
+      harness-edu 설치가이드의 ‘에이전트 팀 켜기’ 단계는 Harness v2부터 필요 없으니, 참가자가 물으면 해도 되고 안 해도 된다고 답하면 됩니다.
       <br><br>
-      미완료자는 반드시 나옵니다. 오프닝 10분에 개별 지원하고, 그래도 안 되면 <b>2인 1조</b>로 묶어 한 화면으로 따라오게 하세요.
-      혼자 설치와 씨름하다 세션 2를 통째로 놓치는 것이 최악입니다.
+      Windows에서는 설치 직후 <code>claude</code>를 못 찾는 경우가 나옵니다. 실습 교재 3단계의 PATH 등록 블록을 오프닝 화면에 띄워 두세요.
     </div>
   </div>
 
   <!-- 오프닝 -->
   <div class="block">
     <div class="block-head"><h3>오프닝</h3><span class="when">19:00~19:10 · 10분</span></div>
-    <div class="goal"><b>목표</b>오늘 끝에 무엇이 손에 남는지 먼저 보여 준다.</div>
+    <div class="goal"><b>목표</b>전원이 Claude Code 입력창을 띄운 상태로 북토크에 들어간다.</div>
     <table class="mins"><tbody>
-      <tr><td>3분</td><td>인사 · 진행 방식 안내 · 실습 교재 주소 공유</td><td>강의</td></tr>
-      <tr><td>4분</td><td><b>완성본 시연</b> — 한 줄 지시 → 리포트 생성 → 게이트 통과</td><td>시연</td></tr>
-      <tr><td>3분</td><td>환경 점검 거수 · 미완료자 분류</td><td>확인</td></tr>
+      <tr><td>3분</td><td>인사 · 오늘의 흐름 · 교재 주소 공유</td><td>강의</td></tr>
+      <tr><td>7분</td><td>점검 — <code>claude --version</code>, <code>/plugin</code> 화면을 채팅에 한 줄로 보고</td><td>개별</td></tr>
     </tbody></table>
     <div class="tnote">
       <span class="note-title">강사 노트</span>
-      완성본을 <b>먼저</b> 보여 주면 이후 단계들이 왜 필요한지 이해가 빨라집니다.
-      특히 게이트가 빨간 글씨로 거절했다가, 고친 뒤 통과하는 장면을 보여 주세요. 오늘의 하이라이트가 그것입니다.
+      미완료자는 반드시 나옵니다. 보조 진행자가 있으면 별도 소회의실로 데려가 북토크 동안 설치를 마치게 하고,
+      없으면 <b>2인 1조</b>로 묶어 한 화면을 같이 보게 하세요. 혼자 설치와 씨름하다 세션 2를 놓치는 것이 최악입니다.
     </div>
   </div>
 
   <!-- S1 -->
   <div class="block">
-    <div class="block-head"><h3>Session 1 · 북토크</h3><span class="when">19:10~19:45 · 35분</span></div>
-    <div class="goal"><b>목표</b>'쓰는 일 → 맡기는 일'의 전환에서 무엇이 어려워지는지 언어를 갖는다.</div>
+    <div class="block-head"><h3>Session 1 · 저자 북토크</h3><span class="when">19:10~19:50 · 40분</span></div>
+    <div class="goal"><b>목표</b>『생존을 위한 최소한의 AI 교양』을 매개로, AI에게 일을 ‘맡길’ 때 생기는 문제에 이름을 붙인다.</div>
     <table class="mins"><tbody>
-      <tr><td>15분</td><td>책 이야기 — AI를 이해한다는 것의 범위</td><td>대담</td></tr>
-      <tr><td>10분</td><td>저자의 블로그 하네스가 무너졌다가 고쳐진 과정</td><td>사례</td></tr>
-      <tr><td>10분</td><td>참가자 질문</td><td>Q&amp;A</td></tr>
+      <tr><td>30분</td><td>조남호 저자와 책 이야기 — 진행자 질문 중심</td><td>대담</td></tr>
+      <tr><td>10분</td><td>독자 질문 · 각자 하네스로 만들 작업 한 줄 적기</td><td>Q&amp;A</td></tr>
     </tbody></table>
     <h4>통과 기준</h4>
     <ul class="check">
-      <li>참가자가 <b>"내 업무에서 하네스로 만들 작업 하나"</b>를 채팅창에 한 줄로 적는다</li>
+      <li>참가자 다수가 채팅창에 <b>내 업무의 반복 작업 한 줄</b>을 남긴다</li>
     </ul>
     <div class="tnote">
-      <span class="note-title">강사 노트</span>
-      이 한 줄이 세션 3 마지막 '내 업무로 옮기기'의 재료입니다. 그때 가서 생각하라고 하면 아무도 못 적습니다.
-      <b>세션 1이 끝나기 전에 반드시 걷으세요.</b> 몇 개를 골라 읽어 주면 다른 참가자들도 자기 것을 찾습니다.
-      <br><br>
-      저자 사례는 "145편 중 117편이 같은 제목 틀로 굳었다"는 구체적 숫자로 가는 것이 좋습니다.
-      규칙이 <b>천천히, 눈에 띄지 않게</b> 무너진다는 것이 세션 3 ④ 게이트의 근거입니다.
+      <span class="note-title">강사 노트 — 다리를 놓는 질문</span>
+      대담 끝 무렵 두 질문을 꼭 꺼내 주세요. <b>“잘 모르는 분야의 문서를 AI에게 맡기면 무엇이 빠질까요?”</b>
+      그리고 <b>“AI가 만든 결과를 만든 AI가 스스로 검토해도 될까요?”</b>
+      앞의 것이 세션 2의 실험 조건이고, 뒤의 것이 세션 2의 결론(검증자 분리)입니다.
+      채팅에 올라온 업무 한 줄은 마무리 때 다시 띄웁니다.
     </div>
   </div>
 
   <!-- S2 -->
   <div class="block">
-    <div class="block-head"><h3>Session 2 · 하네스의 바닥</h3><span class="when">19:55~20:40 · 45분</span></div>
-    <div class="goal"><b>목표</b>Claude Code의 작동 방식과 권한 모델을 이해하고, <b>규약 없는 에이전트의 한계를 직접 겪는다.</b></div>
+    <div class="block-head"><h3>Session 2 · 대표 실습 — 단일 프롬프트 vs 하네스</h3><span class="when">20:00~20:50 · 50분</span></div>
+    <div class="goal"><b>목표</b>두 제안서의 차이를 직접 확인하고, 그 차이가 문장력이 아니라 구조에서 왔다는 것을 파일로 확인한다.</div>
     <table class="mins"><tbody>
-      <tr><td>5분</td><td>채팅창과 무엇이 다른가 — 복사해 나르지 않는다는 것</td><td>강의</td></tr>
-      <tr><td>10분</td><td>작업 폴더에서 띄우기 + <code>/permissions</code> 확인</td><td>실습</td></tr>
-      <tr><td>10분</td><td>연습용 파일 생성 → "정리 리포트를 만들어줘" 첫 작업</td><td>실습</td></tr>
-      <tr><td>15분</td><td><code>/clear</code> 후 같은 지시 재실행 → 두 결과 비교 · 공유</td><td>실습</td></tr>
-      <tr><td>5분</td><td>진단 — 무엇이 빠져 있었는가</td><td>토의</td></tr>
+      <tr><td>5분</td><td>실험 조건 — 보건의료 과업지시서, 배경지식 없음, 트랙 A·B</td><td>강의</td></tr>
+      <tr><td>3분</td><td><code>harness-edu/harness</code>에서 <code>claude</code> 띄우기 · 승인 창 3초 점검</td><td>실습</td></tr>
+      <tr><td>12분</td><td>두 제안서 비교 프롬프트 → 네 지점 표 → 원문으로 한 줄 확인</td><td>실습</td></tr>
+      <tr><td>10분</td><td>요구사항 인벤토리 열기 — 차이의 근원</td><td>실습</td></tr>
+      <tr><td>10분</td><td><code>/agents</code> · 구성물 설명 프롬프트 — 다섯 명과 스킬 셋</td><td>실습</td></tr>
+      <tr><td>10분</td><td>정리 — 네 원리, A가 이기는 경우, “이 팀은 누가 만들었나”</td><td>토론</td></tr>
     </tbody></table>
     <h4>통과 기준</h4>
     <ul class="check">
-      <li>두 결과의 차이를 <b>세 가지 이상</b> 말할 수 있다</li>
-      <li>그 차이의 원인을 "모델이 나빠서"가 아니라 "기준을 안 적어 줘서"로 설명한다</li>
+      <li>네 지점 비교표를 받았고, 원문에서 한 군데 이상 직접 확인했다</li>
+      <li>“B의 우위는 어디서 왔나”에 <b>인벤토리(중간 산출물)</b> 또는 <b>검증자</b>로 답할 수 있다</li>
     </ul>
     <div class="tnote">
-      <span class="note-title">강사 노트 — 이 세션이 과정의 승부처입니다</span>
-      마지막 15분을 절대 줄이지 마세요. 참가자가 <b>자기 화면에서 두 결과가 다른 것을 직접 봐야</b>
-      세션 3의 지루한 파일 작업을 끝까지 따라옵니다. 말로 설명하면 효과가 없습니다.
+      <span class="note-title">강사 노트</span>
+      트랙 B를 당일에 다시 돌리지 마세요. 20~40분이 걸리고, 참가자마다 끝나는 시간이 달라 진행이 무너집니다.
+      이미 만들어진 결과를 <b>읽는 것</b>이 이 세션의 일입니다. 다시 돌리기는 교재에 집에서 할 과제로 넣어 뒀습니다.
       <br><br>
-      비교 결과를 3~4명에게 소리 내어 공유시키세요. 다른 사람도 똑같이 갈렸다는 걸 확인하는 순간,
-      "내가 프롬프트를 못 써서"가 아니라 <b>구조의 문제</b>라는 인식이 생깁니다.
+      정리 10분에서 <b>A가 이기는 경우</b>를 반드시 말해 주세요. 빠뜨리면 참가자는 “모든 일을 하네스로” 만들려 합니다.
+      그리고 “다섯 명의 정의와 스킬 셋을 손으로 쓰면 반나절, 다음 세션에서는 한 문장”으로 넘어갑니다.
     </div>
     <h4>흔한 실패와 대응</h4>
     <details>
-      <summary>두 번째 결과가 첫 번째와 거의 같게 나옵니다</summary>
-      <div class="inner"><code>/clear</code>를 안 했거나 같은 세션에서 다시 물은 경우입니다.
-        앞의 대화가 사실상 규약 역할을 해 버린 것이죠. <b>이것 자체가 좋은 교보재</b>입니다 —
-        "맥락이 있으면 일관됩니다. 문제는 그 맥락이 대화가 끝나면 사라진다는 것이고,
-        세션 3에서는 그걸 파일로 남깁니다"로 연결하세요.</div>
+      <summary>docx를 못 읽는다고 하거나, 파이썬을 설치하려고 듭니다</summary>
+      <div class="inner">document-skills가 빠졌거나 설치 후 재시작을 안 한 경우입니다. <code>/exit</code> → <code>claude</code>로 다시 띄우게 하세요.
+        급하면 강사 화면을 공유해 비교 결과를 함께 보고, 해당 참가자는 쉬는 시간에 설치를 마칩니다.</div>
     </details>
     <details>
-      <summary>홈 디렉터리에서 띄워 엉뚱한 파일을 건드립니다</summary>
-      <div class="inner">실습 전에 반드시 <code>mkdir</code> → <code>cd</code> → <code>claude</code> 순서를 함께 치게 하세요.
-        승인 창이 뜨면 경로를 읽는 습관도 이때 들입니다.</div>
+      <summary>Claude가 과업지시서(hwpx)까지 열려고 합니다</summary>
+      <div class="inner">이 세션에서는 필요 없습니다. 승인 창에서 거절하고 “docx 두 개만 비교해줘”라고 다시 말하게 하세요.
+        <b>승인 창에서 거절해도 된다</b>는 것을 보여 줄 좋은 기회입니다.</div>
     </details>
     <details>
-      <summary>진도가 빨라 15분이 남습니다</summary>
-      <div class="inner">세 번째 실행을 시키고, 이번에는 <b>원하는 형식을 프롬프트에 길게 적어서</b> 주게 하세요.
-        결과는 좋아지지만 그 설명을 매번 다시 써야 한다는 것을 체감하게 됩니다.
-        세션 3의 "그 설명을 저장소 안에 둔다"가 훨씬 잘 꽂힙니다.</div>
+      <summary>비교표가 교재 예시와 다르게 나옵니다</summary>
+      <div class="inner">정상입니다. 예상 결과는 <b>형태</b>이지 정답이 아닙니다. 네 항목에서 B 쪽에 ID가 붙은 표·확약·수치가 있다는 방향만 맞으면 됩니다.
+        오히려 서로 다른 표를 두세 개 공유하게 하면, 같은 문서를 읽어도 요약이 갈린다는 점이 드러납니다.</div>
     </details>
   </div>
 
   <!-- S3 -->
   <div class="block">
-    <div class="block-head"><h3>Session 3 · 하네스 조립</h3><span class="when">20:50~21:50 · 60분</span></div>
-    <div class="goal"><b>목표</b>네 기둥을 세우고, 두 번 실행해 산출물 기준이 고정됐음을 확인한다.</div>
+    <div class="block-head"><h3>Session 3 · 한 문장으로 하네스 만들기</h3><span class="when">21:00~21:40 · 40분</span></div>
+    <div class="goal"><b>목표</b>harness 플러그인으로 회의록 정리 팀을 만들고, 세션 2의 눈으로 점검한 뒤 두 번 실행한다.</div>
     <table class="mins"><tbody>
-      <tr><td>5분</td><td>네 기둥 개념 — 규약 · 역할 · 절차 · 게이트</td><td>강의</td></tr>
-      <tr><td>10분</td><td>① 규약 — <code>CLAUDE.md</code> 작성</td><td>실습</td></tr>
-      <tr><td>12분</td><td>② 역할 — <code>scanner</code> · <code>writer</code> 두 서브에이전트</td><td>실습</td></tr>
-      <tr><td>10분</td><td>③ 절차 — <code>SKILL.md</code>로 순서 고정</td><td>실습</td></tr>
-      <tr><td>8분</td><td>④ 게이트 — 검증 스크립트 배치 · 빈 상태로 한 번 실행</td><td>실습</td></tr>
-      <tr><td>12분</td><td>하네스 실행 → <code>diff</code>로 두 번째와 비교</td><td>실습</td></tr>
-      <tr><td>3분</td><td>무엇이 고정되고 무엇이 여전히 다른가</td><td>정리</td></tr>
+      <tr><td>3분</td><td>과제 소개 — 회의록 세 건, 함정 네 가지 · 실습 폴더와 <code>notes.zip</code></td><td>실습</td></tr>
+      <tr><td>10분</td><td>“하네스 구성해줘” 프롬프트 — 생성 대기 중 강사가 단계 해설</td><td>실습</td></tr>
+      <tr><td>5분</td><td><code>/agents</code> · 점검 프롬프트 — 검증 담당 · description · CLAUDE.md</td><td>실습</td></tr>
+      <tr><td>8분</td><td>“notes 폴더의 회의록을 정리해줘” → 정답표와 대조</td><td>실습</td></tr>
+      <tr><td>10분</td><td>이름 바꾸기 → <code>/clear</code> → 재실행 → 두 결과 비교</td><td>실습</td></tr>
+      <tr><td>4분</td><td>무엇이 고정되고 무엇이 여전히 다른가</td><td>정리</td></tr>
     </tbody></table>
     <h4>통과 기준</h4>
     <ul class="check">
-      <li><code>node scripts/check-report.mjs</code>가 <b>두 번 연속</b> 종료코드 0으로 통과한다</li>
-      <li>두 리포트의 문장은 다르지만 섹션 구성·파일 수·추측 표현 없음은 같다는 것을 확인한다</li>
+      <li><code>out/digest.md</code>가 네 섹션을 정해진 순서로 갖고 있다</li>
+      <li>뒤집힌 결정 두 건(카카오 예산, VAT 표기)이 <b>최신 값</b>으로 정리돼 있다</li>
+      <li>두 번째 실행에서도 섹션 구성과 확인 필요 항목이 같다</li>
     </ul>
     <div class="tnote">
-      <span class="note-title">강사 노트 — ④를 반드시 시간 안에 넣으세요</span>
-      ①②③만 하고 끝나면 참가자는 <b>"문서 많이 쓰는 법"</b>을 배운 것으로 끝납니다.
-      게이트가 거절했다가 통과하는 경험이 있어야 "기준을 코드로 옮긴다"는 말이 실감됩니다.
+      <span class="note-title">강사 노트 — 기다리는 10분을 쓰는 법</span>
+      생성되는 동안 참가자 화면에는 분석, 팀 구조 선택, 파일 쓰기가 차례로 지나갑니다. 강사 화면을 공유해
+      <b>“지금 도메인을 분석하고 있다, 지금 파이프라인 모양을 골랐다, 지금 검증 담당을 만들고 있다”</b>를 짚어 주세요.
+      세션 2에서 본 다섯 명이 어떻게 만들어졌는지를 실시간으로 보는 시간입니다.
       <br><br>
-      시간이 모자라면 <b>② 역할 단계를 미리 배포한 템플릿 복사로 대체</b>하세요(12분 → 4분).
-      ①과 ④는 직접 쓰게 해야 합니다. 그 둘이 이 과정의 핵심입니다.
+      21:15까지 생성이 끝나지 않은 참가자에게는 <b>백업 하네스</b>(<code>harness-backup.zip</code>)를 풀게 하세요. 같은 구성이고, 3단계부터 똑같이 따라옵니다.
+      <code>/harness:evolve</code> 회고(교재 6단계)는 시간이 남는 사람만 합니다.
     </div>
     <h4>흔한 실패와 대응</h4>
     <details>
-      <summary>게이트가 계속 실패하는데 Claude가 "완료했습니다"라고 합니다</summary>
-      <div class="inner"><code>CLAUDE.md</code> 절대 규칙 5번과 <code>SKILL.md</code> Phase 3이 빠진 경우입니다.
-        <b>이것도 좋은 교보재입니다</b> — "검증을 통과하지 못한 산출물을 완료라고 보고하지 않는다"가
-        글로 적혀 있지 않으면 지켜지지 않는다는 것을 그 자리에서 보여 주세요.</div>
+      <summary>정리본에 원문에 없는 담당자·기한이 들어갔습니다</summary>
+      <div class="inner">가장 좋은 교보재입니다. 화면을 공유받아 “이 담당자가 원문 어디에 있나요?”를 함께 찾고,
+        교재 4단계의 근거 요구 프롬프트를 쓰게 하세요. 그다음 “검증 담당이 이걸 왜 못 잡았을까”를 묻고, 6단계 회고로 고치게 하면 하네스 개선까지 한 번에 경험합니다.</div>
     </details>
     <details>
-      <summary>Claude가 게이트 스크립트 자체를 고쳐 버립니다</summary>
-      <div class="inner">실제로 자주 일어납니다. 규약 6번("게이트를 통과하려고 검사를 고치지 않는다")이 왜 필요한지
-        보여 줄 기회입니다. 시간이 있으면 <code>git diff</code>로 스크립트가 바뀐 것을 함께 확인하세요.</div>
+      <summary>에이전트가 5명 넘게 만들어지거나, 검증 담당이 없습니다</summary>
+      <div class="inner">프롬프트의 마지막 줄(“3명 이내”, “검증하는 담당을 반드시”)이 빠졌을 가능성이 큽니다.
+        시간이 있으면 “검증 담당을 분리해서 다시 구성해줘”로 고치고, 없으면 백업 하네스로 넘어갑니다.</div>
     </details>
     <details>
-      <summary>파일 경로를 틀려 서브에이전트·스킬이 호출되지 않습니다</summary>
-      <div class="inner">가장 흔한 실수는 스킬의 폴더 한 겹입니다 —
-        <code>.claude/skills/tidy-report/SKILL.md</code>이지 <code>.claude/skills/tidy-report.md</code>가 아닙니다.
-        화면 공유로 트리 구조를 한 번 띄워 두고 진행하세요.</div>
+      <summary>두 번째 실행이 첫 결과를 덮어써 비교할 수 없습니다</summary>
+      <div class="inner">이름 바꾸기를 건너뛴 경우입니다. 다시 이름을 바꾸고 한 번 더 돌리면 됩니다. 이 실패 덕분에
+        “산출물 경로가 고정돼 있다”는 것을 거꾸로 확인할 수 있습니다.</div>
     </details>
+    <details>
+      <summary>진도가 빨라 시간이 남습니다</summary>
+      <div class="inner">네 번째 회의록을 직접 써 넣게 하세요. 예를 들어 “10/27 — 틱톡 테스트 조기 종료, 담당 정하늘”.
+        한 줄 지시로 다시 돌렸을 때 앞의 결정이 어떻게 바뀌어 정리되는지 보면, <b>다음 주에도 같은 한 줄이면 된다</b>는 말이 실감됩니다.</div>
+    </details>
+  </div>
+
+  <!-- 시연 -->
+  <div class="block">
+    <div class="block-head"><h3>showreel 시연</h3><span class="when">21:40~21:50 · 10분 · 강사</span></div>
+    <div class="goal"><b>목표</b>오늘의 네 원리가 대형 하네스에서도 그대로라는 것을 보고, 판단은 스킬에·측정은 도구에 맡기는 구분을 가져간다.</div>
+    <table class="mins"><tbody>
+      <tr><td>2분</td><td>요청 한 줄과 완성 영상 일부 재생</td><td>시연</td></tr>
+      <tr><td>5분</td><td>작업 폴더 해부 — <code>concept.md</code> · <code>references/</code> · <code>qa/critique_NN.md</code> · <code>qa_report.md</code></td><td>시연</td></tr>
+      <tr><td>3분</td><td>네 원리 대응표 · 집에서 설치하는 법</td><td>강의</td></tr>
+    </tbody></table>
+    <div class="tnote">
+      <span class="note-title">강사 노트</span>
+      <b>라이브로 생성하지 마세요.</b> 렌더와 비평 반복에 수십 분이 걸립니다. 전날 30초짜리 하나를 만들어 두고, 그 작업 폴더를 그대로 엽니다.
+      특히 <code>qa/critique_01.md</code>처럼 <b>초안을 스스로 비평하고 약한 구간을 다시 만든 기록</b>을 보여 주세요.
+      세션 3의 검증 담당과 같은 원리가 영상 품질에 쓰인 사례입니다.
+      macOS 중심 스킬이고 나레이션에는 ElevenLabs 키가 필요하다는 점도 함께 알려 주세요.
+    </div>
   </div>
 
   <!-- 마무리 -->
   <div class="block">
     <div class="block-head"><h3>Q&amp;A 및 마무리</h3><span class="when">21:50~22:00 · 10분</span></div>
-    <div class="goal"><b>목표</b>오늘 만든 구조를 내 업무로 옮기는 첫 걸음을 정한다.</div>
+    <div class="goal"><b>목표</b>오늘 쓴 프롬프트 틀로 내 업무를 옮기는 첫 걸음을 정한다.</div>
     <table class="mins"><tbody>
-      <tr><td>5분</td><td>내 업무로 옮기는 5단계 — <b>①산출물 ④판정 기준</b>을 먼저</td><td>강의</td></tr>
-      <tr><td>5분</td><td>실습 질문 · 다음 단계 안내</td><td>Q&amp;A</td></tr>
+      <tr><td>4분</td><td>내 업무용 프롬프트 틀 — <b>산출물</b>과 <b>품질 기준</b>이 핵심</td><td>강의</td></tr>
+      <tr><td>6분</td><td>실습 질문 · harness-100 · harness-edu 과정 안내</td><td>Q&amp;A</td></tr>
     </tbody></table>
     <div class="tnote">
       <span class="note-title">강사 노트</span>
-      "사람들은 대개 ③ 절차부터 씁니다. 순서를 적는 게 제일 쉬우니까요"를 꼭 짚어 주세요.
-      산출물과 판정 기준 없이 절차만 적으면 아무것도 보장되지 않습니다.
-      세션 1에서 걷은 각자의 작업 한 줄을 다시 띄워 주면 마무리가 자연스럽습니다.
+      세션 1에서 걷은 업무 한 줄을 다시 띄우고, 그중 하나를 골라 프롬프트 틀에 즉석으로 채워 보이세요.
+      “처음부터 만들기 전에 harness-100에서 비슷한 것을 찾아보라”는 말도 함께 합니다.
+      실제 회사 데이터는 보안 규정을 확인한 뒤에 쓰라는 안내를 빠뜨리지 마세요.
     </div>
+  </div>
+</section>
+
+<!-- ── 정답표 ─────────────────────────────────────────── -->
+<section class="sec" id="answer">
+  <div class="sec-head">
+    <p class="sec-tag">04 · 실습 정답표</p>
+    <h2>회의록 실습에서 나와야 할 것</h2>
+    <p class="meta">문장은 달라도 되지만 아래 내용과 분류는 맞아야 합니다. 함정은 네 가지 — 뒤집힌 결정, 담당 없음, 모호한 기한, 기한 없음입니다.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>섹션</th><th>항목</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td>결정사항</td><td>카카오모먼트 예산 <b>10%</b> 축소, 줄인 금액은 메타로</td><td>10/13 — 10/06의 20%를 변경</td></tr>
+        <tr><td>결정사항</td><td>틱톡 10/20부터 2주간 300만 원 테스트 (10/20 집행 시작)</td><td>10/13, 10/20</td></tr>
+        <tr><td>결정사항</td><td>리포트 금액 <b>VAT 별도</b> 표기</td><td>10/20 — 10/06의 VAT 포함을 변경</td></tr>
+        <tr><td>결정사항</td><td>광고주 정기 보고는 11월 첫째 주 · 경쟁사 리서치는 이수민</td><td>10/20</td></tr>
+        <tr><td>미결</td><td>광고주 정기 보고의 정확한 날짜</td><td>10/20 — 조율 중</td></tr>
+        <tr><td>액션</td><td>정하늘 · 틱톡 캠페인 세팅 · 10/17 — 완료</td><td>10/13, 10/20</td></tr>
+        <tr><td>액션</td><td>박지훈 · 리포트 양식 VAT 포함으로 수정 · 10/10 — 완료</td><td>10/06, 10/13</td></tr>
+        <tr><td>확인 필요</td><td>인턴 온보딩 자료 — <b>담당 없음</b></td><td>10/06, 10/20</td></tr>
+        <tr><td>확인 필요</td><td>경쟁사 리서치(이수민) — 기한 “다음 주 중”은 <b>모호</b></td><td>10/20</td></tr>
+        <tr><td>확인 필요</td><td>리포트 양식 VAT 별도로 재수정(박지훈) — <b>기한 없음</b></td><td>10/20</td></tr>
+        <tr><td>확인 필요</td><td>광고주 보고 날짜 조율(정하늘) — <b>기한 없음</b></td><td>10/20</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note warn">
+    <span class="note-title">채점할 때 가장 먼저 볼 두 곳</span>
+    카카오 예산이 <b>20%</b>로 남아 있거나 VAT가 <b>포함</b>으로 남아 있으면, 나중 회의를 반영하지 못한 것입니다.
+    확인 필요 네 건 중 하나에 그럴듯한 담당자나 날짜가 들어가 있으면, 지어낸 것을 검증 담당이 놓친 것입니다.
+    둘 다 실패가 아니라 <b>하네스를 고칠 재료</b>로 다루세요.
   </div>
 </section>
 
 <!-- ── 운영 준비 ──────────────────────────────────────── -->
 <section class="sec" id="ops">
   <div class="sec-head">
-    <p class="sec-tag">04 · 운영 준비</p>
+    <p class="sec-tag">05 · 운영 준비</p>
     <h2>강사와 참가자 준비물</h2>
   </div>
 
@@ -298,10 +351,10 @@
     <table>
       <thead><tr><th>구분</th><th>준비물</th><th>비고</th></tr></thead>
       <tbody>
-        <tr><td>참가자</td><td>노트북, Claude 계정, 터미널</td><td>GPU 불필요. 세션 0을 전날까지 완료</td></tr>
-        <tr><td>강사</td><td>완성된 <code>tidy-harness</code> 폴더</td><td>오프닝 시연용. 게이트 실패→통과 장면까지 준비</td></tr>
-        <tr><td>강사</td><td>템플릿 5종 배포 링크</td><td>실습 교재 Session 3에서 다운로드 가능</td></tr>
-        <tr><td>강사</td><td>화면 공유 2개 (터미널 + 파일 트리)</td><td>경로 실수가 가장 흔한 실패 원인</td></tr>
+        <tr><td>참가자</td><td>노트북, Claude Pro 이상 구독</td><td>GPU 불필요. Session 0을 전날까지 완료</td></tr>
+        <tr><td>강사</td><td>harness-edu 저장소, 정답표 화면</td><td>세션 2·3 화면 공유용</td></tr>
+        <tr><td>강사</td><td>미리 만든 회의록 하네스 1벌</td><td>세션 3 생성 해설용. 백업은 교재의 <code>harness-backup.zip</code>과 같은 구성</td></tr>
+        <tr><td>강사</td><td>showreel로 미리 만든 30초 영상 + 작업 폴더</td><td>전날 제작. macOS · ffmpeg · Node · Python 필요</td></tr>
         <tr><td>공통</td><td>실습 교재 주소</td><td><a href="../">namojo.github.io/aiguild</a></td></tr>
       </tbody>
     </table>
@@ -310,41 +363,41 @@
   <h3>시간이 어긋날 때의 우선순위</h3>
   <p>진행이 밀리면 아래 순서로 덜어 냅니다. <b>위에서부터</b> 버리세요.</p>
   <ol>
-    <li>Session 1의 Q&amp;A 10분 → 5분 (북토크 본문은 유지)</li>
-    <li>Session 3 ② 역할 12분 → 4분 (템플릿 복사로 대체)</li>
-    <li>Session 3 ③ 절차 10분 → 5분 (템플릿 복사 + 설명만)</li>
-    <li>마무리 Q&amp;A → 교재 안내로 대체</li>
+    <li>showreel 시연 10분 → 3분 (영상 일부와 대응표만)</li>
+    <li>Session 2 구성물 열기 10분 → 5분 (<code>/agents</code>와 다섯 명 표만)</li>
+    <li>Session 3 생성 단계 → 전원 백업 하네스로 대체 (10분 → 2분)</li>
+    <li>Session 1 독자 질문 10분 → 5분 (대담 본문은 유지)</li>
   </ol>
   <div class="note warn">
     <span class="note-title">끝까지 지켜야 할 두 블록</span>
-    <b>Session 2의 마지막 15분</b>(두 번 실행하고 비교)과 <b>Session 3의 ④ 게이트 + 실행 20분</b>입니다.
-    이 둘이 빠지면 참가자는 문제도 해법도 체감하지 못한 채 파일 몇 개만 만들고 돌아갑니다.
+    <b>Session 2의 인벤토리 10분</b>과 <b>Session 3의 실행 · 두 번째 실행 18분</b>입니다.
+    앞의 것이 빠지면 “하네스가 왜 나은가”의 답이 사라지고, 뒤의 것이 빠지면 “하네스가 무엇을 고정하는가”를 체감하지 못합니다.
   </div>
 
   <h3>수료 판정</h3>
   <ul class="check">
-    <li>게이트가 두 번 연속 통과했다 (필수)</li>
+    <li>내 하네스(또는 백업 하네스)를 두 번 실행해 네 섹션 정리본을 두 개 얻었다 (필수)</li>
     <li>내 업무에서 하네스로 만들 작업 하나를 적었다 (필수)</li>
-    <li>실습 교재의 16단계 체크박스를 모두 채웠다 (권장)</li>
+    <li>실습 교재의 체크박스를 모두 채웠다 (권장)</li>
   </ul>
-  <p class="meta" style="color:var(--ink-3);font-size:14px">체크박스 진행률은 각자 브라우저에만 저장되므로, 수료 확인은 게이트 통과 화면을 공유하는 방식으로 합니다.</p>
+  <p class="meta" style="color:var(--ink-3);font-size:14px">체크박스 진행률은 각자 브라우저에만 저장되므로, 수료 확인은 두 결과의 비교표 화면을 공유하는 방식으로 합니다.</p>
 </section>
 
 <!-- ── 다음 과정 ──────────────────────────────────────── -->
 <section class="sec" id="beyond">
   <div class="sec-head">
-    <p class="sec-tag">05 · 이후</p>
+    <p class="sec-tag">06 · 이후</p>
     <h2>이 과정 다음에 올 것</h2>
-    <p class="meta">3시간으로는 네 기둥을 세우는 데까지입니다. 그다음은 이렇게 이어집니다.</p>
+    <p class="meta">3시간으로는 하네스를 보고 만들어 돌려 보는 데까지입니다. 그다음은 이렇게 이어집니다.</p>
   </div>
   <div class="tablewrap">
     <table>
-      <thead><tr><th>주제</th><th>다루는 것</th><th>왜 다음인가</th></tr></thead>
+      <thead><tr><th>주제</th><th>다루는 것</th><th>어디서</th></tr></thead>
       <tbody>
-        <tr><td>반복 실행</td><td>스케줄 실행, 실패 알림, 재시도 정책</td><td>사람이 없을 때도 도는 단계. 게이트가 먼저 있어야 의미가 생긴다</td></tr>
-        <tr><td>MCP</td><td>외부 도구·데이터 연결</td><td>재료가 로컬 파일을 넘어설 때 필요하다</td></tr>
-        <tr><td>훅(hook)</td><td>실행 전후를 가로채 강제하기</td><td>게이트를 문서가 아니라 런타임이 걸게 만드는 단계</td></tr>
-        <tr><td>컨텍스트 설계</td><td>무엇을 넣고 무엇을 빼는가</td><td>재료가 커지면 비용과 품질이 같이 무너진다</td></tr>
+        <tr><td>골라 쓰고 고쳐 쓰기</td><td>남이 만든 하네스를 내 용어·양식으로 이식</td><td><a href="https://github.com/revfactory/harness-100" target="_blank" rel="noopener">harness-100</a> · harness-edu 7차시</td></tr>
+        <tr><td>지식을 스킬로</td><td>용어집·판단 기준을 파일로 꺼내 재사용</td><td><a href="https://namojo.github.io/harness-edu/chapters/ch2.html" target="_blank" rel="noopener">harness-edu 2차시</a></td></tr>
+        <tr><td>환각을 막는 도구</td><td>계산·조회는 MCP 도구로 넘기기</td><td><a href="https://namojo.github.io/harness-edu/chapters/ch6.html" target="_blank" rel="noopener">harness-edu 6차시</a></td></tr>
+        <tr><td>하네스 진화</td><td>사용 피드백을 에이전트·스킬에 되먹이기</td><td><code>/harness:evolve</code></td></tr>
       </tbody>
     </table>
   </div>
@@ -352,7 +405,7 @@
 
 <footer class="foot">
   <p><b>AI Agent Guild</b> · 2026년 10월 세미나 운영 설계</p>
-  <p>『생존을 위한 최소한의 AI 상식』 조남호 저자와 함께하는 북토크 &amp; 하네스 핸즈온</p>
+  <p>『생존을 위한 최소한의 AI 교양』 조남호 저자와 함께하는 북토크 &amp; 하네스 핸즈온</p>
   <p style="margin-top:14px">
     <a href="../">실습 교재로 이동</a> ·
     <a href="https://aiagentguild.org/" target="_blank" rel="noopener">길드 홈페이지</a> ·
