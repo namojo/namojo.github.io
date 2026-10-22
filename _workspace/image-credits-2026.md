@@ -148,3 +148,5 @@
 | covers/ai-agents-breached-100-companies-fifty-dollars.jpg | 산길을 따라 늘어선 돌탑 | Unsplash — Luc Santeramo | Unsplash License |
 | inline/ai-agents-breached-100-companies-fifty-dollars-ants.jpg | 페로몬 자취를 따라 줄지어 이동하는 개미들 — 10-21 포스트 본문(스티그머지 설명) | Pexels — oandremoura https://www.pexels.com/photo/black-ants-lining-up-2563028/ | Pexels License |
 | covers/emudhra-ca-keys-recoverable.jpg | 하드웨어 보안 모듈(HSM) nShield F3 | Wikimedia Commons "NCipher nShield F3 Hardware Security Module.jpg" — Alexander Klink | CC BY 3.0 |
+| covers/micron-taiwan-strike-operating-leverage.jpg | 마이크론 대만 타이중 공장 | Wikimedia Commons "Micron Fab in Taichung, Taiwan.jpeg" — Thingreenline4546 | CC BY-SA 4.0 |
+| inline/micron-taiwan-strike-operating-leverage-1.jpg | 반도체 클린룸 내부 | Wikimedia Commons "Semiconductor clean room.jpg" — Aileen Devlin/ Jefferson Lab from Newport News, USA | Public domain |
