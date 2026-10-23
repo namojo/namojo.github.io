@@ -252,3 +252,54 @@
     reveals.forEach(function (r) { r.classList.add('in'); });
   }
 })();
+
+/* ---------- 플레이북: 단계 체크와 진행률 ---------- */
+(function () {
+  'use strict';
+  var boxes = document.querySelectorAll('.pb-step .chk');
+  if (!boxes.length) return;
+  var KEY = 'gs-playbook-v1', state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  var bar = document.querySelector('.pb-progress .track i');
+  var label = document.querySelector('.pb-progress p');
+  function render() {
+    var done = 0;
+    boxes.forEach(function (b) {
+      var on = !!state[b.dataset.id];
+      b.checked = on;
+      b.closest('.pb-step').classList.toggle('done', on);
+      if (on) done++;
+    });
+    if (bar) bar.style.width = Math.round(done * 100 / boxes.length) + '%';
+    if (label) label.textContent = done + ' / ' + boxes.length + ' 단계 완료 · 이 브라우저에만 저장됩니다';
+    document.querySelectorAll('.pb-toc a[data-sec]').forEach(function (a) {
+      var all = document.querySelectorAll('#' + a.dataset.sec + ' .chk');
+      var d = 0; all.forEach(function (b) { if (b.checked) d++; });
+      var s = a.querySelector('span'); if (s) s.textContent = d + '/' + all.length;
+    });
+  }
+  boxes.forEach(function (b) {
+    b.addEventListener('change', function () {
+      if (b.checked) state[b.dataset.id] = 1; else delete state[b.dataset.id];
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+      render();
+    });
+  });
+  var reset = document.querySelector('[data-reset-progress]');
+  if (reset) reset.addEventListener('click', function () { state = {}; try { localStorage.removeItem(KEY); } catch (e) {} render(); });
+  render();
+
+  if ('IntersectionObserver' in window) {
+    var links = {};
+    document.querySelectorAll('.pb-toc a[data-sec]').forEach(function (a) { links[a.dataset.sec] = a; });
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.keys(links).forEach(function (k) { links[k].classList.remove('on'); });
+          links[e.target.id].classList.add('on');
+        }
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    Object.keys(links).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
+  }
+})();

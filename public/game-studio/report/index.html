@@ -29,6 +29,7 @@
     <a class="brand" href="../"><span class="brand-mark">GS</span><span>Game Studios</span><small>· 분석 보고서</small></a>
     <nav class="nav" aria-label="페이지">
       <a href="../">소개 페이지</a>
+      <a href="../playbook/">플레이북</a>
       <a href="#s10">썬더게임즈 제안</a>
     </nav>
     <button class="icon-btn" type="button" data-theme-toggle aria-label="밝게/어둡게 전환">
@@ -256,12 +257,13 @@
 <p>핵심 판단은 이렇다. <strong>CCGS의 가치는 "신작을 AI가 처음부터 만드는 것"보다 "반복되는 운영 업무와 검증 절차를 표준화하는 것"에서 먼저 나온다.</strong> 모바일 라이브 서비스의 병목에 맞는 에이전트와 스킬만 꺼내 쓰고, 부족한 부분(확률·과금 규제)은 사내 규칙으로 보강한다.</p>
 
 <h3>활용 아이디어</h3>
+<p>각 아이디어를 실제로 해 보는 명령어와 확인 지점은 <a href="../playbook/">실행 플레이북</a>에, 확률 공시 게이트의 검사기·훅·규칙·검수 에이전트는 <a href="../kit/thunder-kit.zip">thunder-kit.zip</a>에 담았다.</p>
 <div class="tbl-wrap"><table>
   <thead><tr><th>#</th><th>과제</th><th>사용 구성요소</th><th>기대 효과</th><th>난이도</th></tr></thead>
   <tbody>
     <tr><td>1</td><td><strong>확률형 아이템 공시 게이트</strong><br>가챠 데이터 변경 시 확률 합계·공시 필드·변경 이력 자동 검사</td><td>신규 경로 규칙(<code>assets/data/gacha/**</code>), <code>validate-commit.sh</code> 확장, economy-designer, <code>/balance-check</code></td><td>2024년 3월 시행된 확률 정보 공개 의무 관련 누락·오기 사고를 배포 전에 차단</td><td>중</td></tr>
     <tr><td>2</td><td><strong>시즌 이벤트 기획 공장</strong><br>콘셉트 → 보상표 → 재화 흐름 분석 → 대사·공지 → 패치노트</td><td><code>/team-live-ops</code>, live-ops-designer, economy-designer, writer, community-manager, <code>/patch-notes</code></td><td>이벤트 문서 준비 시간 단축, 재화 인플레이션 사전 점검</td><td>하</td></tr>
-    <tr><td>3</td><td><strong>캐주얼 신작 2주 검증</strong><br>한 장 기획서 → 프로토타입 → 플레이테스트 → 진행/전환/중단 판정</td><td><code>rigor: minimal</code>, <code>/brainstorm</code>, <code>/prototype</code>, <code>/playtest-report</code>, <code>/vertical-slice</code></td><td>아이디어 검증 회전 수 증가, 회의를 "플레이 결과" 중심으로 전환</td><td>하</td></tr>
+    <tr><td>3</td><td><strong>캐주얼 신작 2주 검증</strong><br>한 장 기획서 → 프로토타입 → 플레이테스트 → 진행/전환/중단 판정</td><td><code>rigor: minimal</code>, <code>/brainstorm</code>, <code>/prototype --path html</code>, <code>/playtest-report</code>(판정은 <code>/prototype</code> 보고서의 PROCEED/PIVOT/KILL)</td><td>아이디어 검증 회전 수 증가, 회의를 "플레이 결과" 중심으로 전환</td><td>하</td></tr>
     <tr><td>4</td><td><strong>운영 RPG 역문서화·온보딩</strong><br>코드에서 GDD·ADR 복원, 신규 인원 온보딩 자료 생성</td><td><code>/adopt</code>, <code>/project-stage-detect</code>, <code>/reverse-document</code>, <code>/onboard</code></td><td>담당자 이탈 리스크 완화, 온보딩 기간 단축</td><td>중</td></tr>
     <tr><td>5</td><td><strong>저사양 기기 성능 예산·출시 QA</strong><br>기기 등급별 프레임·메모리 예산과 업데이트별 회귀 검사</td><td>Unity 스페셜리스트 세트, performance-analyst, <code>/perf-profile</code>, <code>/smoke-check</code>, <code>/regression-suite</code></td><td>패치 후 크래시·UI 깨짐 감소, 실행 증거로 품질 추적</td><td>중</td></tr>
     <tr><td>6</td><td><strong>글로벌 출시 현지화</strong><br>문자열 추출·길이·폰트 점검·말투 일관성·현지화 동결</td><td>localization-lead, writer, <code>/localize</code>, <code>/launch-checklist</code>, <code>validate-write.sh</code>의 동결 경고</td><td>다국어 출시 시 누락 문자열·텍스트 넘침 사전 발견</td><td>중</td></tr>

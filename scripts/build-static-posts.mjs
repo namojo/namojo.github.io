@@ -594,6 +594,7 @@ function main() {
     { loc: `${SITE_URL}/aiguild/curriculum/`, priority: '0.7' },
     { loc: `${SITE_URL}/game-studio/`, priority: '0.8' },
     { loc: `${SITE_URL}/game-studio/report/`, priority: '0.7' },
+    { loc: `${SITE_URL}/game-studio/playbook/`, priority: '0.7' },
     ...generatable.map(p => ({
       loc: `${SITE_URL}/p/${p.id}/`,
       lastmod: toIsoDate(p.date) || undefined,
