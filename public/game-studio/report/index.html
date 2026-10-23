@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code Game Studios 분석 보고서 — 구조, 작동 원리, 썬더게임즈 도입 제안</title>
+<meta name="description" content="오픈소스 템플릿 Claude Code Game Studios(v1.2.0)의 구성·조직 구조·워크플로·안전장치·실험 결과를 분석하고, 모바일 RPG·캐주얼 개발사 썬더게임즈의 단계별 도입 방안을 제안하는 보고서.">
+<link rel="canonical" href="https://namojo.github.io/game-studio/report/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="namojo">
+<meta property="og:title" content="Claude Code Game Studios 분석 보고서">
+<meta property="og:description" content="49개 에이전트·74개 스킬·15개 훅의 구조와 작동 원리, 강점과 한계, 썬더게임즈 도입 로드맵.">
+<meta property="og:url" content="https://namojo.github.io/game-studio/report/">
+<meta property="og:image" content="https://namojo.github.io/game-studio/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://namojo.github.io/game-studio/assets/og.png">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=localStorage.getItem('gs-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../assets/app.js" defer></script>
+</head>
+<body class="doc">
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../"><span class="brand-mark">GS</span><span>Game Studios</span><small>· 분석 보고서</small></a>
+    <nav class="nav" aria-label="페이지">
+      <a href="../">소개 페이지</a>
+      <a href="#s10">썬더게임즈 제안</a>
+    </nav>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="밝게/어둡게 전환">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="doc-head">
+  <p class="kicker">Report · AI Agent Harness Case Study</p>
+  <h1>Claude Code Game Studios<br>분석 보고서</h1>
+  <p class="sub">49개 AI 에이전트로 꾸린 게임 스튜디오 템플릿의 구조와 작동 원리, 그리고 썬더게임즈 도입 제안</p>
+  <div class="doc-meta">
+    <span><b>작성</b> 조남호 (namojo)</span>
+    <span><b>작성일</b> 2026-10-23</span>
+    <span><b>분석 대상</b> Donchitos/Claude-Code-Game-Studios v1.2.0 (2026-10-19)</span>
+    <span><b>라이선스</b> MIT</span>
+  </div>
+  <div class="doc-actions">
+    <button class="btn" type="button" data-print>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      인쇄 · PDF 저장
+    </button>
+    <a class="btn" href="../">인터랙티브 소개 페이지 →</a>
+  </div>
+
+  <nav class="toc" aria-label="목차">
+    <b>목차</b>
+    <ol>
+      <li><a href="#s1">개요</a></li>
+      <li><a href="#s2">문제 정의</a></li>
+      <li><a href="#s3">구성 요소</a></li>
+      <li><a href="#s4">조직 구조와 조정 규칙</a></li>
+      <li><a href="#s5">작동 방식</a></li>
+      <li><a href="#s6">워크플로 파이프라인</a></li>
+      <li><a href="#s7">품질·안전장치</a></li>
+      <li><a href="#s8">실험 결과와 시사점</a></li>
+      <li><a href="#s9">평가: 강점과 한계</a></li>
+      <li><a href="#s10">썬더게임즈 도입 제안</a></li>
+      <li><a href="#s11">결론</a></li>
+      <li><a href="#refs">참고 자료</a></li>
+    </ol>
+  </nav>
+</div>
+
+<article class="doc-body">
+
+<section class="summary-box">
+  <h2>요약</h2>
+  <ul>
+    <li><strong>무엇인가</strong> — Claude Code 세션 하나에 실제 게임 스튜디오의 조직(디렉터·리드·스페셜리스트 3계층, 49개 에이전트)과 절차(74개 스킬), 검수(15개 훅, 14개 경로 규칙)를 입히는 오픈소스 템플릿이다. GitHub 별 27.2k, 포크 3.9k(2026-10-23 기준).</li>
+    <li><strong>핵심 설계</strong> — "자율이 아니라 협업". 모든 에이전트가 질문 → 선택지 → 사용자 결정 → 초안 → 승인의 다섯 단계를 따르고, 파일을 쓰기 전 허락을 구한다. 규칙은 문서에만 두지 않고 훅으로 강제한다.</li>
+    <li><strong>가장 흥미로운 결과</strong> — 원작자의 자체 실험에서 문서를 30개 쓴 <code>standard</code> 빌드가 문서 1개짜리 <code>minimal</code> 빌드보다 낮은 평가를 받았다. 그래서 기본값은 가장 가벼운 <code>minimal</code>이며, 대신 "실행해서 눈으로 확인한 증거"는 모든 수준에서 의무다.</li>
+    <li><strong>썬더게임즈 제안</strong> — 49명 전원을 쓰기보다 모바일 라이브 서비스의 병목(확률형 아이템 공시 검증, 시즌 이벤트 기획, 레거시 역문서화, 신작 빠른 검증)에 맞는 팀만 꺼내 쓴다. 2주 파일럿 → 1~2개월 운영 접목 → 분기 단위 사내 하네스 구축의 3단계를 권한다.</li>
+  </ul>
+</section>
+
+<h2 id="s1"><span class="sn">01</span>개요</h2>
+<p>Claude Code Game Studios(이하 CCGS)는 Donchitos가 공개한 Claude Code용 프로젝트 템플릿이다. 레포를 복제한 폴더에서 Claude Code를 실행하면, <code>CLAUDE.md</code>와 <code>.claude/</code> 아래의 에이전트·스킬·훅·규칙이 자동으로 로드되어 하나의 세션이 "게임 스튜디오"처럼 동작한다.</p>
+<div class="tbl-wrap"><table>
+  <tbody>
+    <tr><th>버전</th><td>v1.2.0 (2026-10-19). 스토리 스킬 재구성, 대용량 설계 문서 읽기 가드, Godot 4.7·Unreal 5.8 엔진 레퍼런스 반영</td></tr>
+    <tr><th>지원 엔진</th><td>Godot 4, Unity, Unreal Engine 5 — 엔진별 스페셜리스트 세트 제공</td></tr>
+    <tr><th>필요 환경</th><td>Git, Claude Code, Python 3(<code>project.yaml</code> 해석), Bash(Windows는 Git for Windows), jq 권장</td></tr>
+    <tr><th>주 개발 환경</th><td>Windows 10 + Git Bash. macOS(bash 3.2)·Linux에서도 훅 테스트</td></tr>
+    <tr><th>대상 사용자</th><td>AI와 함께 게임을 만드는 1인~소규모 인디 개발자. 템플릿이므로 팀 맞춤 수정이 전제</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s2"><span class="sn">02</span>문제 정의</h2>
+<p>AI 한 명과 게임을 만드는 일은 빠르지만 구조가 없다. 원작자는 이 공백을 이렇게 요약한다. 하드코딩된 매직 넘버를 막는 사람도, 설계 문서를 건너뛰는 것을 지적하는 사람도, QA 패스도, "이게 게임의 비전에 맞는가?"를 묻는 사람도 없다.</p>
+<p>이는 에이전트 설계 관점에서 보면 <strong>단일 컨텍스트의 역할 혼재</strong> 문제다. 기획 판단·코드 구현·품질 검수가 하나의 대화 흐름 안에서 섞이면, 앞선 결정이 잊히고 검토가 생략된다. CCGS의 해법은 모델을 바꾸는 것이 아니라 모델이 일하는 환경을 바꾸는 것, 즉 <strong>하네스(harness)</strong>를 설계하는 것이다.</p>
+
+<h2 id="s3"><span class="sn">03</span>구성 요소</h2>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>구성</th><th>수량</th><th>위치</th><th>역할</th></tr></thead>
+  <tbody>
+    <tr><td>에이전트</td><td>49</td><td><code>.claude/agents/</code></td><td>디자인·프로그래밍·아트·오디오·내러티브·QA·프로덕션 전문 서브에이전트. frontmatter에 도구·모델·최대 턴·메모리 범위 정의</td></tr>
+    <tr><td>스킬</td><td>74</td><td><code>.claude/skills/</code></td><td><code>/start</code>, <code>/design-system</code>, <code>/dev-story</code> 등 단계별 슬래시 커맨드. 어떤 에이전트를 어떤 순서로 부를지 기술</td></tr>
+    <tr><td>훅</td><td>15</td><td><code>.claude/hooks/</code></td><td>커밋·푸시·파일 읽기/쓰기·에셋 변경·세션 시작/종료·서브에이전트 시작/종료 시 자동 검증</td></tr>
+    <tr><td>규칙</td><td>14</td><td><code>.claude/rules/</code></td><td>파일 경로에 따라 자동 적용되는 코딩 표준(게임플레이, 엔진, AI, UI, 네트워크, 셰이더, 테스트 등)</td></tr>
+    <tr><td>템플릿</td><td>62</td><td><code>.claude/docs/templates/</code></td><td>GDD, UX 명세, ADR, 스프린트 계획, HUD 설계, 접근성 문서 등</td></tr>
+    <tr><td>설정</td><td>1</td><td><code>project.yaml</code></td><td>엔진·네이밍·모드 설정의 단일 출처. 개인 설정은 <code>project.local.yaml</code></td></tr>
+    <tr><td>자체 테스트</td><td>—</td><td><code>studio-tests/</code></td><td>게임이 아닌 스킬·에이전트 자체의 품질을 검사하는 카탈로그와 루브릭</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s4"><span class="sn">04</span>조직 구조와 조정 규칙</h2>
+<h3>3계층 조직</h3>
+<figure class="figure">
+  <svg viewBox="0 0 720 310" role="img" aria-label="디렉터 3, 부서 리드 8, 스페셜리스트 23, 엔진 스페셜리스트 15로 이루어진 계층도">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs>
+    <rect class="dg-t1" x="210" y="14" width="300" height="56" rx="12"/>
+    <text class="dg-label" x="360" y="38" text-anchor="middle">Tier 1 · 디렉터 (3)</text>
+    <text class="dg-sub" x="360" y="56" text-anchor="middle">creative · technical · producer — Opus</text>
+    <path class="dg-line" d="M360 70 V104" marker-end="url(#ah)"/>
+    <rect class="dg-t2" x="110" y="108" width="500" height="56" rx="12"/>
+    <text class="dg-label" x="360" y="132" text-anchor="middle">Tier 2 · 부서 리드 (8)</text>
+    <text class="dg-sub" x="360" y="150" text-anchor="middle">game-designer · lead-programmer · art · audio · narrative · qa · release · localization</text>
+    <path class="dg-line" d="M235 164 V198" marker-end="url(#ah)"/>
+    <path class="dg-line" d="M593 164 V198" marker-end="url(#ah)"/>
+    <rect class="dg-t3" x="10" y="202" width="450" height="96" rx="12"/>
+    <text class="dg-label" x="235" y="228" text-anchor="middle">Tier 3 · 스페셜리스트 (23)</text>
+    <text class="dg-sub" x="235" y="248" text-anchor="middle">programmer 6 · designer 4 · writer · world-builder</text>
+    <text class="dg-sub" x="235" y="264" text-anchor="middle">tech-artist · sound · qa-tester · perf · devops · analytics</text>
+    <text class="dg-sub" x="235" y="280" text-anchor="middle">security · a11y · live-ops · community · prototyper</text>
+    <rect class="dg-t4" x="476" y="202" width="234" height="96" rx="12"/>
+    <text class="dg-label" x="593" y="236" text-anchor="middle">엔진 스페셜리스트 (15)</text>
+    <text class="dg-sub" x="593" y="256" text-anchor="middle">Godot 5 · Unity 5 · Unreal 5</text>
+    <text class="dg-sub" x="593" y="272" text-anchor="middle">프로젝트 엔진에 맞는 1세트 사용</text>
+  </svg>
+  <figcaption>그림 1. CCGS의 스튜디오 계층. 디렉터는 비전을, 리드는 부서 기준을, 스페셜리스트는 실무를 맡는다.</figcaption>
+</figure>
+<p>모델 배치도 직급을 따른다. 디렉터 3명은 Opus를 요청하고, <code>lead-programmer</code>와 15명의 스페셜리스트(대부분 엔진 하위 전문가와 prototyper·devops·community-manager)는 Sonnet을 지정하며, 나머지 30명은 사용자가 쓰고 있는 세션 모델을 그대로 상속한다. 원작자는 계층을 "요금제가 아니라 직급"으로 보라고 강조한다.</p>
+<p>에이전트 정의는 권한 설계도 겸한다. 예컨대 <code>creative-director</code>는 <code>disallowedTools: Bash</code>로 셸 실행이 막혀 있다. 판단하는 자리는 직접 손대지 않는다는 조직 원칙이 도구 권한으로 구현된 것이다.</p>
+
+<h3>조정 규칙</h3>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>#</th><th>규칙</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>수직 위임</td><td>디렉터 → 리드 → 스페셜리스트. 복잡한 결정에서 계층을 건너뛰지 않는다.</td></tr>
+    <tr><td>2</td><td>수평 협의</td><td>같은 계층끼리 상의할 수 있으나, 자기 영역 밖에서 구속력 있는 결정을 하지 않는다.</td></tr>
+    <tr><td>3</td><td>충돌 해결</td><td>공통 상위자에게 올린다. 없으면 디자인은 creative-director, 기술은 technical-director.</td></tr>
+    <tr><td>4</td><td>변경 전파</td><td>여러 부서에 걸친 설계 변경은 producer가 조율한다.</td></tr>
+    <tr><td>5</td><td>영역 경계</td><td>명시적 위임 없이 자기 디렉터리 밖의 파일을 수정하지 않는다.</td></tr>
+    <tr><td>6</td><td>섹션 단위 읽기</td><td>설계 문서는 필요한 제목 범위만 읽는다. 40KB 초과 문서의 통째 읽기는 훅이 거절한다.</td></tr>
+    <tr><td>7</td><td>업스트림 금지</td><td>엔진·플러그인 벤더 레포에 이슈나 PR을 직접 올리지 않는다. 초안만 쓰고 제출은 사용자가 한다.</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s5"><span class="sn">05</span>작동 방식</h2>
+<h3>협업 프로토콜</h3>
+<p>모든 작업은 <strong>질문 → 선택지 → 결정 → 초안 → 승인</strong>의 순서를 따른다. 에이전트는 Write/Edit 전에 "이 경로에 써도 될까요?"를 반드시 묻고, 여러 파일 변경은 변경 묶음 전체에 대한 승인을 받는다. 사용자가 질문을 건너뛰거나 닫으면 그것을 답으로 간주하지 않고 다시 묻는다. 커밋은 사용자 지시 없이 하지 않는다.</p>
+<h3>자동화 수준</h3>
+<p><code>modes.automation</code>으로 개입 빈도를 고른다. <code>collaborative</code>(기본)는 단계 전환마다 승인을 받고, <code>guided</code>는 막힌 단계가 아니면 자동 진행하며, <code>autonomous</code>는 끝까지 실행하되 모든 판단을 결정 로그에 남긴다. 어느 모드든 "항상 물어볼 범주"로 지정된 결정은 사람에게 묻는다.</p>
+<h3>세션 상태와 컨텍스트</h3>
+<p>세션의 기억은 대화가 아니라 파일이다. <code>production/session-state/active.md</code>가 체크포인트 역할을 하며, 컨텍스트 압축·충돌·<code>/clear</code> 뒤에는 이 파일부터 읽는다. 또 <code>.claude/scripts/</code>의 헬퍼는 "관찰만 내고 판정은 하지 않는다"는 원칙을 지킨다. 점수를 매기는 스크립트는 언젠가 자신이 모르는 설정과 충돌하기 때문이다.</p>
+<h3>서브에이전트와 팀 스킬</h3>
+<p><code>/team-combat</code>, <code>/team-live-ops</code> 등 9개 팀 스킬은 하나의 기능에 여러 에이전트를 묶어 설계 → 구현 → 검증을 진행한다. 서로의 결과가 필요 없는 하위 작업은 병렬로 띄우고, 하나라도 막히면 조용히 건너뛰지 않고 부분 보고서를 낸다. <code>team.size</code>(<code>individual</code>·<code>small</code>·<code>studio</code>)에 따라 실제로 투입할 에이전트를 실행 전에 선언한다. 여러 세션을 공유 작업 목록으로 묶는 Agent Teams는 실험적 옵트인 기능으로 분리되어 있다.</p>
+
+<h2 id="s6"><span class="sn">06</span>워크플로 파이프라인</h2>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>단계</th><th>목표</th><th>대표 스킬</th></tr></thead>
+  <tbody>
+    <tr><td>1. Concept</td><td>아이디어를 컨셉 문서로, 아트 바이블과 시스템 지도까지</td><td><code>/brainstorm</code> <code>/art-bible</code> <code>/map-systems</code></td></tr>
+    <tr><td>2. Systems Design</td><td>시스템별 GDD 작성과 교차 리뷰</td><td><code>/design-system</code> <code>/review-all-gdds</code></td></tr>
+    <tr><td>3. Technical Setup</td><td>아키텍처, ADR, 접근성 기반, 테스트 프레임워크</td><td><code>/create-architecture</code> <code>/test-setup</code></td></tr>
+    <tr><td>4. Pre-Production</td><td>UX·에셋 명세, 코어 프로토타입, 에픽·스토리 분해, 재미 검증</td><td><code>/prototype</code> <code>/create-stories</code></td></tr>
+    <tr><td>5. Production</td><td>스프린트 단위 구현과 완료 판정</td><td><code>/sprint-plan</code> <code>/dev-story</code> <code>/story-done</code></td></tr>
+    <tr><td>6. Polish</td><td>성능, 밸런스, 플레이테스트, 버그</td><td><code>/perf-profile</code> <code>/balance-check</code></td></tr>
+    <tr><td>7. Release</td><td>인증, 출시 준비, 패치</td><td><code>/launch-checklist</code> <code>/patch-notes</code></td></tr>
+  </tbody>
+</table></div>
+<p>프로세스의 무게는 <code>modes.rigor</code> 하나로 조절한다. 이 값은 GDD 필수 섹션(<code>workflow</code>), 문서 밀도, QA 증거 수준, 스토리 크기, 디렉터 리뷰 깊이(<code>review_mode</code>), 팀 규모를 한꺼번에 정한다. <code>minimal</code>(기본)은 한 장짜리 기획서에서 바로 스토리와 구현으로 가고, <code>standard</code>는 GDD 5개 섹션, <code>full</code>은 8개 섹션과 디렉터 전원 리뷰를 요구한다. 특정 시스템만 엄격하게 다루는 <code>system_overrides</code>, 테스트 유형별로 증거 누락을 차단할지 경고만 할지 정하는 <code>testing.strict</code>도 있다.</p>
+
+<h2 id="s7"><span class="sn">07</span>품질·안전장치</h2>
+<h3>훅</h3>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>훅</th><th>시점</th><th>검사 내용</th></tr></thead>
+  <tbody>
+    <tr><td><code>validate-commit.sh</code></td><td>커밋 전</td><td>하드코딩 값, TODO 형식, JSON 유효성, 설계 문서 섹션</td></tr>
+    <tr><td><code>validate-push.sh</code></td><td>푸시·태그·배포 전</td><td>보호 브랜치 푸시, <code>butler push</code>, <code>steamcmd</code> 업로드 경고</td></tr>
+    <tr><td><code>validate-read.sh</code></td><td>읽기 전</td><td>40KB 초과 설계 문서 통째 읽기 거절, 목차 반환</td></tr>
+    <tr><td><code>validate-write.sh</code></td><td>쓰기 전</td><td>덮어쓰면 안 되는 파일, 프로토타입 경계, 현지화 동결 위반 경고</td></tr>
+    <tr><td><code>validate-registry.sh</code></td><td>쓰기 전</td><td>엔티티·요구사항 ID 레지스트리 삭제·번호 변경 경고</td></tr>
+    <tr><td><code>validate-assets.sh</code></td><td>쓰기 후</td><td>데이터 JSON, 에셋 네이밍</td></tr>
+    <tr><td><code>session-start.sh</code> · <code>detect-gaps.sh</code></td><td>세션 시작</td><td>브랜치·최근 커밋 안내, 설계 문서 공백 감지</td></tr>
+    <tr><td><code>log-agent*.sh</code> · <code>validate-agent-artifact.sh</code></td><td>서브에이전트 시작·종료</td><td>감사 로그, 약속한 산출물 미작성 경고</td></tr>
+  </tbody>
+</table></div>
+<p>대부분의 훅은 차단보다 경고를 택한다. 예외적으로 Python이 없을 때 데이터 JSON이 포함된 커밋은 막는다. <code>settings.json</code>의 권한 규칙은 force push, <code>rm -rf</code>, <code>.env</code> 읽기를 Bash와 PowerShell 양쪽에서 거부한다.</p>
+<h3>경로별 규칙</h3>
+<p><code>src/gameplay/**</code>에서는 데이터 주도 값과 delta time 사용, <code>src/core/**</code>에서는 핫패스 무할당과 스레드 안전성, <code>src/networking/**</code>에서는 서버 권위와 메시지 버전 관리, <code>src/ui/**</code>에서는 게임 상태 비소유와 현지화 대비가 자동으로 요구된다. Unity(<code>Assets/</code>)와 Unreal(<code>Source/</code>) 레이아웃에도 대응한다.</p>
+<h3>실행 증거</h3>
+<p>플레이어가 보는 것을 바꾼 스토리는 게임을 실제로 실행해 관찰하고 스크린샷을 <code>production/qa/evidence/</code>에 남겨야 닫힌다. v1.2.0부터 <code>/dev-story</code>가 증거 옆에 <code>stamp.txt</code>를 기록해, 이후 해당 파일이 바뀌면 <code>/story-done</code>이 재촬영을 권한다.</p>
+<h3>하네스 자체의 테스트</h3>
+<p><code>studio-tests/</code>와 <code>/skill-test</code>, <code>/skill-improve</code>는 게임이 아니라 프레임워크를 시험한다. 구조 린트(7개 준수 항목), 카테고리별 품질 루브릭, 행동 명세 검증, 커버리지 감사를 제공하며, <code>/skill-improve</code>는 점수가 떨어지면 변경을 되돌리는 테스트-수정-재시험 루프를 돈다.</p>
+
+<h2 id="s8"><span class="sn">08</span>실험 결과와 시사점</h2>
+<p>원작자는 "이 시스템은 게임을 만드는가, 문서를 만드는가?"라는 질문에 샘플 대신 측정으로 답했다. 같은 기획서 하나로 <code>rigor</code> 수준을 달리해 게임 네 개를 만들고 첫 게임 코드 이전에 쓴 문서를 셌다(README에는 두 수준의 수치가 공개됨).</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>modes.rigor</th><th>첫 코드 전 문서</th><th>첫 코드까지 시간</th><th>평가</th></tr></thead>
+  <tbody>
+    <tr><td><code>minimal</code></td><td>1 (한 장짜리 기획서)</td><td>0분</td><td>동작·테스트 통과</td></tr>
+    <tr><td><code>standard</code></td><td>30</td><td>58분</td><td>동작·테스트 통과, 블라인드 리뷰 2인과 사람 플레이테스트에서 최하위</td></tr>
+  </tbody>
+</table></div>
+<p><strong>시사점 1 — 프로세스는 품질의 대리 지표가 아니다.</strong> 추가 문서 29개가 산 것은 추적 가능성이었지 더 좋은 게임이 아니었다. 그래서 기본값을 가장 가벼운 수준으로 두고, 프로젝트가 커질 때 <code>/help</code>와 <code>/gate-check</code>가 상향을 제안하도록 설계했다.</p>
+<p><strong>시사점 2 — 생략할 수 없는 것은 따로 있다.</strong> 문서와 리뷰는 줄여도 "실행해서 눈으로 보는" 검증은 모든 수준에서 의무다. 에이전트 시스템을 설계할 때 무엇을 조절 가능한 다이얼로 두고 무엇을 고정된 게이트로 둘지 구분한 좋은 사례다.</p>
+
+<h2 id="s9"><span class="sn">09</span>평가: 강점과 한계</h2>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>강점</th><th>한계·리스크</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul style="margin:0">
+          <li>실제 스튜디오 역할 체계를 그대로 옮겨 학습 비용이 낮다</li>
+          <li>규칙을 훅·권한·경로 규칙으로 코드화해 드리프트가 적다</li>
+          <li><code>rigor</code> 다이얼 하나로 프로세스 무게를 조절</li>
+          <li>사람의 결정권을 구조적으로 보장(승인 프로토콜)</li>
+          <li>세 엔진 지원, Windows·macOS·Linux 호환</li>
+          <li>하네스 자체의 회귀 테스트(<code>studio-tests</code>) 보유</li>
+        </ul>
+      </td>
+      <td>
+        <ul style="margin:0">
+          <li>PC·콘솔 인디 개발을 전제로 해 모바일 라이브 서비스 관점(과금·확률·운영)이 약하다</li>
+          <li>기본 라이브옵스 윤리 원칙이 유료 랜덤 박스를 금지해 가챠 RPG와 충돌</li>
+          <li>아트·사운드 에셋을 직접 만들지 않는다(명세만 작성)</li>
+          <li>Opus 디렉터 리뷰가 잦으면 비용 증가</li>
+          <li>구성 요소가 많아 처음엔 무엇을 지울지 판단이 필요</li>
+          <li>승인 프롬프트가 많아 숙련자에겐 느리게 느껴질 수 있음</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="s10"><span class="sn">10</span>썬더게임즈 도입 제안</h2>
+<h3>전제</h3>
+<p>공개된 기업 정보에 따르면 썬더게임즈는 2015년 설립된 부산 해운대 센텀 소재의 모바일 RPG·캐주얼 게임 개발사다. 이 제안은 그 정보를 바탕으로 한 가정이며, 실제 엔진(모바일 개발 특성상 Unity를 가정)·조직 규모·운영 중인 타이틀에 맞춰 조정해야 한다.</p>
+<p>핵심 판단은 이렇다. <strong>CCGS의 가치는 "신작을 AI가 처음부터 만드는 것"보다 "반복되는 운영 업무와 검증 절차를 표준화하는 것"에서 먼저 나온다.</strong> 모바일 라이브 서비스의 병목에 맞는 에이전트와 스킬만 꺼내 쓰고, 부족한 부분(확률·과금 규제)은 사내 규칙으로 보강한다.</p>
+
+<h3>활용 아이디어</h3>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>#</th><th>과제</th><th>사용 구성요소</th><th>기대 효과</th><th>난이도</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>확률형 아이템 공시 게이트</strong><br>가챠 데이터 변경 시 확률 합계·공시 필드·변경 이력 자동 검사</td><td>신규 경로 규칙(<code>assets/data/gacha/**</code>), <code>validate-commit.sh</code> 확장, economy-designer, <code>/balance-check</code></td><td>2024년 3월 시행된 확률 정보 공개 의무 관련 누락·오기 사고를 배포 전에 차단</td><td>중</td></tr>
+    <tr><td>2</td><td><strong>시즌 이벤트 기획 공장</strong><br>콘셉트 → 보상표 → 재화 흐름 분석 → 대사·공지 → 패치노트</td><td><code>/team-live-ops</code>, live-ops-designer, economy-designer, writer, community-manager, <code>/patch-notes</code></td><td>이벤트 문서 준비 시간 단축, 재화 인플레이션 사전 점검</td><td>하</td></tr>
+    <tr><td>3</td><td><strong>캐주얼 신작 2주 검증</strong><br>한 장 기획서 → 프로토타입 → 플레이테스트 → 진행/전환/중단 판정</td><td><code>rigor: minimal</code>, <code>/brainstorm</code>, <code>/prototype</code>, <code>/playtest-report</code>, <code>/vertical-slice</code></td><td>아이디어 검증 회전 수 증가, 회의를 "플레이 결과" 중심으로 전환</td><td>하</td></tr>
+    <tr><td>4</td><td><strong>운영 RPG 역문서화·온보딩</strong><br>코드에서 GDD·ADR 복원, 신규 인원 온보딩 자료 생성</td><td><code>/adopt</code>, <code>/project-stage-detect</code>, <code>/reverse-document</code>, <code>/onboard</code></td><td>담당자 이탈 리스크 완화, 온보딩 기간 단축</td><td>중</td></tr>
+    <tr><td>5</td><td><strong>저사양 기기 성능 예산·출시 QA</strong><br>기기 등급별 프레임·메모리 예산과 업데이트별 회귀 검사</td><td>Unity 스페셜리스트 세트, performance-analyst, <code>/perf-profile</code>, <code>/smoke-check</code>, <code>/regression-suite</code></td><td>패치 후 크래시·UI 깨짐 감소, 실행 증거로 품질 추적</td><td>중</td></tr>
+    <tr><td>6</td><td><strong>글로벌 출시 현지화</strong><br>문자열 추출·길이·폰트 점검·말투 일관성·현지화 동결</td><td>localization-lead, writer, <code>/localize</code>, <code>/launch-checklist</code>, <code>validate-write.sh</code>의 동결 경고</td><td>다국어 출시 시 누락 문자열·텍스트 넘침 사전 발견</td><td>중</td></tr>
+  </tbody>
+</table></div>
+
+<h3>필요한 맞춤화</h3>
+<ul>
+  <li><strong>라이브옵스 윤리 정책 재작성</strong> — 기본 <code>live-ops-designer</code>는 "유료 구매 + 무작위 결과" 루트박스를 약탈적 설계로 보고 creative-director에게 에스컬레이션하도록 되어 있다. 가챠가 핵심 BM인 RPG라면 매번 경고가 뜬다. 이를 국내 법규 기준의 확률 공개, 과금 한도, 미성년자 보호, 천장(보장) 시스템 기준으로 바꿔 <code>design/live-ops/ethics-policy.md</code>에 명시한다.</li>
+  <li><strong>사내 전용 에이전트 추가</strong> — <code>gacha-compliance</code>(확률 공시·변경 이력 검수), <code>mobile-perf</code>(기기 등급별 예산), <code>store-ops</code>(구글 플레이·앱스토어 심사 대응) 등.</li>
+  <li><strong>에이전트 정리</strong> — 콘솔 인증, 멀티플레이 넷코드처럼 당장 쓰지 않는 에이전트는 삭제해 선택지를 줄인다. 템플릿은 수정을 전제로 한다.</li>
+  <li><strong>사내 규칙 이식</strong> — 데이터 테이블 네이밍, 서버·클라이언트 경계, 로그 이벤트 규칙을 <code>.claude/rules/</code>로 옮긴다.</li>
+</ul>
+
+<h3>단계별 로드맵</h3>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>단계</th><th>기간</th><th>범위</th><th>완료 기준</th></tr></thead>
+  <tbody>
+    <tr><td>STEP 1 · 파일럿</td><td>2주</td><td>사이드 프로젝트 1개, <code>rigor: minimal</code>, 아이디어 3 적용. 에이전트 10명 안팎만 유지</td><td>프로토타입 1개와 진행/전환/중단 판정, 팀 회고</td></tr>
+    <tr><td>STEP 2 · 운영 접목</td><td>1~2개월</td><td>아이디어 1(확률 게이트) 개발·도입, 아이디어 2로 한 시즌 이벤트 운영, 아이디어 4로 핵심 시스템 3개 역문서화</td><td>게이트가 실제 커밋에서 작동, 이벤트 1건 전 과정 수행</td></tr>
+    <tr><td>STEP 3 · 사내 하네스</td><td>분기</td><td>사내 에이전트·규칙·스킬 정비, <code>studio-tests</code>로 회귀 관리, 사내 교육 과정화</td><td>썬더게임즈 전용 템플릿 레포 확정, 신규 프로젝트 기본 적용</td></tr>
+  </tbody>
+</table></div>
+
+<h3>성과 지표 예시</h3>
+<ul>
+  <li>이벤트 1건당 기획 문서 준비 시간(도입 전후 비교)</li>
+  <li>배포 전 차단된 확률·데이터 오류 건수, 배포 후 데이터 핫픽스 건수</li>
+  <li>신작 아이디어 검증 주기(아이디어 → 판정까지 일수)와 분기당 검증 건수</li>
+  <li>패치 후 크래시율, UI 관련 CS 문의 수</li>
+  <li>신규 입사자가 첫 기여(커밋)까지 걸린 기간</li>
+</ul>
+
+<h3>리스크와 대응</h3>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>리스크</th><th>대응</th></tr></thead>
+  <tbody>
+    <tr><td>소스·서버 키 등 민감 정보 노출</td><td>사내 AI 사용 정책 선확정, <code>.env</code> 차단 규칙 확인, 운영 레포는 STEP 2부터 단계적 적용</td></tr>
+    <tr><td>비용 증가(디렉터 Opus 리뷰)</td><td><code>review_mode: solo</code>·<code>lean</code>으로 시작, 파일럿 기간 사용량 측정 후 확대</td></tr>
+    <tr><td>문서 과잉으로 속도 저하</td><td>기본 <code>minimal</code> 유지, 전투·경제처럼 중요한 시스템만 <code>system_overrides</code>로 상향</td></tr>
+    <tr><td>AI 산출물에 대한 과신</td><td>승인 프로토콜 유지(<code>collaborative</code>), 실행 증거 없이 스토리 종료 금지 원칙 고수</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s11"><span class="sn">11</span>결론</h2>
+<p>CCGS는 "더 똑똑한 모델"이 아니라 "더 잘 짜인 환경"으로 AI 결과물의 편차를 줄이는 하네스 엔지니어링의 좋은 사례다. 규약(CLAUDE.md·규칙), 역할(에이전트), 절차(스킬), 게이트(훅·자체 테스트)의 네 기둥이 모두 갖춰져 있고, 무엇보다 자신들의 프로세스가 품질을 보장하지 않는다는 실험 결과를 정직하게 공개하고 기본값에 반영했다는 점이 인상적이다.</p>
+<p>썬더게임즈에는 이 템플릿을 그대로 쓰기보다 <strong>모바일 라이브 서비스용으로 재단한 사내 하네스의 출발점</strong>으로 삼기를 권한다. 리스크가 가장 낮은 신작 2주 검증으로 시작해, 확률 공시 게이트와 이벤트 기획 공장처럼 반복 업무가 많은 영역으로 넓혀 가는 순서가 현실적이다.</p>
+
+<h2 id="refs"><span class="sn">—</span>참고 자료</h2>
+<ul class="refs">
+  <li>Donchitos, <a href="https://github.com/Donchitos/Claude-Code-Game-Studios">Claude-Code-Game-Studios</a> — README.md, CLAUDE.md, CHANGELOG.md(v1.2.0), <code>.claude/docs/coordination-rules.md</code>, <code>.claude/docs/workflow-catalog.yaml</code>, <code>.claude/agents/*.md</code>, <code>.claude/skills/team-combat/SKILL.md</code></li>
+  <li>썬더게임즈 기업 정보 — <a href="https://www.wanted.co.kr/company/4532">원티드 기업 페이지</a>, <a href="https://www.gamejob.co.kr/Company/Detail?M=17135699">게임잡 기업정보</a></li>
+  <li>Claude Code 공식 문서 — <a href="https://code.claude.com/docs">code.claude.com/docs</a></li>
+</ul>
+
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namojo · 원본 레포 MIT 라이선스 · 수치는 2026-10-23 기준</span>
+    <span><a href="../">소개 페이지</a> · <a href="/">namojo.github.io</a></span>
+  </div>
+</footer>
+</body>
+</html>
