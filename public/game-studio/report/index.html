@@ -264,7 +264,7 @@
     <tr><td>1</td><td><strong>확률형 아이템 공시 게이트</strong><br>가챠 데이터 변경 시 확률 합계·공시 필드·변경 이력 자동 검사</td><td>신규 경로 규칙(<code>assets/data/gacha/**</code>), <code>validate-commit.sh</code> 확장, economy-designer, <code>/balance-check</code></td><td>2024년 3월 시행된 확률 정보 공개 의무 관련 누락·오기 사고를 배포 전에 차단</td><td>중</td></tr>
     <tr><td>2</td><td><strong>시즌 이벤트 기획 공장</strong><br>콘셉트 → 보상표 → 재화 흐름 분석 → 대사·공지 → 패치노트</td><td><code>/team-live-ops</code>, live-ops-designer, economy-designer, writer, community-manager, <code>/patch-notes</code></td><td>이벤트 문서 준비 시간 단축, 재화 인플레이션 사전 점검</td><td>하</td></tr>
     <tr><td>3</td><td><strong>캐주얼 신작 2주 검증</strong><br>한 장 기획서 → 프로토타입 → 플레이테스트 → 진행/전환/중단 판정</td><td><code>rigor: minimal</code>, <code>/brainstorm</code>, <code>/prototype --path html</code>, <code>/playtest-report</code>(판정은 <code>/prototype</code> 보고서의 PROCEED/PIVOT/KILL)</td><td>아이디어 검증 회전 수 증가, 회의를 "플레이 결과" 중심으로 전환</td><td>하</td></tr>
-    <tr><td>4</td><td><strong>운영 RPG 역문서화·온보딩</strong><br>코드에서 GDD·ADR 복원, 신규 인원 온보딩 자료 생성</td><td><code>/adopt</code>, <code>/project-stage-detect</code>, <code>/reverse-document</code>, <code>/onboard</code></td><td>담당자 이탈 리스크 완화, 온보딩 기간 단축</td><td>중</td></tr>
+    <tr><td>4</td><td><strong>운영 RPG 역문서화·온보딩</strong><br>읽기 전용 분석 작업장에서 클라이언트·서버·데이터·운영툴을 함께 읽어 설계 문서 초안을 만들고 라이브 로그와 대조. 문장마다 출처 태그([code]/[ops]/[owner-confirmed]/[inferred])</td><td>thunder-kit 작업장 스크립트, <code>/reverse-document</code>, <code>/onboard</code>, 이후 변경은 <code>/test-setup</code> → <code>/dev-story</code></td><td>담당자 이탈 리스크 완화, 숨은 불일치 발견. 코드 수정은 현재 동작을 고정하는 테스트를 먼저 쓴 뒤</td><td>중~상</td></tr>
     <tr><td>5</td><td><strong>저사양 기기 성능 예산·출시 QA</strong><br>기기 등급별 프레임·메모리 예산과 업데이트별 회귀 검사</td><td>Unity 스페셜리스트 세트, performance-analyst, <code>/perf-profile</code>, <code>/smoke-check</code>, <code>/regression-suite</code></td><td>패치 후 크래시·UI 깨짐 감소, 실행 증거로 품질 추적</td><td>중</td></tr>
     <tr><td>6</td><td><strong>글로벌 출시 현지화</strong><br>문자열 추출·길이·폰트 점검·말투 일관성·현지화 동결</td><td>localization-lead, writer, <code>/localize</code>, <code>/launch-checklist</code>, <code>validate-write.sh</code>의 동결 경고</td><td>다국어 출시 시 누락 문자열·텍스트 넘침 사전 발견</td><td>중</td></tr>
   </tbody>
@@ -304,6 +304,7 @@
     <tr><td>소스·서버 키 등 민감 정보 노출</td><td>사내 AI 사용 정책 선확정, <code>.env</code> 차단 규칙 확인, 운영 레포는 STEP 2부터 단계적 적용</td></tr>
     <tr><td>비용 증가(디렉터 Opus 리뷰)</td><td><code>review_mode: solo</code>·<code>lean</code>으로 시작, 파일럿 기간 사용량 측정 후 확대</td></tr>
     <tr><td>문서 과잉으로 속도 저하</td><td>기본 <code>minimal</code> 유지, 전투·경제처럼 중요한 시스템만 <code>system_overrides</code>로 상향</td></tr>
+    <tr><td>역문서화 문서의 추정을 사실로 오인</td><td>문장별 출처 태그, 담당자 검토, 라이브 로그 대조. 코드에 없는 서버·운영툴 값은 반드시 함께 수집</td></tr>
     <tr><td>AI 산출물에 대한 과신</td><td>승인 프로토콜 유지(<code>collaborative</code>), 실행 증거 없이 스토리 종료 금지 원칙 고수</td></tr>
   </tbody>
 </table></div>
