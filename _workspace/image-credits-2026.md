@@ -152,3 +152,4 @@
 | inline/micron-taiwan-strike-operating-leverage-1.jpg | 실리콘 웨이퍼 | Wikimedia Commons "Wafer 20110212.jpg" — Sangitiana Fararano | CC BY-SA 2.0 |
 | covers/meta-825b-off-balance-sheet-commitments.jpg | 데이터센터 옥상의 냉각·공조 설비 | Wikimedia Commons "Data center roof.jpg" — Rsparks3 | CC0 |
 | covers/meta-825b-off-balance-sheet-commitments-prineville.jpg | 메타(당시 페이스북)의 첫 데이터센터, 오리건주 프라인빌 — 10-24 포스트 본문 | Wikimedia Commons "Facebook, Highway 126, Prineville - DPLA - fd9c0cae95b43c5864c55d3eef1bf5a6.jpg" — Gary Halvorson, Oregon State Archives | CC BY 4.0 |
+| covers/github-package-firewall-dependency-cooldown.jpg | 데이터센터의 서버 랙 | Wikimedia Commons "Wikimedia Foundation Servers-8055 13.jpg" — Victorgrigas | CC BY-SA 3.0 |
