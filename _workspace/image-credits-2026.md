@@ -154,3 +154,4 @@
 | covers/meta-825b-off-balance-sheet-commitments-prineville.jpg | 메타(당시 페이스북)의 첫 데이터센터, 오리건주 프라인빌 — 10-24 포스트 본문 | Wikimedia Commons "Facebook, Highway 126, Prineville - DPLA - fd9c0cae95b43c5864c55d3eef1bf5a6.jpg" — Gary Halvorson, Oregon State Archives | CC BY 4.0 |
 | covers/github-package-firewall-dependency-cooldown.jpg | 데이터센터의 서버 랙 | Wikimedia Commons "Wikimedia Foundation Servers-8055 13.jpg" — Victorgrigas | CC BY-SA 3.0 |
 | covers/google-personal-intelligence-ads-inference.jpg | 구글 본사 Googleplex | Wikimedia Commons "Googleplex HQ (cropped).jpg" — Asoundd | CC BY-SA 4.0 |
+| covers/chatbot-refuses-api-answers-model-bias.jpg | 미국 미네소타주의 한 투표소에 놓인 기표대 | Wikimedia Commons "Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671).jpg" — Lorie Shaull from St Paul, United States | CC BY 2.0 |
