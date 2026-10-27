@@ -12,7 +12,12 @@
 <meta property="og:title" content="에이전트 모의 해킹 — 배포 전 AI 에이전트 레드팀">
 <meta property="og:description" content="공격 → 취약점 발견 → 방어 적용 → 재시험까지. 공격이 뚫리는 장면과 막히는 장면을 한 화면에서. 가짜 데이터·데모 챗봇만 쓰는 교육용 시뮬레이션.">
 <meta property="og:url" content="https://namojo.github.io/agent-redteam/">
+<meta property="og:image" content="https://namojo.github.io/agent-redteam/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="에이전트 모의 해킹 — 배포 전 AI 에이전트 레드팀">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://namojo.github.io/agent-redteam/assets/og.png">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/style.css">
@@ -31,6 +36,7 @@
       <a href="#demo">데모</a>
       <a href="#diff">차별화</a>
       <a href="#owasp">OWASP</a>
+      <a href="#reg">규제</a>
       <a href="#biz">사업 연결</a>
       <button class="theme-btn" id="theme" type="button" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
     </nav>
@@ -162,6 +168,7 @@
               <small>켠 변형만큼 각 프로브가 난독화되어 추가 전송됩니다(garak·DeepTeam의 evasion 기법).</small>
             </div>
             <label class="tc-judge"><input type="checkbox" id="tc-judge"> <strong>LLM 판정</strong> — 대상 모델로 응답을 의미 기반 평가(breach 여부). 정규식으로 미결인 케이스를 줄입니다. <span class="opt">(프로브당 요청 1회 추가)</span></label>
+            <label class="tc-judge"><input type="checkbox" id="tc-multiturn"> <strong>멀티턴 크레센도</strong> — 신뢰를 쌓은 뒤 대화 히스토리를 유지하며 점증적으로 공격(DeepTeam multi-turn 기법). <span class="opt">(본문 템플릿에 <code>{{MESSAGES}}</code> 필요 · Anthropic·OpenAI 프리셋 기본 지원)</span></label>
           </div>
           <label class="tc-authz"><input type="checkbox" id="tc-authz"> 나는 이 엔드포인트를 테스트할 권한이 있으며, 인가되지 않은 시스템을 공격하지 않습니다. <strong>(필수)</strong></label>
         </div>
@@ -246,6 +253,22 @@
       <span><i class="sw d"></i> 이 프로토타입이 다루는 범위</span>
       <span><i class="sw a"></i> 같은 루프로 확장 가능</span>
     </div>
+  </div>
+</section>
+
+<!-- ── 규제 매핑 ───────────────────────────── -->
+<section class="block" id="reg">
+  <div class="wrap">
+    <p class="kicker reveal">Compliance mapping</p>
+    <h2 class="h2 reveal">발견을 국내 규제 언어로 옮긴다</h2>
+    <p class="sub reveal">같은 취약점도 보안팀·법무팀·감사팀이 쓰는 말이 다릅니다. 각 공격 유형을 <strong>개인정보보호법·전자금융감독규정·신용정보법·ISMS-P</strong> 조항에 연결해, 발견이 곧 컴플라이언스 점검 항목이 되게 합니다. (실측 리포트 <code>.md</code>에도 이 표가 함께 들어갑니다.)</p>
+    <table class="rubric reg reveal">
+      <thead><tr><th>OWASP</th><th>공격 유형</th><th>관련 국내 규제</th><th>점검 포인트</th></tr></thead>
+      <tbody id="reg-table-body"></tbody>
+    </table>
+    <p class="sub reveal" style="margin-top:16px;font-size:13.5px;color:var(--ink-4)">
+      ※ 조문 번호는 참고용이며, 실제 적용 범위와 책임은 조직의 법무·컴플라이언스 검토가 필요합니다. 이 도구는 기술적 점검을 돕는 보조 수단입니다.
+    </p>
   </div>
 </section>
 
