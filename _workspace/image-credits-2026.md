@@ -155,3 +155,4 @@
 | covers/github-package-firewall-dependency-cooldown.jpg | 데이터센터의 서버 랙 | Wikimedia Commons "Wikimedia Foundation Servers-8055 13.jpg" — Victorgrigas | CC BY-SA 3.0 |
 | covers/google-personal-intelligence-ads-inference.jpg | 구글 본사 Googleplex | Wikimedia Commons "Googleplex HQ (cropped).jpg" — Asoundd | CC BY-SA 4.0 |
 | covers/chatbot-refuses-api-answers-model-bias.jpg | 미국 미네소타주의 한 투표소에 놓인 기표대 | Wikimedia Commons "Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671).jpg" — Lorie Shaull from St Paul, United States | CC BY 2.0 |
+| covers/anthropic-s1-sandbox-misconfiguration.jpg | 미국 증권거래위원회 본부, 워싱턴 D.C. | Wikimedia Commons "United States Securities and Exchange Commission (SEC) (55266859043).jpg" — ajay_suresh | CC BY 4.0 |
