@@ -114,17 +114,46 @@
 <!-- ── 인터랙티브 데모 ─────────────────────── -->
 <section class="block demo" id="demo">
   <div class="wrap">
-    <p class="kicker reveal">Live simulation</p>
-    <h2 class="h2 reveal">데모 HR 챗봇을 공격해 보기</h2>
-    <p class="sub reveal">아래 챗봇 <code>브리티 HR 어시스턴트 (데모)</code>는 <strong>가짜 직원 데이터</strong>만 들고 있습니다. 공격 유형을 고르고 ‘공격 전송’을 눌러 보세요. 방어를 켜기 전과 켠 뒤가 어떻게 달라지는지 비교할 수 있습니다. <em>(모든 수치는 예시이며, 실제 LLM이나 사내 시스템에 연결되어 있지 않습니다.)</em></p>
+    <p class="kicker reveal">Live red-team harness</p>
+    <h2 class="h2 reveal">에이전트에 실제로 공격을 쏴 본다</h2>
+    <p class="sub reveal">두 가지 모드로 돕니다. <strong>데모</strong>는 가짜 데이터만 든 격리 HR 챗봇을 무설정으로 공격해 ‘전/후’를 보여 줍니다. <strong>실제 연결</strong>은 <em>여러분이 소유하거나 테스트 권한을 가진</em> 에이전트 엔드포인트에 표준 OWASP 프로브를 실제로 전송하고, 응답을 탐지 규칙으로 판정해 취약점 리포트를 만듭니다. (garak·promptfoo 같은 정식 레드팀 도구와 같은 방식 — sentinel 유도·거절 탐지.)</p>
 
     <div class="console" aria-label="모의 해킹 콘솔">
       <div class="console-head">
         <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="title">brity-hr-assistant · demo-sandbox</span>
+        <span class="title" id="target-title">brity-hr-assistant · demo-sandbox</span>
+        <div class="mode-switch" role="tablist" aria-label="실행 모드">
+          <button type="button" class="ms-btn is-on" data-mode="demo" aria-selected="true">데모</button>
+          <button type="button" class="ms-btn" data-mode="live" aria-selected="false">실제 연결</button>
+        </div>
         <span class="mode" id="mode">방어 OFF</span>
       </div>
       <div class="console-body">
+
+        <!-- 실제 연결 설정 (live 모드에서만 노출) -->
+        <div class="target-config" id="target-config" hidden>
+          <div class="tc-head">
+            <strong>🎯 테스트 대상 설정</strong>
+            <span class="tc-hint">설정은 이 브라우저(localStorage)에만 저장됩니다. API 키는 저장하지 않고 이 세션에서만 사용되며, 요청은 아래 엔드포인트로만 전송됩니다.</span>
+          </div>
+          <div class="tc-presets">
+            <span>프리셋:</span>
+            <button type="button" class="chip-btn" data-preset="anthropic">Anthropic Messages</button>
+            <button type="button" class="chip-btn" data-preset="openai">OpenAI 호환</button>
+            <button type="button" class="chip-btn" data-preset="custom">커스텀 에이전트</button>
+          </div>
+          <div class="tc-grid">
+            <label>엔드포인트 URL<input type="url" id="tc-url" placeholder="https://your-agent.example.com/chat" autocomplete="off" spellcheck="false"></label>
+            <label>HTTP 메서드<input type="text" id="tc-method" value="POST" autocomplete="off" spellcheck="false"></label>
+            <label class="full">헤더 (JSON) — <code>{{KEY}}</code> 치환<textarea id="tc-headers" rows="2" spellcheck="false">{"content-type":"application/json"}</textarea></label>
+            <label class="full">요청 본문 템플릿 (JSON) — <code>{{PROMPT}}</code>·<code>{{SYSTEM}}</code> 치환<textarea id="tc-body" rows="3" spellcheck="false">{"message":"{{PROMPT}}"}</textarea></label>
+            <label>응답 텍스트 경로<input type="text" id="tc-path" placeholder="reply  또는  choices.0.message.content" autocomplete="off" spellcheck="false"></label>
+            <label>API 키 <code>{{KEY}}</code> <span class="opt">(선택)</span><input type="password" id="tc-key" placeholder="브라우저에만 저장" autocomplete="off"></label>
+            <label class="full">카나리 문자열 <span class="opt">(선택 · 시스템 프롬프트에 심어 둔 비밀값이 응답에 새어 나오는지 탐지)</span><input type="text" id="tc-canary" placeholder="예: CANARY-7Q2X" autocomplete="off" spellcheck="false"></label>
+          </div>
+          <label class="tc-authz"><input type="checkbox" id="tc-authz"> 나는 이 엔드포인트를 테스트할 권한이 있으며, 인가되지 않은 시스템을 공격하지 않습니다. <strong>(필수)</strong></label>
+        </div>
+
         <div class="atk-tabs" id="tabs" role="tablist" aria-label="공격 유형"></div>
 
         <div class="chat" id="chat" aria-live="polite"></div>
@@ -158,7 +187,10 @@
         <p class="run-note" id="run-note">‘일괄 자동 공격’을 실행하면 유형별 변형을 한 번에 던져 집계합니다 · 수치는 데모 예시</p>
         <div class="chat-controls" style="justify-content:center;margin-top:4px">
           <button class="btn btn-outline" id="batch" type="button">⚡ 일괄 자동 공격 실행 (데모)</button>
+          <button class="btn btn-outline" id="download" type="button" hidden>⬇ 리포트 내려받기 (.md)</button>
         </div>
+
+        <div class="report" id="report" hidden aria-label="프로브 결과"></div>
       </div>
     </div>
   </div>
