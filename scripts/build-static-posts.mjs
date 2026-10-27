@@ -595,6 +595,7 @@ function main() {
     { loc: `${SITE_URL}/game-studio/`, priority: '0.8' },
     { loc: `${SITE_URL}/game-studio/report/`, priority: '0.7' },
     { loc: `${SITE_URL}/game-studio/playbook/`, priority: '0.7' },
+    { loc: `${SITE_URL}/agent-redteam/`, priority: '0.8' },
     ...generatable.map(p => ({
       loc: `${SITE_URL}/p/${p.id}/`,
       lastmod: toIsoDate(p.date) || undefined,

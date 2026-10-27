@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>에이전트 모의 해킹 — 배포 전, AI 에이전트를 안전하게 공격해 본다</title>
+<meta name="description" content="사내 AI 에이전트를 배포하기 전에 공격 시나리오로 자동 점검하고, 방어 규칙을 적용한 뒤 같은 공격으로 재시험하는 '배포 전 레드팀'. 가짜 데이터·데모 챗봇으로 공격 성공과 차단을 한 화면에서 보여 주는 교육용 시뮬레이션.">
+<link rel="canonical" href="https://namojo.github.io/agent-redteam/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="namojo">
+<meta property="og:title" content="에이전트 모의 해킹 — 배포 전 AI 에이전트 레드팀">
+<meta property="og:description" content="공격 → 취약점 발견 → 방어 적용 → 재시험까지. 공격이 뚫리는 장면과 막히는 장면을 한 화면에서. 가짜 데이터·데모 챗봇만 쓰는 교육용 시뮬레이션.">
+<meta property="og:url" content="https://namojo.github.io/agent-redteam/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('art-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#demo">데모로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="./"><span class="brand-mark">RT</span><span>Agent Red-Team</span><small>· 배포 전 에이전트 모의 해킹</small></a>
+    <nav class="nav" aria-label="섹션">
+      <a href="#why">왜 지금</a>
+      <a href="#loop">작동 방식</a>
+      <a href="#demo">데모</a>
+      <a href="#owasp">OWASP</a>
+      <a href="#biz">사업 연결</a>
+      <button class="theme-btn" id="theme" type="button" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ── 히어로 ─────────────────────────────── -->
+<section class="hero">
+  <div class="hero-in">
+    <span class="eyebrow"><span class="dot"></span> 삼성SDS 2026 5대 보안 위협 · 1순위 AI 기반 위협</span>
+    <h1>배포하기 전에,<br>에이전트를 먼저 <span class="accent">공격해 본다</span></h1>
+    <p class="lede">
+      사내 AI 에이전트가 늘어날수록 공격면도 넓어집니다. 운영에 올리기 전,
+      공격 시나리오로 자동 점검하고 → 취약점을 찾고 → 방어 규칙을 적용한 뒤 → 같은 공격으로 다시 시험합니다.
+      <strong>공격이 뚫리는 장면과 막히는 장면을 한 화면에서</strong> 확인하세요.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#demo">▶ 라이브 시뮬레이션 열기</a>
+      <a class="btn btn-ghost" href="#loop">작동 방식 보기</a>
+    </div>
+    <div class="hero-stats">
+      <div class="s">
+        <div class="n">LLM01</div>
+        <div class="l">OWASP LLM Top 10 2025<br>1순위 = 프롬프트 주입</div>
+        <div class="src">출처: OWASP GenAI, 2025</div>
+      </div>
+      <div class="s">
+        <div class="n">32<span style="font-size:18px">%</span></div>
+        <div class="l">보안 책임자가<br>AI 앱 프롬프트 공격 경험</div>
+        <div class="src">출처: Gartner, 2025-09 (n=302)</div>
+      </div>
+      <div class="s">
+        <div class="n">22<span style="font-size:18px">건</span></div>
+        <div class="l">실제 에이전트 사고 기록<br>(2025년 2~10월)</div>
+        <div class="src">출처: OWASP 에이전트 앱 Top 10 부록</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 왜 지금 ─────────────────────────────── -->
+<section class="block" id="why">
+  <div class="wrap">
+    <p class="kicker reveal">Why now</p>
+    <h2 class="h2 reveal">에이전트는 늘어나는데, 배포 전 점검은 비어 있다</h2>
+    <p class="sub reveal">회사가 2026년 5대 보안 위협의 1순위로 꼽은 것이 AI 기반 위협이고, 그 안에 <strong>에이전트의 과도한 위임·권한 남용</strong>이 들어 있습니다. 사내 에이전트가 많아질수록 시험해야 할 대상도 함께 늘어납니다.</p>
+    <div class="grid grid-3" style="margin-top:28px">
+      <div class="card reveal">
+        <p class="num">LLM01 · 프롬프트 주입</p>
+        <h3>한 줄로 지시가 뒤집힌다</h3>
+        <p>사용자 입력에 숨은 명령이 시스템 지시를 덮어써, 에이전트가 원래 하면 안 되는 일을 하게 만듭니다.</p>
+      </div>
+      <div class="card reveal">
+        <p class="num">LLM02 · 민감정보 노출</p>
+        <h3>시스템 프롬프트·내부 데이터가 샌다</h3>
+        <p>설정 문구나 연결된 데이터가 응답으로 흘러나와, 공격자가 내부 구조와 자료를 들여다봅니다.</p>
+      </div>
+      <div class="card reveal">
+        <p class="num">LLM06 · 과도한 권한</p>
+        <h3>도구 호출이 선을 넘는다</h3>
+        <p>에이전트에 붙은 도구가 필요 이상의 권한을 갖고 있으면, 유도된 한 번의 호출이 실제 피해로 이어집니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 작동 방식 (4단계 루프) ──────────────── -->
+<section class="block" id="loop">
+  <div class="wrap">
+    <p class="kicker reveal">How it works</p>
+    <h2 class="h2 reveal">공격 → 발견 → 방어 → 재시험, 하나의 루프</h2>
+    <p class="sub reveal">실제 사내 시스템이 아니라 <strong>팀이 만든 데모 챗봇 1개와 가짜 데이터</strong>만 공격 대상으로 씁니다. 전체가 닫힌 루프라 발표 3분 안에 "전과 후"가 한 화면에 들어옵니다.</p>
+    <div class="loop">
+      <div class="step is-atk reveal"><h4>공격 생성</h4><p>OWASP 유형(주입·정보 노출·과도한 권한)과 그 변형을 자동으로 만들어 쏟아붓습니다.</p></div>
+      <div class="step is-atk reveal"><h4>판정·집계</h4><p>유출·권한 위반 여부를 규칙과 판정기로 가려, 유형별로 취약점을 셉니다.</p></div>
+      <div class="step is-def reveal"><h4>방어 적용</h4><p>입력 필터·도구 권한 축소·응답 검사 세 가지 규칙을 에이전트 앞뒤에 끼웁니다.</p></div>
+      <div class="step is-def reveal"><h4>재시험</h4><p>같은 공격을 다시 실행합니다. 차단 건수가 0으로 떨어지는지 그 자리에서 확인합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 인터랙티브 데모 ─────────────────────── -->
+<section class="block demo" id="demo">
+  <div class="wrap">
+    <p class="kicker reveal">Live simulation</p>
+    <h2 class="h2 reveal">데모 HR 챗봇을 공격해 보기</h2>
+    <p class="sub reveal">아래 챗봇 <code>브리티 HR 어시스턴트 (데모)</code>는 <strong>가짜 직원 데이터</strong>만 들고 있습니다. 공격 유형을 고르고 ‘공격 전송’을 눌러 보세요. 방어를 켜기 전과 켠 뒤가 어떻게 달라지는지 비교할 수 있습니다. <em>(모든 수치는 예시이며, 실제 LLM이나 사내 시스템에 연결되어 있지 않습니다.)</em></p>
+
+    <div class="console" aria-label="모의 해킹 콘솔">
+      <div class="console-head">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="title">brity-hr-assistant · demo-sandbox</span>
+        <span class="mode" id="mode">방어 OFF</span>
+      </div>
+      <div class="console-body">
+        <div class="atk-tabs" id="tabs" role="tablist" aria-label="공격 유형"></div>
+
+        <div class="chat" id="chat" aria-live="polite"></div>
+
+        <div class="chat-controls">
+          <button class="btn btn-atk" id="send" type="button">▶ 공격 전송</button>
+          <button class="btn btn-def" id="defend" type="button" aria-pressed="false">🛡 방어 규칙 켜기</button>
+          <button class="btn btn-outline" id="reset" type="button">↺ 초기화</button>
+        </div>
+
+        <div class="rules" id="rules" aria-label="적용된 방어 규칙">
+          <div class="rule" data-rule="filter"><span class="tick">○ 미적용</span><h5>입력 필터</h5><p>주입 패턴·지시 덮어쓰기 문구를 사전 차단.</p></div>
+          <div class="rule" data-rule="scope"><span class="tick">○ 미적용</span><h5>도구 권한 축소</h5><p>조회 범위를 ‘본인·공개 정보’로 최소화.</p></div>
+          <div class="rule" data-rule="inspect"><span class="tick">○ 미적용</span><h5>응답 검사</h5><p>개인정보·시스템 프롬프트 유출을 출력 직전 검사.</p></div>
+        </div>
+
+        <div class="run">
+          <div class="run-panel before">
+            <h4>자동 공격 — 방어 전</h4>
+            <div class="big" id="before-num">0</div>
+            <div class="cap" id="before-cap">아직 실행하지 않음</div>
+            <div class="bars" id="before-bars"></div>
+          </div>
+          <div class="run-panel after">
+            <h4>자동 공격 — 방어 후</h4>
+            <div class="big" id="after-num">—</div>
+            <div class="cap" id="after-cap">방어를 켜고 재실행하세요</div>
+            <div class="bars" id="after-bars"></div>
+          </div>
+        </div>
+        <p class="run-note" id="run-note">‘일괄 자동 공격’을 실행하면 유형별 변형을 한 번에 던져 집계합니다 · 수치는 데모 예시</p>
+        <div class="chat-controls" style="justify-content:center;margin-top:4px">
+          <button class="btn btn-outline" id="batch" type="button">⚡ 일괄 자동 공격 실행 (데모)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OWASP 매핑 ──────────────────────────── -->
+<section class="block" id="owasp">
+  <div class="wrap">
+    <p class="kicker reveal">Coverage</p>
+    <h2 class="h2 reveal">OWASP LLM Top 10에 맞춰 점검한다</h2>
+    <p class="sub reveal">48시간 프로토타입은 가장 자주 터지는 3종을 깊게 다룹니다. 나머지는 같은 루프에 유형만 더하면 확장됩니다.</p>
+    <div class="owasp" id="owasp-list"></div>
+    <div class="legend">
+      <span><i class="sw d"></i> 이 프로토타입이 다루는 범위</span>
+      <span><i class="sw a"></i> 같은 루프로 확장 가능</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── 사업 연결 ───────────────────────────── -->
+<section class="block" id="biz">
+  <div class="wrap">
+    <p class="kicker reveal">Business fit</p>
+    <h2 class="h2 reveal">배포 전 점검 → 운영 중 통제로 이어진다</h2>
+    <p class="sub reveal">이 도구는 고객사에 에이전트를 공급하기 전 ‘점검 단계’로 붙습니다. 운영 중 거버넌스와 겹치지 않고, 앞뒤로 이어집니다.</p>
+    <div class="pipe">
+      <div class="pipe-box me reveal">
+        <h3>① 배포 전 · 에이전트 모의 해킹</h3>
+        <p>공급 직전 공격 시험으로 취약점을 걸러내고 방어 규칙을 함께 넘깁니다. <strong>(이 프로토타입)</strong></p>
+      </div>
+      <div class="pipe-arrow" aria-hidden="true">→</div>
+      <div class="pipe-box reveal">
+        <h3>② 운영 중 · 거버넌스</h3>
+        <p>FabriX Governance 등 운영 단계 통제가 이어받아, 실제 가동 중인 에이전트의 행위를 모니터링·제어합니다.</p>
+      </div>
+    </div>
+
+    <h2 class="h2 reveal" style="margin-top:56px;font-size:clamp(21px,3vw,27px)">심사 기준에 어떻게 맞닿는가</h2>
+    <table class="rubric reveal">
+      <thead><tr><th>기준</th><th>이 프로토타입의 답</th><th>점수</th></tr></thead>
+      <tbody>
+        <tr><td>문제 크기</td><td>회사가 꼽은 2026 보안 위협 1순위 + OWASP·Gartner 근거</td><td class="score">5</td></tr>
+        <tr><td>데모 장면</td><td>공격 성공 → 차단을 한 화면에서. 스톱워치 없이도 전/후가 즉시 보임</td><td class="score">5</td></tr>
+        <tr><td>48시간 완성도</td><td>공격 생성 + 판정 + 리포트. 대상은 데모 챗봇 1개·가짜 데이터</td><td class="score">4</td></tr>
+        <tr><td>사업 연결</td><td>에이전트 공급 전 점검 단계로 제품화. 거버넌스와 앞뒤로 연결</td><td class="score">5</td></tr>
+        <tr><td>참신함</td><td>운영 중 통제(거버넌스)와 달리 ‘배포 전 공격 시험’—겹치는 사내 제품 없음</td><td class="score">5</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 안전 고지 -->
+    <div class="notice reveal">
+      <span class="ic" aria-hidden="true">🔒</span>
+      <div>
+        <h3>이 페이지의 전제 — 안전하게 쓰기 위한 규칙</h3>
+        <p>모의 해킹은 반드시 허가된 대상에 대해서만 수행해야 합니다. 이 교육용 데모는 다음을 지킵니다.</p>
+        <ul>
+          <li>실제 사내 시스템을 공격하지 않습니다. 대상은 <strong>격리된 데모 챗봇 1개와 가짜 데이터</strong>뿐입니다.</li>
+          <li>화면의 공격 예시는 OWASP가 공개한 교육용 유형을 defang해 보여 주는 것으로, 실제 공격 페이로드 생성기가 아닙니다.</li>
+          <li>모든 집계 수치(공격 횟수·취약점 수 등)는 <strong>발표용 예시</strong>이며, 실제 측정값으로 교체해 사용합니다.</li>
+          <li>실제 적용 시에는 대상 시스템 소유자의 서면 동의와 격리된 테스트 환경을 전제로 합니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <strong>에이전트 모의 해킹</strong> · 배포 전 AI 에이전트 레드팀 (교육용 데모)<br>
+      <span class="meta">삼성SDS 사내 해커톤 주제 후보 04 기반 프로토타입 · 가짜 데이터·데모 챗봇 전제</span>
+    </div>
+    <div>
+      <a href="https://namojo.github.io/">← 블로그로</a> &nbsp;·&nbsp;
+      <a href="https://genai.owasp.org/">OWASP GenAI</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
