@@ -388,6 +388,34 @@ section.block { padding: 72px 0; border-bottom: 1px solid var(--line-soft); }
 .tc-authz { display: flex; gap: 9px; align-items: flex-start; margin-top: 14px; font-size: 13px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
 .tc-authz input { margin-top: 3px; accent-color: var(--atk); flex: 0 0 auto; }
 
+/* ── 고급 옵션(변형·판정) ─────────────────── */
+.tc-adv { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); display: grid; gap: 12px; }
+.tc-enh { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.tc-enh small { flex-basis: 100%; font-weight: 400; color: var(--ink-4); font-size: 11.5px; }
+.enh-btn { font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 5px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft); color: var(--ink-3); cursor: pointer; }
+.enh-btn:hover { border-color: var(--atk); color: var(--atk); }
+.enh-btn.is-on { background: var(--atk); color: #fff; border-color: var(--atk); }
+.tc-judge { display: flex; gap: 9px; align-items: flex-start; font-size: 13px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.tc-judge input { margin-top: 3px; accent-color: var(--atk); flex: 0 0 auto; }
+.tc-judge .opt { color: var(--ink-4); }
+
+/* ── 배포 게이트 배너 ─────────────────────── */
+.gate { margin-top: 22px; display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border-radius: var(--radius-sm); border: 1px solid; }
+.gate.pass { background: var(--def-bg); border-color: var(--def-line); }
+.gate.fail { background: var(--atk-bg); border-color: var(--atk-line); }
+.gate-badge { font-family: var(--mono); font-weight: 800; font-size: 15px; padding: 4px 11px; border-radius: 8px; white-space: nowrap; }
+.gate.pass .gate-badge { background: var(--def); color: #fff; } .gate.fail .gate-badge { background: var(--atk); color: #fff; }
+.gate-text { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+.gate.pass .gate-text { color: var(--def); } .gate.fail .gate-text { color: var(--atk); }
+.gate-text small { display: block; margin-top: 4px; font-weight: 400; font-size: 12px; color: var(--ink-3); }
+
+/* ── 비교표 ───────────────────────────────── */
+.rubric.cmp td.yes { color: var(--def); font-weight: 600; }
+.rubric.cmp td.road { color: var(--warn); font-weight: 600; }
+.rubric.cmp th small { font-weight: 400; color: var(--ink-4); font-family: var(--sans); text-transform: none; letter-spacing: 0; }
+.rubric.cmp td:first-child { white-space: normal; }
+.report .rtag { font-family: var(--mono); font-size: 10.5px; color: var(--atk); background: var(--atk-bg); border: 1px solid var(--atk-line); border-radius: 5px; padding: 0 5px; margin-left: 4px; }
+
 /* ── 리포트 ───────────────────────────────── */
 .report { margin-top: 20px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg-soft); overflow: hidden; }
 .report table { width: 100%; border-collapse: collapse; font-size: 13px; }

@@ -29,6 +29,7 @@
       <a href="#why">왜 지금</a>
       <a href="#loop">작동 방식</a>
       <a href="#demo">데모</a>
+      <a href="#diff">차별화</a>
       <a href="#owasp">OWASP</a>
       <a href="#biz">사업 연결</a>
       <button class="theme-btn" id="theme" type="button" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
@@ -151,6 +152,17 @@
             <label>API 키 <code>{{KEY}}</code> <span class="opt">(선택)</span><input type="password" id="tc-key" placeholder="브라우저에만 저장" autocomplete="off"></label>
             <label class="full">카나리 문자열 <span class="opt">(선택 · 시스템 프롬프트에 심어 둔 비밀값이 응답에 새어 나오는지 탐지)</span><input type="text" id="tc-canary" placeholder="예: CANARY-7Q2X" autocomplete="off" spellcheck="false"></label>
           </div>
+          <div class="tc-adv">
+            <div class="tc-enh">
+              <span>공격 변형(인코딩):</span>
+              <button type="button" class="enh-btn" data-enh="b64" aria-pressed="false">Base64</button>
+              <button type="button" class="enh-btn" data-enh="rot13" aria-pressed="false">ROT13</button>
+              <button type="button" class="enh-btn" data-enh="leet" aria-pressed="false">Leet</button>
+              <button type="button" class="enh-btn" data-enh="split" aria-pressed="false">분할</button>
+              <small>켠 변형만큼 각 프로브가 난독화되어 추가 전송됩니다(garak·DeepTeam의 evasion 기법).</small>
+            </div>
+            <label class="tc-judge"><input type="checkbox" id="tc-judge"> <strong>LLM 판정</strong> — 대상 모델로 응답을 의미 기반 평가(breach 여부). 정규식으로 미결인 케이스를 줄입니다. <span class="opt">(프로브당 요청 1회 추가)</span></label>
+          </div>
           <label class="tc-authz"><input type="checkbox" id="tc-authz"> 나는 이 엔드포인트를 테스트할 권한이 있으며, 인가되지 않은 시스템을 공격하지 않습니다. <strong>(필수)</strong></label>
         </div>
 
@@ -169,6 +181,8 @@
           <div class="rule" data-rule="scope"><span class="tick">○ 미적용</span><h5>도구 권한 축소</h5><p>조회 범위를 ‘본인·공개 정보’로 최소화.</p></div>
           <div class="rule" data-rule="inspect"><span class="tick">○ 미적용</span><h5>응답 검사</h5><p>개인정보·시스템 프롬프트 유출을 출력 직전 검사.</p></div>
         </div>
+
+        <div class="gate" id="gate" hidden></div>
 
         <div class="run">
           <div class="run-panel before">
@@ -193,6 +207,31 @@
         <div class="report" id="report" hidden aria-label="프로브 결과"></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── 차별화 ─────────────────────────────── -->
+<section class="block" id="diff">
+  <div class="wrap">
+    <p class="kicker reveal">Differentiation</p>
+    <h2 class="h2 reveal">범용 오픈소스를 베끼지 않는다 — 국내·에이전트·배포 게이트에 특화</h2>
+    <p class="sub reveal">garak·promptfoo·DeepTeam 같은 범용 레드팀 도구의 핵심 기법(인코딩 변형·LLM-as-judge)은 동일하게 구현하되, 이들이 약한 <strong>한국어/국내 PII·에이전트 도구호출·배포 게이트·폐루프 수정</strong>으로 차별화합니다. 대체가 아니라, 국내 SI·에이전트 공급 맥락의 ‘배포 전 게이트’입니다.</p>
+    <table class="rubric cmp reveal">
+      <thead><tr><th>항목</th><th>범용 OSS<br><small>garak · promptfoo · DeepTeam</small></th><th>이 도구</th></tr></thead>
+      <tbody>
+        <tr><td>인코딩 공격 변형</td><td>✓ (evasion)</td><td class="yes">✓ Base64·ROT13·Leet·분할</td></tr>
+        <tr><td>LLM-as-judge 평가</td><td>✓</td><td class="yes">✓ 대상 모델 재사용 자체 판정</td></tr>
+        <tr><td>한국어·국내 PII 탐지</td><td>영어 중심 / 제한적</td><td class="yes">✓ 주민번호·연락처·카드·비밀토큰 정규식 + 한국어 공격셋</td></tr>
+        <tr><td>에이전트 네이티브</td><td>LLM 응답 중심</td><td class="yes">✓ 도구-호출·과도한 위임(LLM06) 프로브</td></tr>
+        <tr><td>배포 게이트(PASS/FAIL)</td><td>평가 리포트 위주</td><td class="yes">✓ 취약 0 기준 공급 전 게이트</td></tr>
+        <tr><td>폐루프 수정 증명</td><td>탐지 중심</td><td class="yes">✓ 가드 자동 주입 → 재시험 차단률</td></tr>
+        <tr><td>사내 파이프라인 연계</td><td>—</td><td class="yes">✓ FabriX 공급 전 점검 → 거버넌스</td></tr>
+        <tr><td>멀티턴 공격 진화 · 규제 매핑</td><td>✓ (DeepTeam 등)</td><td class="road">로드맵(개인정보보호법·금융 관점)</td></tr>
+      </tbody>
+    </table>
+    <p class="sub reveal" style="margin-top:18px;font-size:14.5px">
+      <strong>정직한 현재 수준:</strong> 공격 변형·LLM 판정·국내 PII·게이트·폐루프는 <em>구현됨</em>. 멀티턴 크레센도 공격과 LLM 기반 공격 자동 진화는 <em>로드맵</em>입니다. 이 페이지의 실제 연결 모드로 지금 바로 자신의 에이전트에 돌려볼 수 있습니다.
+    </p>
   </div>
 </section>
 
