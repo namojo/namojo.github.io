@@ -158,3 +158,4 @@
 | covers/anthropic-s1-sandbox-misconfiguration.jpg | 미국 증권거래위원회 본부, 워싱턴 D.C. | Wikimedia Commons "United States Securities and Exchange Commission (SEC) (55266859043).jpg" — ajay_suresh | CC BY 4.0 |
 | covers/pc-production-returns-china-memory-wafers.jpg | CXMT DDR5 SO-DIMM 노트북용 메모리 모듈 | Wikimedia Commons "CXMT DDR5 SODIMM.png" — Padgriffin | CC BY 4.0 |
 | inline/pc-production-returns-china-memory-wafers-wafer.jpg | 서로 다른 크기의 칩이 구획으로 잘린 실리콘 웨이퍼 | Wikimedia Commons "Silicon Wafer 20190210.jpg" — Enrique Jiménez | CC BY-SA 2.0 |
+| covers/torchneuron-pytorch-dispatcher-device-key.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
