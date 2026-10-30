@@ -159,3 +159,5 @@
 | covers/pc-production-returns-china-memory-wafers.jpg | CXMT DDR5 SO-DIMM 노트북용 메모리 모듈 | Wikimedia Commons "CXMT DDR5 SODIMM.png" — Padgriffin | CC BY 4.0 |
 | inline/pc-production-returns-china-memory-wafers-wafer.jpg | 서로 다른 크기의 칩이 구획으로 잘린 실리콘 웨이퍼 | Wikimedia Commons "Silicon Wafer 20190210.jpg" — Enrique Jiménez | CC BY-SA 2.0 |
 | covers/torchneuron-pytorch-dispatcher-device-key.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
+| covers/netflix-gpu-reliability-distributed-systems.jpg | 오크리지 국립연구소의 서밋 슈퍼컴퓨터 | Wikimedia Commons "Summit (supercomputer).jpg" — Carlos Jones/ORNL | CC BY 2.0 |
+| inline/netflix-gpu-reliability-distributed-systems-rack.jpg | 서밋 슈퍼컴퓨터 랙 내부의 노드별 인터커넥트 배선 | Wikimedia Commons — Oak Ridge National Laboratory | CC BY 2.0 |
