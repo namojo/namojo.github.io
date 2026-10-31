@@ -161,3 +161,4 @@
 | covers/torchneuron-pytorch-dispatcher-device-key.jpg | 데이터센터 서버 랙 | Wikimedia Commons "Datacenter Server Racks (22370909788).jpg" — Carl Lender from Sunrise, USA | CC BY 2.0 |
 | covers/netflix-gpu-reliability-distributed-systems.jpg | 오크리지 국립연구소의 서밋 슈퍼컴퓨터 | Wikimedia Commons "Summit (supercomputer).jpg" — Carlos Jones/ORNL | CC BY 2.0 |
 | inline/netflix-gpu-reliability-distributed-systems-rack.jpg | 서밋 슈퍼컴퓨터 랙 내부의 노드별 인터커넥트 배선 | Wikimedia Commons — Oak Ridge National Laboratory | CC BY 2.0 |
+| covers/shared-ai-training-preference-robots-txt.jpg | '게시됨 — 출입 금지' 표지판 | Wikimedia Commons "Posted - No Trespassing sign, US.jpg" — Penny Thompson | CC BY 2.0 |
