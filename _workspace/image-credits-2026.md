@@ -163,3 +163,4 @@
 | inline/netflix-gpu-reliability-distributed-systems-rack.jpg | 서밋 슈퍼컴퓨터 랙 내부의 노드별 인터커넥트 배선 | Wikimedia Commons — Oak Ridge National Laboratory | CC BY 2.0 |
 | covers/shared-ai-training-preference-robots-txt.jpg | '게시됨 — 출입 금지' 표지판 | Wikimedia Commons "Posted - No Trespassing sign, US.jpg" — Penny Thompson | CC BY 2.0 |
 | covers/cursor-marketplace-fake-claude-code-extension.jpg | Visual Studio Code 편집기 화면 | Wikimedia Commons — Cycling2 | CC0 |
+| covers/gdpx-benchmark-behavior-rules.jpg | 계약서와 서명 | Wikimedia Commons "Legal Contract & Signature - Warm Tones.jpg" — Blogtrepreneur | CC BY 2.0 |
