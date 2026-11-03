@@ -164,3 +164,5 @@
 | covers/shared-ai-training-preference-robots-txt.jpg | '게시됨 — 출입 금지' 표지판 | Wikimedia Commons "Posted - No Trespassing sign, US.jpg" — Penny Thompson | CC BY 2.0 |
 | covers/cursor-marketplace-fake-claude-code-extension.jpg | Visual Studio Code 편집기 화면 | Wikimedia Commons — Cycling2 | CC0 |
 | covers/gdpx-benchmark-behavior-rules.jpg | 계약서와 서명 | Wikimedia Commons "Legal Contract & Signature - Warm Tones.jpg" — Blogtrepreneur | CC BY 2.0 |
+| covers/goldman-sachs-pulls-coding-agents-non-engineers.jpg | 골드만삭스 본사 200 웨스트 스트리트 (뉴욕 로어맨해튼) | Wikimedia Commons "200 West Street (Goldman Sachs Tower), Manhattan, seen from One World Observatory (24326787965).jpg" — www.Pixel.la Free Stock Photos | CC0 |
+| inline/goldman-sachs-pulls-coding-agents-non-engineers-floor.jpg | 프랑크푸르트 독일거래소 트레이딩 플로어 | Wikimedia Commons "Deutsche-boerse-parkett-ffm006.jpg" — Dontworry | CC BY-SA 3.0 |
