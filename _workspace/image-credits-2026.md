@@ -166,3 +166,5 @@
 | covers/gdpx-benchmark-behavior-rules.jpg | 계약서와 서명 | Wikimedia Commons "Legal Contract & Signature - Warm Tones.jpg" — Blogtrepreneur | CC BY 2.0 |
 | covers/goldman-sachs-pulls-coding-agents-non-engineers.jpg | 골드만삭스 본사 200 웨스트 스트리트 (뉴욕 로어맨해튼) | Wikimedia Commons "200 West Street (Goldman Sachs Tower), Manhattan, seen from One World Observatory (24326787965).jpg" — www.Pixel.la Free Stock Photos | CC0 |
 | inline/goldman-sachs-pulls-coding-agents-non-engineers-floor.jpg | 프랑크푸르트 독일거래소 트레이딩 플로어 | Wikimedia Commons "Deutsche-boerse-parkett-ffm006.jpg" — Dontworry | CC BY-SA 3.0 |
+| covers/git-reference-lock-agent-scale-push.jpg | CERN 전산센터의 서버 랙 | Wikimedia Commons "CERN Server 03.jpg" — Florian Hirzinger - www.fh-ap.com | CC BY-SA 3.0 |
+| inline/git-reference-lock-agent-scale-push-replicas.jpg | 같은 데이터를 들고 있는 서버 복제본들 | Wikimedia Commons "Wikimedia Foundation Servers-8055 35.jpg" — Victor Grigas | CC BY-SA 3.0 |
