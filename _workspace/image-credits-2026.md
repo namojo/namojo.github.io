@@ -168,3 +168,5 @@
 | inline/goldman-sachs-pulls-coding-agents-non-engineers-floor.jpg | 프랑크푸르트 독일거래소 트레이딩 플로어 | Wikimedia Commons "Deutsche-boerse-parkett-ffm006.jpg" — Dontworry | CC BY-SA 3.0 |
 | covers/git-reference-lock-agent-scale-push.jpg | CERN 전산센터의 서버 랙 | Wikimedia Commons "CERN Server 03.jpg" — Florian Hirzinger - www.fh-ap.com | CC BY-SA 3.0 |
 | inline/git-reference-lock-agent-scale-push-replicas.jpg | 같은 데이터를 들고 있는 서버 복제본들 | Wikimedia Commons "Wikimedia Foundation Servers-8055 35.jpg" — Victor Grigas | CC BY-SA 3.0 |
+| covers/data-center-ballot-measures-local-veto.jpg | 아이오와주 카운슬블러프스의 데이터센터 | Wikimedia Commons "Google Data Center, Council Bluffs Iowa (49062863796).jpg" — Chad Davis | CC BY 2.0 |
+| inline/data-center-ballot-measures-local-veto-signs.jpg | 캔자스 주택가의 데이터센터 반대 팻말 | Wikimedia Commons "Anti ai data center 4 censored.png" — Catboy69 | CC BY 4.0 |
