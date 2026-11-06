@@ -172,3 +172,5 @@
 | inline/data-center-ballot-measures-local-veto-signs.jpg | 캔자스 주택가의 데이터센터 반대 팻말 | Wikimedia Commons "Anti ai data center 4 censored.png" — Catboy69 | CC BY 4.0 |
 | covers/addy-osmani-agentic-verification.jpg | afl-fuzz가 테스트 프로그램을 돌리는 화면 | Wikimedia Commons "American fuzzy lop's afl-fuzz running on a test program.png" — Deetah | Apache License 2.0 |
 | covers/code-nobody-reads-supervision-paradox.jpg | 제본된 컴퓨터 출력물 | Wikimedia Commons "Bound computer printout.agr.jpg" — ArnoldReinhold | CC BY-SA 3.0 |
+| covers/nvidia-fleet-intelligence-gpu-location.jpg | 엔비디아 H100 GPU 카드 | Wikimedia Commons "NVIDIA H100 (极客湾Geekerwan) 011.png" — 极客湾Geekerwan | CC BY 3.0 |
+| inline/nvidia-fleet-intelligence-gpu-location-causeway.jpg | 싱가포르-조호르 코즈웨이 | Wikimedia Commons "Singapore-Johor Causeway.jpg" — Calvin Teo | CC BY-SA 3.0 |
