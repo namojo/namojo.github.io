@@ -174,3 +174,4 @@
 | covers/code-nobody-reads-supervision-paradox.jpg | 제본된 컴퓨터 출력물 | Wikimedia Commons "Bound computer printout.agr.jpg" — ArnoldReinhold | CC BY-SA 3.0 |
 | covers/nvidia-fleet-intelligence-gpu-location.jpg | 엔비디아 H100 GPU 카드 | Wikimedia Commons "NVIDIA H100 (极客湾Geekerwan) 011.png" — 极客湾Geekerwan | CC BY 3.0 |
 | inline/nvidia-fleet-intelligence-gpu-location-causeway.jpg | 싱가포르-조호르 코즈웨이 | Wikimedia Commons "Singapore-Johor Causeway.jpg" — Calvin Teo | CC BY-SA 3.0 |
+| covers/deepmind-fan-factories-batch-factoring-rsa.jpg | 아르곤 국립연구소의 IBM Blue Gene/P 슈퍼컴퓨터 | Wikimedia Commons "IBM Blue Gene P supercomputer.jpg" — Argonne National Laboratory's Flickr page | CC BY-SA 2.0 |
