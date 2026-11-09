@@ -177,3 +177,5 @@
 | covers/deepmind-fan-factories-batch-factoring-rsa.jpg | 아르곤 국립연구소의 IBM Blue Gene/P 슈퍼컴퓨터 | Wikimedia Commons "IBM Blue Gene P supercomputer.jpg" — Argonne National Laboratory's Flickr page | CC BY-SA 2.0 |
 | covers/agent-approval-file-secret-leak.jpg | 에이전트 명령 승인 프롬프트가 떠 있는 개발 환경 화면 | Unsplash — Bernd Dittrich (@hdbernd), photo-1774901128283 | Unsplash License |
 | inline/agent-approval-file-secret-leak-gitlog.jpg | 깃 커밋 히스토리 그래프와 .gitignore가 보이는 편집기 화면 | Unsplash — Yancy Min (@yancymin), photo-1556075798 | Unsplash License |
+| covers/uk-public-bodies-ai-generated-complaints.jpg | 엔필드 구청사(Enfield Civic Centre), 런던 | Wikimedia Commons "Enfield Civic Centre - geograph.org.uk - 4131779.jpg" — David Howard | CC BY-SA 2.0 |
+| inline/uk-public-bodies-ai-generated-complaints-flooding-cases.jpg | 정부 서비스 12곳의 연간 접수량 추이(논문 Figure 1) | arXiv 2608.16603 — Schmitz, Hammond, Chan, 「Characterizing Agentic Flooding of Government Services」 | CC BY 4.0 |
