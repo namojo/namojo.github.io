@@ -179,3 +179,4 @@
 | inline/agent-approval-file-secret-leak-gitlog.jpg | 깃 커밋 히스토리 그래프와 .gitignore가 보이는 편집기 화면 | Unsplash — Yancy Min (@yancymin), photo-1556075798 | Unsplash License |
 | covers/uk-public-bodies-ai-generated-complaints.jpg | 엔필드 구청사(Enfield Civic Centre), 런던 | Wikimedia Commons "Enfield Civic Centre - geograph.org.uk - 4131779.jpg" — David Howard | CC BY-SA 2.0 |
 | inline/uk-public-bodies-ai-generated-complaints-flooding-cases.jpg | 정부 서비스 12곳의 연간 접수량 추이(논문 Figure 1) | arXiv 2608.16603 — Schmitz, Hammond, Chan, 「Characterizing Agentic Flooding of Government Services」 | CC BY 4.0 |
+| covers/llmjacking-mixers-stolen-llm-keys.jpg | 한 건물에 늘어선 전기 계량기들 | Wikimedia Commons, Downtowngal | CC BY-SA 4.0 |
