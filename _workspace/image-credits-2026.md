@@ -183,3 +183,5 @@
 | covers/asahi-linux-mit-to-gpl-llm-laundering.jpg | 애플 M1 아이맥에서 돌아가는 아사히 리눅스 데스크톱 | Wikimedia Commons "Arch Linux ARM-Asahi Linux Desktop English 07-2023.png" — Asahi Linux team | GPL |
 | inline/asahi-linux-mit-to-gpl-llm-laundering-m1.jpg | 맥 미니 로직보드 위의 애플 M1 패키지 | Wikimedia Commons "Mac Mini M1 chip.jpg" — Sonic8400 | CC BY-SA 4.0 |
 | covers/wells-fargo-ai-agent-authorized-transactions.jpg | 로스앤젤레스의 웰스파고 지점 | Wikimedia Commons "Wells Fargo Bank at Sunset - Los Angeles - California (52943228128).jpg" — Tony Webster | CC BY 2.0 |
+| covers/getty-stability-uk-appeal-infringing-copy.jpg | 영국 왕립재판소(항소법원 소재지) | Wikimedia Commons "Royal Courts of Justice 2019.jpg" — David Castor | CC0 |
+| inline/getty-stability-uk-appeal-denoising-steps.jpg | 디노이징 단계 수를 5~150회로 늘려 가며 생성한 결과 비교 | Wikimedia Commons "Stable Diffusion - Rhino X Y Plot to show different Steps.png" — Stable Diffusion WebUI (AUTOMATIC1111) | Public domain |
