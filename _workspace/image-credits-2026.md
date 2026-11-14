@@ -185,3 +185,4 @@
 | covers/wells-fargo-ai-agent-authorized-transactions.jpg | 로스앤젤레스의 웰스파고 지점 | Wikimedia Commons "Wells Fargo Bank at Sunset - Los Angeles - California (52943228128).jpg" — Tony Webster | CC BY 2.0 |
 | covers/getty-stability-uk-appeal-infringing-copy.jpg | 영국 왕립재판소(항소법원 소재지) | Wikimedia Commons "Royal Courts of Justice 2019.jpg" — David Castor | CC0 |
 | inline/getty-stability-uk-appeal-denoising-steps.jpg | 디노이징 단계 수를 5~150회로 늘려 가며 생성한 결과 비교 | Wikimedia Commons "Stable Diffusion - Rhino X Y Plot to show different Steps.png" — Stable Diffusion WebUI (AUTOMATIC1111) | Public domain |
+| covers/cloudflare-kitesurf-agent-browser-open-source.jpg | 클라우드플레어 사무실의 라바 램프 벽 | Wikimedia Commons "Lava lamp wall at Cloudflare office -1.jpg" — HaeB | CC BY-SA 4.0 |
