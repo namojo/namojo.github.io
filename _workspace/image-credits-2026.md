@@ -187,3 +187,5 @@
 | inline/getty-stability-uk-appeal-denoising-steps.jpg | 디노이징 단계 수를 5~150회로 늘려 가며 생성한 결과 비교 | Wikimedia Commons "Stable Diffusion - Rhino X Y Plot to show different Steps.png" — Stable Diffusion WebUI (AUTOMATIC1111) | Public domain |
 | covers/cloudflare-kitesurf-agent-browser-open-source.jpg | 클라우드플레어 사무실의 라바 램프 벽 | Wikimedia Commons "Lava lamp wall at Cloudflare office -1.jpg" — HaeB | CC BY-SA 4.0 |
 | covers/apache-http2-assign-headers-race.jpg | NERSC 데이터센터 서버 랙 후면의 배선 | Wikimedia Commons "Rear of rack at NERSC data center - closeup.jpg" — Derrick Coetzee from Berkeley, CA, USA | CC0 |
+| covers/bis-remote-access-rule-tpp-threshold.jpg | 미국 상무부 청사(허버트 C. 후버 빌딩), 워싱턴 D.C. | Wikimedia Commons "United States Department of Commerce - Herbert C. Hoover Building - Washington D.C..jpg" — Tony Webster | CC BY 2.0 |
+| inline/bis-remote-access-rule-tpp-threshold-b200.jpg | 데이터센터 랙에 설치된 엔비디아 가속 서버 | Wikimedia Commons "Grafica Nvidia B200.jpg" — Javils00 | CC0 |
