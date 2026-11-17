@@ -189,3 +189,4 @@
 | covers/apache-http2-assign-headers-race.jpg | NERSC 데이터센터 서버 랙 후면의 배선 | Wikimedia Commons "Rear of rack at NERSC data center - closeup.jpg" — Derrick Coetzee from Berkeley, CA, USA | CC0 |
 | covers/bis-remote-access-rule-tpp-threshold.jpg | 미국 상무부 청사(허버트 C. 후버 빌딩), 워싱턴 D.C. | Wikimedia Commons "United States Department of Commerce - Herbert C. Hoover Building - Washington D.C..jpg" — Tony Webster | CC BY 2.0 |
 | inline/bis-remote-access-rule-tpp-threshold-b200.jpg | 데이터센터 랙에 설치된 엔비디아 가속 서버 | Wikimedia Commons "Grafica Nvidia B200.jpg" — Javils00 | CC0 |
+| covers/vulnerability-disclosure-30-days.jpg | 체스 시계 | Wikimedia Commons "DGT 2010 digital chess clock.ajb.jpg" — Ajepbah | CC BY-SA 3.0 |
