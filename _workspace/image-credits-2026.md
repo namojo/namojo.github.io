@@ -191,3 +191,4 @@
 | inline/bis-remote-access-rule-tpp-threshold-b200.jpg | 데이터센터 랙에 설치된 엔비디아 가속 서버 | Wikimedia Commons "Grafica Nvidia B200.jpg" — Javils00 | CC0 |
 | covers/vulnerability-disclosure-30-days.jpg | 체스 시계 | Wikimedia Commons "DGT 2010 digital chess clock.ajb.jpg" — Ajepbah | CC BY-SA 3.0 |
 | covers/entra-agent-id-local-coding-agents.jpg | 행사 참가자 이름표 | Wikimedia Commons "Wikimania Singapore 2023, Attendee Lanyards-070A3480.jpg" — Bijay Chaurasia | CC BY-SA 4.0 |
+| covers/pth-startup-hook-ci-oidc-tokens.jpg | 서버 랙 전면 패널의 전원 버튼 | Pexels — panumas nikhomkhai | — |
