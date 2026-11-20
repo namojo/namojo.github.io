@@ -192,3 +192,5 @@
 | covers/vulnerability-disclosure-30-days.jpg | 체스 시계 | Wikimedia Commons "DGT 2010 digital chess clock.ajb.jpg" — Ajepbah | CC BY-SA 3.0 |
 | covers/entra-agent-id-local-coding-agents.jpg | 행사 참가자 이름표 | Wikimedia Commons "Wikimania Singapore 2023, Attendee Lanyards-070A3480.jpg" — Bijay Chaurasia | CC BY-SA 4.0 |
 | covers/pth-startup-hook-ci-oidc-tokens.jpg | 서버 랙 전면 패널의 전원 버튼 | Pexels — panumas nikhomkhai | — |
+| covers/macos-agent-permission-split.jpg | 맥북 프로가 놓인 책상 | Wikimedia Commons "Apple-desk-laptop-macbook-pro (23699397893).jpg" — www.Pixel.la Free Stock Photos | CC0 |
+| inline/macos-agent-permission-split-braille.jpg | 컴퓨터에 연결된 점자 정보 단말기(refreshable braille display) | Wikimedia Commons "Refreshable Braille display 2010 0123.JPG" — Eddau | CC0 |
