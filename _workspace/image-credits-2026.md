@@ -194,3 +194,4 @@
 | covers/pth-startup-hook-ci-oidc-tokens.jpg | 서버 랙 전면 패널의 전원 버튼 | Pexels — panumas nikhomkhai | — |
 | covers/macos-agent-permission-split.jpg | 맥북 프로가 놓인 책상 | Wikimedia Commons "Apple-desk-laptop-macbook-pro (23699397893).jpg" — www.Pixel.la Free Stock Photos | CC0 |
 | inline/macos-agent-permission-split-braille.jpg | 컴퓨터에 연결된 점자 정보 단말기(refreshable braille display) | Wikimedia Commons "Refreshable Braille display 2010 0123.JPG" — Eddau | CC0 |
+| covers/dragos-canary-tokens-ai-supply-chain.jpg | 탄광에서 일산화탄소 탐지에 쓰인 카나리아 새장 (1928, 미국 광산국) | Wikimedia Commons "Canary coal mine.jpg" — George McCaa, U.S. Bureau of Mines | Public domain |
