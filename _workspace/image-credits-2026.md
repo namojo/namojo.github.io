@@ -196,3 +196,5 @@
 | inline/macos-agent-permission-split-braille.jpg | 컴퓨터에 연결된 점자 정보 단말기(refreshable braille display) | Wikimedia Commons "Refreshable Braille display 2010 0123.JPG" — Eddau | CC0 |
 | covers/dragos-canary-tokens-ai-supply-chain.jpg | 탄광에서 일산화탄소 탐지에 쓰인 카나리아 새장 (1928, 미국 광산국) | Wikimedia Commons "Canary coal mine.jpg" — George McCaa, U.S. Bureau of Mines | Public domain |
 | covers/riemann-lean-proof-verification.jpg | 베른하르트 리만 초상 사진 | Wikimedia Commons "Portrait of Bernhard Riemann (1826-1866), Mathematician (2551069295).jpg" — Smithsonian Institution from United States | No restrictions |
+| covers/postgresql-19-repack-online-bloat.jpg | 엔터프라이즈용 하드디스크 드라이브 | Wikimedia Commons "Seagate ST12000NM0117 2GY101-111 20190718.jpg" — David290 | CC BY-SA 4.0 |
+| inline/postgresql-19-repack-mvcc-row-versions.jpg | 한 행이 INSERT·UPDATE·DELETE를 거치며 버전이 쌓이는 모습(xmin/xmax) | Wikimedia Commons "PostgreSQL mvcc.svg" — Kelti | CC BY-SA 4.0 |
