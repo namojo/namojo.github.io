@@ -17,7 +17,7 @@ PostgreSQL 19가 11월 19일에 나왔습니다. 바뀐 게 많지만 운영하�
 
 PostgreSQL의 UPDATE는 있던 자리를 고쳐 쓰지 않습니다. 새 행 버전을 하나 더 쓰고, 원래 있던 것은 죽은 행으로 표시만 해 둡니다. DELETE도 지우는 게 아니라 표시만 합니다. 왜 이렇게 했을까? 조금 전 시점의 스냅샷을 들고 조회하는 중인 트랜잭션에게는 옛 버전이 아직 보여야 하니까, 값을 덮어쓸 수가 없습니다. 읽는 쪽과 쓰는 쪽이 서로를 기다리지 않는 것, 우리가 PostgreSQL에서 당연하게 누리는 그 성질을 떠받치는 방식이 이겁니다. 대신 테이블 파일은 산 행과 죽은 행이 섞인 더미가 됩니다.
 
-![한 행이 INSERT와 UPDATE, DELETE를 거치며 버전이 쌓이는 모습](/images/inline/postgresql-19-repack-mvcc-row-versions.jpg)
+![PostgreSQL 행 버전 누적 도식](/images/inline/postgresql-19-repack-mvcc-row-versions.jpg)
 *행 하나가 INSERT와 두 번의 UPDATE, DELETE를 거치며 버전이 쌓입니다. xmin은 그 버전을 만든 트랜잭션 번호이고, xmax는 그 버전을 죽은 것으로 표시한 트랜잭션 번호입니다. 맨 오른쪽처럼 DELETE가 끝난 뒤에도 세 개의 버전이 파일에 그대로 남아 있습니다.*
 *출처: Wikimedia Commons*
 
