@@ -199,3 +199,4 @@
 | covers/postgresql-19-repack-online-bloat.jpg | 엔터프라이즈용 하드디스크 드라이브 | Wikimedia Commons "Seagate ST12000NM0117 2GY101-111 20190718.jpg" — David290 | CC BY-SA 4.0 |
 | inline/postgresql-19-repack-mvcc-row-versions.jpg | 한 행이 INSERT·UPDATE·DELETE를 거치며 버전이 쌓이는 모습(xmin/xmax) | Wikimedia Commons "PostgreSQL mvcc.svg" — Kelti | CC BY-SA 4.0 |
 | covers/java4shell-base64-intrinsic-cpu.jpg | 서버 메인보드에 장착된 EPYC 프로세서 | Wikimedia Commons "Amd epyc 7302 supermicro H11SSL-NC IMGP3532 smial wp.jpg" — Smial ( talk ) | FAL |
+| covers/walmart-agent-gateway-account-profile.jpg | 월마트 슈퍼센터 매장 외관(플로리다주 스튜어트) | Wikimedia Commons "Walmart Supercenter - Stuart, FL.jpg" — FLGALine1999 | CC0 |
