@@ -201,3 +201,4 @@
 | covers/java4shell-base64-intrinsic-cpu.jpg | 서버 메인보드에 장착된 EPYC 프로세서 | Wikimedia Commons "Amd epyc 7302 supermicro H11SSL-NC IMGP3532 smial wp.jpg" — Smial ( talk ) | FAL |
 | covers/walmart-agent-gateway-account-profile.jpg | 월마트 슈퍼센터 매장 외관(플로리다주 스튜어트) | Wikimedia Commons "Walmart Supercenter - Stuart, FL.jpg" — FLGALine1999 | CC0 |
 | covers/android-developer-verification-package-registry.jpg | 구글 마운틴뷰 캠퍼스의 안드로이드 버전별 조형물 | Wikimedia Commons "Android Lawn Statues (12758285644).jpg" — Atomic Taco from Seattle, WA, USA | CC BY-SA 2.0 |
+| covers/tencent-dfly2-speculative-decoding-prefill.jpg | GPU 슈퍼컴퓨터 TSUBAME4.0의 서버 랙 | Wikimedia Commons "TSUBAME4.0 P5160979.jpg" — Fukumoto | CC BY-SA 4.0 |
